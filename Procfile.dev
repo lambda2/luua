@@ -1,3 +1,3 @@
 
-web:       rails s -p 3232
-webpacker: (cd frontend && yarn dev)
+api:       rails s -p 3232
+frontend: (cd frontend && yarn dev)

@@ -9,16 +9,7 @@ gem 'rails', '~> 6.0.0'
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.12'
-# Use SCSS for stylesheets
-# gem 'sass-rails', '~> 5'
-# # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-# gem 'turbolinks', '~> 5'
-# # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-# gem 'jbuilder', '~> 2.7'
-# # Use Redis adapter to run Action Cable in production
-# # gem 'redis', '~> 4.0'
-# # Use Active Model has_secure_password
-# # gem 'bcrypt', '~> 3.1.7'
+
 gem 'acts_as_list'
 gem 'countries'
 
@@ -31,7 +22,6 @@ gem 'devise-jwt', '~> 0.5.9'
 gem 'rack-cors'
 
 gem 'has_scope'
-# gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'kaminari'
 gem 'panko_serializer'
 gem 'rack-attack'
@@ -44,26 +34,28 @@ gem 'redis-namespace'
 gem 'rufus-scheduler', '~> 3.4.0'
 gem 'sidekiq-cron', '~> 0.6.3'
 
-gem 'interactor-rails' # , "~> 2.0"
+gem 'interactor-rails'
 
 gem 'friendly_id', '~> 5.2.4'
 
 # State machines
 gem 'aasm'
 
+# i18n
 gem 'globalize'
 gem 'globalize-accessors'
 gem 'route_translator'
 
+# Errors & reporting
 gem 'appsignal'
 gem 'sentry-raven'
 
+# Pg analytics
 gem 'pg_query', '>= 0.9.0'
 gem 'pghero'
 
+# Memcached
 gem 'dalli'
-
-gem 'httparty' # rubocop:todo Bundler/DuplicatedGem
 
 gem 'groupdate'
 
@@ -75,9 +67,6 @@ gem 'carrierwave'
 gem 'carrierwave-base64'
 gem 'mini_magick', '~> 4.8'
 
-# Sentry
-gem 'sentry-raven' # rubocop:todo Bundler/DuplicatedGem
-
 # Slack
 gem 'slack-ruby-client'
 
@@ -85,7 +74,6 @@ gem 'slack-ruby-client'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
-
   gem 'annotate'
   gem 'apparition'
   gem 'brakeman'
@@ -105,26 +93,20 @@ group :development, :test do
   gem 'rubocop', '~> 0.80', require: false
   gem 'webdrivers' # This gem helps Capybara interact with the web browser.
   gem 'webmock' # Mock http calls
-  # gem 'rubocop'#, '~> 0.75.1', require: false
 end
 
 group :development do
+
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'web-console', '>= 3.3.0'
+
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  # gem 'capybara', '>= 2.15'
-  # gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
-  # gem 'database_cleaner'
-  # gem 'webdrivers'
-  # gem 'codecov', require: false
   gem 'simplecov', require: false
 end
 

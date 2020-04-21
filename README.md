@@ -1,24 +1,44 @@
-# README
+# luua 💃
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Build Status](https://travis-ci.com/lambda2/luua.svg?token=zsj9q6JjpQd8brNcmt9S&branch=master)](https://travis-ci.com/lambda2/luua)
 
-Things you may want to cover:
 
-* Ruby version
+This is the monorepo for Luua, which is made of:
 
-* System dependencies
+- A REST API (a rails app), located here (under `/`)
+- Soon, A NextJS (React) web app, located under `/frontend`
 
-* Configuration
+# Setup
 
-* Database creation
+```bash
+# Clone the repo
+git clone git@github.com:lambda2/luua.git
 
-* Database initialization
+cd luua
 
-* How to run the test suite
+# Setup
+./bin/setup
 
-* Services (job queues, cache servers, search engines, etc.)
+```
 
-* Deployment instructions
+# Deployment
 
-* ...
+## Tech stack:
+
+- Ruby on Rails powers the REST API and other web pages
+- NextJS (React.js) is used for the web app
+
+## Requirements:
+
+- PostgreSQL 10+
+- Redis 4+
+- Ruby 2.5+
+
+# Notes
+
+## i18n
+
+All strings in database are stored in english for now.
+Future could be:
+- Translates server side, in database. Slow down queries and add more management to translate everything
+- (Current solution) Translates client side, very error prone
