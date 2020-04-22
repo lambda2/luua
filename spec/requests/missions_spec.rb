@@ -223,4 +223,43 @@ describe Api::MissionsController, type: :request do # rubocop:todo Metrics/Block
     end
 
   end
+
+  describe '#update' do
+
+    let(:user) { create(:user, :confirmed) }
+    let(:mission) { create(:mission, created_by: user.id) }
+    let(:other_mission) { create(:mission) }
+
+    it 'on an user\'s mission' do
+      json_patch "/api/missions/#{mission.id}", user: user, params: {mission: { name: "Hello world" }}.to_json
+      expect(response.status).to eq(200)
+      expect(response.body).to match_item_in_json(mission)
+      expect(response.body).to match_attributes_in_json(name: "Hello world")
+    end
+
+    it 'on another mission' do
+      json_patch "/api/missions/#{other_mission.id}", user: user, params: {mission: { name: "Hello world" }}.to_json
+      expect(response.status).to eq(403)
+    end
+  end
+
+  describe '#create' do
+
+    let(:user) { create(:user, :confirmed) }
+    let(:workspace) { create(:workspace, user_ids: [user.id]) }
+    let(:mission) { build(:mission, workspace_id: workspace.id) }
+    let(:mission_without_workspace) { build(:mission) }
+
+    it 'Create a mission' do
+      json_post "/api/missions", user: user, params: {mission: mission}.to_json
+      expect(response.status).to eq(201)
+      expect(response.body).to match_attributes_in_json(mission.as_json.select{|k, e| e})
+    end
+
+    it 'Create a mission without a workspace' do
+      json_post "/api/missions", user: user, params: {mission: mission_without_workspace}.to_json
+      expect(response.status).to eq(422)
+    end
+
+  end
 end
