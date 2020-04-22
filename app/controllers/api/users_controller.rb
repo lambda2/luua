@@ -1,4 +1,4 @@
-# typed: true
+
 class Api::UsersController < ApiController
   load_and_authorize_resource
   before_action :set_user, only: %i[show update destroy]

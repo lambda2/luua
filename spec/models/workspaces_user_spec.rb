@@ -21,7 +21,7 @@
 #  fk_rails_...  (workspace_id => workspaces.id)
 #
 
-# typed: strict
+
 require 'rails_helper'
 
 RSpec.describe WorkspacesUser, type: :model do

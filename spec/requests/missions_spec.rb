@@ -196,4 +196,31 @@ describe Api::MissionsController, type: :request do # rubocop:todo Metrics/Block
 
     end
   end
+
+  describe '#apply' do
+
+    let(:public_mission) { create(:mission, visibility: :public) }
+    let(:protected_mission) { create(:mission, visibility: :protected) }
+    let(:invisible_mission) { create(:mission, visibility: :hidden) }
+    let(:candidate) { create(:user, :confirmed) }
+
+    it 'on a public mission' do
+      json_post "/api/missions/#{public_mission.id}/apply", user: candidate
+      expect(response.status).to eq(200)
+      expect(response.body).to match_item_in_json(public_mission.reload.mission_users.last)
+    end
+
+    it 'on a protected mission' do
+      pending "Applying to a protected mission should be forbidden (currently allowed)"
+      json_post "/api/missions/#{protected_mission.id}/apply", user: candidate
+      expect(response.status).to eq(401)
+    end
+
+    it 'on a invisible mission' do
+      pending "Applying to a invisible mission should be forbidden (currently allowed)"
+      json_post "/api/missions/#{invisible_mission.id}/apply", user: candidate
+      expect(response.status).to eq(401)
+    end
+
+  end
 end

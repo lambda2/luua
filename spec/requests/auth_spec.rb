@@ -1,4 +1,4 @@
-# typed: false
+
 require 'rails_helper'
 require 'devise/jwt/test_helpers'
 

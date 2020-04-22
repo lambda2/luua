@@ -1,4 +1,4 @@
-# typed: false
+
 require 'rails_helper'
 
 RSpec.describe 'POST /users', type: :request do

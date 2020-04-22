@@ -1,4 +1,4 @@
-# typed: strong
+
 
 class ReplyMailer < ApplicationMailer
   extend T::Sig

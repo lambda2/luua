@@ -1,4 +1,4 @@
-# typed: strict
+
 class UserDetailsSerializer < Panko::Serializer
   attributes :id, :email, :image_url, :thumb_url, :username,
              :image, :first_name, :last_name,

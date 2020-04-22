@@ -1,4 +1,4 @@
-# typed: false
+
 FactoryBot.define do
   factory :organization, class: Organization do
     sequence(:name) {|n| "org #{Faker::Movies::StarWars.planet}-#{n}" }

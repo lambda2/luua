@@ -23,6 +23,8 @@ skill_data = {
   technical: JSON.parse(File.read("#{Rails.root}/db/seeds/dumps/technical.json"))
 }
 
+return if ENV['LIGHT_SEED']
+
 categories.map do |cat|
   sc = SkillCategory.where(cat).first_or_create!
   skills = skill_data[sc.slug.to_sym]

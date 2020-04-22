@@ -37,7 +37,7 @@
 #  fk_rails_...  (workspace_id => workspaces.id)
 #
 
-# typed: strict
+
 class MissionSerializer < Panko::Serializer
   attributes :id, :name, :mission_category_id, :physical, :description,
              :begin_at, :end_at, :due_at, :organization_id, :workspace_id,

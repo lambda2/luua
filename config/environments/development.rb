@@ -1,4 +1,4 @@
-# typed: false
+
 Rails.application.configure do # rubocop:todo Metrics/BlockLength
   # Settings specified here will take precedence over those in config/application.rb.
 

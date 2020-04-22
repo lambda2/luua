@@ -8,7 +8,7 @@ class Api::CountriesController < ApiController
     respond_to do |format|
       format.json do
         respond_with_cache(@countries) do
-          @countries.map {|t| { id: t.id, name: t.name } }
+          Panko::ArraySerializer.new(@countries, each_serializer: CountrySerializer).to_json
         end
       end
     end

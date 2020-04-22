@@ -29,7 +29,7 @@
 #  fk_rails_...  (region_id => regions.id)
 #
 
-# typed: strict
+
 class OrganizationSerializer < Panko::Serializer
   attributes :id, :name, :description, :slug, :image, :color,
              :region_id, :country_id, :organization_type,

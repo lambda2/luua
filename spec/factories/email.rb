@@ -1,4 +1,4 @@
-# typed: false
+
 FactoryBot.define do
   factory :email, class: OpenStruct do
     domain_name { 'seacher' }

@@ -51,7 +51,7 @@
 #  fk_rails_...  (primary_workspace_id => workspaces.id)
 #
 
-# typed: false
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
