@@ -1,13 +1,19 @@
 # luua 💃
 
-[![Build Status](https://travis-ci.com/lambda2/luua.svg?branch=master)](https://travis-ci.com/lambda2/luua) [![Coverage Status](https://coveralls.io/repos/github/lambda2/luua/badge.svg?branch=master)](https://coveralls.io/github/lambda2/luua?branch=master)
+[![Build Status](https://travis-ci.com/lambda2/luua.svg?branch=master)](https://travis-ci.com/lambda2/luua) [![Coverage Status](https://coveralls.io/repos/github/lambda2/luua/badge.svg?branch=master)](https://coveralls.io/github/lambda2/luua?branch=master) [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
+
+
+## Disclaimer
+
+This project is a **work in progress**, and is not working yet.
+
 
 This is the monorepo for Luua, which is made of:
 
 - A REST API (a rails app), located here (under `/`)
 - Soon, A NextJS (React) web app, located under `/frontend`
 
-# Setup
+## Setup
 
 ```bash
 # Clone the repo
@@ -20,24 +26,24 @@ cd luua
 
 ```
 
-# Deployment
+## Deployment
 
-## Tech stack:
+### Tech stack:
 
 - Ruby on Rails powers the REST API and other web pages
 - NextJS (React.js) is used for the web app
 
-## Requirements:
+### Requirements:
 
 - PostgreSQL 10+
 - Redis 4+
 - Ruby 2.5+
 
-# Notes
-
-## i18n
+## Notes
+<!--
+### i18n
 
 All strings in database are stored in english for now.
 Future could be:
 - Translates server side, in database. Slow down queries and add more management to translate everything
-- (Current solution) Translates client side, very error prone
+- (Current solution) Translates client side, very error prone -->
