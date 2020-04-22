@@ -1,0 +1,48 @@
+# == Schema Information
+#
+# Table name: mission_users
+#
+#  id           :bigint           not null, primary key
+#  accepted_at  :datetime
+#  applied_at   :datetime         not null
+#  completed_at :datetime
+#  rejected_at  :datetime
+#  reviewed_at  :datetime
+#  status       :integer          not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  mission_id   :bigint           not null
+#  user_id      :bigint           not null
+#
+# Indexes
+#
+#  index_mission_users_on_mission_id  (mission_id)
+#  index_mission_users_on_user_id     (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (mission_id => missions.id)
+#  fk_rails_...  (user_id => users.id)
+#
+
+class MissionUserDetailSerializer < Panko::Serializer
+  attributes :id, :mission_id, :user_id, :status, :applied_at,
+             :accepted_at, :rejected_at, :completed_at, :reviewed_at,
+             :created_at, :mission_skills, :updated_at, :user_skills,
+             :match_score
+
+  has_one :user, serializer: UserLightSerializer
+  has_one :mission, serializer: MissionLightSerializer
+
+  def user_skills
+    object.user.user_skills.where(skill_id: object.mission.skill_ids).map do |ms|
+      UserSkillLightSerializer.new.serialize(ms)
+    end
+  end
+
+  def mission_skills
+    object.mission.mission_skills.map do |ms|
+      MissionSkillSerializer.new.serialize(ms)
+    end
+  end
+end

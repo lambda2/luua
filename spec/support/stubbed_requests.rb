@@ -1,0 +1,2 @@
+module StubbedRequests
+end

@@ -1,0 +1,1299 @@
+[
+  {
+    "name": "Software Engineering",
+    "children": [
+      {
+        "name": "Programming Languages",
+        "children": [
+          {
+            "name": "Java"
+          },
+          {
+            "name": "HTML"
+          },
+          {
+            "name": "Javascript"
+          },
+          {
+            "name": "Python"
+          },
+          {
+            "name": "CSS"
+          },
+          {
+            "name": "C++"
+          },
+          {
+            "name": "C"
+          },
+          {
+            "name": "PHP"
+          },
+          {
+            "name": "C#"
+          },
+          {
+            "name": "XML"
+          },
+          {
+            "name": "Unix"
+          },
+          {
+            "name": "Ubuntu"
+          },
+          {
+            "name": "Bash"
+          },
+          {
+            "name": "Swift"
+          },
+          {
+            "name": "R"
+          },
+          {
+            "name": "Scripting Languages"
+          },
+          {
+            "name": "Perl"
+          },
+          {
+            "name": "Objective-C"
+          },
+          {
+            "name": "Ruby"
+          },
+          {
+            "name": "SCSS / SASS"
+          },
+          {
+            "name": "C Sharp (C#)"
+          },
+          {
+            "name": "LESS"
+          },
+          {
+            "name": "TypeScript"
+          },
+          {
+            "name": "Scala"
+          },
+          {
+            "name": "Go"
+          },
+          {
+            "name": "Core Java / Java SE"
+          },
+          {
+            "name": ".NET"
+          },
+          {
+            "name": "Kotlin"
+          },
+          {
+            "name": "Coffeescript"
+          },
+          {
+            "name": "Es6"
+          },
+          {
+            "name": "Elixir"
+          },
+          {
+            "name": "Clojure"
+          },
+          {
+            "name": "Erlang"
+          },
+          {
+            "name": "TCP/IP"
+          },
+          {
+            "name": "Groovy"
+          }
+        ]
+      },
+      {
+        "name": "Databases",
+        "children": [
+          {
+            "name": "SQL"
+          },
+          {
+            "name": "MySQL"
+          },
+          {
+            "name": "Oracle"
+          },
+          {
+            "name": "MongoDB"
+          },
+          {
+            "name": "PostgreSQL"
+          },
+          {
+            "name": "Data Management"
+          },
+          {
+            "name": "SQLite"
+          },
+          {
+            "name": "Redis"
+          },
+          {
+            "name": "Data Warehouse"
+          },
+          {
+            "name": "noSQL"
+          },
+          {
+            "name": "RDBMS"
+          },
+          {
+            "name": "Hive"
+          },
+          {
+            "name": "ETL"
+          },
+          {
+            "name": "SQL Server"
+          },
+          {
+            "name": "Prototyping"
+          },
+          {
+            "name": "Database and Systems Design"
+          },
+          {
+            "name": "Database Management"
+          },
+          {
+            "name": "MS SQL Server"
+          },
+          {
+            "name": "Neo4J"
+          },
+          {
+            "name": "Relational Databases"
+          },
+          {
+            "name": "DynamoDB"
+          },
+          {
+            "name": "SQL/MySQL/PostgreSQL"
+          }
+        ]
+      },
+      {
+        "name": "Programming: 3P APIs & Libraries",
+        "children": [
+          {
+            "name": "Git"
+          },
+          {
+            "name": "Android"
+          },
+          {
+            "name": "Microsoft SQL Server"
+          },
+          {
+            "name": "Eclipse"
+          },
+          {
+            "name": "Github"
+          },
+          {
+            "name": "API"
+          },
+          {
+            "name": "Svn"
+          },
+          {
+            "name": "Selenium"
+          },
+          {
+            "name": "Hadoop"
+          },
+          {
+            "name": "Jenkins"
+          },
+          {
+            "name": "Apache Tomcat"
+          },
+          {
+            "name": "JUNIT"
+          },
+          {
+            "name": "iOS Development"
+          },
+          {
+            "name": "Xcode"
+          },
+          {
+            "name": "Heroku"
+          },
+          {
+            "name": "OpenCV"
+          },
+          {
+            "name": "Nginx"
+          },
+          {
+            "name": "Drupal"
+          },
+          {
+            "name": "Gulp"
+          },
+          {
+            "name": "Selenium WebDriver"
+          },
+          {
+            "name": "Vue.Js"
+          },
+          {
+            "name": "REST APIs"
+          },
+          {
+            "name": "D3.js"
+          },
+          {
+            "name": "TensorFlow"
+          },
+          {
+            "name": "Android Application Development"
+          },
+          {
+            "name": "MAGENTO"
+          },
+          {
+            "name": "Apache Cassandra"
+          },
+          {
+            "name": "JMeter"
+          },
+          {
+            "name": "Rabbitmq"
+          },
+          {
+            "name": "Shopify"
+          },
+          {
+            "name": "OpenGL"
+          },
+          {
+            "name": "Hbase"
+          },
+          {
+            "name": "Grunt"
+          },
+          {
+            "name": "Firebase"
+          },
+          {
+            "name": "iOS"
+          },
+          {
+            "name": "Android Development"
+          },
+          {
+            "name": "ElasticSearch"
+          },
+          {
+            "name": "Webpack"
+          },
+          {
+            "name": "Kubernetes"
+          },
+          {
+            "name": "Apache Solr"
+          },
+          {
+            "name": "Android Studio"
+          },
+          {
+            "name": "Google Cloud Platform"
+          },
+          {
+            "name": "Microsoft Azure"
+          },
+          {
+            "name": "Xamarin"
+          },
+          {
+            "name": "BabelJS"
+          },
+          {
+            "name": "AWS Cloud Services"
+          },
+          {
+            "name": "Windows Azure"
+          },
+          {
+            "name": "Kafka"
+          },
+          {
+            "name": "Facebook API"
+          },
+          {
+            "name": "Rspec"
+          },
+          {
+            "name": "Socket.io"
+          },
+          {
+            "name": "PhoneGap/Cordova"
+          },
+          {
+            "name": "Unreal Engine 4"
+          },
+          {
+            "name": "AWS Lambda"
+          },
+          {
+            "name": "Apache Kafka"
+          },
+          {
+            "name": "Google Maps API"
+          },
+          {
+            "name": "Android SDK"
+          },
+          {
+            "name": "Bitbucket"
+          },
+          {
+            "name": "Amazon S3"
+          },
+          {
+            "name": "Hadoop/Hive/Spark/Scala/MLlib"
+          },
+          {
+            "name": "Salesforce Developer"
+          },
+          {
+            "name": "Unity"
+          },
+          {
+            "name": "Cassandra"
+          },
+          {
+            "name": "Memcached"
+          },
+          {
+            "name": "Amazon Redshift"
+          },
+          {
+            "name": "Websockets"
+          },
+          {
+            "name": "Akka"
+          },
+          {
+            "name": "Celery"
+          },
+          {
+            "name": "Symfony"
+          },
+          {
+            "name": "Spark"
+          },
+          {
+            "name": "WebGL"
+          },
+          {
+            "name": "WebRTC"
+          },
+          {
+            "name": "Apache Storm"
+          },
+          {
+            "name": "Angular JS"
+          },
+          {
+            "name": "Amazon Lambda"
+          },
+          {
+            "name": "JVM"
+          }
+        ]
+      },
+      {
+        "name": "DevOps",
+        "children": [
+          {
+            "name": "Infrastructure"
+          },
+          {
+            "name": "Amazon Web Services"
+          },
+          {
+            "name": "Docker"
+          },
+          {
+            "name": "Servers"
+          },
+          {
+            "name": "Shell Scripting"
+          },
+          {
+            "name": "AWS"
+          },
+          {
+            "name": "System Administration"
+          },
+          {
+            "name": "Chef"
+          },
+          {
+            "name": "Puppet"
+          },
+          {
+            "name": "Unix Shell Scripting"
+          },
+          {
+            "name": "Vagrant"
+          },
+          {
+            "name": "Linux System Administration"
+          },
+          {
+            "name": "Ansible"
+          },
+          {
+            "name": "Continuous Integration"
+          },
+          {
+            "name": "Terraform"
+          },
+          {
+            "name": "Bash Scripting"
+          },
+          {
+            "name": "Continuous Deployment"
+          },
+          {
+            "name": "Application deployment (Docker)"
+          },
+          {
+            "name": "DevOps Engineering"
+          },
+          {
+            "name": "Dev Ops"
+          }
+        ]
+      },
+      {
+        "name": "Programming",
+        "children": []
+      },
+      {
+        "name": "Systems Administration",
+        "children": [
+          {
+            "name": "Apache"
+          }
+        ]
+      },
+      {
+        "name": "Javascript Frameworks",
+        "children": [
+          {
+            "name": "jQuery Mobile"
+          },
+          {
+            "name": "Zepto"
+          }
+        ]
+      },
+      {
+        "name": "Web Application Frameworks",
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Management",
+    "children": [
+      {
+        "name": "Communication Skills"
+      },
+      {
+        "name": "Negotiation Skills"
+      },
+      {
+        "name": "Contract Negotiations"
+      },
+      {
+        "name": "Organization"
+      },
+      {
+        "name": "Public Speaking and Presentations"
+      },
+      {
+        "name": "Engineering Management"
+      },
+      {
+        "name": "Technical Leadership"
+      }
+    ]
+  },
+  {
+    "name": "Design",
+    "children": [
+      {
+        "name": "Adobe Photoshop"
+      },
+      {
+        "name": "Product Development"
+      },
+      {
+        "name": "Adobe Illustrator"
+      },
+      {
+        "name": "Graphic Design"
+      },
+      {
+        "name": "Adobe InDesign"
+      },
+      {
+        "name": "User Interface"
+      },
+      {
+        "name": "Product Design"
+      },
+      {
+        "name": "UI/UX Design"
+      },
+      {
+        "name": "Adobe Premiere"
+      },
+      {
+        "name": "User Experience Design",
+        "children": [
+          {
+            "name": "Mobile User Experience"
+          }
+        ]
+      },
+      {
+        "name": "Adobe After Effects"
+      },
+      {
+        "name": "Branding"
+      },
+      {
+        "name": "Sketch"
+      },
+      {
+        "name": "Photography"
+      },
+      {
+        "name": "Adobe Creative Suite"
+      },
+      {
+        "name": "Illustration"
+      },
+      {
+        "name": "Web Design"
+      },
+      {
+        "name": "Visual Design"
+      },
+      {
+        "name": "UI Design"
+      },
+      {
+        "name": "User Interface Design"
+      },
+      {
+        "name": "User Research"
+      },
+      {
+        "name": "CorelDraw"
+      },
+      {
+        "name": "Interface Design"
+      },
+      {
+        "name": "Creative Direction"
+      },
+      {
+        "name": "Wireframing"
+      },
+      {
+        "name": "Rapid Prototyping"
+      },
+      {
+        "name": "Mobile Application Design"
+      },
+      {
+        "name": "UX Design"
+      },
+      {
+        "name": "Video Production"
+      },
+      {
+        "name": "Data Visualization"
+      },
+      {
+        "name": "Print Design"
+      },
+      {
+        "name": "Interaction Design"
+      },
+      {
+        "name": "Design Thinking"
+      },
+      {
+        "name": "Usability Testing"
+      },
+      {
+        "name": "Motion Graphics"
+      },
+      {
+        "name": "InVision Prototyping"
+      },
+      {
+        "name": "Brand Design and Strategy"
+      },
+      {
+        "name": "Typography"
+      },
+      {
+        "name": "Responsive Design"
+      },
+      {
+        "name": "Website Development/Design"
+      },
+      {
+        "name": "Wireframes and prototyping"
+      },
+      {
+        "name": "Animation"
+      },
+      {
+        "name": "Autodesk Maya"
+      },
+      {
+        "name": "Mockups"
+      },
+      {
+        "name": "3D Modeling / Animation"
+      },
+      {
+        "name": "Creative Strategy"
+      },
+      {
+        "name": "Axure"
+      },
+      {
+        "name": "UX Research"
+      },
+      {
+        "name": "Industrial Design"
+      },
+      {
+        "name": "Game Design"
+      },
+      {
+        "name": "Brand and Identity Design"
+      },
+      {
+        "name": "Sketching"
+      },
+      {
+        "name": "User Experience Strategy"
+      },
+      {
+        "name": "Fashion"
+      },
+      {
+        "name": "Mechanical Design"
+      },
+      {
+        "name": "User-Centered Design"
+      },
+      {
+        "name": "Icon Design"
+      },
+      {
+        "name": "iOS Design"
+      },
+      {
+        "name": "Design Research"
+      },
+      {
+        "name": "Android Design"
+      },
+      {
+        "name": "Mobile UI Design"
+      },
+      {
+        "name": "Design Strategy"
+      },
+      {
+        "name": "Mobile UI Interaction"
+      },
+      {
+        "name": "Interactive Design"
+      },
+      {
+        "name": "Design Management"
+      },
+      {
+        "name": "iOS/Android Design"
+      },
+      {
+        "name": "Mobile Design"
+      },
+      {
+        "name": "User Interaction Design"
+      },
+      {
+        "name": "Web Application Design"
+      },
+      {
+        "name": "Experience Design"
+      },
+      {
+        "name": "Origami"
+      }
+    ]
+  },
+  {
+    "name": "Marketing",
+    "children": [
+      {
+        "name": "Marketing Management"
+      },
+      {
+        "name": "Social Media"
+      },
+      {
+        "name": "Documentation"
+      },
+      {
+        "name": "Advertising"
+      },
+      {
+        "name": "Social Media Marketing"
+      },
+      {
+        "name": "Google Analytics"
+      },
+      {
+        "name": "Public Relations"
+      },
+      {
+        "name": "Digital Marketing"
+      },
+      {
+        "name": "Marketing Strategy"
+      },
+      {
+        "name": "Product Marketing"
+      },
+      {
+        "name": "Content Management"
+      },
+      {
+        "name": "Email Marketing"
+      },
+      {
+        "name": "Brand Management"
+      },
+      {
+        "name": "Event Management"
+      },
+      {
+        "name": "SEO/SEM"
+      },
+      {
+        "name": "Copywriting"
+      },
+      {
+        "name": "Technical Writing"
+      },
+      {
+        "name": "Content Marketing"
+      },
+      {
+        "name": "SEO"
+      },
+      {
+        "name": "Google Adwords"
+      },
+      {
+        "name": "Content Creation"
+      },
+      {
+        "name": "Creative Writing"
+      },
+      {
+        "name": "Copy Writing and Editing"
+      },
+      {
+        "name": "Event Planning"
+      },
+      {
+        "name": "Blogging"
+      },
+      {
+        "name": "Growth Hacking"
+      },
+      {
+        "name": "Video Editing"
+      },
+      {
+        "name": "Media Relations"
+      },
+      {
+        "name": "Content Strategy"
+      },
+      {
+        "name": "Technical documentation"
+      },
+      {
+        "name": "Digital Media"
+      },
+      {
+        "name": "Facebook Advertising"
+      },
+      {
+        "name": "Online Marketing"
+      },
+      {
+        "name": "Social Media Strategy"
+      },
+      {
+        "name": "Content Writing"
+      },
+      {
+        "name": "Telemarketing"
+      },
+      {
+        "name": "Mailchimp"
+      },
+      {
+        "name": "Web Content Writer"
+      },
+      {
+        "name": "Search Engine Marketing (SEM)"
+      },
+      {
+        "name": "Social Media Management"
+      },
+      {
+        "name": "SEO and Website Analytics"
+      },
+      {
+        "name": "Marketing Communications"
+      },
+      {
+        "name": "HubSpot"
+      },
+      {
+        "name": "PPC"
+      },
+      {
+        "name": "Search Engine Optimization"
+      },
+      {
+        "name": "Customer Acquisition"
+      },
+      {
+        "name": "Journalism"
+      },
+      {
+        "name": "Digital Marketing Strategy"
+      },
+      {
+        "name": "Marketing Automation"
+      },
+      {
+        "name": "Inbound Marketing"
+      },
+      {
+        "name": "Influencer Marketing"
+      },
+      {
+        "name": "B2B Marketing"
+      },
+      {
+        "name": "Affiliate Marketing"
+      },
+      {
+        "name": "Mobile Advertising"
+      },
+      {
+        "name": "Content and Creative Writing"
+      },
+      {
+        "name": "Conversion Optimization"
+      },
+      {
+        "name": "Instagram Marketing"
+      },
+      {
+        "name": "Internet Marketing"
+      },
+      {
+        "name": "Online Marketing and Copywriting"
+      },
+      {
+        "name": "Paid Search Advertising"
+      },
+      {
+        "name": "Display Advertising"
+      },
+      {
+        "name": "Revenue Growth"
+      },
+      {
+        "name": "PR"
+      },
+      {
+        "name": "Events"
+      },
+      {
+        "name": "User Acquisition"
+      },
+      {
+        "name": "Press Release Writing"
+      },
+      {
+        "name": "Video Advertising"
+      },
+      {
+        "name": "SEO and Marketing Services"
+      },
+      {
+        "name": "Twitter Marketing"
+      },
+      {
+        "name": "Linkedin Marketing"
+      },
+      {
+        "name": "Landing Page Optimization"
+      },
+      {
+        "name": "Viral Marketing"
+      },
+      {
+        "name": "Product Evangelism"
+      }
+    ]
+  },
+  {
+    "name": "Sales",
+    "children": [
+      {
+        "name": "Business Development"
+      },
+      {
+        "name": "Customer Relationship Management"
+      },
+      {
+        "name": "Salesforce"
+      },
+      {
+        "name": "Sales and Marketing"
+      },
+      {
+        "name": "Lead Generation"
+      },
+      {
+        "name": "Acct Mgmt"
+      },
+      {
+        "name": "Cold Calling"
+      },
+      {
+        "name": "New Business Development"
+      },
+      {
+        "name": "Inside Sales"
+      },
+      {
+        "name": "Relationship Building"
+      },
+      {
+        "name": "Sales Strategy and Management"
+      },
+      {
+        "name": "Sales Management"
+      },
+      {
+        "name": "CRM"
+      },
+      {
+        "name": "Strategic Partnerships"
+      },
+      {
+        "name": "Retail Sales"
+      },
+      {
+        "name": "International Sales"
+      },
+      {
+        "name": "Client Relations"
+      },
+      {
+        "name": "Technical Sales"
+      },
+      {
+        "name": "Sales/Marketing and Strategic Partnerships"
+      },
+      {
+        "name": "Client Relationship Management"
+      },
+      {
+        "name": "Business Development & Partnerships"
+      },
+      {
+        "name": "B2B Sales"
+      },
+      {
+        "name": "SalesForce.com"
+      },
+      {
+        "name": "Prospecting and Cold Calling"
+      },
+      {
+        "name": "SaaS Sales"
+      },
+      {
+        "name": "Solutions Selling"
+      },
+      {
+        "name": "Demand Generation"
+      },
+      {
+        "name": "Enterprise Sales"
+      },
+      {
+        "name": "Closing Deals"
+      },
+      {
+        "name": "Sales Development"
+      },
+      {
+        "name": "Corporate Sales & Business development in B2B"
+      },
+      {
+        "name": "Prospecting"
+      },
+      {
+        "name": "Channel Development"
+      },
+      {
+        "name": "Inbound and Outbound Sales"
+      },
+      {
+        "name": "Sales Engineering"
+      },
+      {
+        "name": "Software Sales"
+      },
+      {
+        "name": "Field Sales"
+      }
+    ]
+  },
+  {
+    "name": "Operations",
+    "children": [
+      {
+        "name": "Quality Assurance"
+      },
+      {
+        "name": "Customer Service"
+      },
+      {
+        "name": "Support"
+      },
+      {
+        "name": "Scheduling"
+      },
+      {
+        "name": "Account Management"
+      },
+      {
+        "name": "Technical Support"
+      },
+      {
+        "name": "Business Operations"
+      },
+      {
+        "name": "Data Entry"
+      },
+      {
+        "name": "Operations Management"
+      },
+      {
+        "name": "Administrative Assistant"
+      },
+      {
+        "name": "Call Center"
+      },
+      {
+        "name": "Manual Testing"
+      },
+      {
+        "name": "ZenDesk"
+      },
+      {
+        "name": "Customer Experience"
+      },
+      {
+        "name": "Customer Success"
+      },
+      {
+        "name": "Community Development"
+      },
+      {
+        "name": "Community Management"
+      },
+      {
+        "name": "Event Coordination"
+      },
+      {
+        "name": "Office Administration"
+      },
+      {
+        "name": "Office Management"
+      },
+      {
+        "name": "Sales Operations"
+      },
+      {
+        "name": "Technical & Customer Support"
+      },
+      {
+        "name": "Community Outreach"
+      },
+      {
+        "name": "Executive Assistant"
+      },
+      {
+        "name": "Community Building"
+      },
+      {
+        "name": "Phone Skills"
+      },
+      {
+        "name": "QA"
+      },
+      {
+        "name": "Client Onboarding"
+      }
+    ]
+  },
+  {
+    "name": "Product Management",
+    "children": [
+      {
+        "name": "Project Management"
+      },
+      {
+        "name": "Program Management"
+      },
+      {
+        "name": "Maven"
+      },
+      {
+        "name": "Product"
+      },
+      {
+        "name": "Retention"
+      },
+      {
+        "name": "Kanban"
+      },
+      {
+        "name": "System Integration"
+      },
+      {
+        "name": "Web Analytics"
+      },
+      {
+        "name": "Digital Strategy"
+      },
+      {
+        "name": "Atlassian JIRA"
+      },
+      {
+        "name": "Customer Development"
+      },
+      {
+        "name": "Agile/Scrum"
+      },
+      {
+        "name": "Funnel Optimization"
+      }
+    ]
+  },
+  {
+    "name": "Human Resources",
+    "children": [
+      {
+        "name": "HR"
+      },
+      {
+        "name": "Sourcing"
+      },
+      {
+        "name": "Talent Acquisition"
+      },
+      {
+        "name": "Recruiter"
+      },
+      {
+        "name": "Training & Development"
+      },
+      {
+        "name": "HR Management"
+      },
+      {
+        "name": "Onboarding"
+      },
+      {
+        "name": "Hiring"
+      }
+    ]
+  },
+  {
+    "name": "Data Science",
+    "children": [
+      {
+        "name": "Statistics"
+      },
+      {
+        "name": "Machine Learning"
+      },
+      {
+        "name": "Data Mining"
+      },
+      {
+        "name": "Artificial Intelligence"
+      },
+      {
+        "name": "Statistical Analysis"
+      },
+      {
+        "name": "Deep Learning"
+      },
+      {
+        "name": "Numpy/Scipy/Pandas/Scikit-learn"
+      },
+      {
+        "name": "Predictive Analytics"
+      },
+      {
+        "name": "Big Data Analytics"
+      },
+      {
+        "name": "Big Data Analysis"
+      }
+    ]
+  }
+]

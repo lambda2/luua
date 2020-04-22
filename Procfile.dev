@@ -1,0 +1,3 @@
+
+api:       rails s -p 3232
+frontend: (cd frontend && yarn dev)

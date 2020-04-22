@@ -20,3 +20,14 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+TODO.md
+kube
+lib/tmp
+*.old
+luua.code-workspace
+public/uploads
+
+scripts/deploy.sh
+lib/gen_serializer_test.rb
+.env
+coverage
