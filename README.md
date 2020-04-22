@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.com/lambda2/luua.svg?token=zsj9q6JjpQd8brNcmt9S&branch=master)](https://travis-ci.com/lambda2/luua)
 
+[![Coverage Status](https://coveralls.io/repos/github/lambda2/luua/badge.svg?branch=master)](https://coveralls.io/github/lambda2/luua?branch=master)
 
 This is the monorepo for Luua, which is made of:
 
