@@ -30,5 +30,4 @@ public/uploads
 scripts/deploy.sh
 lib/gen_serializer_test.rb
 .env
-db/seeds
 coverage
