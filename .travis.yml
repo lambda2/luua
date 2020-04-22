@@ -9,6 +9,7 @@ services:
   - postgresql
 env:
   - PG_USER=postgres
+  - DEVISE_JWT_SECRET_KEY=mamamia
 script:
   - bundle exec rspec --format doc
 install:
