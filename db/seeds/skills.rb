@@ -1,4 +1,3 @@
-
 # Our main category
 SkillCategory.where(name: 'General').first_or_create!
 

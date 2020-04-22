@@ -211,13 +211,13 @@ describe Api::MissionsController, type: :request do # rubocop:todo Metrics/Block
     end
 
     it 'on a protected mission' do
-      pending "Applying to a protected mission should be forbidden (currently allowed)"
+      pending 'Applying to a protected mission should be forbidden (currently allowed)'
       json_post "/api/missions/#{protected_mission.id}/apply", user: candidate
       expect(response.status).to eq(401)
     end
 
     it 'on a invisible mission' do
-      pending "Applying to a invisible mission should be forbidden (currently allowed)"
+      pending 'Applying to a invisible mission should be forbidden (currently allowed)'
       json_post "/api/missions/#{invisible_mission.id}/apply", user: candidate
       expect(response.status).to eq(401)
     end
@@ -231,14 +231,14 @@ describe Api::MissionsController, type: :request do # rubocop:todo Metrics/Block
     let(:other_mission) { create(:mission) }
 
     it 'on an user\'s mission' do
-      json_patch "/api/missions/#{mission.id}", user: user, params: {mission: { name: "Hello world" }}.to_json
+      json_patch "/api/missions/#{mission.id}", user: user, params: { mission: { name: 'Hello world' } }.to_json
       expect(response.status).to eq(200)
       expect(response.body).to match_item_in_json(mission)
-      expect(response.body).to match_attributes_in_json(name: "Hello world")
+      expect(response.body).to match_attributes_in_json(name: 'Hello world')
     end
 
     it 'on another mission' do
-      json_patch "/api/missions/#{other_mission.id}", user: user, params: {mission: { name: "Hello world" }}.to_json
+      json_patch "/api/missions/#{other_mission.id}", user: user, params: { mission: { name: 'Hello world' } }.to_json
       expect(response.status).to eq(403)
     end
   end
@@ -251,13 +251,13 @@ describe Api::MissionsController, type: :request do # rubocop:todo Metrics/Block
     let(:mission_without_workspace) { build(:mission) }
 
     it 'Create a mission' do
-      json_post "/api/missions", user: user, params: {mission: mission}.to_json
+      json_post '/api/missions', user: user, params: { mission: mission }.to_json
       expect(response.status).to eq(201)
-      expect(response.body).to match_attributes_in_json(mission.as_json.select{|k, e| e})
+      expect(response.body).to match_attributes_in_json(mission.as_json.select {|_k, e| e })
     end
 
     it 'Create a mission without a workspace' do
-      json_post "/api/missions", user: user, params: {mission: mission_without_workspace}.to_json
+      json_post '/api/missions', user: user, params: { mission: mission_without_workspace }.to_json
       expect(response.status).to eq(422)
     end
 

@@ -1,4 +1,3 @@
-
 FactoryBot.define do
   factory :workspace, class: Workspace do
     sequence(:name) {|n| "#{Faker::Space.agency}-#{n}" }

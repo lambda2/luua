@@ -1,4 +1,3 @@
-
 Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
 
   concern :mission_users_filters do |options|

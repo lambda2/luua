@@ -1,4 +1,3 @@
-
 FactoryBot.define do
   factory :mission_skill, class: MissionSkill do
     mission

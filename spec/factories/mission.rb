@@ -35,7 +35,6 @@
 #  fk_rails_...  (workspace_id => workspaces.id)
 #
 
-
 FactoryBot.define do
 
   factory :mission, class: Mission do

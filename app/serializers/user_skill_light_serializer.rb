@@ -1,4 +1,3 @@
-
 class UserSkillLightSerializer < Panko::Serializer
   attributes :id, :level, :type, :name, :slug, :skill_id, :category
 

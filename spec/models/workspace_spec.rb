@@ -21,7 +21,6 @@
 #  fk_rails_...  (organization_id => organizations.id)
 #
 
-
 require 'rails_helper'
 
 RSpec.describe Workspace, type: :model do

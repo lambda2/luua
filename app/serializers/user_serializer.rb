@@ -51,7 +51,6 @@
 #  fk_rails_...  (primary_workspace_id => workspaces.id)
 #
 
-
 class UserSerializer < Panko::Serializer
   attributes :id, :username, :image_url, :thumb_url, :first_name, :last_name,
              :country_id, :timezone, :created_at, :updated_at,
