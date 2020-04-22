@@ -28,6 +28,5 @@ RSpec.describe Workspace, type: :model do
   it 'Can be created' do
     workspace = create(:workspace)
     expect(workspace).not_to be(nil)
-    expect(workspace.origins.count).not_to be(0)
   end
 end
