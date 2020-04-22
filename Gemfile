@@ -70,6 +70,10 @@ gem 'mini_magick', '~> 4.8'
 # Slack
 gem 'slack-ruby-client'
 
+# Swagger (API documentaiton)
+gem 'rswag-api'
+gem 'rswag-ui'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
@@ -91,6 +95,7 @@ group :development, :test do
   gem 'ngrok-tunnel'
   gem 'rspec'
   gem 'rspec-rails', '~> 3.8'
+  gem 'rswag-specs'
   gem 'rubocop', '~> 0.80', require: false
   gem 'webdrivers' # This gem helps Capybara interact with the web browser.
   gem 'webmock' # Mock http calls

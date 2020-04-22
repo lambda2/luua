@@ -187,6 +187,8 @@ GEM
       rails (>= 4.2)
     jaro_winkler (1.5.4)
     json (2.2.0)
+    json-schema (2.8.1)
+      addressable (>= 2.4)
     json_spec (1.1.5)
       multi_json (~> 1.0)
       rspec (>= 2.0, < 4.0)
@@ -322,6 +324,15 @@ GEM
       rspec-mocks (~> 3.9.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.0)
+    rswag-api (2.3.1)
+      railties (>= 3.1, < 7.0)
+    rswag-specs (2.3.1)
+      activesupport (>= 3.1, < 7.0)
+      json-schema (~> 2.2)
+      railties (>= 3.1, < 7.0)
+    rswag-ui (2.3.1)
+      actionpack (>= 3.1, < 7.0)
+      railties (>= 3.1, < 7.0)
     rubocop (0.80.1)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -467,6 +478,9 @@ DEPENDENCIES
   route_translator
   rspec
   rspec-rails (~> 3.8)
+  rswag-api
+  rswag-specs
+  rswag-ui
   rubocop (~> 0.80)
   rufus-scheduler (~> 3.4.0)
   sentry-raven
@@ -486,4 +500,4 @@ RUBY VERSION
    ruby 2.6.5p114
 
 BUNDLED WITH
-   1.17.3
+   2.1.4

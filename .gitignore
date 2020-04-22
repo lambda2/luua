@@ -29,5 +29,6 @@ public/uploads
 
 scripts/deploy.sh
 lib/gen_serializer_test.rb
-.env
+.env.local
+.env.*.local
 coverage
