@@ -111,12 +111,12 @@ class MissionUser < ApplicationRecord
     mission_total.positive? ? (user_total.sum * 100) / mission_total : 0
   end
 
-  def score_for_skill(ms, us)
+  def score_for_skill(ms, us) # rubocop:todo Naming/MethodParameterName
     return 0.1 unless us
     return 1 if ms.mandatory && us.level < ms.level
     return 2 if us.level < ms.level
     return 4 if ms.mandatory && us.level >= ms.level
 
-    return 3
+    3
   end
 end

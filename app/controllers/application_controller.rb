@@ -50,7 +50,7 @@ class ApplicationController < ActionController::API
     Current.application = "#{request.headers['Luua-Application']} via #{Rails.try(:app_class) || 'Unknown app'} API" if request.headers['Luua-Application']
   end
 
-  def respond_with_cache(collection, key = nil, last_modified = nil, delay = 5.seconds) # rubocop:todo Metrics/CyclomaticComplexity
+  def respond_with_cache(collection, key = nil, last_modified = nil, delay = 5.seconds)
     expires_in delay
 
     end_key = (key || "luua/#{params[:action] || 'gen'}/#{collection.respond_to?(:load) ? collection.load.cache_key : collection.cache_key}")

@@ -88,7 +88,7 @@ class Api::MissionsController < ApiController
   end
 
   private
-  
+
   def set_workspace
     @workspace ||= @mission&.workspace # rubocop:todo Naming/MemoizedInstanceVariableName
   end

@@ -46,13 +46,11 @@ class WorkspaceHistory < ApplicationRecord
     update_workspace
   ], _suffix: true
 
-
   def self.whitelist_changes(resource)
     resource.saved_changes.without(*BLACKLISTED_ATTRIBUTES).as_json
   end
 
   def self.track!(workspace, resource, user = nil)
-
     payload = whitelist_changes(resource)
 
     return if payload.blank?

@@ -105,8 +105,8 @@ class Api::MissionUsersController < ApiController
       :created_at, :updated_at
     )
   end
-  
-  private # rubocop:todo Lint/UselessAccessModifier 
+
+  private
 
   def set_workspace
     @workspace ||= @mission_user&.mission&.workspace # rubocop:todo Naming/MemoizedInstanceVariableName

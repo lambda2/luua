@@ -1,3 +1,2 @@
 module StubbedRequests
-
 end
