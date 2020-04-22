@@ -1,5 +1,3 @@
-# typed: strong
-
 class ApiController < ApplicationController
 
   before_action :log_intel

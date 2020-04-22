@@ -1,4 +1,3 @@
-# typed: false
 class ApplicationController < ActionController::API
   include ActionController::MimeResponds
 
@@ -8,7 +7,6 @@ class ApplicationController < ActionController::API
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
   check_authorization unless: :devise_controller?
-  # skip_before_action :authenticate_user!, if: :devise_controller?
 
   before_action :set_default_workspace
   before_action :set_raven_context
@@ -31,14 +29,10 @@ class ApplicationController < ActionController::API
     Rails.logger.info "#{params[:action]} on #{params[:controller]} by #{Current.user.try(:email)} (#{Current.application})"
   end
 
-  # :nocov:
-
   def set_raven_context
     Raven.user_context(id: current_user.try(:id), email: current_user.try(:email))
     Raven.extra_context(params: params.to_unsafe_h, url: request.url, email: current_user.try(:email))
   end
-
-  # inherit_resources
 
   def set_user_metadata!
     Current.application = "#{Rails.try(:app_class) || 'Unknown app'} API"
@@ -64,16 +58,6 @@ class ApplicationController < ActionController::API
       render(json: serialized_collection) && return
     end
   end
-
-  # :nocov:
-
-  # def render_success(data, status = 200)
-  #   render json: { success: true, payload: data }, status: status
-  # end
-
-  # def render_error(message, status)
-  #   render json: { success: false, error: message }, status: status
-  # end
 
   rescue_from CanCan::AccessDenied do |exception|
     Rails.logger.debug "⚠️  Access denied\n\tON #{exception.action} #{exception.subject.inspect}\n\tFOR #{current_user.inspect}\n"

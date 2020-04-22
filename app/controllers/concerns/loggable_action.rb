@@ -1,4 +1,3 @@
-# typed: false
 module LoggableAction
   extend ActiveSupport::Concern
 

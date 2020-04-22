@@ -6,6 +6,7 @@
 #  accepted_at  :datetime
 #  applied_at   :datetime         not null
 #  completed_at :datetime
+#  match_score  :integer
 #  rejected_at  :datetime
 #  reviewed_at  :datetime
 #  status       :integer          not null
