@@ -1,4 +1,3 @@
-# typed: strict
 class OrganizationLightSerializer < Panko::Serializer
   attributes :id, :name, :description, :slug, :image, :color,
              :region_id, :country_id, :organization_type,

@@ -21,7 +21,6 @@
 #  fk_rails_...  (skill_id => skills.id)
 #
 
-# typed: strict
 class MissionSkillSerializer < Panko::Serializer
   attributes :id, :skill_id, :mission_id, :level,
              :mandatory, :name, :category

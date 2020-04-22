@@ -1,4 +1,3 @@
-# typed: true
 class GenericUserSerializer < Panko::Serializer
   attributes :id, :email, :image, :first_name, :last_name,
              :country_id, :timezone, :created_at, :updated_at,

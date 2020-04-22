@@ -8,6 +8,16 @@ module JsonRequestHelper
     end
   end
 
+  RSpec::Matchers.define :match_attributes_in_json do |attributes|
+    match do |actual|
+      e = actual.is_a?(String) ? JSON.parse(actual) : actual
+      attributes.all? do |k, v|
+        e[k.to_s] == v
+      end
+    end
+    diffable
+  end
+
   RSpec::Matchers.define :contain_item_in_json do |item|
     match do |actual|
       e = actual.is_a?(String) ? JSON.parse(actual) : actual

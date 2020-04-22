@@ -1,5 +1,3 @@
-# typed: strict
-
 require File.expand_path('./spec_helper', __dir__)
 require File.expand_path('./support/json_request_helper', __dir__)
 require File.expand_path('./support/devise_macros', __dir__)

@@ -1,4 +1,3 @@
-
 # Our main category
 SkillCategory.where(name: 'General').first_or_create!
 
@@ -22,6 +21,8 @@ skill_data = {
   mobility: JSON.parse(File.read("#{Rails.root}/db/seeds/dumps/mobility.json")),
   technical: JSON.parse(File.read("#{Rails.root}/db/seeds/dumps/technical.json"))
 }
+
+return if ENV['LIGHT_SEED']
 
 categories.map do |cat|
   sc = SkillCategory.where(cat).first_or_create!
