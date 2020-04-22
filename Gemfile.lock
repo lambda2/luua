@@ -122,9 +122,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-jwt (0.5.9)
+    devise-jwt (0.6.0)
       devise (~> 4.0)
-      warden-jwt_auth (~> 0.3.6)
+      warden-jwt_auth (~> 0.4)
     diff-lcs (1.3)
     docile (1.3.2)
     domain_name (0.5.20190701)
@@ -135,16 +135,14 @@ GEM
       railties (>= 3.2, < 6.1)
     dry-auto_inject (0.7.0)
       dry-container (>= 0.3.4)
-    dry-configurable (0.11.5)
+    dry-configurable (0.9.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.4, >= 0.4.7)
-      dry-equalizer (~> 0.2)
     dry-container (0.7.2)
       concurrent-ruby (~> 1.0)
       dry-configurable (~> 0.1, >= 0.1.3)
     dry-core (0.4.9)
       concurrent-ruby (~> 1.0)
-    dry-equalizer (0.3.0)
     erubi (1.9.0)
     et-orbi (1.2.4)
       tzinfo
@@ -402,9 +400,9 @@ GEM
     unicode_utils (1.4.0)
     warden (1.2.8)
       rack (>= 2.0.6)
-    warden-jwt_auth (0.3.6)
+    warden-jwt_auth (0.4.2)
       dry-auto_inject (~> 0.6)
-      dry-configurable (~> 0.8)
+      dry-configurable (~> 0.9, < 0.11)
       jwt (~> 2.1)
       warden (~> 1.2)
     web-console (4.0.1)
@@ -432,69 +430,69 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aasm
-  acts_as_list
-  annotate
-  apparition
-  appsignal
-  bootsnap (>= 1.4.2)
-  brakeman
-  byebug
-  cancancan
-  capybara
-  carrierwave
-  carrierwave-base64
-  countries
-  coveralls
-  dalli
-  database_cleaner
-  devise
-  devise-jwt (~> 0.5.9)
-  dotenv-rails
-  factory_bot
+  aasm (~> 5.0.8)
+  acts_as_list (~> 1.0.1)
+  annotate (~> 3.1.1)
+  apparition (~> 0.5.0)
+  appsignal (~> 2.10.5)
+  bootsnap (~> 1.4.6)
+  brakeman (~> 4.8.1)
+  byebug (~> 11.1.2)
+  cancancan (~> 3.1.0)
+  capybara (~> 3.32.1)
+  carrierwave (~> 2.1.0)
+  carrierwave-base64 (~> 2.8.1)
+  countries (~> 3.0.1)
+  coveralls (~> 0.7.1)
+  dalli (~> 2.7.10)
+  database_cleaner (~> 1.8.4)
+  devise (~> 4.7.1)
+  devise-jwt (~> 0.6.0)
+  dotenv-rails (~> 2.7.5)
+  factory_bot (~> 5.1.2)
   faker (~> 2.1.2)
-  foreman
-  friendly_id (~> 5.2.4)
-  globalize
-  globalize-accessors
-  groupdate
-  has_scope
-  httparty
-  interactor-rails
-  json_spec
-  kaminari
-  listen (>= 3.0.5, < 3.2)
-  marginalia
-  mini_magick (~> 4.8)
-  ngrok-tunnel
-  panko_serializer
-  pg (>= 0.18, < 2.0)
-  pg_query (>= 0.9.0)
-  pghero
-  puma (~> 3.12)
-  rack-attack
-  rack-cors
-  rails (~> 6.0.0)
-  redis
-  redis-namespace
-  responders
-  route_translator
-  rspec
-  rspec-rails (~> 3.8)
-  rubocop (~> 0.80)
-  rufus-scheduler (~> 3.4.0)
-  sentry-raven
-  sidekiq
+  foreman (~> 0.87.1)
+  friendly_id (~> 5.2.5)
+  globalize (~> 5.3.0)
+  globalize-accessors (~> 0.2.1)
+  groupdate (~> 5.0.0)
+  has_scope (~> 0.7.2)
+  httparty (~> 0.18.0)
+  interactor-rails (~> 2.2.1)
+  json_spec (~> 1.1.5)
+  kaminari (~> 1.2.0)
+  listen (~> 3.1.5)
+  marginalia (~> 1.8.0)
+  mini_magick (~> 4.10.1)
+  ngrok-tunnel (~> 2.1.1)
+  panko_serializer (~> 0.7.3)
+  pg (~> 1.2.3)
+  pg_query (~> 1.2.0)
+  pghero (~> 2.4.2)
+  puma (~> 3.12.4)
+  rack-attack (~> 6.2.2)
+  rack-cors (~> 1.1.1)
+  rails (~> 6.0.2)
+  redis (~> 4.1.3)
+  redis-namespace (~> 1.7.0)
+  responders (~> 3.0.0)
+  route_translator (~> 8.0.0)
+  rspec (~> 3.9.0)
+  rspec-rails (~> 3.9.1)
+  rubocop (~> 0.82.0)
+  rufus-scheduler (~> 3.4.2)
+  sentry-raven (~> 3.0.0)
+  sidekiq (~> 6.0.7)
   sidekiq-cron (~> 0.6.3)
-  simplecov
-  slack-ruby-client
-  spring
-  spring-watcher-listen (~> 2.0.0)
+  simplecov (~> 0.18.5)
+  slack-ruby-client (~> 0.14.6)
+  spring (~> 2.1.0)
+  spring-watcher-listen (~> 2.0.1)
   tzinfo-data
-  web-console (>= 3.3.0)
-  webdrivers
-  webmock
-  zlib
+  web-console (~> 4.0.1)
+  webdrivers (~> 4.3.0)
+  webmock (~> 3.8.3)
+  zlib (~> 1.1.0)
 
 RUBY VERSION
    ruby 2.6.5p114
