@@ -5,7 +5,6 @@ import { withUserToken } from '../../../utils/auth'
 import NetworkBoundary from '../../../components/NetworkBoudary/NetworkBoudary'
 import MissionList from '../../../components/MissionList/MissionList'
 import { Typography } from 'antd';
-import Link from 'next/link'
 
 const { Title } = Typography;
 
@@ -21,8 +20,6 @@ const Missions = (
   return (
     <>
       <Title>Missions</Title>
-
-      <Link href={'/missions/new'}><a>Scaffold a mission</a></Link>
 
       <NetworkBoundary<LightMission[]> {...response}>
         <MissionList data={response.data as LightMission[]} />

@@ -5,6 +5,9 @@ const withLess = require('@zeit/next-less')
 const lessToJS = require('less-vars-to-js')
 const fs = require('fs')
 const path = require('path')
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
 
 const withCSS = require('@zeit/next-css')
 const dotenv = require('dotenv')
@@ -15,7 +18,7 @@ const themeVariables = lessToJS(
   fs.readFileSync(path.resolve(__dirname, './styles/variables.less'), 'utf8')
 )
 
-module.exports = withCSS(withLess({
+module.exports = withBundleAnalyzer(withCSS(withLess({
   serverRuntimeConfig: {
     // Will only be available on the server side
   },
@@ -64,4 +67,4 @@ module.exports = withCSS(withLess({
     return config
   },
   poweredByHeader: false,
-}))
+})))

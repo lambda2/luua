@@ -98,7 +98,11 @@
       "2": "Niveau insuffisant en {{name}}",
       "3": "Niveau requis en {{name}}"
     },
-    "asked-level": "Niveau demandé"
+    "asked-level": "Niveau demandé",
+    "no-skills-yet": {
+      "title": "Il semblerait que tu n'aies pas encore précisé tes compétences",
+      "add-now": "Ajouter une compétence"
+    }
   },
   "mission": {
     "create": {

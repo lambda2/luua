@@ -1,6 +1,7 @@
 import React from 'react'
 import { useCollection, fetchInitialData } from '../../../../utils/http'
 import { withAuthSync } from '../../../../utils/auth'
+import { useLocale } from '../../../../hooks/useLocale';
 
 import NetworkBoundary from '../../../../components/NetworkBoudary/NetworkBoudary'
 import MissionList from '../../../../components/WorkspaceMissionList/WorkspaceMissionList'
@@ -20,6 +21,8 @@ const Missions = (
 ) => {
   const { pathname, query } = useRouter()
 
+  const { t } = useLocale()
+
   const response = useCollection<LightMission[]>(
     `/api/workspaces/${query.workspace_id}/missions`, token, {}, { initialData }
   )
@@ -29,7 +32,7 @@ const Missions = (
 
       <Title>Missions</Title>
 
-      <Link {...manage.workspace.missions.new(`${query.workspace_id}`)}><a>Scaffold a mission</a></Link>
+      <Link {...manage.workspace.missions.new(`${query.workspace_id}`)}><a>{t('mission.create.title')}</a></Link>
 
       <NetworkBoundary<LightMission[]> {...response}>
         <MissionList data={response.data as LightMission[]} />

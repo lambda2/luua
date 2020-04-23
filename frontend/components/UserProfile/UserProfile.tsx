@@ -49,7 +49,7 @@ const UserProfile = ({
 
     <PageSection title={t('menu.skills')}>
       {user_skills.length === 0 && <p>
-        You didn't set any skills yet. <Link href={`/users/skills`}><a>Add now</a></Link>
+          {t('skill.no-skills-yet.title')}. <Link {...users.skills()}><a>{t('skill.no-skills-yet.add-now')}</a></Link>
       </p>}
       {user_skills.length > 0 && <div>
         <ul>{user_skills.map((s: UserSkill) => <li key={s.id}>{s.name}</li>)}</ul>
@@ -61,12 +61,12 @@ const UserProfile = ({
       {workspaces.length === 0 && <p>
         {t('workspace.no-workspace-yet.title')}
         .{' '}
-        <Link href={`/workspaces/new`}><a>{t('workspace.no-workspace-yet.create-now')}.</a></Link>
+        <Link {...routes.manage.workspace.new()}><a>{t('workspace.no-workspace-yet.create-now')}.</a></Link>
       </p>}
       {workspaces.length > 0 && <div>
         <ul>{workspaces.map((s: LightWorkspace) => {
         return (<li key={s.id}>
-          <Link key={s.id} href={`/workspaces/[id]`} as={`/workspaces/${s.slug}`}>
+          <Link key={s.id} {...routes.manage.workspace.show(s.slug)} as={`/workspaces/${s.slug}`}>
             <a>
               <h2>{s.name}</h2>
               <p>{s.missions_count} Missions · {s.users_count} Users</p>
@@ -74,7 +74,7 @@ const UserProfile = ({
           </Link>
         </li>)
       })}</ul>
-        <Link href={`/workspaces/new`}><a>Create a new workspace</a></Link>
+        <Link {...routes.manage.workspace.new()}><a>{t('workspace.no-workspace-yet.create-now')}</a></Link>
       </div>}
     </PageSection>
 
