@@ -9,6 +9,10 @@ export interface BackendError {
   message?: string | string[]
 }
 
+/**
+ * Transform backend validation errors from "Rails" formet, to Formik format
+ * @param {BackendError} error the error to transform
+ */
 export const errorsFromResponse = ({ data }: { data: BackendError }) => {
   if (data.errors) {
     return fromPairs([

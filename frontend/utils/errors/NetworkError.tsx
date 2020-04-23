@@ -1,4 +1,8 @@
 
+/**
+ * @TODO I think this is not used anymore...
+ * @TOREMOVE ?
+ */
 export default class NetworkError extends Error {
   body: any;
 

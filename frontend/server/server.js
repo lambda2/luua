@@ -10,6 +10,9 @@ const getLocale = (req) => {
   return 'fr'
 }
 
+/** 
+ * Spin our express server with nextJS middleware
+ */
 (async () => {
   await app.prepare()
   const server = express()
@@ -23,7 +26,7 @@ const getLocale = (req) => {
   await server.listen(port)
   console.log(`> Ready on http://localhost:${port}`)
   console.log("~~~~~~~~~~~~~~~~~~~~")
-  console.log("|  LUUA IS READY ! |")
+  console.log("|  LUUA IS READY 💃 |")
   console.log("~~~~~~~~~~~~~~~~~~~~")
 
 })()

@@ -146,6 +146,7 @@ export const withUserToken = (WrappedComponent: any) => {
     return <WrappedComponent {...props} token={token} />
   }
 
+  // @TODO 🕵🏻‍♀️
   // Wrapper.getInitialProps = async (ctx: NextPageContext) => {
   //   const { token } = nextCookie(ctx)
   //   console.log("[Server] Fetched token: ", { token });

@@ -1,4 +1,6 @@
-
+/**
+ * Theses are the french translations of the client-side form validations
+ */
 export let mixed = {
   default: '${path} est invalide',
   required: '${path} est obligatoire',

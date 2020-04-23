@@ -84,7 +84,17 @@ export function cdnUrl(endpoint: string): string {
 }
 
 
-
+/**
+ * A hook allowing us to handle a remote collection properly
+ *
+ * @export
+ * @template T the response type
+ * @param {string} endpoint the url we want to fetch (without the domain)
+ * @param {string} [token] the user auth token if we have one
+ * @param {AxiosRequestConfig} [requestOpts]
+ * @param {QueryOptions<T>} [hookOpts]
+ * @returns {QueryResult<T>}
+ */
 export function useCollection<T>(
   endpoint: string, token?: string, requestOpts?: AxiosRequestConfig, hookOpts?: QueryOptions<T>
 ): QueryResult<T> {
@@ -99,6 +109,15 @@ export function useCollection<T>(
   )
 }
 
+/**
+ * A simple fetch on our API, returning the data directly, not the whole response
+ *
+ * @export
+ * @template T the response type
+ * @param {string} url the url we want to fetch (without the domain)
+ * @param {AxiosRequestConfig} opts
+ * @returns {Promise<T>}
+ */
 export async function fetch<T>(url: string, opts: AxiosRequestConfig): Promise<T>
  {
   const { data } = await api<T>(url, opts)
@@ -108,9 +127,9 @@ export async function fetch<T>(url: string, opts: AxiosRequestConfig): Promise<T
 
 
 /**
- * Perform a request on our API and return the result.
+ * Perform a request on our API and return the reponse.
  *
- * @param {string} endpoint The endpoint to fetch (ex: `/users`)
+ * @param {string} endpoint The endpoint to fetch (without the domain) (ex: `/missions`)
  * @param {AxiosRequestConfig} opts The fetch options
  * @returns {*} the JSON response
  * @export
@@ -134,8 +153,8 @@ export async function api<T>(endpoint: string, opts: AxiosRequestConfig): Promis
 
 /**
  * A helper function to fetch a resource with token auth on getInitalProps
- * @param ctx 
- * @param endpoint 
+ * @param {NextPageContext} ctx the Page context
+ * @param {string} endpoint The endpoint to fetch (without the domain) (ex: `/missions`)
  */
 export async function fetchInitialData<T>(ctx: NextPageContext, endpoint: string) {
   const { token } = nextCookie(ctx)
