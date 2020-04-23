@@ -5,9 +5,9 @@ import * as Sentry from '@sentry/browser';
 import { config } from '@fortawesome/fontawesome-svg-core'
 
 // Stylesheets
-import '@fortawesome/fontawesome-svg-core/styles.css' // Import the CSS
-import 'antd/dist/antd.less'
-import '../styles/app.less'
+// import '@fortawesome/fontawesome-svg-core/styles.css' // Import the CSS
+// import 'antd/dist/antd.less'
+// import '../styles/app.less'
 import { propsFromContext } from '../utils/auth';
 
 config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
