@@ -31,4 +31,29 @@ scripts/deploy.sh
 lib/gen_serializer_test.rb
 .env.local
 .env.*.local
+
 coverage
+
+
+# Frontend files
+node_modules
+frontend/.pnp
+frontend/.pnp.js
+
+.npmrc
+
+# next.js
+frontend/.next/
+frontend/out/
+
+# production
+frontend/build
+
+# misc
+frontend/.DS_Store
+frontend/.env*
+
+# debug
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
