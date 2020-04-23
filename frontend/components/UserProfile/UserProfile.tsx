@@ -40,7 +40,7 @@ const UserProfile = ({
         </>
       }
       extra={[
-        <PrimaryLink {...users.edit()}>{t('menu.edit')}</PrimaryLink>
+        <PrimaryLink key={'edit'} {...users.edit()}>{t('menu.edit')}</PrimaryLink>
       ]}
     >
     </PageTitle>

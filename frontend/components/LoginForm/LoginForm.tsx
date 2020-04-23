@@ -5,7 +5,7 @@ import { Form, Input } from 'formik-antd'
 import { authenticateWithCredentials } from '../../utils/auth';
 import { Tooltip } from 'antd';
 import icons from '../../dictionaries/icons';
-import SubmitButton from '../../elements/SubmitButton/SubmitButton';
+import { SubmitButton } from 'formik-antd';
 import YupWithLocale from '../../utils/forms/yup';
 import { useLocale } from '../../hooks/useLocale';
 
@@ -100,13 +100,7 @@ const SignupForm = () => {
               </Form.Item>
 
               <Form.Item name="end" {...tailFormItemLayout}>
-                <SubmitButton
-                  isSubmitting={isSubmitting}
-                  dirty={dirty}
-                  submitCount={submitCount}
-                  isValid={isValid}
-                  label={t('form.user.sign-in.submit')}
-                />
+                <SubmitButton>{t('form.user.sign-in.submit')}</SubmitButton>
               </Form.Item>
             </Form>
           )}
