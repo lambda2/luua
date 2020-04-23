@@ -7,7 +7,7 @@ import { errorsFromResponse } from '../../utils/forms/helpers';
 import { Form } from 'formik-antd'
 import SubmitButton from '../../elements/SubmitButton/SubmitButton';
 import { Steps, Button, Typography, message } from 'antd';
-import './MissionForm.module.less'
+// import './MissionForm.module.less'
 import MissionInfoForm from './MissionInfoForm';
 import MissionSkillsForm from './MissionSkillsForm';
 import { pick } from 'lodash';

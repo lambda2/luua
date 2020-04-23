@@ -1,7 +1,7 @@
 import React from 'react'
 import Link, { LinkProps } from 'next/link';
 import classNames from 'classnames';
-import './PrimaryLink.module.less'
+// import './PrimaryLink.module.less'
 
 
 /**

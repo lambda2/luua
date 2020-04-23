@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import classNames from 'classnames';
 
-import './PageSection.module.less'
+// import './PageSection.module.less'
 
 interface Props {
   className?: string

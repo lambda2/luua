@@ -1,7 +1,7 @@
 import React from 'react'
 
 import classNames from 'classnames';
-import './CandidateStatusStep.module.less'
+// import './CandidateStatusStep.module.less'
 import { Tag, Popover, Steps } from 'antd';
 import { useLocale } from "../../hooks/useLocale";
 import { omit } from 'lodash';

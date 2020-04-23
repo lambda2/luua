@@ -4,7 +4,7 @@
 
 import { useState, ChangeEvent, ReactNode } from "react";
 
-import './UploadAvatar.module.less'
+// import './UploadAvatar.module.less'
 import { Button } from "antd";
 import { useField, FormikProps, FieldProps } from "formik";
 import icons from "../../dictionaries/icons";

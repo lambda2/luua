@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames';
-import './MessageBox.module.less'
+// import './MessageBox.module.less'
 
 
 interface Props {

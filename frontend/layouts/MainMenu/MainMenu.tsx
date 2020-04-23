@@ -4,7 +4,7 @@ import React, { useContext } from 'react'
 import UserContext from '../../contexts/UserContext'
 
 import { Layout, Menu } from 'antd';
-import './MainMenu.less'
+// import './MainMenu.less'
 import LangSelect from '../../elements/LangSelect/LangSelect';
 import UserMenuDropdown from '../../elements/UserMenuDropdown/UserMenuDropdown';
 import routes from '../../routes/manage'

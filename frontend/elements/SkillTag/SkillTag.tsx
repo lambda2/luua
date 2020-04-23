@@ -1,7 +1,7 @@
 import React from 'react'
 
 import classNames from 'classnames';
-import './SkillTag.module.less'
+// import './SkillTag.module.less'
 import { Tag, Popover } from 'antd';
 import { useLocale } from "../../hooks/useLocale";
 

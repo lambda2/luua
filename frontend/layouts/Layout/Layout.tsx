@@ -7,7 +7,7 @@ import { UserProvider } from '../../contexts/UserContext'
 
 import { Layout as Lay, ConfigProvider, Menu, Breadcrumb } from 'antd';
 
-import './Layout.less'
+// import './Layout.less'
 import { WorkspaceProvider } from '../../contexts/WorkspaceContext'
 
 import fr from 'antd/lib/locale/fr_FR';

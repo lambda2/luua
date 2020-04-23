@@ -1,7 +1,7 @@
 import React from 'react'
 // import Link, { LinkProps } from 'next/link';
 import classNames from 'classnames';
-import './PageTitle.module.less'
+// import './PageTitle.module.less'
 import Title from '../Title/Title';
 
 interface Props {

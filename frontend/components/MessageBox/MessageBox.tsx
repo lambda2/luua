@@ -1,5 +1,5 @@
 import React from 'react';
-import './MessageBox.module.less'
+// import './MessageBox.module.less'
 
 interface Props {
 }

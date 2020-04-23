@@ -3,7 +3,7 @@ import UserContext from '../../contexts/UserContext';
 import routes from '../../routes/manage'
 import { Tag, List, Avatar } from 'antd';
 import MissionVisibilityBadge from '../../elements/MissionVisibilityBadge/MissionVisibilityBadge';
-import './MissionSkillsForUser.module.less'
+// import './MissionSkillsForUser.module.less'
 import { useLocale } from '../../hooks/useLocale';
 import { Typography } from 'antd';
 import { fromPairs, sumBy } from 'lodash';

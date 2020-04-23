@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import UserContext from '../../contexts/UserContext';
-import './MissionApplyBox.module.less'
+// import './MissionApplyBox.module.less'
 import { useLocale } from '../../hooks/useLocale';
 import { apply } from '../../api/mission';
 import { Button } from 'antd';

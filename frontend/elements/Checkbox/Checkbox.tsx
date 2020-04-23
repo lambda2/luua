@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './Checkbox.module.less'
+// import './Checkbox.module.less'
 
 import classnames from 'classnames'
 import InputFeedback from '../InputFeedback/InputFeedback';

@@ -4,7 +4,7 @@
 
 import { useState, ChangeEvent, ReactNode } from "react";
 
-import './UserSkillsSelect.module.less'
+// import './UserSkillsSelect.module.less'
 import { List, Tag } from "antd";
 import { useField } from "formik";
 import UserSkillsModal from "./UserSkillsModal";

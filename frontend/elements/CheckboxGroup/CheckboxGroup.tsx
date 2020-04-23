@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 
-import './CheckboxGroup.module.less'
+// import './CheckboxGroup.module.less'
 
 import classnames from 'classnames'
 import InputFeedback from '../InputFeedback/InputFeedback';

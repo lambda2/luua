@@ -17,7 +17,7 @@ import MissionSkillsForUser from '../MissionSkillsForUser/MissionSkillsForUser';
 import PageSection from '../../elements/PageSection/PageSection';
 import PageTitle from '../../elements/PageTitle/PageTitle';
 
-import './MissionDetail.module.less'
+// import './MissionDetail.module.less'
 
 const { Text } = Typography;
 

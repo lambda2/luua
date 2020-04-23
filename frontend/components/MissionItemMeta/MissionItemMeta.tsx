@@ -3,7 +3,7 @@ import UserContext from '../../contexts/UserContext';
 import routes from '../../routes/manage'
 import { Tag, List, Avatar } from 'antd';
 import MissionVisibilityBadge from '../../elements/MissionVisibilityBadge/MissionVisibilityBadge';
-import './MissionItemMeta.module.less'
+// import './MissionItemMeta.module.less'
 import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';
 import { cdnUrl } from '../../utils/http';
