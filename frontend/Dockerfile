@@ -1,5 +1,6 @@
 
 FROM mhart/alpine-node:10 AS builder
+
 RUN apk --update add git build-base perl python
 WORKDIR /app
 ENV NODE_ENV production
@@ -18,6 +19,10 @@ RUN yarn build && yarn --production
 
 # Run build
 FROM mhart/alpine-node:10
+
+LABEL maintainer="andre@luua.io"
+LABEL description="The luua.io frontend app docker image"
+
 WORKDIR /app
 ENV NODE_ENV production
 ENV BACKEND_URL "http://mashu"

@@ -3,14 +3,14 @@ const next = require('next')
 
 const port = process.env.PORT || 3000
 const app = next({ dev: process.env.NODE_ENV !== 'production' })
-const handle = app.getRequestHandler();
+const handle = app.getRequestHandler()
 
 const getLocale = (req) => {
   // @TODO read subdomains to read locale
   return 'fr'
 }
 
-/** 
+/**
  * Spin our express server with nextJS middleware
  */
 (async () => {
@@ -25,8 +25,7 @@ const getLocale = (req) => {
 
   await server.listen(port)
   console.log(`> Ready on http://localhost:${port}`)
-  console.log("~~~~~~~~~~~~~~~~~~~~")
-  console.log("|  LUUA IS READY 💃 |")
-  console.log("~~~~~~~~~~~~~~~~~~~~")
-
+  console.log('~~~~~~~~~~~~~~~~~~~~')
+  console.log('|  LUUA IS READY 💃 |')
+  console.log('~~~~~~~~~~~~~~~~~~~~')
 })()

@@ -44,6 +44,7 @@ module.exports = {
         'devDependencies': true
       }
     ],
+    'semi': ['warn', 'never'],
     'comma-dangle': [
       'error',
       {

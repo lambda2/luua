@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-console.log("config loaded")
+console.log('config loaded')
 // const withSass = require('@zeit/next-sass')
 const withLess = require('@zeit/next-less')
 const lessToJS = require('less-vars-to-js')
@@ -8,12 +8,12 @@ const path = require('path')
 
 const withCSS = require('@zeit/next-css')
 const dotenv = require('dotenv')
+
 dotenv.config()
 
 const themeVariables = lessToJS(
   fs.readFileSync(path.resolve(__dirname, './styles/variables.less'), 'utf8')
 )
-
 
 module.exports = withCSS(withLess({
   serverRuntimeConfig: {
@@ -37,10 +37,11 @@ module.exports = withCSS(withLess({
   lessLoaderOptions: {
     javascriptEnabled: true,
     modifyVars: themeVariables, // make your antd custom effective
-    localIdentName: "[local]___[hash:base64:5]"
+    localIdentName: '[local]___[hash:base64:5]',
   },
   webpack: (config, { isServer }) => {
     if (isServer) {
+      // @TODO all this mess is just for antd
       const antStyles = /antd\/.*?\/style.*?/
       const origExternals = [...config.externals]
       config.externals = [

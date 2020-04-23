@@ -40,7 +40,7 @@ const Explore = (
 }
 
 Explore.getInitialProps = async (ctx: NextPageContext) => {
-  const data  = await fetchInitialData<LightMission[]>(ctx, '/api/missions')
+  const data = await fetchInitialData<LightMission[]>(ctx, '/api/missions?for_user=true')
   return data
 }
 
