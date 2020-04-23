@@ -1,0 +1,70 @@
+
+
+.MissionForm {
+
+    .steps-action {
+        // border-top: 1px solid @border-color-base;
+        margin-top: 15px;
+        padding-top: 15px;
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        align-content: center;
+        align-items: center;
+        justify-content: space-between;
+
+        .ant-form-item {
+            margin: 0;
+        }
+    }
+
+    .MissionPeopleForm {
+        .ant-slider {
+            margin: 50px;
+        }
+
+        .ant-radio-group {
+            max-width: 100%;
+            display: block;
+        }
+
+        .ant-radio-wrapper {
+            display: flex;
+            align-items: center;
+            align-content: center;
+            padding: 8px 0;
+            margin: 8px 0;
+            border: 2px solid transparent;
+            border-radius: 3px;
+
+            &:hover {
+                background-color: @nord6;
+            }
+
+            &.ant-radio-wrapper-checked {
+                border: 2px solid @primary-color;
+            }
+
+
+            span:nth-child(1) {
+                padding: 8px;
+                display: block;
+            }
+
+            span:nth-child(2) {
+                padding-left: 1em;
+                display: block;
+                
+                p {
+                    opacity: .7;
+                    white-space: normal;
+                    margin: 0;
+                }
+            }
+
+            & + .ant-radio-wrapper {
+                // margin: 10px 0;
+            }
+        }
+    }
+}
