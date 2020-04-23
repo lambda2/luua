@@ -1,0 +1,383 @@
+{
+  "generics": {
+    "or": "ou",
+    "for": "pour"
+  },
+  "menu": {
+    "explore": "Explorer",
+    "manage": "Gérer",
+    "summary": "En bref",
+    "workspaces": "Espaces",
+    "missions": "Missions",
+    "skills": "Compétences",
+    "candidates": "Candidats",
+    "contributors": "Contributeurs",
+    "organizations": "Organisations",
+    "sign-in": "Connexion",
+    "logout": "Déconnexion",
+    "sign-up": "S'enregistrer",
+    "edit": "Éditer",
+    "show": "Voir",
+    "delete": "Supprimer"
+  },
+  "error": {
+    "title": "Une erreur s'est produite"
+  },
+  "mission_user": {
+    "applied": {
+      "action": "a postulé",
+      "name": "Postulé",
+      "button": "Postuler",
+      "state": "Postule pour la mission {{name}}",
+      "state-user": "Vous avez postulé pour la mission {{name}}"
+    },
+    "rejected": {
+      "action": "a été rejeté",
+      "button": "Rejeter",
+      "name": "Rejeté",
+      "state": "A été rejecté pour la mission {{name}}",
+      "state-user": "Vous n'avez pas été sélectionné pour la mission {{name}}"
+    },
+    "accepted": {
+      "action": "a été accepté",
+      "button": "Accepter",
+      "name": "Accepté",
+      "state": "Effectue la mission {{name}}",
+      "state-user": "Vous avez été sélectionné pour effectuer la mission {{name}}"
+    },
+    "completed": {
+      "action": "a terminé",
+      "button": "Completer la mission",
+      "name": "Terminé",
+      "state": "A Terminé la mission {{name}} et attend son évaluation",
+      "state-user": "Vous avez terminé la mission {{name}} et attendez votre évaluation"
+    },
+    "reviewed": {
+      "action": "a été évalué",
+      "button": "Évaluer",
+      "name": "Évalué",
+      "state": "A été évalué sur la mission {{name}}",
+      "state-user": "Vous avez été évalué sur la mission {{name}}"
+    },
+    "titles": {
+      "folder": "Résumé",
+      "skills": "Compétences"
+    },
+    "links": {
+      "see-profile": "Voir le profil"
+    },
+    "recommendations": {
+      "0": {
+        "title": "Ne possède pas la majorité des compétences requises",
+        "color": "red"
+      },
+      "1": {
+        "title": "Ne possède pas des compétences requises",
+        "color": "orange"
+      },
+      "2": {
+        "title": "Ne possède pas certaines compétences",
+        "color": "orange"
+      },
+      "3": {
+        "title": "Possède la plupart des compétences",
+        "color": "green"
+      },
+      "4": {
+        "title": "Possède la majorité des compétences",
+        "color": "green"
+      }
+    },
+    "on-the-mission": "sur la mission",
+    "recommended-at": "Recommandé à"
+  },
+  "skill": {
+    "compatibility": {
+      "0": "Cette compétence est obligatoire",
+      "1": "Cette compétence est conseillée",
+      "2": "Niveau insuffisant en {{name}}",
+      "3": "Niveau requis en {{name}}"
+    },
+    "asked-level": "Niveau demandé"
+  },
+  "mission": {
+    "create": {
+      "title": "Créer une mission"
+    },
+    "created-by": "Créee par",
+    "required-skills": "Compétences requises",
+    "summary": "Résumé",
+    "candidate": {
+      "notlogged": {
+        "title": "Envie de donner un coup de main ?",
+        "login": "Connecte toi",
+        "signup": "crée un compte",
+        "to-apply": "pour postuler"
+      },
+      "apply": {
+        "title": "Envie de donner un coup de main ?",
+        "apply": "Postuler maintenant"
+      },
+      "applied": {
+        "title": "Candidature bien recue !",
+        "description": "On vous contacte très vite"
+      },
+      "accepted": {
+        "title": "Votre candidature a été acceptée !",
+        "description-running": "La mission est en cours",
+        "description-ended": "La mission est terminée (depuis {{end}})",
+        "starts-at": "La mission commence {{begin}}",
+        "ends-at": "La mission se termine {{end}}",
+        "button-running": "Terminer la mission",
+        "button-end": "Terminer la mission",
+        "description": "On vous contacte très vite"
+      }
+    }
+  },
+  "explore": {
+    "title": "Explorer"
+  },
+  "workspace": {
+    "no-workspace-yet": {
+      "title": "Il semblerait que tu n'aies pas encore d'espace",
+      "create-now": "Créer un espace"
+    },
+    "switching-workspace": "Changement d'espace...",
+    "members": "Membres",
+    "missions": "Missions",
+    "applicants": "Candidatures"
+  },
+  "help": {
+    "workspace": {
+      "what": "Un espace te permet de créer des missions pour ton association, ton projet, ton groupe etc..."
+    }
+  },
+  "form": {
+    "submit": "Allez hop !",
+    "submitting": "Enregistrement...",
+    "save": "Enregistrer",
+    "saved": "Enregistré !",
+    "save-changes": "Enregistrer les changements",
+    "has-errors": "Le formulaire contient des erreurs",
+    "reset": "Réinitialiser",
+    "cancel": "Annuler",
+    "back": "Retour",
+    "user": {
+      "sign-up": {
+        "submit": "Créer mon compte"
+      },
+      "sign-in": {
+        "submit": "Connexion"
+      },
+      "edit": {
+        "submit": "Mettre à jour"
+      },
+      "username": {
+        "label": "Login",
+        "hint": "Votre nom d'utilisateur",
+        "placeholder": "Ex: bobby_lapointe"
+      },
+      "first_name": {
+        "label": "Prénom",
+        "hint": "",
+        "placeholder": "Ex: Bobby"
+      },
+      "last_name": {
+        "label": "Nom",
+        "hint": "",
+        "placeholder": "Ex: Lapointe"
+      },
+      "image": {
+        "label": "Image de profil",
+        "buttonLabel": "Sélectionner une image",
+        "hint": ""
+      },
+      "country": {
+        "label": "Pays",
+        "hint": ""
+      },
+      "timezone": {
+        "label": "Fuseau horaire",
+        "hint": ""
+      },
+      "email": {
+        "label": "E-mail",
+        "hint": "Votre addresse e-mail\n(ou courriel, comme on dit...)",
+        "placeholder": "Ex: b0bby.l4pointe@gmail.com"
+      },
+      "password": {
+        "label": "Mot de passe",
+        "hint": "Un mot de passe pas facile à deviner",
+        "placeholder": " "
+      },
+      "password_confirmation": {
+        "label": "Confirmation",
+        "hint": "Retapez le mot de passe",
+        "placeholder": ""
+      },
+      "skills": {
+        "edit": "Modifier mes compétences",
+        "submit": "Enregistrer mes compétences"
+      }
+    },
+    "skill_category": {
+      "title": "Type de compétence",
+      "language": "Parler",
+      "technical": "Savoir faire",
+      "mobility": "Se déplacer"
+    },
+    "workspace": {
+      "update": "Mettre à jour mon espace",
+      "submit": "Créer mon espace",
+      "name": {
+        "label": "Nom",
+        "hint": "Le nom de votre espace",
+        "placeholder": "Ex: Association des Boulangers du Poitou"
+      },
+      "image": {
+        "label": "Image",
+        "hint": "Une image pour votre espace",
+        "placeholder": "Télécharger une image"
+      }     
+    },
+    "skill": {
+      "levels": {
+        "technical": {
+          "0": "Aucun",
+          "1": "Débutant",
+          "2": "Avancé",
+          "3": "Expert",
+          "4": "Maître"
+        },
+        "language": {
+          "0": "Ne parle pas",
+          "1": "Comprend un peu",
+          "2": "À l'aise",
+          "3": "Bilingue",
+          "4": "Langue maternelle"
+        },
+        "mobility": {
+          "0": "Aucun",
+          "1": "Débutant",
+          "2": "Avancé",
+          "3": "Expert",
+          "4": "Maître"
+        }
+      },
+      "skill": "Compétence",
+      "empty": "Aucune compétence ajoutée",
+      "label": "Compétences requises",
+      "add-skill": "Ajouter une compétence",
+      "edit-skill": "Éditer les compétences",
+      "level": "Niveau",
+      "be-level": "Être",
+      "in-level": "en",
+      "mandatory": "Cette compétence est ",
+      "yes": "Requise",
+      "no": "Recommandée",
+      "modal": {
+        "title": "Trouver une compétence",
+        "placeholder": "Nom de votre compétence"
+      }
+    },
+    "mission": {
+      "steps": {
+        "infos": "Informations",
+        "durations": "Dates",
+        "skills": "Compétences",
+        "participants": "Effectifs"
+      },
+      "visibilities": {
+        "draft": {
+          "title": "Brouillon",
+          "description": "Visible seulement par vous"
+        },
+        "protected": {
+          "title": "Protégé",
+          "description": "Visible uniquement par les membres de {{name}}"
+        },
+        "hidden": {
+          "title": "Masqué",
+          "description": "Visible seulement par vous"
+        },
+        "public": {
+          "title": "Public",
+          "description": "Visible par tout le monde"
+        }
+      },
+      "next": "Continuer",
+      "prev": "Précédent",
+      "new": "Créer une mission",
+      "edit": "Modifier la mission",
+      "submit": "Créer ma mission",
+      "draft-saved": "Brouillon enregistré",
+      "name": {
+        "label": "Nom",
+        "hint": "L'intitulé de la mission",
+        "placeholder": "Ex: Design d'un logo pour l'association"
+      },
+      "description": {
+        "label": "Description",
+        "hint": "Une description en détail de la mission",
+        "placeholder": "..."
+      },
+      "begin_at": {
+        "label": "Débute le",
+        "asap": "Dès que possible",
+        "hint": "",
+        "placeholder": "Dès que possible"
+      },
+      "end_at": {
+        "asap": "Les plus tôt possible",
+        "label": "Finit le",
+        "hint": "",
+        "placeholder": "Les plus tôt possible"
+      },
+      "physical": {
+        "label": "Présence physique",
+        "hint": "Requiert une présence physique ?",
+        "placeholder": "...",
+        "yes": "Oui",
+        "no": "Non",
+        "yes-label": "Présence physique obligatoire",
+        "no-label": "Peut être effectuée à distance"
+      },
+      "image": {
+        "label": "Image",
+        "hint": "Une image pour votre espace",
+        "placeholder": ""
+      },
+      "participant_count": {
+        "label": "Effectif requis",
+        "hint": "Le nombre de personnes requises pour effectuer la mission",
+        "placeholder": "Nombre de personnes",
+        "as-many-as-possible": "Autant que possible",
+        "participant": "personne"
+      },
+      "hiring_validation": {
+        "label": "Validation des candidatures",
+        "hint": "Lorsque une personne candidate a cette mission...",
+        "options": {
+          "review": {
+            "title": "Ne valider aucune candidature automatiquement",
+            "description": "Vous êtes notifé à chaque candidature, et vous devrez manuellement l'accepter ou la rejeter."
+          },
+          "trusted": {
+            "title": "Ne valider aucune candidature inconnue",
+            "description": "La candidature est automatiquement acceptée si le candidat a déja effectué une mission pour vous. Dans le cas contraire, vous devez la traiter manuellement."
+          },
+          "requirements": {
+            "title": "Valider toutes les candidatures remplissant les pré-requis",
+            "description": "La candidature est automatiquement acceptée si le candidat possède toutes les compétences requises. Dans le cas contraire, vous devez la traiter manuellement."
+          },
+          "accept_all": {
+            "title": "Valider toutes les candidatures",
+            "description": "La candidature est automatiquement acceptée."
+          }
+        }
+      }
+    }
+  }
+
+}
+
