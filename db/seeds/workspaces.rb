@@ -6,15 +6,15 @@ else
   puts 'Creating User !'
   andre = User.find_by_email('andre@luua.io') || User.new(
     email: 'andre@luua.io',
-    password: 'andre',
-    password_confirmation: 'andre',
+    password: 'andre?',
+    password_confirmation: 'andre?',
     username: 'andre',
     first_name: 'André',
     last_name: 'Aubin',
     country: Country.friendly.find('france'),
     remote_image_url: 'https://placeimg.com/640/480/people',
     timezone: 'Paris',
-    admin: true
+    admin: false
   )
 
   andre.skip_confirmation!
