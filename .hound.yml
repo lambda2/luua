@@ -6,5 +6,5 @@ jshint:
   enabled: false
 
 eslint:
-  enabled: true
+  enabled: false
 
