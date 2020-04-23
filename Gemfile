@@ -91,7 +91,7 @@ group :development, :test do
   gem 'ngrok-tunnel', '~> 2.1.1'
   gem 'rspec', '~> 3.9.0'
   gem 'rspec-rails', '~> 3.9.1'
-  gem 'rubocop', '~> 0.82.0', require: false
+  gem 'rubocop', '~> 0.80.0', require: false
   gem 'webdrivers', '~> 4.3.0' # This gem helps Capybara interact with the web browser.
   gem 'webmock', '~> 3.8.3' # Mock http calls
 end

@@ -24,8 +24,6 @@ Style/Documentation:
   Enabled: false
 Style/DoubleCopDisableDirective:
   Enabled: false
-Style/ExponentialNotation:
-  Enabled: true
 
 Layout/SpaceInsideBlockBraces:
   EnforcedStyle: space
@@ -42,13 +40,7 @@ Layout/EmptyLinesAroundBlockBody:
   Enabled: false
 Layout/EmptyLinesAroundClassBody:
   Enabled: false
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
 
-Lint/RaiseException:
-  Enabled: true
-Lint/StructNewOverride:
-  Enabled: true
 
 Metrics/AbcSize:
   Max: 30
