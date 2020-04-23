@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import UserContext from '../../contexts/UserContext';
-// import './MissionApplyBox.module.less'
 import { useLocale } from '../../hooks/useLocale';
 import { apply } from '../../api/mission';
 import { Button } from 'antd';
@@ -23,7 +22,7 @@ const MissionApplyBox = ({
   const { t } = useLocale()
 
   return (
-    <div className="MissionApplyBox">
+    <>
       {!application && <MessageBox title={t('mission.candidate.apply.title')}>
         <div>
           <Button onClick={onApply}>{t('mission.candidate.apply.apply')}</Button>
@@ -34,7 +33,7 @@ const MissionApplyBox = ({
           <Button disabled>{t(`mission.candidate.${application.status}.description`)}</Button>
         </div>
       </MessageBox>}
-    </div> || <></>
+    </> || <></>
   )
 }
 

@@ -26,7 +26,7 @@ const MissionCandidateBox = ({}: Props) => {
 
 
   return (
-    !currentUser && <div className="MissionCandidateBox">
+    !currentUser && <>
       <MessageBox title={t('mission.candidate.notlogged.title')}>
         <div>
           <Link {...users.login()}><a>{t('mission.candidate.notlogged.login')}</a></Link>
@@ -35,7 +35,7 @@ const MissionCandidateBox = ({}: Props) => {
           {' '}{t('mission.candidate.notlogged.to-apply')}
         </div>
       </MessageBox>
-    </div> || <></>
+    </> || <></>
   )
 
 }
