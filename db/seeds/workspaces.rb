@@ -1,7 +1,4 @@
-if Rails.env.test?
-
-  # We don't seed this in test
-else
+if Rails.env.development?
 
   puts 'Creating User !'
   andre = User.find_by_email('andre@luua.io') || User.new(
