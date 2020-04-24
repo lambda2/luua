@@ -7,7 +7,7 @@ import MissionVisibilityBadge from '../../elements/MissionVisibilityBadge/Missio
 import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';
 import { cdnUrl } from '../../utils/http';
-import { find } from 'lodash';
+import find from 'lodash/find';
 import MissionItemMeta from '../MissionItemMeta/MissionItemMeta';
 import MissionSkillsForUser from '../MissionSkillsForUser/MissionSkillsForUser';
 import CandidateStatusStep from '../../elements/CandidateStatusStep/CandidateStatusStep';

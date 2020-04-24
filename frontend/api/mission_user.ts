@@ -1,6 +1,6 @@
 import api, { getHeaders } from "../utils/http"
 import { AxiosResponse } from "axios"
-import { pick } from "lodash"
+import pick from 'lodash/pick'
 
 
 /**

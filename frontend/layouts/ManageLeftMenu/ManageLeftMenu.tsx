@@ -59,11 +59,11 @@ const ManageLeftMenu: React.FC<Props> = () => {
       defaultOpenKeys={[]}
       style={{ height: '100%' }}
     >
-      {currentWorkspace && 
+      {/* {currentWorkspace && 
         <Dropdown.Button className="ws-dropdown-button" onClick={handleButtonClick} overlay={menu}>
           <WorkspaceLabel {...currentWorkspace} />
         </Dropdown.Button>
-      }
+      } */}
 
       <Menu.Item key="/">
         <Link {...index()}><a>{t('menu.summary')}</a></Link>

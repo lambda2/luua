@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Avatar } from 'antd';
 import Link from 'next/link';
-import { find } from 'lodash';
+import find from 'lodash/find';
 import { Typography } from 'antd';
 
 import { cdnUrl } from '../../utils/http';

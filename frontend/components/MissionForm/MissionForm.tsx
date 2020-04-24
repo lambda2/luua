@@ -10,7 +10,7 @@ import { Steps, Button, Typography, message } from 'antd';
 // import './MissionForm.module.less'
 import MissionInfoForm from './MissionInfoForm';
 import MissionSkillsForm from './MissionSkillsForm';
-import { pick } from 'lodash';
+import pick from 'lodash/pick';
 import routes from '../../routes/manage'
 import { useLocale } from '../../hooks/useLocale';
 import Router from 'next/router';
