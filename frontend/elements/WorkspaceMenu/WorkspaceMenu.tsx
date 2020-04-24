@@ -2,8 +2,9 @@
 import React, { useContext } from 'react'
 
 import UserContext from '../../contexts/UserContext'
-import LangSelect from '../../elements/LangSelect/LangSelect';
-import UserMenuDropdown from '../../elements/UserMenuDropdown/UserMenuDropdown';
+
+import LangSelect from '../LangSelect/LangSelect';
+import UserMenuDropdown from '../UserMenuDropdown/UserMenuDropdown';
 import routes from '../../routes/manage'
 import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';
@@ -12,12 +13,12 @@ const { manage, explore } = routes
 
 interface Props {}
 
-const MainMenu: React.FC<Props> = () => {
+const WorkspaceMenu: React.FC<Props> = () => {
   const { currentUser } = useContext(UserContext)
   const { t } = useLocale()
   const activeWorkspace = currentUser?.workspaces[0]
 
-  return (<header className="MainMenu">
+  return (<header className="WorkspaceMenu">
     <div className="logo" />
     <ul className="main-header-menu">
       <li key="/explore">
@@ -37,9 +38,9 @@ const MainMenu: React.FC<Props> = () => {
   </header>)
 }
 
-MainMenu.displayName = 'MainMenu'
+WorkspaceMenu.displayName = 'WorkspaceMenu'
 
-export default MainMenu;
+export default WorkspaceMenu;
 
 
 

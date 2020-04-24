@@ -384,6 +384,13 @@
         }
       }
     }
+  },
+  "meta": {
+    "release": "version",
+    "source": "Code source",
+    "report-bug": "Un bug ?",
+    "contact": "Contactez-moi",
+    "suggest-feature": "Une idée ?"
   }
 
 }

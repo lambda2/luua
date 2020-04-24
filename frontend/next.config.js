@@ -26,7 +26,8 @@ module.exports = withBundleAnalyzer(withCSS(withLess({
     // Will be available on both server and client
     apiUrl: process.env.API_URL || 'http://localhost:3232',
     cdnUrl: process.env.CDN_URL || 'http://localhost:3232',
-    sentryRelease: process.env.SENTRY_RELEASE || 'undefined',
+    sentryRelease: process.env.SENTRY_RELEASE || '',
+    releaseTag: process.env.RELEASE || '',
     staticFolder: '/static',
   },
   // sassLoaderOptions: {

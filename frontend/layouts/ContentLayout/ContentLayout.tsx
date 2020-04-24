@@ -9,6 +9,7 @@ const { Content } = Layout;
 
 interface Props {
   sideMenu?: React.ReactNode
+  topMenu?: React.ReactNode
   className?: string
   format?: 'box' | 'wide' | 'normal'
 }
@@ -19,6 +20,7 @@ interface Props {
  */
 const ContentLayout: React.FC<Props> = ({
   sideMenu,
+  topMenu,
   children,
   format = 'normal',
   className
@@ -29,12 +31,15 @@ const ContentLayout: React.FC<Props> = ({
     'wide-content': (format === 'wide'),
     'normal-content': (format === 'normal')
   }
-  return (<Layout className={classNames("main-content", className, overrides)}>
-    {sideMenu || ''}
-    <Content className="main-content" style={{ padding: '0 24px', minHeight: 280 }}>
-      { children }
-    </Content>
-  </Layout>)
+  return (<>
+    {topMenu || ''}
+    <Layout className={classNames("main-content", className, overrides)}>
+      {sideMenu || ''}
+      <Content className="main-content" style={{ padding: '0 24px', minHeight: 280 }}>
+        { children }
+      </Content>
+    </Layout>
+  </>)
 
 
 }

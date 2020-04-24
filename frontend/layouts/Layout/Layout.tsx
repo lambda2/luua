@@ -13,10 +13,11 @@ import { WorkspaceProvider } from '../../contexts/WorkspaceContext'
 import fr from 'antd/lib/locale/fr_FR';
 import en from 'antd/lib/locale/en_US';
 import { LocaleProvider } from '../../contexts/LocaleContext'
+import Footer from '../Footer/Footer';
 
 const locales = { fr, en }
 
-const { Content, Footer } = Lay;
+const { Content } = Lay;
 
 
 interface Props {
@@ -41,7 +42,7 @@ const Layout = ({ token, locale, children, className }: Props) => {
               <Content style={{ padding: '0 50px' }}>
                 {children}
               </Content>
-              <Footer style={{ textAlign: 'center' }}>WIP</Footer>
+              <Footer />
             </Lay>
           </ConfigProvider>
         </WorkspaceProvider>

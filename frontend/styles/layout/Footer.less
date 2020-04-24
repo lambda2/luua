@@ -1,0 +1,30 @@
+
+.Footer {
+  text-align: center;
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    list-style-type: none;
+    margin: auto;
+    max-width: @content-width;
+
+    li {
+      padding: @space-inset-l;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.pusher {
+        flex: 1 1 100%;
+      }
+
+      a {
+        color: @nord3;
+      }
+    }
+  }
+
+}
