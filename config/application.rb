@@ -7,7 +7,7 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 # Complete env vars with .env config file
-Dotenv::Railtie.load
+Dotenv::Railtie.load unless Rails.env.production?
 
 module Luua
   class Application < Rails::Application
