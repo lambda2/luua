@@ -142,6 +142,9 @@
     "title": "Explorer"
   },
   "workspace": {
+    "create": {
+      "title": "Créer un espace"
+    },
     "no-workspace-yet": {
       "title": "Il semblerait que tu n'aies pas encore d'espace",
       "create-now": "Créer un espace"

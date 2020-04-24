@@ -11,6 +11,7 @@ import NetworkBoundary from '../../../../../components/NetworkBoudary/NetworkBou
 
 import ManageLeftMenu from '../../../../../layouts/ManageLeftMenu/ManageLeftMenu'
 import ContentLayout from '../../../../../layouts/ContentLayout/ContentLayout'
+import WorkspaceMissionDetail from '../../../../../components/WorkspaceMissionDetail/WorkspaceMissionDetail'
 
 const { manage } = routes
 const { workspace } = manage
@@ -32,13 +33,14 @@ const Mission = (
   return (
     <NetworkBoundary status={status} data={data} error={error}>
       <ContentLayout sideMenu={<ManageLeftMenu />}>
-        <Link {...workspace.missions.edit(`${query.workspace_id}`, `${query.id}`)}>
+        {/* <Link {...workspace.missions.edit(`${query.workspace_id}`, `${query.id}`)}>
           <a>Edit</a>
         </Link>
         {data && <div>
           <h1>{data.name}</h1>
           <p>{data.description}</p>
-        </div>}
+        </div>} */}
+        <WorkspaceMissionDetail {...data as Mission} />
       </ContentLayout>
     </NetworkBoundary>
   )
