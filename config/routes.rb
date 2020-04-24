@@ -1,5 +1,7 @@
 Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
 
+  root 'home#index'
+  
   concern :mission_users_filters do |options|
     get :applied, { on: :collection, action: :index, applied: true }.merge(options)
     get :rejected, { on: :collection, action: :index, rejected: true }.merge(options)
