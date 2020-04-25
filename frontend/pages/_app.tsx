@@ -1,8 +1,10 @@
 import App, { AppProps } from 'next/app'
 import Layout from '../layouts/Layout/Layout'
 import * as Sentry from '@sentry/browser';
+import getConfig from 'next/config';
 
 import { config } from '@fortawesome/fontawesome-svg-core'
+const { publicRuntimeConfig } = getConfig();
 
 // Stylesheets
 import '@fortawesome/fontawesome-svg-core/styles.css' // Import the CSS
@@ -13,11 +15,10 @@ import { propsFromContext } from '../utils/auth';
 config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
 
-// @TODO add sentry
-// Sentry.init({
-//   dsn: "https://xxx@sentry.io/2012324",
-//   release: publicRuntimeConfig.sentryRelease
-// });
+Sentry.init({
+  dsn: publicRuntimeConfig.sentryDsn,
+  release: publicRuntimeConfig.sentryRelease
+});
 
 
 const LuuaApp = ({ Component, pageProps }: AppProps) => {
