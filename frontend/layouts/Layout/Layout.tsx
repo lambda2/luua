@@ -1,13 +1,11 @@
 import React from 'react'
 
 import MainMenu from '../MainMenu/MainMenu'
-import LeftMenu from '../LeftMenu/LeftMenu'
 
 import { UserProvider } from '../../contexts/UserContext'
 
-import { Layout as Lay, ConfigProvider, Menu, Breadcrumb } from 'antd';
+import { Layout, ConfigProvider } from 'antd';
 
-// import './Layout.less'
 import { WorkspaceProvider } from '../../contexts/WorkspaceContext'
 
 import fr from 'antd/lib/locale/fr_FR';
@@ -17,7 +15,7 @@ import Footer from '../Footer/Footer';
 
 const locales = { fr, en }
 
-const { Content } = Lay;
+const { Content } = Layout;
 
 
 interface Props {
@@ -31,19 +29,19 @@ interface Props {
  * Our main container
  * @param className The class to add
  */
-const Layout = ({ token, locale, children, className }: Props) => {    
+const LuuaLayout = ({ token, locale, children, className }: Props) => {    
   return (
     <LocaleProvider language={locale || 'en'}>
       <UserProvider token={token}>
         <WorkspaceProvider>
           <ConfigProvider locale={locales[(locale || 'en') as AvailableLocale]}>
-            <Lay className="main-layout">
+            <Layout className="main-layout">
               <MainMenu />
               <Content style={{ padding: '0 50px' }}>
                 {children}
               </Content>
               <Footer />
-            </Lay>
+            </Layout>
           </ConfigProvider>
         </WorkspaceProvider>
       </UserProvider>
@@ -51,6 +49,6 @@ const Layout = ({ token, locale, children, className }: Props) => {
   )
 }
 
-Layout.displayName = 'Layout'
+LuuaLayout.displayName = 'LuuaLayout'
 
-export default Layout
+export default LuuaLayout
