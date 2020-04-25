@@ -389,7 +389,8 @@
     "release": "version",
     "source": "Code source",
     "report-bug": "Un bug ?",
-    "contact": "Contactez-moi",
+    "contact": "Contact",
+    "twitter": "Twitter",
     "suggest-feature": "Une idée ?"
   }
 

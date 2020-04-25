@@ -16,7 +16,7 @@ const Footer: React.FC<Props> = () => {
       <li className="pushed"></li>
       <li><a rel="noopener" target="_blank" href="https://github.com/lambda2/luua">{t('meta.source')}</a></li>
       <li><a rel="noopener" target="_blank" href="https://github.com/lambda2/luua/issues/new">{t('meta.report-bug')}</a></li>
-      <li><a rel="noopener" target="_blank" href="https://twitter.com/lambda_2">{t('meta.contact')}</a></li>
+      <li><a rel="noopener" target="_blank" href="https://twitter.com/lambda_2">{t('meta.twitter')}</a></li>
     </ul>
   </footer>)
 
