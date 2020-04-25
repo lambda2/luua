@@ -25,7 +25,7 @@ module Luua
 
     config.middleware.insert_before 0, Rack::Cors, debug: true do
       allow do
-        origins 'http://luua.io', %r{\Ahttp://.*\.luua.io\z}
+        origins 'https://luua.io', %r{\Ahttps://.*\.luua.io\z}
         resource '*',
                  headers: :any,
                  methods: :any,
