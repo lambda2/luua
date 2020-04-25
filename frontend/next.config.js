@@ -24,6 +24,7 @@ module.exports = withBundleAnalyzer(withCSS(withLess({
   },
   publicRuntimeConfig: {
     // Will be available on both server and client
+    backendUrl: process.env.BACKEND_URL || 'http://localhost:3232',
     apiUrl: process.env.API_URL || 'http://localhost:3232',
     cdnUrl: process.env.CDN_URL || 'http://localhost:3232',
     sentryRelease: process.env.SENTRY_RELEASE || '',

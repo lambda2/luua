@@ -11,6 +11,7 @@ import { NextPageContext } from 'next'
 const { publicRuntimeConfig } = getConfig()
 
 // The Luua API
+export const BACK_URL = publicRuntimeConfig.backendUrl
 export const API_URL = publicRuntimeConfig.apiUrl
 export const CDN_URL = publicRuntimeConfig.cdnUrl
 
@@ -64,12 +65,10 @@ export function getHeaders(token: string | undefined) {
  */
 export function apiUrl(endpoint: string): string {
 
-  // @TODO To uncomment when we're deployed, it will allow us to
-  // fetch directly from local network, without external hop.
-  // 
-  // if (isServer()) {
-  //   return `${BACK_URL}${endpoint}`
-  // }
+  // fetch directly from local network, without external hop.  
+  if (isServer()) {
+    return `${BACK_URL}${endpoint}`
+  }
 
   return `${API_URL}${endpoint}`
 }
