@@ -10,13 +10,14 @@ ENV CDN_URL "https://deliver.luua.io"
 COPY .npmrc .
 COPY package.json .
 RUN yarn install
+RUN yarn add --dev strip-ansi typescript @types/react
 COPY . .
 ARG SENTRY_RELEASE=untagged
 ENV SENTRY_RELEASE=${SENTRY_RELEASE}
 ARG SENTRY_DSN=""
 ENV SENTRY_DSN=${SENTRY_DSN}
-RUN yarn add --dev typescript @types/react
-RUN yarn build && yarn --production
+RUN yarn build
+RUN yarn --production
 
 # Run build
 FROM mhart/alpine-node:10
