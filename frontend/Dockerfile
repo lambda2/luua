@@ -3,14 +3,13 @@ FROM mhart/alpine-node:10 AS builder
 
 RUN apk --update add git build-base perl python
 WORKDIR /app
-ENV NODE_ENV production
 ENV BACKEND_URL "http://luua"
 ENV API_URL "https://deliver.luua.io"
 ENV CDN_URL "https://deliver.luua.io"
 COPY .npmrc .
 COPY package.json .
-RUN yarn install
-RUN yarn add --dev strip-ansi typescript @types/react
+RUN yarn
+RUN yarn add --dev strip-ansi typescript @types/react @types/node @types/lodash
 COPY . .
 ARG SENTRY_RELEASE=untagged
 ENV SENTRY_RELEASE=${SENTRY_RELEASE}
