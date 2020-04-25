@@ -104,12 +104,15 @@ class MissionUser < ApplicationRecord
   end
 
   def compute_match_score
+    # If no skills are defined, all candidates have the best score
+    return 100 if mission.mission_skills.empty?
+
     mission_total = mission.mission_skills.count * 4
     user_total = mission.mission_skills.where(skill_id: user.skill_ids).map do |ms|
       us = user.user_skills.where(skill_id: ms.skill_id).first
       score_for_skill(ms, us)
     end
-    mission_total.positive? ? (user_total.sum * 100) / mission_total : 0
+    (user_total.sum * 100) / mission_total
   end
 
   def score_for_skill(ms, us) # rubocop:todo Naming/MethodParameterName

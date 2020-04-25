@@ -79,6 +79,9 @@ export function apiUrl(endpoint: string): string {
  * @export
  */
 export function cdnUrl(endpoint: string): string {
+  if (endpoint.startsWith('http')) {
+    return endpoint
+  }
   return `${CDN_URL}${endpoint}`
 }
 
