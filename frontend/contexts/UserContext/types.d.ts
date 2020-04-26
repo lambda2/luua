@@ -3,6 +3,7 @@ declare type AuthStatus = 'NOT_AUTHENTICATED' | 'FAILED' | 'SUCCEED';
 declare interface UserState {
   status: AuthStatus;
   currentUser: AuthedUser | null;
+  notifications: UserNotification[];
 }
 
 declare interface LoginValues {
@@ -23,6 +24,7 @@ declare interface UserUpdateValues {
 
 declare interface UserContextValue extends UserState {
   check: () => void;
+  refreshNotifications: () => void;
   update: (attributes: UserUpdateValues) => Promise<AuthedUser | undefined>;
 }
 
@@ -35,10 +37,17 @@ declare type SuccessAction = {
     user: AuthedUser;
   };
 };
+declare type RefreshNotificationsAction = {
+  type: 'NOTIFICATION_UDPATE';
+  payload: {
+    notifications: UserNotification[];
+  };
+};
 
 declare type AuthenticationAction =
   | RequestAction
   | SuccessAction
+  | RefreshNotificationsAction
   | FailAction
   | ResetAuthErrorAction
   | LogoutAction;

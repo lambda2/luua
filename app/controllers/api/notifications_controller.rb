@@ -14,6 +14,18 @@ class Api::NotificationsController < ApiController
     end
   end
 
+  def me
+    @notifications = current_user.notifications.page(params[:page])
+
+    respond_to do |format|
+      format.json do
+        respond_with_cache(@notifications) do
+          Panko::ArraySerializer.new(@notifications, each_serializer: NotificationSerializer).to_json
+        end
+      end
+    end
+  end
+
   def show
     respond_to do |format|
       format.json do

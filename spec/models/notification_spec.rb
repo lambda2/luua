@@ -3,6 +3,7 @@
 # Table name: notifications
 #
 #  id            :bigint           not null, primary key
+#  code          :integer
 #  content       :string
 #  link          :string
 #  resource_type :string

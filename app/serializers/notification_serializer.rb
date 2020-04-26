@@ -3,6 +3,7 @@
 # Table name: notifications
 #
 #  id            :bigint           not null, primary key
+#  code          :integer
 #  content       :string
 #  link          :string
 #  resource_type :string
@@ -24,5 +25,5 @@
 #
 class NotificationSerializer < Panko::Serializer
   attributes :id, :title, :content, :resource_type, :resource_id,
-             :user_id, :viewed_at, :link
+             :user_id, :viewed_at, :link, :code
 end

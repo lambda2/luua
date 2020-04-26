@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 2020_04_26_181342) do
     t.string "resource_type"
     t.bigint "resource_id"
     t.datetime "viewed_at"
+    t.integer "code"
     t.string "title"
     t.string "content"
     t.string "link"

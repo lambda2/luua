@@ -4,6 +4,7 @@ class CreateNotifications < ActiveRecord::Migration[6.0]
       t.references :user, null: false, foreign_key: true
       t.references :resource, polymorphic: true, null: true
       t.datetime :viewed_at
+      t.integer :code
       t.string :title
       t.string :content
       t.string :link

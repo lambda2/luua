@@ -34,12 +34,13 @@ class Api::MissionsController < ApiController
   # Apply for the mission
   # POST /api/missions/id/apply
   def apply
-    @mission_user = MissionUser.new(mission: @mission, user: current_user)
-    if @mission_user.save
-      WorkspaceHistory.track!(@workspace, @mission_user, current_user)
-      render json: MissionUserSerializer.new.serialize(@mission_user)
+    application = ApplyToMission.call(mission: @mission, user: current_user)
+    # @mission_user = MissionUser.new(mission: @mission, user: current_user)
+    if application.success?
+      # WorkspaceHistory.track!(@workspace, @mission_user, current_user)
+      render json: MissionUserSerializer.new.serialize(application.mission_user)
     else
-      render_error(@mission_user.errors.messages, :unprocessable_entity)
+      render_error(application.messages, :unprocessable_entity)
     end
   end
 

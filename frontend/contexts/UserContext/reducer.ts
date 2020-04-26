@@ -4,7 +4,8 @@ import cookie from 'js-cookie'
 
 const initialState: UserState = {
   status: 'NOT_AUTHENTICATED',
-  currentUser: null
+  currentUser: null,
+  notifications: []
 };
 
 function reducer(value: UserState, action: AuthenticationAction): UserState {
@@ -24,6 +25,13 @@ function reducer(value: UserState, action: AuthenticationAction): UserState {
         ...value,
         status: 'SUCCEED',
         currentUser: user
+      };
+    }
+    case 'NOTIFICATION_UDPATE': {
+      const { notifications } = action.payload;
+      return {
+        ...value,
+        notifications
       };
     }
     case 'AUTHENTICATION_FAIL':
