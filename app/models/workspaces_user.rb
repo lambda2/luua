@@ -30,9 +30,9 @@ class WorkspacesUser < ApplicationRecord
   after_create :set_primary_workspace_for_user
 
   def set_admin_on_first_user
-    return unless admin || workspace.workspaces_users.count > 1
+    return unless admin || workspace.workspaces_users.where.not(user_id: user_id).any?
 
-    self.admin ||= true
+    self.admin = true
   end
 
   def set_primary_workspace_for_user

@@ -7,7 +7,7 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 # Complete env vars with .env config file
-Dotenv::Railtie.load
+Dotenv::Railtie.load unless Rails.env.production?
 
 module Luua
   class Application < Rails::Application
@@ -23,11 +23,11 @@ module Luua
       config.environments = %w[production]
     end
 
-    config.middleware.insert_before 0, Rack::Cors do
+    config.middleware.insert_before 0, Rack::Cors, debug: true do
       allow do
-        origins 'http://luua.io', %r{\Ahttp://.*\.luua.io\z}
+        origins 'https://luua.io', %r{\Ahttps://.*\.luua.io\z}
         resource '*',
-                 headers: %w[Authorization],
+                 headers: :any,
                  methods: :any,
                  expose: %w[Authorization],
                  max_age: 600
@@ -35,7 +35,7 @@ module Luua
       allow do
         origins %r{\Ahttp://localhost:(3000|3232)}
         resource '*',
-                 headers: %w[Authorization],
+                 headers: :any,
                  methods: :any,
                  expose: %w[Authorization],
                  max_age: 600

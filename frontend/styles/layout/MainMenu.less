@@ -1,0 +1,46 @@
+
+.main-header.ant-layout-header {
+  // height: 42px;
+  background-color: @layout-header-background;
+  // border-bottom: 1px solid #ccc;
+
+  .main-header-menu {
+  background-color: @layout-header-background;
+    display: flex;
+    // border-bottom: 1px solid #ccc;
+  }
+
+  .pusher {
+    flex: 1 1 100%;
+  }
+
+  .end {
+    // place-self: flex-end;
+    // flex: 1 1 100%;
+    // text-align: right;
+  }
+}
+
+
+.MainMenu {
+
+  ul.main-header-menu {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    list-style-type: none;
+    margin: auto;
+    max-width: @content-width;
+
+    li {
+      padding: @space-inset-l;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.pusher {
+        flex: 1 1 100%;
+      }
+    }
+  }
+}

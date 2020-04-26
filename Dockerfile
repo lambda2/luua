@@ -34,7 +34,7 @@ RUN bundle install --without development test -j4 --retry 3 --path vendor
 ADD . /app
 RUN mkdir -p /app/tmp/pids && \
   chmod -R 777 /app/tmp && \
-  chmod 777 /app/kube/post-start.sh
+  chmod 777 /app/bin/post-start
 
 # RUN bundle exec rails assets:precompile --trace --verbose
 RUN rm -rf /app/node_modules storage /usr/local/share/.cache/yarn log/* *.md test kube frontend spec tmp/cache lib/assets spec && \

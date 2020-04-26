@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user, class: User do
-    username { Faker::Internet.username }
+    sequence(:username) {|n| "#{Faker::Internet.username}-#{n}" }
     email { Faker::Internet.email(name: username) }
     password { Faker::Internet.password }
     password_confirmation { password }
@@ -18,8 +18,8 @@ FactoryBot.define do
       before(:create, &:confirm)
     end
 
-    factory :operator, class: User do
-      username { "operator-#{Faker::Internet.username}" }
+    factory :admin, class: User do
+      sequence(:username) {|n| "#{Faker::Internet.username}-#{n}" }
       email { Faker::Internet.email(name: username) }
       password { Faker::Internet.password }
       password_confirmation { password }

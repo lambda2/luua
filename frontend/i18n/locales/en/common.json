@@ -1,0 +1,65 @@
+{
+  "menu": {
+    "explore": "Explore",
+    "manage": "Manage",
+    "summary": "Summary",
+    "workspaces": "Workspaces",
+    "missions": "Missions",
+    "organizations": "Organizations"
+  },
+
+
+  "propose-video": "Suggest a video",
+  "about": "About",
+  "learn-more": "Learn more about us",
+  "video-to-suggest": "A video we should add ?",
+  "suggest": "Suggest",
+  "explore": "Explore",
+  "latest-videos": "Latest videos",
+  "browse-videos": "Browse videos",
+  "ends": "Ends",
+  "posted": "Posted",
+  "from": "From",
+  "language": "Language",
+  "durations": "Duration",
+  "duration": {
+    "vshort": "Very short (<5m)",
+    "short": "Short (<15m)",
+    "medium": "Medium (<30m)",
+    "long": "Long (>30m)"
+  },
+  "more": "More...",
+  "less": "Less",
+  "french": "French",
+  "english": "English",
+  "no-video-results": "No videos found",
+  "search-placeholder": "Search a video, a theme, an artist...",
+  "submit-another": "Submit another video",
+  "thanks-contribution": "Thanks for your contribution!",
+  "change-locale": "Change locale",
+  "la-culture": "Culture",
+  "la-science": "Science",
+  "la-politique": "A debate",
+  "le-monde": "World",
+  "ca-se-regarde": "is something to watch",
+  "few-rules-to-respect": "Few rules to respect:",
+  "sources": "Sources",
+  "credits": "Credits",
+  "in-similar-themes": "In similar topics",
+  "donate-on": "Donate on",
+  "donate": "Donate",
+  "only-education-content": {
+    "head": "We should learn something!",
+    "desc": "All videos must be educational, and cover one or more subjects."
+  },
+  "with-sources-if-possible": {
+    "head": "Check the sources.",
+    "desc": "It is much better if the video has its sources in comment or in the video."
+  },
+  "interval": "Interval",
+  "1d": "24h",
+  "7d": "7 days",
+  "30d": "30 days",
+  "no-data": "No data",
+  "views": "Views"
+}
