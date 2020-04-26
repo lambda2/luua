@@ -29,17 +29,17 @@ const MissionUserNextStepButtons = ({
 
   const tree = {
     "applied": [
-      <Button onClick={onAccept} type="primary">{t(`mission_user.accepted.button`)}</Button>,
-      <Button onClick={onReject} type="danger">{t(`mission_user.rejected.button`)}</Button>
+      <Button onClick={onAccept} key="accept" type="primary">{t(`mission_user.accepted.button`)}</Button>,
+      <Button onClick={onReject} key="reject" type="danger">{t(`mission_user.rejected.button`)}</Button>
     ],
     "rejected": [
 
     ],
     "accepted": [
-      <Button onClick={onComplete} type="primary">{t(`mission_user.completed.button`)}</Button>
+      <Button onClick={onComplete} key="complete" type="primary">{t(`mission_user.completed.button`)}</Button>
     ],
     "completed": [
-      <Button onClick={onReview} type="primary">{t(`mission_user.reviewed.button`)}</Button>
+      <Button onClick={onReview} key="review" type="primary">{t(`mission_user.reviewed.button`)}</Button>
     ],
     "reviewed": [
 

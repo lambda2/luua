@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useCollection, fetchInitialData } from '../../../../utils/http'
 import { withAuthSync } from '../../../../utils/auth'
 import { useLocale } from '../../../../hooks/useLocale';
@@ -11,6 +11,8 @@ import routes from '../../../../routes/manage'
 import Link from 'next/link'
 import ContentLayout from '../../../../layouts/ContentLayout/ContentLayout'
 import ManageLeftMenu from '../../../../layouts/ManageLeftMenu/ManageLeftMenu'
+import WorkspaceHeader from '../../../../components/WorkspaceHeader/WorkspaceHeader';
+import WorkspaceContext from '../../../../contexts/WorkspaceContext';
 const { manage } = routes
 
 const { Title } = Typography;
@@ -22,6 +24,7 @@ const Missions = (
   const { pathname, query } = useRouter()
 
   const { t } = useLocale()
+  const { currentWorkspace } = useContext(WorkspaceContext)
 
   const response = useCollection<LightMission[]>(
     `/api/workspaces/${query.workspace_id}/missions`, token, {}, { initialData }
@@ -30,7 +33,7 @@ const Missions = (
   return (
     <ContentLayout sideMenu={<ManageLeftMenu />}>
 
-      <Title>Missions</Title>
+      {currentWorkspace && <WorkspaceHeader workspace={currentWorkspace} />}
 
       <Link {...manage.workspace.missions.new(`${query.workspace_id}`)}><a>{t('mission.create.title')}</a></Link>
 

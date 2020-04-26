@@ -45,9 +45,7 @@ const MissionUserItem = ({
             <header>
               <span className="org-title">
                 {user.username}{' '}
-                {t(`mission_user.${status}.action`)}{' '}
-                {t('generics.for')}{' '}
-                <b>{mission.name}</b>
+                {t(`mission_user.${status}.state`, { name: mission.name })}
               </span>
             </header>
           </a>

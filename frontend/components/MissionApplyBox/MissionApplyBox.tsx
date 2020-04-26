@@ -30,7 +30,7 @@ const MissionApplyBox = ({
       </MessageBox>}
       {application && <MessageBox title={t(`mission.candidate.${application.status}.title`)}>
         <div>
-          <Button disabled>{t(`mission.candidate.${application.status}.description`)}</Button>
+          {application.status !== 'reviewed' && <Button disabled>{t(`mission.candidate.${application.status}.description`)}</Button>}
         </div>
       </MessageBox>}
     </> || <></>

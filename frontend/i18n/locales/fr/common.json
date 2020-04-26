@@ -89,7 +89,7 @@
       }
     },
     "on-the-mission": "sur la mission",
-    "no-skills-warning": "Vous n'avez pas défini de compétences pour cette mission",
+    "no-skills-warning": "Pas compétences définies pour cette mission",
     "recommended-at": "Recommandé à"
   },
   "skill": {
@@ -135,7 +135,15 @@
         "ends-at": "La mission se termine {{end}}",
         "button-running": "Terminer la mission",
         "button-end": "Terminer la mission",
-        "description": "On vous contacte très vite"
+        "description": "Vous pouvez désormais effectuer la mission, et ensuite la marquer comme terminée."
+      },
+      "completed": {
+        "title": "Mission terminée !",
+        "description": "Vous êtes maintenant en attente d'évaluation"
+      },
+      "reviewed": {
+        "title": "Mission terminée et évaluée !",
+        "description": ""
       }
     }
   },

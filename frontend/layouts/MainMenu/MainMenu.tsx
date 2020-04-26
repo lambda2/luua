@@ -16,6 +16,7 @@ const MainMenu: React.FC<Props> = () => {
   const { currentUser } = useContext(UserContext)
   const { t } = useLocale()
   const activeWorkspace = currentUser?.workspaces[0]
+  const multipleWorkspaces = (currentUser?.workspaces?.length || 0) > 1
 
   return (<header className="MainMenu">
     <div className="logo" />
@@ -23,9 +24,15 @@ const MainMenu: React.FC<Props> = () => {
       <li key="/explore">
         <Link {...explore.index()}><a>{t('menu.explore')}</a></Link>
       </li>
+      {/* <li key="/me">
+        {currentUser ?
+          <Link {...manage.workspace.show(activeWorkspace.slug)}><a>{activeWorkspace.name || t('menu.manage')}</a></Link> :
+          <Link {...manage.index()}><a>{t('menu.manage')}</a></Link>
+        }
+      </li> */}
       <li key="/manage">
         {activeWorkspace ?
-          <Link {...manage.workspace.show(activeWorkspace.slug)}><a>{t('menu.manage')}</a></Link> :
+          <Link {...manage.workspace.show(activeWorkspace.slug)}><a>{multipleWorkspaces ? t('menu.manage') : activeWorkspace.name}</a></Link> :
           <Link {...manage.index()}><a>{t('menu.manage')}</a></Link>
         }
       </li>

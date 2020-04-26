@@ -79,9 +79,9 @@ const MissionPerformBox = ({
 
   const renderNormal = () => {
     return (<div>
-      <div>
-        <Button type="primary" onClick={onComplete}>{t(`mission.candidate.${application.status}.description`)}</Button>
-      </div>
+      <p>{t(`mission.candidate.${application.status}.description`)}</p>
+      <br />
+      <Button type="primary" onClick={onComplete}>{t(`mission.candidate.${application.status}.button-end`)}</Button>
     </div>)
   }
 
