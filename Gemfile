@@ -65,8 +65,8 @@ gem 'zlib', '~> 1.1.0'
 # Upload
 gem 'carrierwave', '~> 2.1.0'
 gem 'carrierwave-base64', '~> 2.8.1'
-gem 'mini_magick', '~> 4.10.1'
 gem 'fog-aws' # For DigitalOcean
+gem 'mini_magick', '~> 4.10.1'
 
 # Slack
 gem 'slack-ruby-client', '~> 0.14.6'
