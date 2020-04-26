@@ -18,9 +18,9 @@ const MissionUserRecommendation = ({ mission_user }: Props) => {
 
   return (
   <div>
-    <p>{t(`mission_user.recommendations.${level}.title`)}.{' '}
-    {/* {t('mission_user.recommended-at')}{' '}{' '}<Progress steps={5} percent={mission_user.match_score} strokeColor={t(`mission_user.recommendations.${level}.color`)} width={40} /> */}
-    </p>
+    {mission_user.mission.skills.length === 0 &&
+      <p>{t(`mission_user.no-skills-warning`)}</p> ||
+      <p>{t(`mission_user.recommendations.${level}.title`)}.</p>}
   </div>)
 }
 

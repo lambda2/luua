@@ -8,6 +8,7 @@ const defaultValue: WorkspaceContextValue = {
   ...initialState,
   refresh: () => {},
   changeWorkspace: (wid) => {},
+  fetchWorkspace: (wid) => {},
 }
 
 interface WorkspaceProviderProps {
@@ -35,7 +36,7 @@ const WorkspaceProvider: React.FC<WorkspaceProviderProps> = (props) => {
     }
   }, [workspace.workspaces?.length, query.workspace_id])
 
-  const fetchWorkspace = async (workspace_id: string) => {
+  const fetchWorkspace = async (workspace_id: string | number) => {
     const headers = getHeaders(currentUser?.jwt)
 
     console.info(`Fetching workspace to ${workspace_id}`);
@@ -47,7 +48,7 @@ const WorkspaceProvider: React.FC<WorkspaceProviderProps> = (props) => {
     }
   }
 
-  const changeWorkspace = async (workspace_id: string) => {
+  const changeWorkspace = async (workspace_id: string | number) => {
     const currentWorkspace = await fetchWorkspace(workspace_id)
     // const currentWorkspace = workspace.workspaces.filter((w) =>
     //   w.id.toString() === workspace_id || w.slug === workspace_id
@@ -78,8 +79,8 @@ const WorkspaceProvider: React.FC<WorkspaceProviderProps> = (props) => {
   }
 
   const value = useMemo(
-    () => ({ ...workspace, refresh, changeWorkspace }),
-    [workspace, refresh, changeWorkspace],
+    () => ({ ...workspace, refresh, changeWorkspace, fetchWorkspace }),
+    [workspace, refresh, changeWorkspace, fetchWorkspace],
   )
 
   return <WorkspaceContext.Provider value={value}>{props.children}</WorkspaceContext.Provider>

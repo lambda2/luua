@@ -4,8 +4,8 @@ FROM mhart/alpine-node:10 AS builder
 RUN apk --update add git build-base perl python
 WORKDIR /app
 ENV BACKEND_URL "http://luua"
-ENV API_URL "https://deliver.luua.io"
-ENV CDN_URL "https://deliver.luua.io"
+ENV API_URL "https://api.luua.io"
+ENV CDN_URL "https://luua.fra1.digitaloceanspaces.com"
 COPY .npmrc .
 COPY package.json .
 RUN yarn
@@ -28,7 +28,7 @@ WORKDIR /app
 ENV NODE_ENV production
 ENV BACKEND_URL "http://luua"
 ENV API_URL "https://api.luua.io"
-ENV CDN_URL "https://deliver.luua.io"
+ENV CDN_URL "https://luua.fra1.digitaloceanspaces.com/"
 COPY --from=builder /app .
 ARG SENTRY_RELEASE=untagged
 ENV SENTRY_RELEASE=${SENTRY_RELEASE}

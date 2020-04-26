@@ -49,7 +49,7 @@
       "action": "a terminé",
       "button": "Completer la mission",
       "name": "Terminé",
-      "state": "A Terminé la mission {{name}} et attend son évaluation",
+      "state": "A terminé la mission {{name}} et attend son évaluation",
       "state-user": "Vous avez terminé la mission {{name}} et attendez votre évaluation"
     },
     "reviewed": {
@@ -89,6 +89,7 @@
       }
     },
     "on-the-mission": "sur la mission",
+    "no-skills-warning": "Vous n'avez pas défini de compétences pour cette mission",
     "recommended-at": "Recommandé à"
   },
   "skill": {

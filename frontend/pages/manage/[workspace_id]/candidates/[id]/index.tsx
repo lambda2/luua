@@ -21,10 +21,11 @@ const MissionUser = (
     `/api/mission_users/${query.id}`, token, {}, { initialData }
   )
 
+  
   return (
     <NetworkBoundary {...response}>
       <ContentLayout sideMenu={<ManageLeftMenu />}>
-        <MissionUserShow mission_user={response!.data as MissionUser} />
+        <MissionUserShow refetch={response.refetch} mission_user={response!.data as MissionUser} />
       </ContentLayout>
     </NetworkBoundary>
   )

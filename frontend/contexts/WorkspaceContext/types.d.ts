@@ -8,7 +8,8 @@ declare interface WorkspaceState {
 
 declare interface WorkspaceContextValue extends WorkspaceState {
   refresh: () => void;
-  changeWorkspace: (workspace_id: string) => void;
+  changeWorkspace: (workspace_id: string | number) => void;
+  fetchWorkspace: (workspace_id: string | number) => void;
 }
 
 declare type UpdateWorkspacesAction = {

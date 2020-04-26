@@ -28,7 +28,7 @@ else
       endpoint: 'https://fra1.digitaloceanspaces.com'
     }
 
-    config.asset_host = ENV['CDN_URL'] || 'https://deliver.luua.io'
+    config.asset_host = ENV['CDN_URL'] || 'https://luua.fra1.digitaloceanspaces.com/'
     config.fog_directory  = 'luua'
     config.fog_attributes = { 'Cache-Control' => 'max-age=315576000' }
   end

@@ -11,12 +11,15 @@ import MissionUserNextStepButtons from '../MissionUserNextStepButtons/MissionUse
 import { nameForUser } from '../../utils/user';
 import UserContext from '../../contexts/UserContext';
 import { accept, reject, complete, review } from '../../api/mission_user';
+import { AxiosResponse } from 'axios';
+import WorkspaceContext from '../../contexts/WorkspaceContext';
 
 interface Props {
-  mission_user: MissionUser
+  mission_user: MissionUser,
+  refetch?: (opts?: any) => Promise<MissionUser>
 }
 
-const MissionUserShow = ({ mission_user }: Props) => {
+const MissionUserShow = ({ mission_user, refetch }: Props) => {
 
   const { t } = useLocale()
   const {
@@ -27,6 +30,13 @@ const MissionUserShow = ({ mission_user }: Props) => {
     user_skills
   } = mission_user
   const { currentUser } = useContext(UserContext)
+  const { fetchWorkspace } = useContext(WorkspaceContext)
+
+  const onAction = async (executeCallback: (mission_user_id: any, token: string) => Promise<AxiosResponse<MissionUser>>) => {
+    const response = await executeCallback(mission_user.id, currentUser?.jwt || '')
+    fetchWorkspace(mission_user.mission.workspace_id)
+    refetch && refetch()
+  }
 
   return (
   <>
@@ -56,10 +66,10 @@ const MissionUserShow = ({ mission_user }: Props) => {
       {' '}
       <MissionUserNextStepButtons
         mission_user={mission_user}
-        onAccept={() => accept(mission_user.id, currentUser?.jwt || '')}
-        onReject={() => reject(mission_user.id, currentUser?.jwt || '')}
-        onComplete={() => complete(mission_user.id, currentUser?.jwt || '')}
-        onReview={() => review(mission_user.id, currentUser?.jwt || '')}
+        onAccept={() => onAction(accept)}
+        onReject={() => onAction(reject)}
+        onComplete={() => onAction(complete)}
+        onReview={() => onAction(review)}
       />
     </PageSection>
 
