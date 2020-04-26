@@ -37,9 +37,7 @@ const LuuaLayout = ({ token, locale, children, className }: Props) => {
           <ConfigProvider locale={locales[(locale || 'en') as AvailableLocale]}>
             <Layout className="main-layout">
               <MainMenu />
-              <Content style={{ padding: '0 50px' }}>
-                {children}
-              </Content>
+              <div className="layout-content">{children}</div>
               <Footer />
             </Layout>
           </ConfigProvider>

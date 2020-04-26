@@ -8,6 +8,10 @@ import icons from '../../dictionaries/icons';
 import SubmitButton from '../../elements/SubmitButton/SubmitButton';
 import YupWithLocale from '../../utils/forms/yup';
 import { useLocale } from '../../hooks/useLocale';
+import PageSection from '../../elements/PageSection/PageSection';
+import MessageBox from '../../elements/MessageBox/MessageBox';
+import Link from 'next/link';
+import ROUTES from '../../routes/manage';
 
 const SignupForm = () => {
 
@@ -67,6 +71,7 @@ const SignupForm = () => {
 
   return (
     <div>
+      <PageSection title={t('menu.sign-up')}>
       <Formik
         initialValues={initialValues}
         onSubmit={async (values, { setErrors }) => {
@@ -142,7 +147,11 @@ const SignupForm = () => {
               </Form.Item>
             </Form>
           )}
-      </Formik>
+        </Formik>
+        <MessageBox>
+          <span>{t('form.user.sign-in.have-account')}{' '}</span><Link {...ROUTES.users.login()}>{t('form.user.sign-in.submit')}</Link>
+        </MessageBox>
+      </PageSection>
     </div>)
 }
 

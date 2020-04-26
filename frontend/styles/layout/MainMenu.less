@@ -23,11 +23,15 @@
 
 
 .MainMenu {
+  background-color: @nord10;
+  color: #fff;
+  margin-bottom: @space-default;
 
   ul.main-header-menu {
     display: flex;
     align-items: center;
     margin: 0;
+    padding: 0;
     list-style-type: none;
     margin: auto;
     max-width: @content-width;
@@ -38,8 +42,20 @@
       align-items: center;
       justify-content: center;
 
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+
       &.pusher {
         flex: 1 1 100%;
+      }
+
+      a {
+        color: #fff;
       }
     }
   }

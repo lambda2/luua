@@ -59,19 +59,10 @@ const ManageLeftMenu: React.FC<Props> = () => {
       defaultOpenKeys={[]}
       style={{ height: '100%' }}
     >
-      {/* {currentWorkspace && 
-        <Dropdown.Button className="ws-dropdown-button" onClick={handleButtonClick} overlay={menu}>
-          <WorkspaceLabel {...currentWorkspace} />
-        </Dropdown.Button>
-      } */}
 
-      <Menu.Item key="/">
-        <Link {...index()}><a>{t('menu.summary')}</a></Link>
-      </Menu.Item>
-
-      {/* <Menu.Item key="/manage/workspaces">
-        <Link {...workspace.index()}><a>{t('menu.workspaces')}</a></Link>
-      </Menu.Item> */}
+      {workspace_id && <Menu.Item key="/">
+        <Link {...workspace.show(workspace_id)}><a>{t('menu.summary')}</a></Link>
+      </Menu.Item>}
 
       {workspace_id && <Menu.Item key={`/manage/${workspace_id}/missions`}>
         <Link {...workspace.missions.index(workspace_id) }><a>{t('menu.missions')}</a></Link>
@@ -88,10 +79,6 @@ const ManageLeftMenu: React.FC<Props> = () => {
           <a>{t('menu.contributors')}<Badge count={activeContributors.length} /></a>
         </Link>
       </Menu.Item>}
-
-      {/* <Menu.Item key="/orgs">
-        <Link href="/orgs"><a>{t('menu.organizations')}</a></Link>
-      </Menu.Item> */}
 
     </Menu>
   </Sider>)

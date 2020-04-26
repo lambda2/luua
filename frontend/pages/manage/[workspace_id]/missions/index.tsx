@@ -12,6 +12,7 @@ import ContentLayout from '../../../../layouts/ContentLayout/ContentLayout'
 import ManageLeftMenu from '../../../../layouts/ManageLeftMenu/ManageLeftMenu'
 import WorkspaceHeader from '../../../../components/WorkspaceHeader/WorkspaceHeader';
 import WorkspaceContext from '../../../../contexts/WorkspaceContext';
+import PageTitle from '../../../../elements/PageTitle/PageTitle';
 const { manage } = routes
 
 const Missions = (
@@ -28,16 +29,14 @@ const Missions = (
   )
   
   return (
-    <ContentLayout sideMenu={<ManageLeftMenu />}>
-
+    <NetworkBoundary<LightMission[]> {...response}>
       {currentWorkspace && <WorkspaceHeader workspace={currentWorkspace} />}
-
-      <Link {...manage.workspace.missions.new(`${query.workspace_id}`)}><a>{t('mission.create.title')}</a></Link>
-
-      <NetworkBoundary<LightMission[]> {...response}>
+      <ContentLayout sideMenu={<ManageLeftMenu />}>
+        <PageTitle title={t('menu.missions')} />
+        <Link {...manage.workspace.missions.new(`${query.workspace_id}`)}><a>{t('mission.create.title')}</a></Link>
         <MissionList data={response.data as LightMission[]} />
-      </NetworkBoundary>
-    </ContentLayout>
+      </ContentLayout>
+    </NetworkBoundary>
   )
 }
 Missions.getInitialProps = async (ctx: any) => {

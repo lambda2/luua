@@ -31,14 +31,13 @@ const Candidates = (
   )
 
   return (
-    <ContentLayout sideMenu={<ManageLeftMenu />}>
-      {currentWorkspace && <WorkspaceHeader workspace={currentWorkspace} />}
-
-      <PageTitle title={t('menu.candidates')} />
-      <NetworkBoundary<MissionUser[]> {...response}>
+    <NetworkBoundary<MissionUser[]> {...response}>
+      { currentWorkspace && <WorkspaceHeader workspace={currentWorkspace} />}
+      <ContentLayout sideMenu={<ManageLeftMenu />}>
+        <PageTitle title={t('menu.candidates')} />
         <MissionUserList data={response.data as MissionUser[]} />
-      </NetworkBoundary>
-    </ContentLayout>
+      </ContentLayout>
+    </NetworkBoundary>
   )
 }
 Candidates.getInitialProps = async (ctx: any) => {

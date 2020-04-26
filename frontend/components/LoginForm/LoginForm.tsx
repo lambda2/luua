@@ -8,6 +8,10 @@ import icons from '../../dictionaries/icons';
 import { SubmitButton } from 'formik-antd';
 import YupWithLocale from '../../utils/forms/yup';
 import { useLocale } from '../../hooks/useLocale';
+import PageSection from '../../elements/PageSection/PageSection';
+import MessageBox from '../../elements/MessageBox/MessageBox';
+import ROUTES from '../../routes/manage';
+import Link from 'next/link';
 
 interface Props { }
 
@@ -61,23 +65,25 @@ const SignupForm = () => {
 
   return (
     <div>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={async (values, { setErrors }) => {
-          console.log("Auth", { values });
-          try {
-            const data = await authenticateWithCredentials(
-              values.email || '',
-              values.password || ''
-            )
-          } catch (error) {
-            console.log({ error });
-            console.log({ errors: errorsFromResponse(error.response) });
-            setErrors(errorsFromResponse(error.response))
-          }
-        }}
-        validationSchema={EditSchema}
-      >
+      <PageSection title={t('menu.sign-in')}>
+        <br />
+        <Formik
+          initialValues={initialValues}
+          onSubmit={async (values, { setErrors }) => {
+            console.log("Auth", { values });
+            try {
+              const data = await authenticateWithCredentials(
+                values.email || '',
+                values.password || ''
+              )
+            } catch (error) {
+              console.log({ error });
+              console.log({ errors: errorsFromResponse(error.response) });
+              setErrors(errorsFromResponse(error.response))
+            }
+          }}
+          validationSchema={EditSchema}
+        >
         {({
           isSubmitting,
           isValid,
@@ -104,7 +110,11 @@ const SignupForm = () => {
               </Form.Item>
             </Form>
           )}
-      </Formik>
+        </Formik>
+        <MessageBox>
+          <span>{t('form.user.sign-up.no-account')}{' '}</span><Link {...ROUTES.users.signup()}>{t('form.user.sign-up.submit')}</Link>
+        </MessageBox>
+      </PageSection>
     </div>)
 }
 

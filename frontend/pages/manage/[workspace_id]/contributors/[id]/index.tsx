@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import api, { getHeaders, useCollection, fetchInitialData } from '../../../../../utils/http'
 import { withAuthSync } from '../../../../../utils/auth'
 import { useRouter } from 'next/router'
@@ -9,6 +9,9 @@ import Link from 'next/link'
 import ManageLeftMenu from '../../../../../layouts/ManageLeftMenu/ManageLeftMenu'
 import ContentLayout from '../../../../../layouts/ContentLayout/ContentLayout'
 import MissionUserShow from '../../../../../components/MissionUserShow/MissionUserShow'
+import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
+import WorkspaceHeader from '../../../../../components/WorkspaceHeader/WorkspaceHeader'
+import { useLocale } from '../../../../../hooks/useLocale'
 const { manage } = routes
 const { workspace } = manage
 
@@ -17,12 +20,18 @@ const MissionUser = (
   { initialData: MissionUser, token?: string }
 ) => {
   const { query } = useRouter()
+  const { currentWorkspace } = useContext(WorkspaceContext)
+  const { t } = useLocale()
   const response = useCollection<MissionUser>(
     `/api/mission_users/${query.id}`, token, {}, { initialData }
   )
 
   return (
     <NetworkBoundary {...response}>
+      {currentWorkspace && <WorkspaceHeader
+        workspace={currentWorkspace}
+        tree={[<Link {...workspace.contributors.index(currentWorkspace.id)}><a>{t('menu.contributors')}</a></Link>]}
+      />}
       <ContentLayout sideMenu={<ManageLeftMenu />}>
         <MissionUserShow mission_user={response!.data as MissionUser} />
       </ContentLayout>

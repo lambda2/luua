@@ -30,12 +30,12 @@ const MainMenu: React.FC<Props> = () => {
           <Link {...manage.index()}><a>{t('menu.manage')}</a></Link>
         }
       </li> */}
-      <li key="/manage">
+      {currentUser && <li key="/manage">
         {activeWorkspace ?
           <Link {...manage.workspace.show(activeWorkspace.slug)}><a>{multipleWorkspaces ? t('menu.manage') : activeWorkspace.name}</a></Link> :
           <Link {...manage.index()}><a>{t('menu.manage')}</a></Link>
         }
-      </li>
+      </li>}
       <li className="pusher"></li>
       <li key="/user">
         <UserMenuDropdown user={currentUser} />

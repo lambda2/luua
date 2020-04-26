@@ -13,16 +13,25 @@ type ResourceButtons = {
 
 interface Props {
   workspace: Workspace
+  tree?: (string | ReactElement)[]
   back?: boolean
   actions?: ResourceAction[]
 }
 
 const WorkspaceHeader = ({
   workspace,
+  tree = [],
   back = false,
   actions = ['edit']
 }: Props) => {
   const { t } = useLocale()
+
+  const renderTree = (elt: string | ReactElement) => {
+    return <>
+      <span style={{padding: '0 5px', color: '#ccc'}}>{' / '}</span>
+      {elt}
+    </>
+  }
 
   const buttons: ResourceButtons = {
     new: <PrimaryLink {...manage.manage.workspace.new()}>{t('menu.new')}</PrimaryLink>,
@@ -34,18 +43,19 @@ const WorkspaceHeader = ({
   const onBack = back ? { onBack: () => window.history.back() } : {}
 
   return (
-    <>
+    <header className="WorkspaceHeader">
       <PageTitle
         title={<>
           <UserAvatar name={workspace.name} size="default" src={workspace.image_url} />
           {' '}
           {workspace.name}
+          {tree.map(renderTree)}
         </>}
         extra={actions.map(a => buttons[a])}
         {...onBack}
       >
       </PageTitle>
-    </>)
+    </header>)
 }
 
 export default WorkspaceHeader

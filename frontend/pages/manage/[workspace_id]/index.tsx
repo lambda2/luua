@@ -9,6 +9,7 @@ import { Layout } from 'antd'
 const { Content } = Layout;
 import ManageLeftMenu from '../../../layouts/ManageLeftMenu/ManageLeftMenu'
 import ContentLayout from '../../../layouts/ContentLayout/ContentLayout'
+import WorkspaceHeader from '../../../components/WorkspaceHeader/WorkspaceHeader'
 
 
 const ShowWorkspace = (
@@ -22,6 +23,7 @@ const ShowWorkspace = (
 
   return (
     <NetworkBoundary {...response}>
+      <WorkspaceHeader workspace={response!.data as Workspace} />
       <ContentLayout sideMenu={<ManageLeftMenu />}>
         <WorkspaceShow workspace={response!.data as Workspace} />
       </ContentLayout>

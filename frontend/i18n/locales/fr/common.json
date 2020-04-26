@@ -180,10 +180,12 @@
     "back": "Retour",
     "user": {
       "sign-up": {
-        "submit": "Créer mon compte"
+        "submit": "Créer mon compte",
+        "no-account": "Pas encore de compte ?"
       },
       "sign-in": {
-        "submit": "Connexion"
+        "submit": "Connexion",
+        "have-account": "Vous avez déja un compte ?"
       },
       "edit": {
         "submit": "Mettre à jour"
@@ -229,7 +231,7 @@
       "password_confirmation": {
         "label": "Confirmation",
         "hint": "Retapez le mot de passe",
-        "placeholder": ""
+        "placeholder": " "
       },
       "skills": {
         "edit": "Modifier mes compétences",

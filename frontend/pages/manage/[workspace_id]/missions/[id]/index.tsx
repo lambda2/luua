@@ -12,6 +12,11 @@ import NetworkBoundary from '../../../../../components/NetworkBoudary/NetworkBou
 import ManageLeftMenu from '../../../../../layouts/ManageLeftMenu/ManageLeftMenu'
 import ContentLayout from '../../../../../layouts/ContentLayout/ContentLayout'
 import WorkspaceMissionDetail from '../../../../../components/WorkspaceMissionDetail/WorkspaceMissionDetail'
+import { useContext } from 'react'
+import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
+import WorkspaceHeader from '../../../../../components/WorkspaceHeader/WorkspaceHeader'
+import PageTitle from '../../../../../elements/PageTitle/PageTitle'
+import { useLocale } from '../../../../../hooks/useLocale'
 
 const { manage } = routes
 const { workspace } = manage
@@ -25,6 +30,8 @@ const Mission = (
   { initialData: Mission, token?: string }
 ) => {
   const { query } = useRouter()
+  const { currentWorkspace } = useContext(WorkspaceContext)
+  const { t } = useLocale()
 
   const { status, data, error } = useCollection<Mission>(
     `/api/missions/${query.id}`, token, {}, { initialData }
@@ -32,14 +39,8 @@ const Mission = (
 
   return (
     <NetworkBoundary status={status} data={data} error={error}>
+      {currentWorkspace && <WorkspaceHeader workspace={currentWorkspace} />}
       <ContentLayout sideMenu={<ManageLeftMenu />}>
-        {/* <Link {...workspace.missions.edit(`${query.workspace_id}`, `${query.id}`)}>
-          <a>Edit</a>
-        </Link>
-        {data && <div>
-          <h1>{data.name}</h1>
-          <p>{data.description}</p>
-        </div>} */}
         <WorkspaceMissionDetail {...data as Mission} />
       </ContentLayout>
     </NetworkBoundary>

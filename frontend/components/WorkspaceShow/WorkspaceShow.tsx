@@ -15,7 +15,6 @@ const WorkspaceShow = ({ workspace }: Props) => {
 
   return (
   <>
-      <WorkspaceHeader workspace={workspace} />
 
       <PageSection title={t('workspace.members')}>
         {workspace.workspaces_users.map((u: WorkspaceUser) =>
