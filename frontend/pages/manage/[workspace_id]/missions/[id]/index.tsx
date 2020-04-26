@@ -39,7 +39,10 @@ const Mission = (
 
   return (
     <NetworkBoundary status={status} data={data} error={error}>
-      {currentWorkspace && <WorkspaceHeader workspace={currentWorkspace} />}
+      {currentWorkspace && <WorkspaceHeader
+        workspace={currentWorkspace}
+        tree={[<Link {...workspace.missions.index(currentWorkspace.id)}><a>{t('menu.missions')}</a></Link>]}
+      />}
       <ContentLayout sideMenu={<ManageLeftMenu />}>
         <WorkspaceMissionDetail {...data as Mission} />
       </ContentLayout>

@@ -39,7 +39,10 @@ const explore = {
   },
   workspace: {
     index: () => route(['workspaces']),
-    show: (workspace_id: string | number) => route(['[workspace_id]'], { workspace_id }),
+    show: (workspace_id: string | number) => route(['explore', '[workspace_id]'], { workspace_id }),
+    missions: {
+      index: (workspace_id: string | number) => route(['explore', '[workspace_id]', 'missions'], { workspace_id }),
+    }
   }
 }
 

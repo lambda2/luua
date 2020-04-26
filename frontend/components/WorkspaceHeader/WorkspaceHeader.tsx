@@ -12,7 +12,7 @@ type ResourceButtons = {
 };
 
 interface Props {
-  workspace: Workspace
+  workspace: LightWorkspace
   tree?: (string | ReactElement)[]
   back?: boolean
   actions?: ResourceAction[]
