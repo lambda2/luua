@@ -5,7 +5,6 @@ import { useLocale } from '../../../../hooks/useLocale';
 
 import NetworkBoundary from '../../../../components/NetworkBoudary/NetworkBoudary'
 import MissionList from '../../../../components/WorkspaceMissionList/WorkspaceMissionList'
-import { Typography } from 'antd';
 import { useRouter } from 'next/router';
 import routes from '../../../../routes/manage'
 import Link from 'next/link'
@@ -14,8 +13,6 @@ import ManageLeftMenu from '../../../../layouts/ManageLeftMenu/ManageLeftMenu'
 import WorkspaceHeader from '../../../../components/WorkspaceHeader/WorkspaceHeader';
 import WorkspaceContext from '../../../../contexts/WorkspaceContext';
 const { manage } = routes
-
-const { Title } = Typography;
 
 const Missions = (
   { initialData, token }:
