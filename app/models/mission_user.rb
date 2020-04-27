@@ -41,12 +41,14 @@ class MissionUser < ApplicationRecord
   # - accepted: The candidate has been accepted, he can start
   # - completed: The candidate mission is done
   # - reviewed: The candidate mission has been reviewed and is complete
+  # - canceled: The candidate canceled the mission
   enum status: {
     applied: 0,
     rejected: 1,
     accepted: 2,
     completed: 3,
-    reviewed: 4
+    reviewed: 4,
+    canceled: 5
   }, _suffix: true
 
   scope :contributors, -> { where.not(status: %i[applied rejected]) }
@@ -56,9 +58,9 @@ class MissionUser < ApplicationRecord
     self.match_score = compute_match_score
   end
 
-  aasm column: :status, enum: true, logger: Rails.logger do
+  aasm column: :status, enum: true, logger: Rails.logger do # rubocop:todo Metrics/BlockLength
     state :applied, initial: true
-    state :rejected, :accepted, :completed, :reviewed
+    state :rejected, :canceled, :accepted, :completed, :reviewed
 
     event :accept do
 
@@ -76,6 +78,15 @@ class MissionUser < ApplicationRecord
       end
 
       transitions from: %i[applied accepted completed], to: :rejected
+    end
+
+    event :cancel do
+
+      before do
+        self.canceled_at = Time.zone.now
+      end
+
+      transitions from: %i[applied accepted completed], to: :canceled
     end
 
     event :complete do
@@ -122,5 +133,9 @@ class MissionUser < ApplicationRecord
     return 4 if ms.mandatory && us.level >= ms.level
 
     3
+  end
+
+  def mission_owner_ids
+    (mission.created_by && [mission.created_by] || mission.workspace.admin_ids).compact
   end
 end

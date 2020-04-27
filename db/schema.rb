@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_21_142601) do
+ActiveRecord::Schema.define(version: 2020_04_27_100102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2020_04_21_142601) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "match_score"
+    t.datetime "canceled_at"
     t.index ["mission_id"], name: "index_mission_users_on_mission_id"
     t.index ["user_id"], name: "index_mission_users_on_user_id"
   end
@@ -93,6 +94,21 @@ ActiveRecord::Schema.define(version: 2020_04_21_142601) do
     t.index ["mission_category_id"], name: "index_missions_on_mission_category_id"
     t.index ["organization_id"], name: "index_missions_on_organization_id"
     t.index ["workspace_id"], name: "index_missions_on_workspace_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "viewed_at"
+    t.integer "code"
+    t.string "title"
+    t.string "content"
+    t.string "link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_type", "resource_id"], name: "index_notifications_on_resource_type_and_resource_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -318,6 +334,7 @@ ActiveRecord::Schema.define(version: 2020_04_21_142601) do
   add_foreign_key "missions", "mission_categories"
   add_foreign_key "missions", "organizations"
   add_foreign_key "missions", "workspaces"
+  add_foreign_key "notifications", "users"
   add_foreign_key "organizations", "countries"
   add_foreign_key "organizations", "regions"
   add_foreign_key "priorities", "workspaces"

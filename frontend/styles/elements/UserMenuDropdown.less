@@ -2,6 +2,7 @@
 // we do "bricolage here"
 .UserMenuDropdown {
     display: flex;
+    margin: 0 @space-s;
 
     & > span {
         max-width: 120px;
@@ -14,5 +15,23 @@
         border-radius: 3px;
         position: relative;
         left: -5px;
+    }
+}
+
+.MainMenu ul.main-header-menu li .UserNotification {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    background-color: rgba(0, 0, 0, .1);
+    opacity: .5;
+    color: #fff;
+    text-align: center;
+    padding: 0 @space-s;
+
+    &.has-notifications {
+        opacity: 1;
+        background-color: @nord11;
     }
 }

@@ -23,7 +23,7 @@ const WorkspaceUserAvatar: React.FC<Props> = ({
 
   const imgOrPlaceholder = thumb_url ?
     cdnUrl(thumb_url) :
-    `https://robohash.org/${name || 'default'}.png?size=200x200`
+    `https://robohash.org/${username || 'default'}.png?size=200x200`
 
   const { t } = useLocale()
 

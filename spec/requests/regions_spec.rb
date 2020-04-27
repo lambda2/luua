@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'devise/jwt/test_helpers'
 
-describe Api::RegionsController do
+describe Api::RegionsController do # rubocop:todo Metrics/BlockLength
 
   VALID_REGION_NAME = 'internet'
 

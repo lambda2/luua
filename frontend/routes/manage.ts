@@ -80,6 +80,7 @@ export const ROUTES = {
     edit: () => route(['users', 'edit']),
     login: () => route(['users', 'login']),
     profile: () => route(['users', 'profile']),
+    notifications: () => route(['users', 'notifications']),
     signup: () => route(['users', 'signup']),
     skills: () => route(['users', 'skills']),
   },
@@ -87,14 +88,5 @@ export const ROUTES = {
   explore
 }
 
-
-// export const goto = (path: any, router: SingletonRouter, opts = {}) => {
-//   console.log("-> GOTO ", {path, opts});
-  
-//   router.push(
-//     path.as,
-//     opts
-//   )
-// }
 
 export default ROUTES

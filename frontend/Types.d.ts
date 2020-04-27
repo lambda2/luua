@@ -5,6 +5,14 @@ type SkillType = 'global' | 'organization'
 type SkillCategory = 'language' | 'technical' | 'mobility'
 type OrgType = 'company' | 'individual' | 'association' | 'ngo'
 type MissionUserStatus = 'applied' | 'rejected' | 'accepted' | 'completed' | 'reviewed'
+type NotificationCode =
+    'mission.candidate.applied'     | // A candidate applied
+    'mission.candidate.rejected'    | // A candidate has been rejected on a mission
+    'mission.candidate.canceled'    | // A candidate has canceled a mission
+    'mission.candidate.accepted'    | // A candidate has been accepted on a mission
+    'mission.candidate.completed'   | // A candidate has completed a mission
+    'mission.candidate.reviewed'    | // A candidate has been reviewed on a mission
+    'custom'                          // A custom content
 
 declare interface BaseUser {
     id: number
@@ -102,6 +110,18 @@ declare interface UserSkill {
     type: SkillType
 }
 
+declare interface UserNotification {
+    id: number
+    title: string
+    content: string
+    link: string
+    resource: any
+    code: NotificationCode
+    viewed_at: string
+    created_at: string
+    updated_at: string
+}
+
 declare interface Region {
     id: number
     name: string
@@ -140,6 +160,7 @@ declare interface Organization extends LightOrganization {
 declare interface LightMissionUser {
     id: number
     mission_id: number
+    workspace_id: number
     user_id: number
     status: MissionUserStatus
     applied_at: string | null

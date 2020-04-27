@@ -5,6 +5,7 @@
 #  id           :bigint           not null, primary key
 #  accepted_at  :datetime
 #  applied_at   :datetime         not null
+#  canceled_at  :datetime
 #  completed_at :datetime
 #  match_score  :integer
 #  rejected_at  :datetime

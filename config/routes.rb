@@ -20,8 +20,9 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
 
   devise_for :users, defaults: { format: :json }
 
-  namespace :api do
+  namespace :api do # rubocop:todo Metrics/BlockLength
     get 'me', action: :me, controller: 'users'
+    get 'me/notifications', action: :me, controller: 'notifications'
 
     resources :workspaces do
       resources :missions
@@ -45,7 +46,14 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
       end
     end
 
-    resources :users, only: [:update]
+    resources :users, only: [:update] do
+      resources :notifications
+    end
+    resources :notifications do
+      patch :read, on: :member
+      patch :read_all, on: :collection
+    end
+
     resources :workspace_histories
 
     resources :mission_users do

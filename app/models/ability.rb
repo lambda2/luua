@@ -30,6 +30,8 @@ class Ability
 
     can %i[apply], Mission
 
+    can %i[read read! me read_all], Notification, user_id: user.id
+
     can :read, Workspace
     can :manage, Workspace, id: user.admin_workspace_ids
     can :create, Workspace

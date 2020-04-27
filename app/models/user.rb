@@ -73,6 +73,8 @@ class User < ApplicationRecord
 
   has_many :workspace_histories, as: :resource
 
+  has_many :notifications
+
   has_many :mission_users
   has_many :missions, through: :mission_users
 
