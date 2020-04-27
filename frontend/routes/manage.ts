@@ -80,6 +80,7 @@ export const ROUTES = {
     edit: () => route(['users', 'edit']),
     login: () => route(['users', 'login']),
     profile: () => route(['users', 'profile']),
+    notifications: () => route(['users', 'notifications']),
     signup: () => route(['users', 'signup']),
     skills: () => route(['users', 'skills']),
   },

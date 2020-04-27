@@ -37,7 +37,7 @@ const UserMenuDropdown = ({ user, notifications }: Props) => {
           <span>{username}</span>
         </a>
       </Link>
-      <Link key={'notifications'} {...users.profile()}>
+      <Link key={'notifications'} {...users.notifications()}>
         <a className={classNames("UserNotification", { 'has-notifications': (notifications?.length || 0) > 0 })}>
           {notifications?.length || 0}
         </a>
