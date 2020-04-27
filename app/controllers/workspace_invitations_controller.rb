@@ -1,0 +1,2 @@
+class WorkspaceInvitationsController < ApplicationController
+end

@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useContext } from 'react';
 import { useLocale } from '../../hooks/useLocale';
 import manage, { ROUTES } from '../../routes/manage';
 import PrimaryLink from '../../elements/PrimaryLink/PrimaryLink';
@@ -7,6 +7,8 @@ import UserAvatar from '../../elements/UserAvatar/UserAvatar';
 import Link from 'next/link';
 import classNames from 'classnames';
 import { Badge } from 'antd';
+import UserContext from '../../contexts/UserContext';
+import { find } from 'lodash';
 
 type ResourceAction = 'show' | 'new' | 'edit' | 'destroy'
 
@@ -30,6 +32,7 @@ const WorkspaceHeader = ({
   actions = ['edit']
 }: Props) => {
   const { t } = useLocale()
+  const { currentUser } = useContext(UserContext)
 
   const renderTree = (elt: string | ReactElement) => {
     return <>
@@ -46,8 +49,66 @@ const WorkspaceHeader = ({
   }
 
   const onBack = back ? { onBack: () => window.history.back() } : {}
-  const pendingCandidates = (workspace?.mission_users || []).filter(mu => mu.status === 'applied')
-  const activeContributors = (workspace?.mission_users || []).filter(mu => ['accepted', 'completed'].includes(mu.status))
+  const isAdmin = find(workspace.workspaces_users, {admin: true, user_id: currentUser?.id})
+  const isMember = isAdmin || find(workspace.workspaces_users, {user_id: currentUser?.id})
+
+  const renderGuestTabs = () => {
+    return (<ul className="WorkspaceHeaderMenu">
+      <li className={classNames({ active: active == 'summary' })} key="/">
+        <Link {...ROUTES.explore.workspace.show(workspace.slug)}><a>{t('menu.summary')}</a></Link>
+      </li>
+      <li className={classNames({ active: active == 'missions' })} key={`/explore/${workspace.id}/missions`}>
+        <Link {...ROUTES.explore.workspace.missions.index(workspace.slug)}><a>{t('menu.missions')}</a></Link>
+      </li>
+{/* 
+
+      <li className={classNames({ active: active == 'candidates' })} key={`/manage/${workspace.id}/candidates`}>
+        <Link {...ROUTES.manage.workspace.candidates.index(workspace.id)}>
+          <a>{t('menu.candidates')}{' '}<Badge count={pendingCandidates.length} /></a>
+        </Link>
+      </li>
+
+      <li className={classNames({ active: active == 'contributors' })} key={`/manage/${workspace.id}/contributors`}>
+        <Link {...ROUTES.manage.workspace.contributors.index(workspace.id)}>
+          <a>{t('menu.contributors')}{' '}<Badge count={activeContributors.length} /></a>
+        </Link>
+      </li> */}
+    </ul>)
+  }
+
+  const renderMemberTabs = () => {
+    const pendingCandidates = (workspace?.mission_users || []).filter(mu => mu.status === 'applied')
+    const activeContributors = (workspace?.mission_users || []).filter(mu => ['accepted', 'completed'].includes(mu.status))
+
+    return (<ul className="WorkspaceHeaderMenu">
+      <li className={classNames({ active: active == 'summary' })} key="/">
+        <Link {...ROUTES.manage.workspace.show(workspace.id)}><a>{t('menu.summary')}</a></Link>
+      </li>
+
+      <li className={classNames({ active: active == 'missions' })} key={`/manage/${workspace.id}/missions`}>
+        <Link {...ROUTES.manage.workspace.missions.index(workspace.id)}><a>{t('menu.missions')}</a></Link>
+      </li>
+
+      <li className={classNames({ active: active == 'candidates' })} key={`/manage/${workspace.id}/candidates`}>
+        <Link {...ROUTES.manage.workspace.candidates.index(workspace.id)}>
+          <a>{t('menu.candidates')}{' '}<Badge count={pendingCandidates.length} /></a>
+        </Link>
+      </li>
+
+      <li className={classNames({ active: active == 'contributors' })} key={`/manage/${workspace.id}/contributors`}>
+        <Link {...ROUTES.manage.workspace.contributors.index(workspace.id)}>
+          <a>{t('menu.contributors')}{' '}<Badge count={activeContributors.length} /></a>
+        </Link>
+      </li>
+
+      {isAdmin && <li className={classNames({ active: active == 'settings' })} key={`/manage/${workspace.id}/edit`}>
+        <Link {...ROUTES.manage.workspace.edit(workspace.slug)}>
+          <a>{t('menu.settings')}</a>
+        </Link>
+      </li>}
+    </ul>
+    )
+  }
 
   return (
     <div className="WorkspaceHeader">
@@ -63,27 +124,7 @@ const WorkspaceHeader = ({
           {...onBack}
         >
         </PageTitle>
-        <ul className="WorkspaceHeaderMenu">
-          <li className={classNames({active: active == 'summary' })} key="/">
-            <Link {...ROUTES.manage.workspace.show(workspace.id)}><a>{t('menu.summary')}</a></Link>
-          </li>
-
-          <li className={classNames({active: active == 'missions' })} key={`/manage/${workspace.id}/missions`}>
-            <Link {...ROUTES.manage.workspace.missions.index(workspace.id)}><a>{t('menu.missions')}</a></Link>
-          </li>
-
-          <li className={classNames({ active: active == 'candidates' })} key={`/manage/${workspace.id}/candidates`}>
-            <Link {...ROUTES.manage.workspace.candidates.index(workspace.id)}>
-              <a>{t('menu.candidates')}{' '}<Badge count={pendingCandidates.length} /></a>
-            </Link>
-          </li>
-
-          <li className={classNames({ active: active == 'contributors' })} key={`/manage/${workspace.id}/contributors`}>
-            <Link {...ROUTES.manage.workspace.contributors.index(workspace.id)}>
-              <a>{t('menu.contributors')}{' '}<Badge count={activeContributors.length} /></a>
-            </Link>
-          </li>
-        </ul>
+        {isMember && renderMemberTabs() || renderGuestTabs()}
       </header>
     </div>)
 }

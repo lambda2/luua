@@ -125,7 +125,7 @@ const WorkspaceForm = ({ workspace, redirectOnSave }: Props) => {
                   dirty={dirty}
                   submitCount={submitCount}
                   isValid={isValid}
-                  label={values.id ? t('form.workspace.submit') : t('form.workspace.update')}
+                  label={values.id ? t('form.workspace.update') : t('form.workspace.submit') }
                 />
               </Form.Item>
             </Form>

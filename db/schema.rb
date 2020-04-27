@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_27_100102) do
+ActiveRecord::Schema.define(version: 2020_04_27_215919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -303,6 +303,30 @@ ActiveRecord::Schema.define(version: 2020_04_27_100102) do
     t.index ["workspace_id"], name: "index_workspace_histories_on_workspace_id"
   end
 
+  create_table "workspace_invitations", force: :cascade do |t|
+    t.bigint "workspace_id"
+    t.bigint "user_id"
+    t.string "email"
+    t.boolean "send_email", default: false, null: false
+    t.bigint "inviter_id", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["inviter_id"], name: "index_workspace_invitations_on_inviter_id"
+    t.index ["user_id"], name: "index_workspace_invitations_on_user_id"
+    t.index ["workspace_id"], name: "index_workspace_invitations_on_workspace_id"
+  end
+
+  create_table "workspace_requests", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "workspace_id"
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_workspace_requests_on_user_id"
+    t.index ["workspace_id"], name: "index_workspace_requests_on_workspace_id"
+  end
+
   create_table "workspaces", force: :cascade do |t|
     t.string "name", null: false
     t.string "slug", null: false
@@ -312,6 +336,8 @@ ActiveRecord::Schema.define(version: 2020_04_27_100102) do
     t.bigint "organization_id"
     t.integer "users_count", default: 0, null: false
     t.integer "missions_count", default: 0, null: false
+    t.text "description"
+    t.integer "membership", default: 0, null: false
     t.index ["organization_id"], name: "index_workspaces_on_organization_id"
   end
 
@@ -352,6 +378,11 @@ ActiveRecord::Schema.define(version: 2020_04_27_100102) do
   add_foreign_key "users", "workspaces", column: "primary_workspace_id"
   add_foreign_key "workspace_histories", "users"
   add_foreign_key "workspace_histories", "workspaces"
+  add_foreign_key "workspace_invitations", "users"
+  add_foreign_key "workspace_invitations", "users", column: "inviter_id"
+  add_foreign_key "workspace_invitations", "workspaces"
+  add_foreign_key "workspace_requests", "users"
+  add_foreign_key "workspace_requests", "workspaces"
   add_foreign_key "workspaces", "organizations"
   add_foreign_key "workspaces_users", "users"
   add_foreign_key "workspaces_users", "workspaces"

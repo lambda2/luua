@@ -1,0 +1,2 @@
+class WorkspaceRequestsController < ApplicationController
+end

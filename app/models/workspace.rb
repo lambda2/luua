@@ -3,7 +3,9 @@
 # Table name: workspaces
 #
 #  id              :bigint           not null, primary key
+#  description     :text
 #  image           :string
+#  membership      :integer          default("closed"), not null
 #  missions_count  :integer          default(0), not null
 #  name            :string           not null
 #  slug            :string           not null
@@ -45,22 +47,18 @@ class Workspace < ApplicationRecord
 
   validates :name, uniqueness: true
 
-  # enum workspace_type: %i[main company personal]
-
   after_create :create_default_priorities!
   before_validation :generate_slug
   before_destroy :roll_default_workspaces
 
-  # mount_uploader :image, AvatarUploader
   mount_base64_uploader :image, AvatarUploader
 
-  # def operated_by
-  #   Workspace.find_by_name('Team')
-  # end
+  enum membership: {
+    closed: 0,        # Invitation only
+    approval: 1,      # Requires approval
+    open: 2           # Everybody can join
+  }, _suffix: true
 
-  # def active_operator
-  #   users.first
-  # end
 
   def admin_ids
     workspaces_users.where(admin: true).pluck(:user_id)

@@ -28,9 +28,13 @@ const Workspace = (
 
   return (
     <NetworkBoundary status={status} data={data} error={error}>
-      <ContentLayout sideMenu={<ManageLeftMenu />}>
+      {data && <WorkspaceHeader
+        workspace={data}
+        active='settings'
+        actions={[]}
+      />}
+      <ContentLayout>
         {data && <div>
-          <WorkspaceHeader workspace={data} back actions={[]}/>
           <WorkspaceForm workspace={data} />
         </div>}
       </ContentLayout>
