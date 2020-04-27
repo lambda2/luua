@@ -30,7 +30,7 @@ class MissionUserLightSerializer < Panko::Serializer
              :accepted_at, :rejected_at, :completed_at, :reviewed_at,
              :created_at, :updated_at, :match_score, :workspace_id,
              :user_name, :mission_name
-  
+
   def workspace_id
     object.mission&.workspace_id
   end

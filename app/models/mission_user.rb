@@ -48,7 +48,7 @@ class MissionUser < ApplicationRecord
     accepted: 2,
     completed: 3,
     reviewed: 4,
-    canceled: 5,
+    canceled: 5
   }, _suffix: true
 
   scope :contributors, -> { where.not(status: %i[applied rejected]) }
@@ -58,7 +58,7 @@ class MissionUser < ApplicationRecord
     self.match_score = compute_match_score
   end
 
-  aasm column: :status, enum: true, logger: Rails.logger do
+  aasm column: :status, enum: true, logger: Rails.logger do # rubocop:todo Metrics/BlockLength
     state :applied, initial: true
     state :rejected, :canceled, :accepted, :completed, :reviewed
 

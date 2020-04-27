@@ -3,12 +3,12 @@
 require 'rails_helper'
 require 'devise/jwt/test_helpers'
 
-describe Api::CountriesController do
+describe Api::CountriesController do # rubocop:todo Metrics/BlockLength
 
   VALID_COUNTRY_NAME = 'france'
 
   before :each do
-    # We only seed with France 🇫🇷
+    # We only seed with France 🇫🇷 # rubocop:todo Style/AsciiComments
     expect(Country.count).to eq(1)
   end
 

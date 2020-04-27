@@ -7,28 +7,28 @@ RSpec.describe AcceptCandidate, type: :interactor do
   let (:user) { create(:user) }
   subject(:context) { AcceptCandidate.call(workspace: workspace, mission_user: mission_user, user: user) }
 
-  describe ".call" do
-    context "when user candidated" do
+  describe '.call' do
+    context 'when user candidated' do
 
       before do
         allow(mission_user).to receive(:accept!).and_return(true)
       end
 
-      it "succeeds" do
+      it 'succeeds' do
         expect(context).to be_a_success
       end
 
-      it "provides the mission_user" do
+      it 'provides the mission_user' do
         expect(context.mission_user).to eq(mission_user)
       end
     end
 
-    context "when given invalid mission user" do
+    context 'when given invalid mission user' do
       before do
         allow(mission_user).to receive(:accept!).and_return(false)
       end
 
-      it "fails" do
+      it 'fails' do
         expect(context).to be_a_failure
       end
     end

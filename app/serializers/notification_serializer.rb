@@ -27,13 +27,10 @@ class NotificationSerializer < Panko::Serializer
   attributes :id, :title, :content, :resource_type, :resource_id,
              :user_id, :viewed_at, :link, :code, :resource
 
-
   def resource
     case object.resource_type
-    when "MissionUser"
+    when 'MissionUser'
       MissionUserLightSerializer.new.serialize(object.resource)
-    else
-      nil
     end
   end
 end
