@@ -36,7 +36,7 @@ class WorkspacesUser < ApplicationRecord
   end
 
   def set_primary_workspace_for_user
-    return unless user
+    return unless user&.primary_workspace_id
 
     user.update(primary_workspace_id: workspace_id)
   end

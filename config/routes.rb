@@ -26,15 +26,18 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
 
     resources :workspaces do
       resources :missions
+      resources :workspaces_users
       resources :mission_users do
         concerns :mission_users_filters
       end
     end
 
     resources :mission_categories
+    
     resources :skill_categories, only: [] do
       resources :skills
     end
+
     resources :countries
     resources :regions
     resources :organizations

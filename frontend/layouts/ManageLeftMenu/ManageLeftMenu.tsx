@@ -31,24 +31,24 @@ const ManageLeftMenu: React.FC<Props> = () => {
   const pendingCandidates = (currentWorkspace?.mission_users || []).filter(mu => mu.status === 'applied')
   const activeContributors = (currentWorkspace?.mission_users || []).filter(mu => ['accepted', 'completed'].includes(mu.status))
 
-  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    Router.push(`/manage/${workspace_id}`)
-  }
+  // const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  //   Router.push(`/manage/${workspace_id}`)
+  // }
 
-  const handleMenuClick = (e: ClickParam) => {
-    message.info(t('switching-workspace'));
-    changeWorkspace(e.key)
-    Router.push(`/manage/${e.key}`)
-  }
+  // const handleMenuClick = (e: ClickParam) => {
+  //   message.info(t('switching-workspace'));
+  //   changeWorkspace(e.key)
+  //   Router.push(`/manage/${e.key}`)
+  // }
 
-  const menu = (
-    <Menu onClick={handleMenuClick}>
-      {workspaces.map(w => <Menu.Item key={w.slug}>
-          <WorkspaceLabel {...w} />
-        </Menu.Item>
-      )}
-    </Menu>
-  );
+  // const menu = (
+  //   <Menu onClick={handleMenuClick}>
+  //     {workspaces.map(w => <Menu.Item key={w.slug}>
+  //         <WorkspaceLabel {...w} />
+  //       </Menu.Item>
+  //     )}
+  //   </Menu>
+  // );
 
   return (<Sider className="site-layout-background" width={200}>
 

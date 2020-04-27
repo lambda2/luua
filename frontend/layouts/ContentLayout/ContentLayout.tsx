@@ -1,10 +1,10 @@
-import { Layout } from 'antd';
+// import { Layout } from 'antd';
 
 import classNames from 'classnames';
 
 // import './ContentLayout.module.less';
 
-const { Content } = Layout;
+// const { Content } = Layout;
 
 
 interface Props {
@@ -33,12 +33,12 @@ const ContentLayout: React.FC<Props> = ({
   }
   return (<>
     {topMenu || ''}
-    <Layout className={classNames("main-content", className, overrides)}>
+    <div className={classNames("wrapper-content", className, overrides)}>
       {sideMenu || ''}
-      <Content className="main-content" style={{ padding: '0 24px', minHeight: 280 }}>
+      <div className="main-content" style={{ padding: '0 24px', minHeight: 280 }}>
         { children }
-      </Content>
-    </Layout>
+      </div>
+    </div>
   </>)
 
 

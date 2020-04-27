@@ -19,7 +19,6 @@
 #  fk_rails_...  (user_id => users.id)
 #  fk_rails_...  (workspace_id => workspaces.id)
 #
-# Requests from an user to join a workspace
 class WorkspaceRequest < ApplicationRecord
   belongs_to :user
   belongs_to :workspace

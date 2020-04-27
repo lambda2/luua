@@ -1,6 +1,7 @@
 class WorkspaceUserSerializer < Panko::Serializer
   attributes :id, :workspace_id, :user_id, :admin, :role,
-             :image_url, :thumb_url, :first_name, :last_name, :username
+             :image_url, :thumb_url, :first_name, :last_name,
+             :username, :created_at
 
   def first_name
     object.user.first_name

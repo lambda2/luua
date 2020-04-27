@@ -92,6 +92,7 @@ declare interface WorkspaceUser {
     first_name?: string
     last_name?: string
     username: string
+    created_at: string
 }
 
 declare interface Workspace extends LightWorkspace {

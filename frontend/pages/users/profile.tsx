@@ -31,7 +31,7 @@ const Profile = (
     `https://robohash.org/${response.data?.username || 'default'}.png?size=200x200`
 
   return (
-    <ContentLayout sideMenu={<ManageLeftMenu />}>
+    <ContentLayout>
       <NetworkBoundary {...response}>
         <UserProfile {...response.data as AuthedUser} />
       </NetworkBoundary>

@@ -1,7 +1,8 @@
 {
   "generics": {
     "or": "ou",
-    "for": "pour"
+    "for": "pour",
+    "since": "depuis"
   },
   "menu": {
     "explore": "Explorer",
@@ -155,6 +156,14 @@
   "workspace": {
     "create": {
       "title": "Créer un espace"
+    },
+    "edit": {
+      "title": "Modifier l'espace"
+    },
+    "settings": {
+      "edit": "Informations",
+      "members": "Membres",
+      "memeber-since": "Membre depuis"
     },
     "no-workspace-yet": {
       "title": "Il semblerait que tu n'aies pas encore d'espace",
