@@ -37,7 +37,7 @@ const Workspace = (
         active='settings'
         actions={[]}
       />}
-      <ContentLayout sideMenu={<WorkspaceSettingsMenu />}>
+      <ContentLayout sideMenu={<WorkspaceSettingsMenu active="edit" />}>
         <PageTitle title={t('workspace.edit.title')} />
         {data && <div>
           <WorkspaceForm workspace={data} />

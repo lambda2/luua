@@ -1,22 +1,22 @@
 import React, { useContext } from 'react'
 import { NextPageContext } from 'next'
 import { useRouter } from 'next/router'
+import { List } from 'antd'
 
 import { useCollection, fetchInitialData } from '../../../utils/http'
 import { withAuthSync } from '../../../utils/auth'
 
-import ContentLayout from '../../../layouts/ContentLayout/ContentLayout'
-import ManageLeftMenu from '../../../layouts/ManageLeftMenu/ManageLeftMenu'
-
-import NetworkBoundary from '../../../components/NetworkBoudary/NetworkBoudary'
-import WorkspaceForm from '../../../components/WorkspaceForm/WorkspaceForm';
-import WorkspaceHeader from '../../../components/WorkspaceHeader/WorkspaceHeader'
-import WorkspaceSettingsMenu from '../../../layouts/WorkspaceSettingsMenu/WorkspaceSettingsMenu'
-import PageTitle from '../../../elements/PageTitle/PageTitle'
 import { useLocale } from '../../../hooks/useLocale'
 import WorkspaceContext from '../../../contexts/WorkspaceContext'
-import { List } from 'antd'
+
+import ContentLayout from '../../../layouts/ContentLayout/ContentLayout'
+import WorkspaceSettingsMenu from '../../../layouts/WorkspaceSettingsMenu/WorkspaceSettingsMenu'
+
+import NetworkBoundary from '../../../components/NetworkBoudary/NetworkBoudary'
+import WorkspaceHeader from '../../../components/WorkspaceHeader/WorkspaceHeader'
+
 import WorkspaceUserItem from '../../../elements/WorkspaceUserItem/WorkspaceUserItem'
+import PageTitle from '../../../elements/PageTitle/PageTitle'
 
 
 /**
@@ -42,7 +42,7 @@ const WorkspaceMembers = (
         actions={[]}
       />}
 
-      <ContentLayout sideMenu={<WorkspaceSettingsMenu />}>
+      <ContentLayout sideMenu={<WorkspaceSettingsMenu active='members'/>}>
         <PageTitle title={t('workspace.settings.members')} />
         <List
           itemLayout="vertical"
