@@ -27,7 +27,7 @@ const Missions = (
     <>
       <NetworkBoundary<LightMission[]> status={status} data={data} error={error}>
         {data?.length && data[0].workspace && <WorkspaceHeader
-          workspace={data[0].workspace}
+          workspace={data[0].workspace as Workspace} // @TODO bad bad bad
         />}
         <ContentLayout>
           <MissionList data={data as LightMission[]} />

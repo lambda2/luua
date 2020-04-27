@@ -7,7 +7,7 @@ import ManageLeftMenu from '../../../../layouts/ManageLeftMenu/ManageLeftMenu'
 const NewMission = (props: any) => {
 
   return (
-    <ContentLayout sideMenu={<ManageLeftMenu />}>
+    <ContentLayout>
       <MissionSetup />
     </ContentLayout>
   )

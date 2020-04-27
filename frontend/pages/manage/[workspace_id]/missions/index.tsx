@@ -34,7 +34,7 @@ const Missions = (
         workspace={currentWorkspace}
         active='missions'
       />}
-      <ContentLayout sideMenu={<ManageLeftMenu />}>
+      <ContentLayout>
         <PageTitle title={t('menu.missions')} />
         <Link {...manage.workspace.missions.new(`${query.workspace_id}`)}><a>{t('mission.create.title')}</a></Link>
         <MissionList data={response.data as LightMission[]} />

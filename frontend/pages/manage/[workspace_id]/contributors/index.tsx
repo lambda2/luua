@@ -40,7 +40,7 @@ const Candidates = (
           workspace={currentWorkspace}
           active='contributors'
         />}
-        <ContentLayout sideMenu={<ManageLeftMenu />}>
+        <ContentLayout>
           <PageTitle title={t('menu.contributors')} />
           <MissionUserList data={response.data as MissionUser[]} />
         </ContentLayout>

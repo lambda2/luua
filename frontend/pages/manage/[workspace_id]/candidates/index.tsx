@@ -36,7 +36,7 @@ const Candidates = (
         workspace={currentWorkspace}
         active='candidates'
       />}
-      <ContentLayout sideMenu={<ManageLeftMenu />}>
+      <ContentLayout>
         <PageTitle title={t('menu.candidates')} />
         <MissionUserList data={response.data as MissionUser[]} />
       </ContentLayout>

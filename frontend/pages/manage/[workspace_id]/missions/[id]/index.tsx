@@ -44,7 +44,7 @@ const Mission = (
         active='missions'
         tree={[<Link {...workspace.missions.index(currentWorkspace.id)}><a>{t('menu.missions')}</a></Link>]}
       />}
-      <ContentLayout sideMenu={<ManageLeftMenu />}>
+      <ContentLayout>
         <WorkspaceMissionDetail {...data as Mission} />
       </ContentLayout>
     </NetworkBoundary>
