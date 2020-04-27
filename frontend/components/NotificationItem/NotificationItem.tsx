@@ -6,6 +6,8 @@ import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';
 import { cdnUrl } from '../../utils/http';
 import find from 'lodash/find';
+import momentWithLocale from '../../i18n/moment';
+import { linkForNotification } from '../../utils/notifications';
 
 const { explore } = routes
 
@@ -17,14 +19,16 @@ const NotificationItem = ({
   content,
   link,
   code,
+  resource,
   viewed_at,
   created_at,
   updated_at
 }: Props) => {
 
   const { currentUser } = useContext(UserContext)
-  const { t } = useLocale()
-
+  const { t, language } = useLocale()
+  const moment = momentWithLocale(language as AvailableLocale)
+  const notificationHref = linkForNotification({ resource, link, code })
   return (
     <List.Item
       className="NotificationItem"
@@ -34,8 +38,15 @@ const NotificationItem = ({
     >
       <List.Item.Meta
         // avatar={}
-        title={title}
-        description={content}
+        title={<Link key={id} {...notificationHref}>
+          <a>
+            <h2>{code === 'custom' ? title : t(`notifications.${code}.title`, resource)}</h2>
+          </a>
+        </Link>}
+        description={<div>
+          <p>{code === 'custom' ? content : t(`notifications.${code}.content`, resource)}</p>
+          <footer>{moment(updated_at).calendar()}</footer>
+        </div>}
       />
     </List.Item>
   )

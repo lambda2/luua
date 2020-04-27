@@ -39,39 +39,48 @@ class Api::MissionUsersController < ApiController
     end
   end
 
-  def reject
-    if @mission_user.reject!
-      WorkspaceHistory.track!(@workspace, @mission_user, current_user)
-      render json: MissionUserSerializer.new.serialize(@mission_user)
+  def accept
+    result = AcceptCandidate.call(workspace: @workspace, mission_user: @mission_user, user: current_user)
+    if result.success?
+      render json: MissionUserSerializer.new.serialize(result.mission_user)
     else
-      render_error(@mission_user.errors.messages, :unprocessable_entity)
+      render_error(result.messages, :unprocessable_entity)
     end
   end
 
-  def accept
-    if @mission_user.accept!
-      WorkspaceHistory.track!(@workspace, @mission_user, current_user)
-      render json: MissionUserSerializer.new.serialize(@mission_user)
+  def reject
+    result = RejectCandidate.call(workspace: @workspace, mission_user: @mission_user, user: current_user)
+    if result.success?
+      render json: MissionUserSerializer.new.serialize(result.mission_user)
     else
-      render_error(@mission_user.errors.messages, :unprocessable_entity)
+      render_error(result.messages, :unprocessable_entity)
+    end
+  end
+
+  def cancel
+    result = CancelMission.call(workspace: @workspace, mission_user: @mission_user, user: current_user)
+    if result.success?
+      render json: MissionUserSerializer.new.serialize(result.mission_user)
+    else
+      render_error(result.messages, :unprocessable_entity)
     end
   end
 
   def complete
-    if @mission_user.complete!
-      WorkspaceHistory.track!(@workspace, @mission_user, current_user)
-      render json: MissionUserSerializer.new.serialize(@mission_user)
+    result = CompleteMission.call(workspace: @workspace, mission_user: @mission_user, user: current_user)
+    if result.success?
+      render json: MissionUserSerializer.new.serialize(result.mission_user)
     else
-      render_error(@mission_user.errors.messages, :unprocessable_entity)
+      render_error(result.messages, :unprocessable_entity)
     end
   end
 
   def review
-    if @mission_user.review!
-      WorkspaceHistory.track!(@workspace, @mission_user, current_user)
-      render json: MissionUserSerializer.new.serialize(@mission_user)
+    result = ReviewMission.call(workspace: @workspace, mission_user: @mission_user, user: current_user)
+    if result.success?
+      render json: MissionUserSerializer.new.serialize(result.mission_user)
     else
-      render_error(@mission_user.errors.messages, :unprocessable_entity)
+      render_error(result.messages, :unprocessable_entity)
     end
   end
 

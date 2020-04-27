@@ -10,6 +10,7 @@
     "workspaces": "Espaces",
     "missions": "Missions",
     "skills": "Compétences",
+    "notifications": "Notifications",
     "candidates": "Candidats",
     "contributors": "Contributeurs",
     "organizations": "Organisations",
@@ -392,6 +393,36 @@
             "title": "Valider toutes les candidatures",
             "description": "La candidature est automatiquement acceptée."
           }
+        }
+      }
+    }
+  },
+  "notifications": {
+    "mission": {
+      "candidate": {
+        "applied": {
+          "title": "Nouvelle candidature",
+          "content": "{{user_name}} a candidaté pour la mission \"{{mission_name}}\""
+        },
+        "rejected": {
+          "title": "Candidature refusée",
+          "content": "Votre candidature pour la mission \"{{mission_name}}\" n'a pas été acceptée"
+        },
+        "canceled": {
+          "title": "Candidature annulée",
+          "content": "{{user_name}} a annulé sa participation à la mission \"{{mission_name}}\""
+        },
+        "accepted": {
+          "title": "Candidature acceptée",
+          "content": "Votre candidature a été acceptée pour la mission \"{{mission_name}}\""
+        },
+        "completed": {
+          "title": "Mission terminée",
+          "content": "{{user_name}} a terminé la mission \"{{mission_name}}\""
+        },
+        "reviewed": {
+          "title": "Mission validée",
+          "content": "Votre contribution a la mission \"{{mission_name}}\" a été revue et validée"
         }
       }
     }

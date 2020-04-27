@@ -12,7 +12,7 @@ type NotificationCode =
     'mission.candidate.accepted'    | // A candidate has been accepted on a mission
     'mission.candidate.completed'   | // A candidate has completed a mission
     'mission.candidate.reviewed'    | // A candidate has been reviewed on a mission
-    'custom'                        | // A custom content
+    'custom'                          // A custom content
 
 declare interface BaseUser {
     id: number
@@ -115,6 +115,7 @@ declare interface UserNotification {
     title: string
     content: string
     link: string
+    resource: any
     code: NotificationCode
     viewed_at: string
     created_at: string
@@ -159,6 +160,7 @@ declare interface Organization extends LightOrganization {
 declare interface LightMissionUser {
     id: number
     mission_id: number
+    workspace_id: number
     user_id: number
     status: MissionUserStatus
     applied_at: string | null

@@ -28,6 +28,19 @@
 class MissionUserLightSerializer < Panko::Serializer
   attributes :id, :mission_id, :user_id, :status, :applied_at,
              :accepted_at, :rejected_at, :completed_at, :reviewed_at,
-             :created_at, :updated_at, :match_score
+             :created_at, :updated_at, :match_score, :workspace_id,
+             :user_name, :mission_name
+  
+  def workspace_id
+    object.mission&.workspace_id
+  end
+
+  def user_name
+    object&.user&.username
+  end
+
+  def mission_name
+    object&.mission&.name
+  end
 
 end

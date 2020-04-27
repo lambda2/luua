@@ -89,13 +89,4 @@ export const ROUTES = {
 }
 
 
-// export const goto = (path: any, router: SingletonRouter, opts = {}) => {
-//   console.log("-> GOTO ", {path, opts});
-  
-//   router.push(
-//     path.as,
-//     opts
-//   )
-// }
-
 export default ROUTES
