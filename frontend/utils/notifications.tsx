@@ -23,8 +23,6 @@ export const linkForNotification = ({
       return ROUTES.manage.workspace.candidates.show(resource.workspace_id, resource.id)
     case 'mission.candidate.reviewed':
       return ROUTES.explore.missions.show(resource.mission_id)
-    // case 'custom':
-    //   return {href: link}
     default:
       return { href: link }
   }
