@@ -14,7 +14,7 @@ const { manage, explore } = routes
 interface Props {}
 
 const WorkspaceMenu: React.FC<Props> = () => {
-  const { currentUser } = useContext(UserContext)
+  const { currentUser, notifications } = useContext(UserContext)
   const { t } = useLocale()
   const activeWorkspace = currentUser?.workspaces[0]
 
@@ -32,7 +32,7 @@ const WorkspaceMenu: React.FC<Props> = () => {
       </li>
       <li className="pusher"></li>
       <li key="/user">
-        <UserMenuDropdown user={currentUser} />
+        <UserMenuDropdown notifications={notifications} user={currentUser} />
       </li>
     </ul>
   </header>)
