@@ -25,6 +25,8 @@ declare interface UserUpdateValues {
 declare interface UserContextValue extends UserState {
   check: () => void;
   refreshNotifications: () => void;
+  readNotification: (notification_id: number | string) => void,
+  readAllNotifications: () => void,
   update: (attributes: UserUpdateValues) => Promise<AuthedUser | undefined>;
 }
 

@@ -13,3 +13,15 @@ export const read = async (notification_id: string | number, token: string): Pro
     { headers, data: {}, method: 'PATCH' }
   )
 }
+
+/**
+ * Mark all notifications as read
+ * @param token the JWT access token
+ */
+export const readAll = async (token: string): Promise<AxiosResponse<UserNotification[]>> => {
+  const headers = getHeaders(token)
+  return await api<UserNotification[]>(
+    `/api/notifications/read_all`,
+    { headers, data: {}, method: 'PATCH' }
+  )
+}

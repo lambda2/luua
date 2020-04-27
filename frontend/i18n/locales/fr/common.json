@@ -398,6 +398,8 @@
     }
   },
   "notifications": {
+    "read-all": "Tout marquer comme lu",
+    "read": "Marquer comme lu",
     "mission": {
       "candidate": {
         "applied": {

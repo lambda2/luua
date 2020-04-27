@@ -1,11 +1,14 @@
 import React, { createContext, useReducer, useMemo, useEffect } from 'react'
 import api, { getHeaders } from '../../utils/http'
 import { initialState, reducer } from './reducer'
+import { read, readAll } from '../../api/notification'
 
 const defaultValue: UserContextValue = {
   ...initialState,
   check: () => {},
   refreshNotifications: () => {},
+  readNotification: (notification_id: number | string) => {},
+  readAllNotifications: () => {},
   update: (attributes: UserUpdateValues) => Promise.resolve(undefined),
 }
 
@@ -60,13 +63,13 @@ const UserProvider: React.FC<UserProviderProps> = (props) => {
   const refreshNotifications = async () => {
 
     if (!props.token) {
-      return 
+      return
     }
-    
+
     const headers = getHeaders(props.token)
 
     try {
-      const { data, status, statusText } = await api<UserNotification>(`/api/me/notifications`, { headers })
+      const { data, status, statusText } = await api<UserNotification>(`/api/me/notifications?unread=true`, { headers })
 
       if (status < 300) {
         dispatch({
@@ -76,6 +79,56 @@ const UserProvider: React.FC<UserProviderProps> = (props) => {
       } else {
         console.error({ data, status, statusText })
         // dispatch({ type: 'AUTHENTICATION_FAIL' })
+      }
+    } catch (error) {
+      console.warn("Invalid auth", { error })
+    }
+  }
+
+  /**
+   * Read a notification
+   */
+  const readNotification = async (notification_id: number | string) => {
+
+    if (!props.token) {
+      return
+    }
+
+    try {
+      const { data, status, statusText } = await read(notification_id, props.token)
+
+      if (status < 300) {
+        dispatch({
+          type: 'READ_NOTIFICATION',
+          payload: { notification: data }
+        })
+      } else {
+        console.error({ data, status, statusText })
+      }
+    } catch (error) {
+      console.warn("Invalid auth", { error })
+    }
+  }
+
+  /**
+   * Read all notifications
+   */
+  const readAllNotifications = async () => {
+
+    if (!props.token) {
+      return
+    }
+
+    try {
+      const { data, status, statusText } = await readAll(props.token)
+
+      if (status < 300) {
+        dispatch({
+          type: 'NOTIFICATION_UDPATE',
+          payload: { notifications: data }
+        })
+      } else {
+        console.error({ data, status, statusText })
       }
     } catch (error) {
       console.warn("Invalid auth", { error })
@@ -103,8 +156,8 @@ const UserProvider: React.FC<UserProviderProps> = (props) => {
   }
 
   const value = useMemo(
-    () => ({ ...user, check, update, refreshNotifications }),
-    [user, check, update, refreshNotifications],
+    () => ({ ...user, check, update, refreshNotifications, readNotification, readAllNotifications }),
+    [user, check, update, refreshNotifications, readNotification, readAllNotifications],
   )
 
   return <UserContext.Provider value={value}>{props.children}</UserContext.Provider>

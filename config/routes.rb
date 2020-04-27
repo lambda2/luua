@@ -49,6 +49,10 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
     resources :users, only: [:update] do
       resources :notifications
     end
+    resources :notifications do
+      patch :read, on: :member
+      patch :read_all, on: :collection
+    end
 
     resources :workspace_histories
 

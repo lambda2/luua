@@ -5,10 +5,11 @@ import PageSection from '../../elements/PageSection/PageSection';
 import { useLocale } from '../../hooks/useLocale';
 
 interface Props {
-  data: UserNotification[]
+  data: UserNotification[],
+  onRead: (id: string | number) => Promise<void>
 }
 
-const NotificationList = ({ data }: Props) => {
+const NotificationList = ({ data, onRead }: Props) => {
 
   const { t } = useLocale()
   
@@ -19,7 +20,7 @@ const NotificationList = ({ data }: Props) => {
           itemLayout="vertical"
           size="default"
           dataSource={data}
-          renderItem={(item: UserNotification) => <NotificationItem {...item} />}
+          renderItem={(item: UserNotification) => <NotificationItem onRead={onRead} notification={item} />}
         />
       </PageSection>
   </>)
