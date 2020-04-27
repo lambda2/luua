@@ -23,7 +23,10 @@ const ShowWorkspace = (
 
   return (
     <NetworkBoundary {...response}>
-      <WorkspaceHeader workspace={response!.data as Workspace} />
+      <WorkspaceHeader
+        workspace={response!.data as Workspace}
+        active='summary'
+      />
       <ContentLayout sideMenu={<ManageLeftMenu />}>
         <WorkspaceShow workspace={response!.data as Workspace} />
       </ContentLayout>

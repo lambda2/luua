@@ -32,7 +32,10 @@ const Candidates = (
 
   return (
     <NetworkBoundary<MissionUser[]> {...response}>
-      { currentWorkspace && <WorkspaceHeader workspace={currentWorkspace} />}
+      { currentWorkspace && <WorkspaceHeader
+        workspace={currentWorkspace}
+        active='candidates'
+      />}
       <ContentLayout sideMenu={<ManageLeftMenu />}>
         <PageTitle title={t('menu.candidates')} />
         <MissionUserList data={response.data as MissionUser[]} />

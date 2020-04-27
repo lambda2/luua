@@ -30,7 +30,10 @@ const Missions = (
   
   return (
     <NetworkBoundary<LightMission[]> {...response}>
-      {currentWorkspace && <WorkspaceHeader workspace={currentWorkspace} />}
+      {currentWorkspace && <WorkspaceHeader
+        workspace={currentWorkspace}
+        active='missions'
+      />}
       <ContentLayout sideMenu={<ManageLeftMenu />}>
         <PageTitle title={t('menu.missions')} />
         <Link {...manage.workspace.missions.new(`${query.workspace_id}`)}><a>{t('mission.create.title')}</a></Link>

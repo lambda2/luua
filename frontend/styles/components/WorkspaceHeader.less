@@ -1,4 +1,46 @@
 .WorkspaceHeader {
-  max-width: @content-width;
-  margin: auto;
+  background-color: @layout-body-background;
+  border-bottom: 1px solid @nord4;
+
+  .WorkspaceHeaderContent {
+    max-width: @content-width;
+    margin: auto;
+
+
+    .WorkspaceHeaderMenu {
+      list-style-type: none;
+      // display: flex;
+      margin: 0;
+      padding: 0;
+      margin-bottom: -1px;
+
+      li {
+        // flex: 0 0  auto;
+        display: inline-block;
+        text-align: center;
+        padding: @space-inset-m;
+        border-bottom: 1px solid transparent;
+
+        a {
+          color: @nord3;
+        }
+        
+        & + li {
+          margin-left: @space-m;
+        }
+        // background-color: #ccc;
+
+        &.active {
+          background-color: #fff;
+          border: 1px solid @nord4;
+          // font-weight: bold;
+          border-bottom: 1px solid transparent;
+
+          a {
+            color: @nord1;
+          }
+        }
+      }
+    }
+  }
 }

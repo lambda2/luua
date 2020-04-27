@@ -38,6 +38,7 @@ const Candidates = (
       <NetworkBoundary<MissionUser[]> {...response}>
         {currentWorkspace && <WorkspaceHeader
           workspace={currentWorkspace}
+          active='contributors'
         />}
         <ContentLayout sideMenu={<ManageLeftMenu />}>
           <PageTitle title={t('menu.contributors')} />

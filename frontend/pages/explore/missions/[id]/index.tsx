@@ -26,15 +26,21 @@ const Mission = (
     `/api/missions/${query.id}`, token, {}, { initialData }
   )
 
+  const workspaceResponse = useCollection<Workspace>(
+    `/api/workspaces/${data?.workspace_id}`, token, {}, {}
+  )
+
   return (
     <NetworkBoundary status={status} data={data} error={error}>
-      {data?.workspace && <WorkspaceHeader
-        workspace={data.workspace}
-        tree={[<Link {...ROUTES.explore.workspace.missions.index(data.workspace_id)}><a>{t('menu.missions')}</a></Link>]}
-      />}
-      <ContentLayout>
-        {data && <MissionDetail {...data} />}
-      </ContentLayout>
+      <NetworkBoundary {...workspaceResponse}>
+        {workspaceResponse?.data && <WorkspaceHeader
+          workspace={workspaceResponse.data}
+          tree={[<Link {...ROUTES.explore.workspace.missions.index(workspaceResponse.data.id)}><a>{t('menu.missions')}</a></Link>]}
+        />}
+        <ContentLayout>
+          {data && <MissionDetail {...data} />}
+        </ContentLayout>
+      </NetworkBoundary>
     </NetworkBoundary>
   )
 }
