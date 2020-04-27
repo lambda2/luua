@@ -81,7 +81,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 11.1.2', platforms: %i[mri mingw x64_mingw]
   gem 'capybara', '~> 3.32.1' # Capybara, the library that allows us to interact with the browser using Ruby
-  gem 'coveralls', '~> 0.7.1', require: false
+  gem 'coveralls', '~> 0.8.23', require: false
   gem 'database_cleaner', '~> 1.8.4'
   gem 'dotenv-rails', '~> 2.7.5'
   gem 'factory_bot', '~> 5.1.2'
@@ -109,7 +109,7 @@ group :development do
 end
 
 group :test do
-  gem 'simplecov', '~> 0.18.5', require: false
+  gem 'simplecov', '~> 0.16', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
