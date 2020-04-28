@@ -24,19 +24,19 @@ const MainMenu: React.FC<Props> = () => {
       <li key="/explore">
         <Link {...explore.index()}><a>{t('menu.explore')}</a></Link>
       </li>
-      {/* <li key="/me">
-        {currentUser ?
-          <Link {...manage.workspace.show(activeWorkspace.slug)}><a>{activeWorkspace.name || t('menu.manage')}</a></Link> :
-          <Link {...manage.index()}><a>{t('menu.manage')}</a></Link>
-        }
-      </li> */}
-      {currentUser && <li key="/manage">
-        {activeWorkspace ?
-          <Link {...manage.workspace.show(activeWorkspace.slug)}><a>{multipleWorkspaces ? t('menu.manage') : activeWorkspace.name}</a></Link> :
-          <Link {...manage.index()}><a>{t('menu.manage')}</a></Link>
+
+      {currentUser && activeWorkspace && <li key="/manage">
+        {multipleWorkspaces ?
+          <Link {...manage.workspace.index()}><a>{t('menu.manage')}</a></Link> :
+          <Link {...manage.workspace.show(activeWorkspace.slug)}><a>{activeWorkspace.name}</a></Link>
         }
       </li>}
+      {currentUser && !activeWorkspace && <li key="/manage">
+        <Link {...manage.index()}><a>{t('menu.manage')}</a></Link>
+      </li>}
+
       <li className="pusher"></li>
+      
       <li key="/user">
         <UserMenuDropdown notifications={notifications} user={currentUser} />
       </li>

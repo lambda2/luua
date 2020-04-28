@@ -35,7 +35,7 @@ const ContentLayout: React.FC<Props> = ({
     {topMenu || ''}
     <div className={classNames("wrapper-content", className, overrides)}>
       {sideMenu || ''}
-      <div className="main-content" style={{ padding: '0 24px', minHeight: 280 }}>
+      <div className="main-content" style={{ minHeight: 280 }}>
         { children }
       </div>
     </div>

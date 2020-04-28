@@ -25,7 +25,7 @@ class Ability
     can %i[create update destroy], Mission, created_by: user.id
 
     can %i[manage], MissionUser, mission: { workspace: { id: user.admin_workspace_ids } }
-    can %i[complete reject], MissionUser, user_id: user.id
+    can %i[accept complete reject], MissionUser, user_id: user.id
     can %i[read], MissionUser, user_id: user.id
 
     can %i[apply], Mission
@@ -33,6 +33,7 @@ class Ability
     can %i[read read! me read_all], Notification, user_id: user.id
 
     can :read, Workspace
+    can :me, Workspace, id: user.workspace_ids
     can :manage, Workspace, id: user.admin_workspace_ids
     can :create, Workspace
 

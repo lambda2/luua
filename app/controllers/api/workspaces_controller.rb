@@ -16,6 +16,20 @@ class Api::WorkspacesController < ApiController
     end
   end
 
+  def me
+    @workspaces = current_user.workspaces
+    @workspaces = @workspaces.search(params[:q]) if params[:q]
+    @workspaces = @workspaces.page(params[:page])
+
+    respond_to do |format|
+      format.json do
+        respond_with_cache(@workspaces) do
+          Panko::ArraySerializer.new(@workspaces, each_serializer: WorkspaceLightSerializer).to_json
+        end
+      end
+    end
+  end
+
   def show
     respond_to do |format|
       format.json do

@@ -23,6 +23,7 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
   namespace :api do # rubocop:todo Metrics/BlockLength
     get 'me', action: :me, controller: 'users'
     get 'me/notifications', action: :me, controller: 'notifications'
+    get 'me/workspaces', action: :me, controller: 'workspaces'
 
     resources :workspaces do
       post 'invite', on: :member, action: :invite

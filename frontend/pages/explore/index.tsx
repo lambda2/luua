@@ -7,6 +7,7 @@ import { Typography } from 'antd';
 import { NextPageContext } from 'next';
 import { useLocale } from '../../hooks/useLocale';
 import ContentLayout from '../../layouts/ContentLayout/ContentLayout';
+import PageTitle from '../../elements/PageTitle/PageTitle';
 const { Title } = Typography;
 
 interface Props {
@@ -29,7 +30,7 @@ const Explore = (
   return (
     <>
       <ContentLayout>
-        <Title>{t('explore.title')}</Title>
+        <PageTitle title={t('explore.title')} />
 
         <NetworkBoundary<LightMission[]> {...response}>
           <MissionList data={response.data as LightMission[]} />

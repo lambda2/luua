@@ -9,23 +9,31 @@ import { Layout } from 'antd'
 import LeftMenu from '../../../layouts/LeftMenu/LeftMenu'
 import ContentLayout from '../../../layouts/ContentLayout/ContentLayout'
 import ManageLeftMenu from '../../../layouts/ManageLeftMenu/ManageLeftMenu'
+import PageTitle from '../../../elements/PageTitle/PageTitle'
+import { useLocale } from '../../../hooks/useLocale'
+import ROUTES from '../../../routes/manage'
 
 const Workspaces = (
   { initialData, token }:
   { initialData: LightWorkspace[], token?: string }
 ) => {
-  
+  const { t } = useLocale()
+
   const response = useCollection<LightWorkspace[]>(
-    `/api/workspaces`, token, {}, { initialData }
+    `/api/me/workspaces`, token, {}, { initialData }
   )
 
   return (
     <>
       <NetworkBoundary<LightWorkspace[]> {...response}>
-        <ContentLayout sideMenu={<ManageLeftMenu />}>
-          <h1>Spaces</h1>
-          <Link href={`/workspaces/new`} as={`/workspaces/new`}><a>Create a workspace</a></Link>
-
+        <ContentLayout>
+          <PageTitle
+            title={t('menu.workspaces')}
+            extra={[
+              <Link {...ROUTES.manage.workspace.new()}><a>{t('workspace.create.title')}</a></Link>
+            ]}
+          />
+          
           <WorkspaceList data={response.data as LightWorkspace[]} />
         </ContentLayout>
       </NetworkBoundary>
@@ -34,7 +42,7 @@ const Workspaces = (
 }
 
 Workspaces.getInitialProps = async (ctx: NextPageContext) => {
-  return await fetchInitialData<LightWorkspace[]>(ctx, '/api/workspaces')
+  return await fetchInitialData<LightWorkspace[]>(ctx, '/api/me/workspaces')
 }
 
 export default withAuthSync(Workspaces)
