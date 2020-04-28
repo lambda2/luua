@@ -36,8 +36,6 @@ class WorkspaceInvitation < ApplicationRecord
   validate :matching_email, on: :create
   validates :send_email, :email, presence: true
 
-  enum status: %i[pending accepted rejected], _suffix: true
-
   def matching_email
     errors.add(:email, "Provided email dont match the user email") if user && user.email != self.email
   end
