@@ -32,7 +32,7 @@ const WorkspaceMembers = (
   const { t } = useLocale()
 
   const { status, data, error, refetch } = useCollection<WorkspaceUser[]>(
-    `/api/workspaces/${query.workspace_id}/workspaces_users`, token, {}, { initialData }
+    `/api/workspaces/${query.workspace_id}/workspace_users`, token, {}, { initialData }
   )
   const { currentWorkspace } = useContext(WorkspaceContext)
 
@@ -77,7 +77,7 @@ const WorkspaceMembers = (
 }
 
 WorkspaceMembers.getInitialProps = async (ctx: NextPageContext) => {
-  return await fetchInitialData<WorkspaceUser[]>(ctx, `/api/workspaces/${ctx.query.workspace_id}/workspaces_users`)
+  return await fetchInitialData<WorkspaceUser[]>(ctx, `/api/workspaces/${ctx.query.workspace_id}/workspace_users`)
 }
 
 export default withAuthSync(WorkspaceMembers)

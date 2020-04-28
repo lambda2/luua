@@ -79,8 +79,8 @@ describe Api::MissionsController, type: :request do # rubocop:todo Metrics/Block
       before(:each) do
         expect(good_mission.persisted?).to be(true)
         puts user.inspect
-        puts good_workspace.workspaces_users.inspect
-        puts admin_workspace.workspaces_users.inspect
+        puts good_workspace.workspace_users.inspect
+        puts admin_workspace.workspace_users.inspect
       end
 
       it 'show all missions' do

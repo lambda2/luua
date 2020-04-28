@@ -27,7 +27,7 @@ const WorkspaceUserActions: React.FC<Props> = ({
   
   const { t } = useLocale()
   const { currentUser } = useContext(UserContext)
-  const imAdmin = find((currentUser?.workspaces_users || []), { workspace_id, admin: true })
+  const imAdmin = find((currentUser?.workspace_users || []), { workspace_id, admin: true })
   const yourself = currentUser?.username === username
 
   return (

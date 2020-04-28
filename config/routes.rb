@@ -26,7 +26,7 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
 
     resources :workspaces do
       resources :missions
-      resources :workspaces_users
+      resources :workspace_users
       resources :mission_users do
         concerns :mission_users_filters
       end

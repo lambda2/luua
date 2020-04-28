@@ -60,8 +60,8 @@ class User < ApplicationRecord
 
   mount_base64_uploader :image, AvatarUploader
 
-  has_many :workspaces_users, dependent: :destroy
-  has_many :workspaces, through: :workspaces_users
+  has_many :workspace_users, dependent: :destroy
+  has_many :workspaces, through: :workspace_users
   has_many :organizations, through: :workspaces
 
   has_many :user_skills, dependent: :destroy
@@ -113,7 +113,7 @@ class User < ApplicationRecord
   end
 
   def admin_workspace_ids
-    workspaces_users.where(admin: true).pluck(:workspace_id)
+    workspace_users.where(admin: true).pluck(:workspace_id)
   end
 
   def jwt_payload

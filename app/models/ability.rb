@@ -36,8 +36,8 @@ class Ability
     can :manage, Workspace, id: user.admin_workspace_ids
     can :create, Workspace
 
-    can :read, WorkspacesUser
-    can :manage, WorkspacesUser, workspace_id: user.admin_workspace_ids
+    can :read, WorkspaceUser
+    can :manage, WorkspaceUser, workspace_id: user.admin_workspace_ids
 
     can :create, Organization
   end

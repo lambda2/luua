@@ -31,7 +31,7 @@ class WorkspaceSerializer < Panko::Serializer
 
   has_many :missions, serializer: MissionLightSerializer
   has_many :mission_users, serializer: MissionUserLightSerializer
-  has_many :workspaces_users, serializer: WorkspaceUserSerializer
+  has_many :workspace_users, serializer: WorkspaceUserSerializer
 
   def image_url
     object.image_url

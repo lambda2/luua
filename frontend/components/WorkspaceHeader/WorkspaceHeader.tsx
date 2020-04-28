@@ -49,8 +49,8 @@ const WorkspaceHeader = ({
   }
 
   const onBack = back ? { onBack: () => window.history.back() } : {}
-  const isAdmin = find(workspace.workspaces_users, {admin: true, user_id: currentUser?.id})
-  const isMember = isAdmin || find(workspace.workspaces_users, {user_id: currentUser?.id})
+  const isAdmin = find(workspace.workspace_users, {admin: true, user_id: currentUser?.id})
+  const isMember = isAdmin || find(workspace.workspace_users, {user_id: currentUser?.id})
 
   const renderGuestTabs = () => {
     return (<ul className="WorkspaceHeaderMenu">

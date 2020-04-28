@@ -44,7 +44,7 @@ declare interface AuthedUser extends User {
     workspaces: LightWorkspace[]
     user_skills: UserSkill[]
     mission_users: LightMissionUser[]
-    workspaces_users: WorkspaceUser[]
+    workspace_users: WorkspaceUser[]
     jwt: string
 }
 
@@ -98,7 +98,7 @@ declare interface WorkspaceUser {
 
 declare interface Workspace extends LightWorkspace {
     missions: LightMission[]
-    workspaces_users: WorkspaceUser[]
+    workspace_users: WorkspaceUser[]
     organization: LightOrganization
     mission_users: LightMissionUser[]
 }

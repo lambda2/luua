@@ -90,10 +90,10 @@ class Mission < ApplicationRecord
           missions.visibility IN (#{Mission.visibilities[:draft]}, #{Mission.visibilities[:hidden]}, #{Mission.visibilities[:protected]}) AND
           created_by = #{user_id}
         ) OR
-        ("workspaces_users"."user_id" = #{user_id} AND visibility = #{Mission.visibilities[:protected]}) OR
-        ("workspaces_users"."user_id" = #{user_id} AND "workspaces_users"."admin" = true AND visibility = #{Mission.visibilities[:hidden]})
+        ("workspace_users"."user_id" = #{user_id} AND visibility = #{Mission.visibilities[:protected]}) OR
+        ("workspace_users"."user_id" = #{user_id} AND "workspace_users"."admin" = true AND visibility = #{Mission.visibilities[:hidden]})
     SQL
 
-    joins(workspace: :workspaces_users).where(miss)
+    joins(workspace: :workspace_users).where(miss)
   end
 end

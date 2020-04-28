@@ -32,12 +32,12 @@ class Workspace < ApplicationRecord
   belongs_to :organization, optional: true
 
   # People belonging to the workspace
-  has_many :workspaces_users, dependent: :destroy
+  has_many :workspace_users, dependent: :destroy
 
   # Keep track of events in the workspace
   has_many :workspace_histories, dependent: :destroy
 
-  has_many :users, through: :workspaces_users
+  has_many :users, through: :workspace_users
   has_many :missions, dependent: :destroy
 
   has_many :mission_users, through: :missions
@@ -60,7 +60,7 @@ class Workspace < ApplicationRecord
   }, _suffix: true
 
   def admin_ids
-    workspaces_users.where(admin: true).pluck(:user_id)
+    workspace_users.where(admin: true).pluck(:user_id)
   end
 
   def generate_slug

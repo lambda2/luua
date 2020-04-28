@@ -23,7 +23,7 @@
 
 require 'rails_helper'
 
-RSpec.describe WorkspacesUser, type: :model do
+RSpec.describe WorkspaceUser, type: :model do
   # it 'Can be created' do
   #   workspaces_user = create(:workspaces_user)
   #   expect(workspaces_user).not_to be(nil)

@@ -6,7 +6,7 @@ FactoryBot.define do
 
     trait :with_admin_user do
       after :create do |ws|
-        ws.workspaces_users.last.update(admin: true)
+        ws.workspace_users.last.update(admin: true)
       end
     end
   end

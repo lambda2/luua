@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: workspaces_users
+# Table name: workspace_users
 #
 #  id           :bigint           not null, primary key
 #  admin        :boolean          default(FALSE), not null
@@ -12,8 +12,8 @@
 #
 # Indexes
 #
-#  index_workspaces_users_on_user_id       (user_id)
-#  index_workspaces_users_on_workspace_id  (workspace_id)
+#  index_workspace_users_on_user_id       (user_id)
+#  index_workspace_users_on_workspace_id  (workspace_id)
 #
 # Foreign Keys
 #
@@ -21,7 +21,7 @@
 #  fk_rails_...  (workspace_id => workspaces.id)
 #
 
-class WorkspacesUser < ApplicationRecord
+class WorkspaceUser < ApplicationRecord
 
   belongs_to :user
   belongs_to :workspace, counter_cache: :users_count
@@ -30,8 +30,8 @@ class WorkspacesUser < ApplicationRecord
   after_create :set_primary_workspace_for_user
 
   def set_admin_on_first_user
-    puts "Do we set admin for #{user.email} & worksp #{workspace&.name} ? #{admin.inspect} || #{workspace.workspaces_users.where.not(user_id: user_id).empty?.inspect}"
-    return unless admin || workspace.workspaces_users.where.not(user_id: user_id).empty?
+    puts "Do we set admin for #{user.email} & worksp #{workspace&.name} ? #{admin.inspect} || #{workspace.workspace_users.where.not(user_id: user_id).empty?.inspect}"
+    return unless admin || workspace.workspace_users.where.not(user_id: user_id).empty?
 
     self.admin = true
   end

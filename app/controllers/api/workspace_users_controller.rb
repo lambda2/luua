@@ -1,4 +1,4 @@
-class Api::WorkspacesUsersController < ApiController
+class Api::WorkspaceUsersController < ApiController
 
   load_and_authorize_resource :workspace
   load_and_authorize_resource :workspaces_user, through: %i[workspace], shallow: true
@@ -8,12 +8,12 @@ class Api::WorkspacesUsersController < ApiController
   before_action :set_workspace
 
   def index
-    @workspaces_users = @workspaces_users.page(params[:page])
+    @workspace_users = @workspace_users.page(params[:page])
 
     respond_to do |format|
       format.json do
-        respond_with_cache(@workspaces_users) do
-          Panko::ArraySerializer.new(@workspaces_users, each_serializer: WorkspaceUserSerializer).to_json
+        respond_with_cache(@workspace_users) do
+          Panko::ArraySerializer.new(@workspace_users, each_serializer: WorkspaceUserSerializer).to_json
         end
       end
     end
@@ -29,7 +29,7 @@ class Api::WorkspacesUsersController < ApiController
     end
   end
 
-  # PATCH/PUT /api/workspaces_users/id
+  # PATCH/PUT /api/workspace_users/id
   def update
     if @workspace.update(workspace_params)
       WorkspaceHistory.track!(@workspace, @workspace, current_user)
@@ -39,9 +39,9 @@ class Api::WorkspacesUsersController < ApiController
     end
   end
 
-  # POST /api/workspaces_users
+  # POST /api/workspace_users
   def create
-    @workspace = WorkspacesUser.new(workspace_params)
+    @workspace = WorkspaceUser.new(workspace_params)
     @workspace.users << current_user
     if @workspace.save
       WorkspaceHistory.track!(@workspace, @workspace, current_user)
