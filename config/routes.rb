@@ -33,7 +33,7 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
     end
 
     resources :mission_categories
-    
+
     resources :skill_categories, only: [] do
       resources :skills
     end

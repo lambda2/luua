@@ -59,7 +59,6 @@ class Workspace < ApplicationRecord
     open: 2           # Everybody can join
   }, _suffix: true
 
-
   def admin_ids
     workspaces_users.where(admin: true).pluck(:user_id)
   end
