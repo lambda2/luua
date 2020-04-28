@@ -44,6 +44,15 @@ class WorkspaceHistory < ApplicationRecord
     create_workspace
     destroy_workspace
     update_workspace
+    create_workspace_user
+    destroy_workspace_user
+    update_workspace_user
+    create_workspace_invitation
+    destroy_workspace_invitation
+    update_workspace_invitation
+    create_workspace_request
+    destroy_workspace_request
+    update_workspace_request
   ], _suffix: true
 
   def self.whitelist_changes(resource)

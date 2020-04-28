@@ -31,18 +31,22 @@ class WorkspaceInvitation < ApplicationRecord
 
   enum status: %i[pending accepted rejected], _suffix: true
 
-  before_validation :set_email_or_user
 
-  validate :matching_email, on: :create
-  validates :send_email, :email, presence: true
+  # validate :matching_email, on: :create
+  validates :email, presence: true
 
-  def matching_email
-    errors.add(:email, 'Provided email dont match the user email') if user && user.email != email
-  end
+  validates :email, uniqueness: true, scope: :workspace_id
+  validates :username, uniqueness: true, scope: :workspace_id
 
-  def set_email_or_user
+  before_validation :infer_email_or_user
+
+  def infer_email_or_user
     self.email ||= user&.email
     self.user ||= User.find_by(email: self.email)
   end
+
+  # def matching_email
+  #   errors.add(:email, 'Provided email dont match the user email') if user && user.email != email
+  # end
 
 end

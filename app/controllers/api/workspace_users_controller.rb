@@ -1,14 +1,16 @@
 class Api::WorkspaceUsersController < ApiController
 
   load_and_authorize_resource :workspace
-  load_and_authorize_resource :workspaces_user, through: %i[workspace], shallow: true
+  load_and_authorize_resource :workspace_user, through: %i[workspace], shallow: true
 
   skip_before_action :authenticate_user!
 
   before_action :set_workspace
 
   def index
-    @workspace_users = @workspace_users.page(params[:page])
+    @workspace_users = @workspace_users
+      .order(created_at: :asc)
+      .page(params[:page])
 
     respond_to do |format|
       format.json do
@@ -22,8 +24,8 @@ class Api::WorkspaceUsersController < ApiController
   def show
     respond_to do |format|
       format.json do
-        respond_with_cache(@workspace) do
-          WorkspaceUserSerializer.new.serialize(@workspace).to_json
+        respond_with_cache(@workspace_user) do
+          WorkspaceUserSerializer.new.serialize(@workspace_user).to_json
         end
       end
     end
@@ -31,28 +33,36 @@ class Api::WorkspaceUsersController < ApiController
 
   # PATCH/PUT /api/workspace_users/id
   def update
-    if @workspace.update(workspace_params)
-      WorkspaceHistory.track!(@workspace, @workspace, current_user)
-      render json: WorkspaceUserSerializer.new.serialize(@workspace)
+    if @workspace_user.update(workspace_user_params)
+      WorkspaceHistory.track!(@workspace, @workspace_user, current_user)
+      render json: WorkspaceUserSerializer.new.serialize(@workspace_user)
     else
-      render_error(@workspace.errors.messages, :unprocessable_entity)
+      render_error(@workspace_user.errors.messages, :unprocessable_entity)
     end
+  end
+
+  # PATCH/PUT /api/workspace_users/id
+  def destroy
+    @workspace_user.destroy!
+    render_destroyed
   end
 
   # POST /api/workspace_users
   def create
-    @workspace = WorkspaceUser.new(workspace_params)
-    @workspace.users << current_user
-    if @workspace.save
-      WorkspaceHistory.track!(@workspace, @workspace, current_user)
-      render json: WorkspaceUserSerializer.new.serialize(@workspace)
+    @workspace_user = WorkspaceUser.new(workspace_user_params)
+
+    if @workspace_user.save
+      WorkspaceHistory.track!(@workspace, @workspace_user, current_user)
+      render json: WorkspaceUserSerializer.new.serialize(@workspace_user)
     else
-      render_error(@workspace.errors.messages, :unprocessable_entity)
+      render_error(@workspace_user.errors.messages, :unprocessable_entity)
     end
   end
 
-  def workspace_params
-    params.require(:workspace).permit(
+
+  def workspace_user_params
+    params.require(:workspace_user).permit(
+      :id,
       :user_id,
       :admin,
       :role
@@ -62,6 +72,6 @@ class Api::WorkspaceUsersController < ApiController
   private
 
   def set_workspace
-    @workspace ||= @workspaces_user&.workspace # rubocop:todo Naming/MemoizedInstanceVariableName
+    @workspace ||= @workspace_user&.workspace # rubocop:todo Naming/MemoizedInstanceVariableName
   end
 end

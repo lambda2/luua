@@ -48,6 +48,27 @@ class Api::WorkspacesController < ApiController
     end
   end
 
+  # POST /api/workspaces/id/invite
+  def invite
+    user = User.find_by(username: params[:username])
+    wi = WorkspaceInvitation.new(
+      workspace: @workspace,
+      user: user,
+      email: user&.email || params[:email],
+      inviter: current_user,
+      send_email: params[:send_email] || false
+    )
+
+    puts wi.inspect
+
+    if wi.save
+      WorkspaceHistory.track!(@workspace, wi, current_user)
+      render json: WorkspaceInvitationSerializer.new.serialize(wi)
+    else
+      render_error(wi.errors.messages, :unprocessable_entity)
+    end
+  end
+
   def workspace_params
     params.require(:workspace).permit(
       :name,

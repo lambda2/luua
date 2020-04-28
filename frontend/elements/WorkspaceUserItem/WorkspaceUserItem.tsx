@@ -29,11 +29,11 @@ const WorkspaceUserItem: React.FC<WorkspaceUser> = ({
       <main>
         <h4>
           {first_name && last_name && <span>{first_name} {last_name}</span>}
-          {admin && <Tag color="red">{t('admin')}</Tag>}
+          {admin && <Tag color="red">{t('workspace.admin')}</Tag>}
           {role && <Tag color="blue">{role}</Tag>}
           {yourself && <span className="text-light">({t('generics.yourself')})</span>}
         </h4>
-        <div className="text-light">@{username} - {t('workspace.settings.memeber-since')}{' '}{moment(created_at).calendar()}</div>
+        <div className="text-light">@{username} - {t('workspace.settings.member-since')}{' '}{moment(created_at).calendar()}</div>
       </main>
     </div>
   );

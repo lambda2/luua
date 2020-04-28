@@ -9,6 +9,9 @@ import MissionForm from '../../../../../components/MissionForm/MissionForm';
 
 import ContentLayout from '../../../../../layouts/ContentLayout/ContentLayout'
 import ManageLeftMenu from '../../../../../layouts/ManageLeftMenu/ManageLeftMenu'
+import { useContext } from 'react'
+import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
+import WorkspaceHeader from '../../../../../components/WorkspaceHeader/WorkspaceHeader'
 
 /**
  * Edit a mission
@@ -18,6 +21,7 @@ const Mission = (
   { initialData: Mission, token?: string }
 ) => {
   const { query } = useRouter()
+  const { currentWorkspace } = useContext(WorkspaceContext)
 
   const { status, data, error } = useCollection<Mission>(
     `/api/missions/${query.id}`, token, {}, { initialData }
@@ -25,7 +29,11 @@ const Mission = (
 
   return (
     <NetworkBoundary status={status} data={data} error={error}>
-      <ContentLayout sideMenu={<ManageLeftMenu />}>
+      {currentWorkspace && <WorkspaceHeader
+        workspace={currentWorkspace}
+        active='missions'
+      />}
+      <ContentLayout>
       {data && <div>
         <MissionForm mission={data} />
       </div>}

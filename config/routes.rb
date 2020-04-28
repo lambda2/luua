@@ -25,8 +25,15 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
     get 'me/notifications', action: :me, controller: 'notifications'
 
     resources :workspaces do
+      post 'invite', on: :member, action: :invite
+
       resources :missions
-      resources :workspace_users
+
+      resources :workspace_users, shallow: true
+      resources :workspace_invitations, shallow: true
+      resources :workspace_requests, shallow: true
+      resources :workspace_histories, shallow: true
+
       resources :mission_users do
         concerns :mission_users_filters
       end
@@ -57,7 +64,6 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
       patch :read_all, on: :collection
     end
 
-    resources :workspace_histories
 
     resources :mission_users do
       concerns :mission_users_actions

@@ -34,6 +34,12 @@ class Workspace < ApplicationRecord
   # People belonging to the workspace
   has_many :workspace_users, dependent: :destroy
 
+  # People invited to join the workspace
+  has_many :workspace_invitations, dependent: :destroy
+
+  # People requesting to join the workspace
+  has_many :workspace_requests, dependent: :destroy
+
   # Keep track of events in the workspace
   has_many :workspace_histories, dependent: :destroy
 

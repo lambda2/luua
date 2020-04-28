@@ -14,6 +14,9 @@ type NotificationCode =
     'mission.candidate.reviewed'    | // A candidate has been reviewed on a mission
     'custom'                          // A custom content
 
+type WorkspaceInvitationStatus = 'pending' | 'accepted' | 'rejected'
+type WorkspaceRequestStatus = 'pending' | 'accepted' | 'rejected'
+
 declare interface BaseUser {
     id: number
     country: string
@@ -94,6 +97,20 @@ declare interface WorkspaceUser {
     last_name?: string
     username: string
     created_at: string
+}
+
+declare interface WorkspaceInvitation {
+    id: number
+    email: string
+    send_email: boolean
+    status: WorkspaceInvitationStatus
+    inviter_id: number
+    user_id: number
+    workspace_id: number
+    created_at: string
+    updated_at: string
+    inviter: BaseUser
+    user: BaseUser
 }
 
 declare interface Workspace extends LightWorkspace {

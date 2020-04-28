@@ -2,13 +2,15 @@ import React from 'react'
 import { withAuthSync } from '../../utils/auth'
 import UserEditForm from '../../components/UserEditForm/UserEditForm'
 import ContentLayout from '../../layouts/ContentLayout/ContentLayout'
+import PageTitle from '../../elements/PageTitle/PageTitle'
+import { useLocale } from '../../hooks/useLocale'
 
 const Skills = (props: any) => {
+  const { t } = useLocale()
 
   return (
     <ContentLayout>
-      <h1>Edit my profile</h1>
-
+      <PageTitle title={t('form.user.edit.title')} />
       <UserEditForm />
     </ContentLayout>
   )

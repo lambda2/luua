@@ -34,7 +34,7 @@ const MissionUser = (
         workspace={currentWorkspace}
         tree={[<Link {...workspace.candidates.index(currentWorkspace.id)}><a>{t('menu.contributors')}</a></Link>]}
       />}
-      <ContentLayout sideMenu={<ManageLeftMenu />}>
+      <ContentLayout>
         <MissionUserShow refetch={response.refetch} mission_user={response!.data as MissionUser} />
       </ContentLayout>
     </NetworkBoundary>

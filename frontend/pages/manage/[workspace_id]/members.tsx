@@ -45,6 +45,10 @@ const WorkspaceMembers = (
     await update({ id, admin: true }, token || '')
     await refetch()
   }
+  const onUserRegular = async (id: number) => {
+    await update({ id, admin: false }, token || '')
+    await refetch()
+  }
 
   const itemStyle = {
     display: 'flex',
@@ -68,7 +72,12 @@ const WorkspaceMembers = (
           dataSource={data}
           renderItem={(item: WorkspaceUser) => <div key={item.id} style={itemStyle} className="workspace-user-list-item">
             <WorkspaceUserItem {...item} />
-            <WorkspaceUserActions workspace_user={item} onAdmin={onUserAdmin} onRemove={onUserDelete} />
+            <WorkspaceUserActions
+              workspace_user={item}
+              onAdmin={onUserAdmin}
+              onRegular={onUserRegular}
+              onRemove={onUserDelete}
+            />
           </div>}
         />
       </ContentLayout>

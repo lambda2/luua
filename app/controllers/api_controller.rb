@@ -10,4 +10,12 @@ class ApiController < ApplicationController
   def render_error(messages, code = 500)
     render json: { error: true, errors: messages }, status: code
   end
+
+  def render_empty
+    render json: {}, status: 200
+  end
+
+  def render_destroyed
+    render json: nil, status: 204
+  end
 end

@@ -3,7 +3,10 @@
     "or": "ou",
     "for": "pour",
     "yourself": "C'est vous",
-    "since": "depuis"
+    "since": "depuis",
+    "collection": {
+      "empty": "Aucun élément"
+    }
   },
   "menu": {
     "explore": "Explorer",
@@ -23,6 +26,11 @@
     "settings": "Paramètres",
     "show": "Voir",
     "delete": "Supprimer"
+  },
+  "status": {
+    "pending": "En attente",
+    "accepted": "Accepté",
+    "rejected": "Refusé"
   },
   "error": {
     "title": "Une erreur s'est produite"
@@ -154,9 +162,18 @@
   "explore": {
     "title": "Explorer"
   },
-  "workspaces_user": {
+  "workspace_user": {
     "remove": "Retirer",
-    "set-admin": "Definir comme admin"
+    "set-admin": "Definir comme admin",
+    "unset-admin": "Enlever les droits admin"
+  },
+  "workspace_invitation": {
+    "invited-by": "Invité par",
+    "invite": {
+      "button": "Inviter...",
+      "title": "Inviter dans l'espace"
+    },
+    "to-join": "a rejoindre l'espace"
   },
   "workspace": {
     "create": {
@@ -168,7 +185,9 @@
     "settings": {
       "edit": "Informations",
       "members": "Membres",
-      "memeber-since": "Membre depuis"
+      "invitations": "Invitations",
+      "requests": "Requêtes",
+      "member-since": "Membre depuis"
     },
     "no-workspace-yet": {
       "title": "Il semblerait que tu n'aies pas encore d'espace",
@@ -177,6 +196,7 @@
     "switching-workspace": "Changement d'espace...",
     "members": "Membres",
     "missions": "Missions",
+    "admin": "Admin",
     "applicants": "Candidatures"
   },
   "help": {
@@ -204,7 +224,8 @@
         "have-account": "Vous avez déja un compte ?"
       },
       "edit": {
-        "submit": "Mettre à jour"
+        "submit": "Mettre à jour",
+        "title": "Modifier mon profil"
       },
       "username": {
         "label": "Login",
@@ -259,6 +280,16 @@
       "language": "Parler",
       "technical": "Savoir faire",
       "mobility": "Se déplacer"
+    },
+    "workspace_invitation": {
+      "submit": "Inviter {{name}}",
+      "description": "Inviter un utilisateur à rejoindre l'espace par nom d'utilisateur ou par email",
+      "username": {
+        "label": "Nom d'utilisateur"
+      },
+      "email": {
+        "label": "Email"
+      }
     },
     "workspace": {
       "update": "Mettre à jour mon espace",

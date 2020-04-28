@@ -16,6 +16,7 @@ import { useLocale } from '../../hooks/useLocale';
 import Router from 'next/router';
 import MissionDurationForm from './MissionDurationForm';
 import MissionPeopleForm from './MissionPeopleForm';
+import PageTitle from '../../elements/PageTitle/PageTitle';
 const { manage } = routes
 const { workspace } = manage
 
@@ -166,7 +167,7 @@ const MissionForm = ({ mission }: Props) => {
             submitCount
           }) => (
               <Form layout="vertical">
-                <Title style={{ marginBottom: 40 }}>{mission?.id ? `${values.name || t('form.mission.edit')}` : t('form.mission.new')}</Title>
+                <PageTitle title={mission?.id ? `${values.name || t('form.mission.edit')}` : t('form.mission.new')} />
 
                 <ErrorMessage name="globalErrors" />
 
