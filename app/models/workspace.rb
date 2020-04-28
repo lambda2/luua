@@ -43,6 +43,8 @@ class Workspace < ApplicationRecord
   # Keep track of events in the workspace
   has_many :workspace_histories, dependent: :destroy
 
+  has_many :notifications, as: :resource, dependent: :destroy
+
   has_many :users, through: :workspace_users
   has_many :missions, dependent: :destroy
 

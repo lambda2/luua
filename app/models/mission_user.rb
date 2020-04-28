@@ -37,6 +37,8 @@ class MissionUser < ApplicationRecord
 
   validates_uniqueness_of :user_id, scope: [:mission_id]
 
+  has_many :notifications, as: :resource, dependent: :destroy
+
   # - applied: The candidate applied for a mission
   # - rejected: The candidate has been rejected to do this mission
   # - accepted: The candidate has been accepted, he can start

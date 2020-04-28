@@ -71,11 +71,11 @@ class User < ApplicationRecord
 
   has_one :primary_workspace, class_name: 'Workspace', foreign_key: :id
 
-  has_many :workspace_histories, as: :resource
+  has_many :workspace_histories, as: :resource, dependent: :nullify
 
-  has_many :notifications
+  has_many :notifications, dependent: :destroy
 
-  has_many :mission_users
+  has_many :mission_users, dependent: :destroy
   has_many :missions, through: :mission_users
 
   before_create :assign_token

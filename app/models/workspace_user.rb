@@ -29,6 +29,8 @@ class WorkspaceUser < ApplicationRecord
   before_create :set_admin_on_first_user
   after_create :set_primary_workspace_for_user
 
+  validates :user_id, uniqueness: { scope: :workspace_id }
+
   def set_admin_on_first_user
     puts "Do we set admin for #{user.email} & worksp #{workspace&.name} ? #{admin.inspect} || #{workspace.workspace_users.where.not(user_id: user_id).empty?.inspect}"
     return unless admin || workspace.workspace_users.where.not(user_id: user_id).empty?

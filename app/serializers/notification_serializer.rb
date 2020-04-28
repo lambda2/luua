@@ -25,12 +25,18 @@
 #
 class NotificationSerializer < Panko::Serializer
   attributes :id, :title, :content, :resource_type, :resource_id,
-             :user_id, :viewed_at, :link, :code, :resource
+             :user_id, :viewed_at, :link, :code, :resource,
+             :created_at, :updated_at
 
   def resource
     case object.resource_type
     when 'MissionUser'
       MissionUserLightSerializer.new.serialize(object.resource)
+    when 'WorkspaceInvitation'
+      puts "~~~~~~~~~~~~ß"
+      puts object.inspect
+      puts object.resource.inspect
+      WorkspaceInvitationSerializer.new.serialize(object.resource)
     end
   end
 end

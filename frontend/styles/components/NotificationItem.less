@@ -3,19 +3,28 @@
   // padding-top: 15px;
 
   header {
-    margin-bottom: 5px;
+    margin-bottom: @space-m;
     display: flex;
     align-items: center;
 
     .org-title {
-      padding-left: 5px;
+      padding-left: @space-m;
 
     }
   }
 
-  h2 {
+  h4 {
     display: flex;
     align-items: center;
+    font-size: 1.2em;
+
+    a {
+      flex: auto;
+    }
+
+    button {
+      align-self: flex-end;
+    }
   }
 
   &.unread {

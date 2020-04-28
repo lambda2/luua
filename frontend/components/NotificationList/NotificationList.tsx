@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import NotificationItem from '../NotificationItem/NotificationItem';
-import { List } from 'antd';
+import InvitationNotification from '../NotificationItem/InvitationNotification';
+import List from '../../elements/List/List';
 import PageSection from '../../elements/PageSection/PageSection';
 import { useLocale } from '../../hooks/useLocale';
 
@@ -11,6 +12,17 @@ interface Props {
 
 const NotificationList = ({ data, onRead }: Props) => {
 
+
+  const notificationForType = (type: string) => {
+    const [ns, target, action] = type.split('.')
+
+    switch (type) {
+      case 'workspace.invitation.created':
+        return InvitationNotification
+      default:
+        return NotificationItem
+    }
+  }
   const { t } = useLocale()
   
   return (
@@ -20,7 +32,10 @@ const NotificationList = ({ data, onRead }: Props) => {
           itemLayout="vertical"
           size="default"
           dataSource={data}
-          renderItem={(item: UserNotification) => <NotificationItem onRead={onRead} notification={item} />}
+          renderItem={(item: UserNotification) => {
+            const Not = notificationForType(item.code)
+            return <Not onRead={onRead} notification={item} />
+          }}
         />
       </PageSection>
   </>)

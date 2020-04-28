@@ -24,6 +24,7 @@ export const linkForNotification = ({
     case 'mission.candidate.reviewed':
       return ROUTES.explore.missions.show(resource.mission_id)
     default:
-      return { href: link }
+      console.warn(`Unknown notification code: ${code}`)
+      return { href: link || '#' }
   }
 }

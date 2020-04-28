@@ -7,6 +7,7 @@ interface Props {
     isSubmitting?: boolean
     dirty?: boolean
     isValid?: boolean
+    block?: boolean
     submitCount?: number
     label?: string
 }
@@ -16,6 +17,7 @@ interface Props {
  */
 const SubmitButton: React.FC<Props> = ({
     isSubmitting = false,
+    block = false,
     dirty = false,
     isValid = true,
     submitCount = 0,
@@ -30,7 +32,7 @@ const SubmitButton: React.FC<Props> = ({
     )
 
     return (
-        <OriginalButton>
+        <OriginalButton block={block}>
             {isSubmitting ? t('form.submitting') : submittedLabel }
         </OriginalButton>
     );

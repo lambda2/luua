@@ -41,6 +41,26 @@ class Api::WorkspaceInvitationsController < ApiController
     end
   end
 
+  # PATCH/PUT /api/workspace_invitations/id/accept
+  def accept
+    result = AcceptWorkspaceInvitation.call(workspace_invitation: @workspace_invitation)
+    if result.success?
+      render json: WorkspaceInvitationSerializer.new.serialize(result.workspace_invitation)
+    else
+      render_error(result.messages, :unprocessable_entity)
+    end
+  end
+
+  # PATCH/PUT /api/workspace_invitations/id/reject
+  def reject
+    result = RejectWorkspaceInvitation.call(workspace_invitation: @workspace_invitation)
+    if result.success?
+      render json: WorkspaceInvitationSerializer.new.serialize(result.workspace_invitation)
+    else
+      render_error(result.messages, :unprocessable_entity)
+    end
+  end
+
   # PATCH/PUT /api/workspace_invitations/id
   def destroy
     @workspace_invitation.destroy!

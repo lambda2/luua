@@ -10,7 +10,7 @@
   },
   "menu": {
     "explore": "Explorer",
-    "manage": "Gérer",
+    "manage": "Espaces",
     "summary": "Résumé",
     "workspaces": "Espaces",
     "missions": "Missions",
@@ -171,6 +171,8 @@
     "invited-by": "Invité par",
     "invite": {
       "button": "Inviter...",
+      "accept": "Accepter",
+      "reject": "Refuser",
       "title": "Inviter dans l'espace"
     },
     "to-join": "a rejoindre l'espace"
@@ -446,6 +448,30 @@
   "notifications": {
     "read-all": "Tout marquer comme lu",
     "read": "Marquer comme lu",
+    "workspace": {
+      "invitation": {
+        "created": {
+          "title": "Vous avez été invité a rejoindre l'espace {{workspace.name}}",
+          "content": "Invité par @{{inviter.username}}"
+        },
+        "accepted": {
+          "title": "@{{user.username}} a accepté de rejoindre l'espace {{workspace.name}}",
+          "content": "Invité par @{{inviter.username}}"
+        },
+        "rejected": {
+          "title": "@{{user.username}} a refusé de rejoindre l'espace {{workspace.name}}",
+          "content": "Invité par @{{inviter.username}}"
+        },
+        "_accepted": {
+          "title": "Vous avez accepté de rejoindre l'espace {{workspace.name}}",
+          "content": "Invité par @{{inviter.username}}"
+        },
+        "_rejected": {
+          "title": "Vous avez refusé de rejoindre l'espace {{workspace.name}}",
+          "content": "Invité par @{{inviter.username}}"
+        }
+      }
+    },
     "mission": {
       "candidate": {
         "applied": {

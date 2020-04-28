@@ -6,13 +6,10 @@ import { errorsFromResponse } from '../../utils/forms/helpers';
 import { Form, Input, ResetButton, Select, Switch } from 'formik-antd'
 import YupWithLocale from '../../utils/forms/yup';
 import SubmitButton from '../../elements/SubmitButton/SubmitButton';
-import icons from '../../dictionaries/icons';
-import { Tooltip } from 'antd';
-import UploadAvatar from '../../elements/UploadAvatar/UploadAvatar';
 import { useLocale } from '../../hooks/useLocale';
 import Router, { useRouter } from 'next/router';
-import { cdnUrl } from '../../utils/http';
 import routes from '../../routes/manage'
+import MessageBox from '../../elements/MessageBox/MessageBox';
 
 interface Props {
   workspace_invitation?: WorkspaceInvitation
@@ -67,13 +64,8 @@ const WorkspaceInvitationForm = ({ workspace_invitation, onSave }: Props) => {
     },
   };
 
-  const onUpload = (elt: any) => {
-    console.log("onUpload", { elt });
-    
-  }
-
   return (
-  <div>
+  <div className="WorkspaceInvitationForm">
     <Formik
       initialValues={initialValues}
       onSubmit={async (values, { setErrors }) => {
@@ -88,7 +80,11 @@ const WorkspaceInvitationForm = ({ workspace_invitation, onSave }: Props) => {
             Router.push(dest.href, dest.as)
           }
         } catch (error) {
-          setErrors(errorsFromResponse(error.response))
+          if (error?.response?.data?.errors?.user_id) {
+            setErrors({ username: error?.response?.data?.errors?.user_id })
+          } else {
+            setErrors(errorsFromResponse(error.response))
+          }
         }
       }}
       validationSchema={EditSchema}
@@ -103,24 +99,25 @@ const WorkspaceInvitationForm = ({ workspace_invitation, onSave }: Props) => {
             <Form {...formItemLayout} scrollToFirstError>
               <ErrorMessage name="globalErrors" />
               
-              <div>{t('form.workspace_invitation.description')}</div>
+              <MessageBox>{t('form.workspace_invitation.description')}</MessageBox>
               <Form.Item label={t('form.workspace_invitation.username.label')} name='username'>
                 <Input disabled={!!values.email} name="username" />
               </Form.Item>
-              <span>{' '}{t('generics.or')}{' '}</span>
+              <div className="text-centered or-separator">
+                {t('generics.or')}
+              </div>
               <Form.Item label={t('form.workspace_invitation.email.label')} name='email'>
                 <Input disabled={!!values.username} name="email" />
               </Form.Item>
-
-              <Form.Item name="end" {...tailFormItemLayout}>
-                <SubmitButton
-                  isSubmitting={isSubmitting}
-                  dirty={dirty}
-                  submitCount={submitCount}
-                  isValid={isValid}
-                  label={t('form.workspace_invitation.submit', { name: (values.username || values.email)})}
-                />
-              </Form.Item>
+              <br />
+              <SubmitButton
+                isSubmitting={isSubmitting}
+                dirty={dirty}
+                block
+                submitCount={submitCount}
+                isValid={isValid}
+                label={t('form.workspace_invitation.submit', { name: (values.username || values.email)})}
+              />
             </Form>
         )}
     </Formik>

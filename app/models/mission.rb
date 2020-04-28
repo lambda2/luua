@@ -58,6 +58,7 @@ class Mission < ApplicationRecord
   belongs_to :workspace, counter_cache: true
 
   has_many :workspace_histories, as: :resource
+  has_many :notifications, as: :resource
 
   validates :name, uniqueness: { scope: %i[workspace_id organization_id] }
 

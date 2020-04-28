@@ -6,7 +6,9 @@ class Api::NotificationsController < ApiController
   has_scope :read, type: :boolean
 
   def index
-    @notifications = apply_scopes(@notifications).page(params[:page])
+    @notifications = apply_scopes(@notifications)
+      .order(created_at: :desc)
+      .page(params[:page])
 
     respond_to do |format|
       format.json do
@@ -18,7 +20,9 @@ class Api::NotificationsController < ApiController
   end
 
   def me
-    @notifications = apply_scopes(current_user.notifications).page(params[:page])
+    @notifications = apply_scopes(current_user.notifications)
+      .order(created_at: :desc)
+      .page(params[:page])
 
     respond_to do |format|
       format.json do

@@ -29,17 +29,25 @@ class Notification < ApplicationRecord
 
   before_create :set_default_values
 
+  validates :resource, presence: true, allow_blank: true
+  validates :user, presence: true
+
   scope :unread, -> { where(viewed_at: nil) }
   scope :read, -> { where.not(viewed_at: nil) }
 
   enum code: {
-    'mission.candidate.applied' => 0,     # A candidate applied
-    'mission.candidate.rejected' => 1,    # A candidate has been rejected on a mission
-    'mission.candidate.canceled' => 2,    # A candidate has canceled a mission
-    'mission.candidate.accepted' => 3,    # A candidate has been accepted on a mission
-    'mission.candidate.completed' => 4,   # A candidate has completed a mission
-    'mission.candidate.reviewed' => 5,    # A candidate has been reviewed on a mission
-    'custom' => 100                       # A candidate has been reviewed on a mission
+    'mission.candidate.applied' => 0,       # A candidate applied
+    'mission.candidate.rejected' => 1,      # A candidate has been rejected on a mission
+    'mission.candidate.canceled' => 2,      # A candidate has canceled a mission
+    'mission.candidate.accepted' => 3,      # A candidate has been accepted on a mission
+    'mission.candidate.completed' => 4,     # A candidate has completed a mission
+    'mission.candidate.reviewed' => 5,      # A candidate has been reviewed on a mission
+    'workspace.invitation.created' => 6,    # An user has been invited to join a workspace
+    'workspace.invitation.accepted' => 7,   # An user accepted to join a workspace
+    'workspace.invitation.rejected' => 8,   # An user rejected to join a workspace
+    'workspace.invitation._accepted' => 9,  # Placeholder for the user who accepted to join a workspace
+    'workspace.invitation._rejected' => 10, # Placeholder for the user who rejected to join a workspace
+    'custom' => 100                         # A candidate has been reviewed on a mission
   }, _suffix: true
 
   def set_default_values

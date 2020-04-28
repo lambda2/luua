@@ -24,7 +24,7 @@ const Notifications = (
   const { t } = useLocale()
 
   const response = useCollection<UserNotification[]>(
-    `/api/me/notifications?unread=true`, token, {}, { initialData }
+    `/api/me/notifications`, token, {}, { initialData }
   )
 
   const { readAllNotifications, readNotification } = useContext(UserContext)
@@ -41,7 +41,7 @@ const Notifications = (
 
   return (
     <NetworkBoundary<UserNotification[]> {...response}>
-      <ContentLayout sideMenu={<ManageLeftMenu />}>
+      <ContentLayout>
         <PageTitle
           title={t('menu.notifications')}
           extra={[
@@ -56,7 +56,7 @@ const Notifications = (
 
 Notifications.getInitialProps = async (ctx: any) => {
   return await fetchInitialData<UserNotification[]>(
-    ctx, `/api/me/notifications?unread=true`
+    ctx, `/api/me/notifications`
   )
 }
 

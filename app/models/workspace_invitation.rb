@@ -24,19 +24,28 @@
 #  fk_rails_...  (user_id => users.id)
 #  fk_rails_...  (workspace_id => workspaces.id)
 #
+
+class InvitationValidator < ActiveModel::Validator
+  def validate(record)
+    record.errors[:email] << 'Please provide an email or a valid username' unless record.email || record.user
+  end
+end
+
 class WorkspaceInvitation < ApplicationRecord
+  include ActiveModel::Validations
+
   belongs_to :user, optional: true
   belongs_to :workspace
   belongs_to :inviter, class_name: 'User'
 
+  has_many :notifications, as: :resource, dependent: :destroy
+
   enum status: %i[pending accepted rejected], _suffix: true
 
-
-  # validate :matching_email, on: :create
+  validates_with InvitationValidator
+  validates :user_id, uniqueness: { scope: :workspace_id, message: 'Is already invited' }
   validates :email, presence: true
-
-  validates :email, uniqueness: true, scope: :workspace_id
-  validates :username, uniqueness: true, scope: :workspace_id
+  validates :email, uniqueness: { scope: :workspace_id }
 
   before_validation :infer_email_or_user
 
@@ -44,9 +53,5 @@ class WorkspaceInvitation < ApplicationRecord
     self.email ||= user&.email
     self.user ||= User.find_by(email: self.email)
   end
-
-  # def matching_email
-  #   errors.add(:email, 'Provided email dont match the user email') if user && user.email != email
-  # end
 
 end

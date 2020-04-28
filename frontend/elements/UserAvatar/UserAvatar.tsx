@@ -31,8 +31,7 @@ const UserAvatar = ({
   const imgStyles = {
     maxHeight: (sizes[size as "small" | "large" | "default"]) || size || 32,
     maxwidth: (sizes[size as "small" | "large" | "default"]) || size || 32,
-    borderRadius: 3,
-    marginRight: '.3em'
+    borderRadius: 3
   }
 
   return (

@@ -37,7 +37,7 @@ const WorkspaceInvitationModal = ({ onInvite }: Props) => {
   };
 
   return (
-    <div>
+    <div className="WorkspaceInvitationModal">
       <Button type="primary" onClick={showModal}>
         {t('workspace_invitation.invite.button') }
       </Button>

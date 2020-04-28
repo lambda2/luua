@@ -9,6 +9,7 @@ import find from 'lodash/find';
 import momentWithLocale from '../../i18n/moment';
 import { linkForNotification } from '../../utils/notifications';
 import classNames from 'classnames';
+import { accept, reject } from '../../api/workspace_invitations';
 
 const { explore } = routes
 
@@ -17,7 +18,20 @@ interface Props {
   onRead: (id: string | number) => Promise<void>
 }
 
-const NotificationItem = ({notification, onRead}: Props) => {
+
+const InvitationNotification = ({notification, onRead}: Props) => {
+
+  const { currentUser }: { currentUser: AuthedUser | null } = useContext(UserContext)
+
+  const onAccept = async () => {
+    await accept(notification.resource.id, currentUser?.jwt || '')
+    await onRead(notification.id)
+  }
+
+  const onReject = async () => {
+    await reject(notification.resource.id, currentUser?.jwt || '')
+    await onRead(notification.id)
+  }
 
   const {
     id,
@@ -38,20 +52,26 @@ const NotificationItem = ({notification, onRead}: Props) => {
   console.log("Rendering:", { notification });
   
   return (
-    <div className={classNames("NotificationItem", {'unread': !viewed_at})}>
+
+    <div className={classNames("NotificationItem", { 'unread': !viewed_at })}>
       <h4>
         <Link key={id} {...notificationHref}>
           <a>{code === 'custom' ? title : t(`notifications.${code}.title`, resource)}</a>
         </Link>
-        {!viewed_at && <Button onClick={() => onRead(id)}>{t('notifications.read')}</Button>}
+        <Button.Group>
+          <Button type="primary" onClick={onAccept}>{t('workspace_invitation.invite.accept')}</Button>
+          <Button onClick={onReject}>{t('workspace_invitation.invite.reject')}</Button>
+          {!viewed_at && <Button onClick={() => onRead(id)}>{t('notifications.read')}</Button>}
+        </Button.Group>
       </h4>
       <div>
         {code === 'custom' ? content : t(`notifications.${code}.content`, resource)}
         {' - '}{moment(updated_at).calendar()}
       </div>
     </div>
+
   )
 
 }
 
-export default NotificationItem
+export default InvitationNotification
