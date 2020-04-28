@@ -78,7 +78,7 @@ class Mission < ApplicationRecord
                                 allow_destroy: true,
                                 reject_if: :all_blank
 
-  scope :available_for, ->(user_id) { visible_for(user_id) }
+  scope :available_for, ->(user_id) { visible_for(user_id).distinct }
   scope :search, ->(q) { joins(:workspace).where('LOWER(unaccent(missions.name)) ILIKE LOWER(unaccent(?)) OR LOWER(unaccent(workspaces.name)) ILIKE LOWER(unaccent(?))', "%#{q}%", "%#{q}%") }
 
   def self.visible_for(user_id)

@@ -2,6 +2,7 @@
   "generics": {
     "or": "ou",
     "for": "pour",
+    "yourself": "C'est vous",
     "since": "depuis"
   },
   "menu": {
@@ -152,6 +153,10 @@
   },
   "explore": {
     "title": "Explorer"
+  },
+  "workspaces_user": {
+    "remove": "Retirer",
+    "set-admin": "Definir comme admin"
   },
   "workspace": {
     "create": {

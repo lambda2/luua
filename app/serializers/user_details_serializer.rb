@@ -5,6 +5,7 @@ class UserDetailsSerializer < Panko::Serializer
 
   has_one :primary_workspace, serializer: WorkspaceLightSerializer
   has_many :workspaces, serializer: WorkspaceLightSerializer
+  has_many :workspaces_users, serializer: WorkspaceUserSerializer
   has_many :user_skills, serializer: UserSkillLightSerializer
   has_many :mission_users, serializer: MissionUserLightSerializer
 

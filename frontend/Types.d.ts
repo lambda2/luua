@@ -44,6 +44,7 @@ declare interface AuthedUser extends User {
     workspaces: LightWorkspace[]
     user_skills: UserSkill[]
     mission_users: LightMissionUser[]
+    workspaces_users: WorkspaceUser[]
     jwt: string
 }
 

@@ -1,0 +1,19 @@
+
+.List {
+
+  list-style-type: none;
+  align-self: self-start;
+
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: block;
+    padding: @space-m 0;
+    
+    & + li {
+      border-top: 1px solid @nord4;
+    }
+  }
+
+}

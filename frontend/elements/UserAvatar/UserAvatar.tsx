@@ -3,7 +3,7 @@ import { Avatar } from 'antd';
 import { cdnUrl } from '../../utils/http';
 
 interface Props {
-  src: string
+  src?: string
   name: string
   size?: number | "small" | "large" | "default"
 }

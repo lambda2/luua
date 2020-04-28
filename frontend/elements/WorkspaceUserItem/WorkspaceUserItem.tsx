@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { cdnUrl } from '../../utils/http';
 import { Tag } from 'antd';
 import { useLocale } from '../../hooks/useLocale';
 import momentWithLocale from '../../i18n/moment';
+import UserContext from '../../contexts/UserContext';
+import UserAvatar from '../UserAvatar/UserAvatar';
 
 const WorkspaceUserItem: React.FC<WorkspaceUser> = ({
   thumb_url,
@@ -14,23 +16,22 @@ const WorkspaceUserItem: React.FC<WorkspaceUser> = ({
   created_at
 }) => {
 
-  const imgOrPlaceholder = thumb_url ?
-    cdnUrl(thumb_url) :
-    `https://robohash.org/${username || 'default'}.png?size=200x200`
-
   const { t, language } = useLocale()
+  const { currentUser } = useContext(UserContext)
+  const yourself = currentUser?.username === username
 
   const moment = momentWithLocale(language as AvailableLocale)
   return (
     <div className="WorkspaceUserItem">
       <aside>
-        <img src={imgOrPlaceholder} alt={username} />
+        <UserAvatar src={thumb_url} size="large" name={username} />
       </aside>
       <main>
         <h4>
           {first_name && last_name && <span>{first_name} {last_name}</span>}
           {admin && <Tag color="red">{t('admin')}</Tag>}
           {role && <Tag color="blue">{role}</Tag>}
+          {yourself && <span className="text-light">({t('generics.yourself')})</span>}
         </h4>
         <div className="text-light">@{username} - {t('workspace.settings.memeber-since')}{' '}{moment(created_at).calendar()}</div>
       </main>

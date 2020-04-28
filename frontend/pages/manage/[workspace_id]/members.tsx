@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { NextPageContext } from 'next'
 import { useRouter } from 'next/router'
-import { List } from 'antd'
 
 import { useCollection, fetchInitialData } from '../../../utils/http'
 import { withAuthSync } from '../../../utils/auth'
@@ -17,6 +16,9 @@ import WorkspaceHeader from '../../../components/WorkspaceHeader/WorkspaceHeader
 
 import WorkspaceUserItem from '../../../elements/WorkspaceUserItem/WorkspaceUserItem'
 import PageTitle from '../../../elements/PageTitle/PageTitle'
+import List from '../../../elements/List/List'
+import WorkspaceUserActions from '../../../elements/WorkspaceUserActions/WorkspaceUserActions'
+import { remove, update } from '../../../api/workspace_user'
 
 
 /**
@@ -29,10 +31,26 @@ const WorkspaceMembers = (
   const { query } = useRouter()
   const { t } = useLocale()
 
-  const { status, data, error } = useCollection<WorkspaceUser[]>(
+  const { status, data, error, refetch } = useCollection<WorkspaceUser[]>(
     `/api/workspaces/${query.workspace_id}/workspaces_users`, token, {}, { initialData }
   )
   const { currentWorkspace } = useContext(WorkspaceContext)
+
+  const onUserDelete = async (id: number) => {
+    await remove(id, token || '')
+    await refetch()
+  }
+
+  const onUserAdmin = async (id: number) => {
+    await update({ id, admin: true }, token || '')
+    await refetch()
+  }
+
+  const itemStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  }
 
   return (
     <NetworkBoundary status={status} data={data} error={error}>
@@ -48,8 +66,9 @@ const WorkspaceMembers = (
           itemLayout="vertical"
           size="default"
           dataSource={data}
-          renderItem={(item: WorkspaceUser) => <div key={item.id} className="workspace-user-list-item">
+          renderItem={(item: WorkspaceUser) => <div key={item.id} style={itemStyle} className="workspace-user-list-item">
             <WorkspaceUserItem {...item} />
+            <WorkspaceUserActions workspace_user={item} onAdmin={onUserAdmin} onRemove={onUserDelete} />
           </div>}
         />
       </ContentLayout>
