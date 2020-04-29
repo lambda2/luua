@@ -18,22 +18,24 @@ import UserContext from '../../../../contexts/UserContext'
 import MessageBox from '../../../../elements/MessageBox/MessageBox'
 import LoginForm from '../../../../components/LoginForm/LoginForm'
 
-const Notifications = ({ initialData }: any) => {
+/**
+ * This is the page used to confirm the email address
+ * of a new user
+ */
+const UserConfirmation = ({ initialData }: any) => {
 
   const { query } = useRouter()
   const { t } = useLocale()
 
   const response = useCollection<AuthedUser>(
     `/users/confirmation?confirmation_token=${query.token}`,
-    '',
-    { },
-    { initialData, retry: false, manual: true }
+    '', { }, { initialData, retry: false, manual: true }
   )
 
   useEffect(() => {
     response.refetch()
   }, [])
-  
+
   console.log({initialData})
   console.log(response?.data)
 
@@ -51,10 +53,10 @@ const Notifications = ({ initialData }: any) => {
   )
 }
 
-Notifications.getInitialProps = async (ctx: any) => {
+UserConfirmation.getInitialProps = async (ctx: any) => {
   return await fetchInitialData<any>(
     ctx, `/users/confirmation?confirmation_token=${ctx.query.token}`
   )
 }
 
-export default withAuthSync(Notifications)
+export default withAuthSync(UserConfirmation)
