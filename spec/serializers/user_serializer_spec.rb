@@ -4,6 +4,7 @@
 #
 #  id                     :bigint           not null, primary key
 #  admin                  :boolean          default(FALSE), not null
+#  bio                    :text
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
 #  confirmed_at           :datetime
@@ -18,6 +19,7 @@
 #  last_name              :string
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :inet
+#  locale                 :string           default("fr"), not null
 #  locked_at              :datetime
 #  provider               :string           default("email"), not null
 #  remember_created_at    :datetime

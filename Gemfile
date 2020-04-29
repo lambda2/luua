@@ -44,7 +44,7 @@ gem 'aasm', '~> 5.0.8'
 # i18n
 gem 'globalize', '~> 5.3.0'
 gem 'globalize-accessors', '~> 0.2.1'
-gem 'route_translator', '~> 8.0.0'
+gem 'devise-i18n'
 
 # Errors & reporting
 gem 'appsignal', '~> 2.10.5'

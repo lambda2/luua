@@ -42,6 +42,9 @@ module Luua
       end
     end
 
+    config.i18n.available_locales = %i[en fr]
+    config.i18n.fallbacks = [I18n.default_locale]
+
     # config.middleware.insert_before Warden::Manager, ActionDispatch::Cookies
     # config.middleware.insert_before Warden::Manager, ActionDispatch::Session::CookieStore
 

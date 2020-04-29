@@ -3,12 +3,14 @@ class ApplicationController < ActionController::API
 
   respond_to :json
   include LoggableAction
+  include I18nAction
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
   check_authorization unless: :devise_controller?
 
   before_action :set_default_workspace
+
   before_action :set_raven_context
   after_action :log_action
 
@@ -26,7 +28,7 @@ class ApplicationController < ActionController::API
   end
 
   def log_action
-    Rails.logger.info "#{params[:action]} on #{params[:controller]} by #{Current.user.try(:email)} (#{Current.application})"
+    Rails.logger.info "[#{extract_locale}] #{params[:action]} on #{params[:controller]} by #{Current.user.try(:email)} (#{Current.application})"
   end
 
   def set_raven_context

@@ -7,6 +7,8 @@ import getConfig from 'next/config'
 import { useQuery, QueryResult, QueryOptions, AnyQueryKey } from 'react-query';
 import nextCookie from 'next-cookies'
 import { NextPageContext } from 'next'
+import { useLocale } from '../hooks/useLocale';
+import cookie from 'js-cookie'
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -100,7 +102,16 @@ export function cdnUrl(endpoint: string): string {
 export function useCollection<T>(
   endpoint: string, token?: string, requestOpts?: AxiosRequestConfig, hookOpts?: QueryOptions<T>
 ): QueryResult<T> {
-  const headers = getHeaders(token || '');
+
+  const { language } = useLocale()
+  const authHeaders = getHeaders(token || '');
+  const headers = {
+    'Accept-Language': language,
+    ...authHeaders
+  }
+
+  console.log({ headers });
+  
 
   const getCollection = (opts: any): Promise<T> => fetch<T>(endpoint, { headers, ...requestOpts, ...opts })
 
@@ -138,6 +149,15 @@ export async function fetch<T>(url: string, opts: AxiosRequestConfig): Promise<T
  */
 export async function api<T>(endpoint: string, opts: AxiosRequestConfig): Promise<AxiosResponse<T>> {
 
+  const locale = cookie.get('locale') ? { 'Accept-Language': cookie.get('locale') } : {}
+
+  const options = {
+    ...opts,
+    headers: {
+      ...locale,
+      ...opts.headers
+    }
+  }
 
   // NOTE Maybe we will need at some point 
   // {credentials: 'same-origin'}
@@ -146,7 +166,7 @@ export async function api<T>(endpoint: string, opts: AxiosRequestConfig): Promis
     validateStatus: function (status: number) {
       return status < 300; // Reject only if the status code is greater than or equal to 500
     },
-    ...opts
+    ...options
   }
 
   return await axios(payload)

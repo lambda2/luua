@@ -1,5 +1,6 @@
-import React, { createContext, useMemo } from 'react'
+import React, { createContext, useMemo, useEffect } from 'react'
 import dynamic from 'next/dynamic'
+import cookie from 'js-cookie'
 
 import fr from '../../i18n/locales/fr/common.json'
 import en from '../../i18n/locales/en/common.json'
@@ -43,6 +44,11 @@ const LocaleProvider: React.FC<LocaleProviderProps> = ({children, ...props}) => 
     }
     return trans
   }
+
+  useEffect(() => {
+    console.log("Setting locale to ", props.language)
+    cookie.set('locale', props.language)
+  }, [props.language])
 
   const values = useMemo(() => {
     return ({
