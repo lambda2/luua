@@ -1,14 +1,11 @@
 import React, { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
 import routes from '../../routes/manage'
-import { Tag, List, Avatar } from 'antd';
+import { Avatar } from 'antd';
 
 import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';
 import { cdnUrl } from '../../utils/http';
-import find from 'lodash/find';
-import CandidateStatusStep from '../../elements/CandidateStatusStep/CandidateStatusStep';
-import MessageBox from '../../elements/MessageBox/MessageBox';
 import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
 
 const { manage } = routes
