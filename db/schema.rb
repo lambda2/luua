@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_29_095016) do
+ActiveRecord::Schema.define(version: 2020_04_29_111626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,9 +170,19 @@ ActiveRecord::Schema.define(version: 2020_04_29_095016) do
     t.index ["slug"], name: "index_skill_categories_on_slug", unique: true
   end
 
-  create_table "skills", force: :cascade do |t|
+  create_table "skill_translations", force: :cascade do |t|
+    t.bigint "skill_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "name"
+    t.string "full_name"
     t.text "description"
+    t.index ["locale"], name: "index_skill_translations_on_locale"
+    t.index ["skill_id"], name: "index_skill_translations_on_skill_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
     t.string "icon"
     t.string "color"
     t.string "slug"
@@ -183,11 +193,9 @@ ActiveRecord::Schema.define(version: 2020_04_29_095016) do
     t.bigint "organization_id"
     t.integer "skill_type"
     t.integer "level", null: false
-    t.string "full_name", null: false
     t.text "tags", default: "", null: false
     t.boolean "visible", default: false, null: false
     t.integer "popularity", default: 0, null: false
-    t.index ["name"], name: "index_skills_on_name", unique: true
     t.index ["organization_id"], name: "index_skills_on_organization_id"
     t.index ["parent_id"], name: "index_skills_on_parent_id"
     t.index ["skill_category_id"], name: "index_skills_on_skill_category_id"

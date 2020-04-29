@@ -1,29 +1,47 @@
 [
   {
-    "name": "Car"
+    "name": "Car",
+    "name_en": "Car",
+    "name_fr": "Voiture"
   },
   {
-    "name": "Truck"
+    "name": "Truck",
+    "name_en": "Truck",
+    "name_fr": "Poids-lourd"
   },
   {
-    "name": "Plane"
+    "name": "Plane",
+    "name_en": "Plane",
+    "name_fr": "Avion"
   },
   {
-    "name": "Helicopter"
+    "name": "Helicopter",
+    "name_en": "Helicopter",
+    "name_fr": "Hélicoptère"
   },
   {
-    "name": "Sailing boat"
+    "name": "Sailing boat",
+    "name_en": "Sailing boat",
+    "name_fr": "Voilier"
   },
   {
-    "name": "Boat"
+    "name": "Boat",
+    "name_en": "Boat",
+    "name_fr": "Bateau"
   },
   {
-    "name": "Spaceship"
+    "name": "Spaceship",
+    "name_en": "Spaceship",
+    "name_fr": "Vaisseau spatial"
   },
   {
-    "name": "Motorbike"
+    "name": "Motorbike",
+    "name_en": "Motorbike",
+    "name_fr": "Moto"
   },
   {
-    "name": "Bike"
+    "name": "Bike",
+    "name_en": "Bike",
+    "name_fr": "Vélo"
   }
 ]

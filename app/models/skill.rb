@@ -5,7 +5,7 @@
 #  id                :bigint           not null, primary key
 #  color             :string
 #  description       :text
-#  full_name         :string           not null
+#  full_name         :string
 #  icon              :string
 #  level             :integer          not null
 #  name              :string
@@ -22,7 +22,6 @@
 #
 # Indexes
 #
-#  index_skills_on_name               (name) UNIQUE
 #  index_skills_on_organization_id    (organization_id)
 #  index_skills_on_parent_id          (parent_id)
 #  index_skills_on_skill_category_id  (skill_category_id)
@@ -37,7 +36,12 @@
 
 class Skill < ApplicationRecord
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :name_en, use: :slugged
+
+  translates :name, fallbacks_for_empty_translations: true, touch: true
+  translates :full_name, fallbacks_for_empty_translations: true, touch: true
+  translates :description, fallbacks_for_empty_translations: true, touch: true
+  globalize_accessors locales: %i[en fr], attributes: %i[name full_name description]
 
   enum skill_type: %i[global organization]
 
@@ -53,12 +57,16 @@ class Skill < ApplicationRecord
   before_validation :set_default_values
   # before_validation :compute_users_count, on: :update
 
-  validates :name, uniqueness: true,
-                   presence: true
+  # validates :name, uniqueness: true,
+                  #  presence: true
 
   scope :root_level, -> { where(parent_id: nil) }
-  scope :search, ->(q) { where('LOWER(unaccent(full_name)) ILIKE LOWER(unaccent(?)) OR LOWER(unaccent(tags)) ILIKE LOWER(unaccent(?))', "%#{q}%", "%#{q}%") }
-  scope :exact_search, ->(q) { where('LOWER(unaccent(name)) ILIKE LOWER(unaccent(?))', q.to_s) }
+  scope :search, ->(q) { joins(:translations).where('LOWER(unaccent(skill_translations.full_name)) ILIKE LOWER(unaccent(?)) OR LOWER(unaccent(tags)) ILIKE LOWER(unaccent(?))', "%#{q}%", "%#{q}%") }
+  scope :exact_search, ->(q) { joins(:translations).where('LOWER(unaccent(skill_translations.name)) ILIKE LOWER(unaccent(?))', q.to_s) }
+
+  def cache_key
+    super + '-' + Globalize.locale.to_s
+  end
 
   def set_default_values
     self.skill_category ||= SkillCategory.where(name: 'General').first_or_create!
