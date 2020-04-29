@@ -45,38 +45,33 @@ const MissionItem = ({
 
   const mu = find(currentUser?.mission_users || [], {mission_id: id})
   return (
-    <List.Item
-      className="MissionItem"
-      key={name}
-      actions={[
-      ]}
-    >
-      <List.Item.Meta
-        // avatar={}
-        title={<Link key={id} {...explore.missions.show(slug)}>
+    <div className="MissionItem">
+      <h3>
+        <Link key={id} {...explore.missions.show(slug)}>
           <a>
             <header>
               <Avatar size="small" src={cdnUrl(workspace?.thumb_url || '')} />
-              <span className="org-title">{ workspace?.name }</span>
+              <span className="org-title">{workspace?.name}</span>
             </header>
-            <h2>{name}</h2>
+            {name}
           </a>
-        </Link>}
-        description={<div>
-          {mu && <MessageBox>
-            <CandidateStatusStep mission_user={mu as MissionUser} />
-            <p>{t(`mission_user.${mu.status}.state-user`, { name: name })}</p>
-          </MessageBox>}
+        </Link>
+      </h3>
 
-          <MissionItemMeta skills={skills} />
-          {/* <MissionSkillsForUser
-            mission_skills={skills}
-            user_skills={currentUser?.user_skills}
-          /> */}
-          <MarkdownContent content={description} />
-        </div>}
-      />
-    </List.Item>
+      <div>
+        {mu && <MessageBox>
+          <CandidateStatusStep mission_user={mu as MissionUser} />
+          <p>{t(`mission_user.${mu.status}.state-user`, { name: name })}</p>
+        </MessageBox>}
+
+        <MissionItemMeta skills={skills} />
+        {/* <MissionSkillsForUser
+          mission_skills={skills}
+          user_skills={currentUser?.user_skills}
+        /> */}
+        <MarkdownContent content={description} />
+      </div>
+    </div>
   )
 
 }

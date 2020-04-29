@@ -6,6 +6,11 @@ import {
   faLockAlt,
   faPencil,
   faEye,
+  faEnvelope,
+  faTimesCircle,
+  faSpinner,
+  faInboxIn,
+  faCheckCircle,
 } from '@fortawesome/pro-duotone-svg-icons'
 import {
   faQuestionSquare,
@@ -27,6 +32,11 @@ library.add(
   faLockAlt,
   faPencil,
   faEye,
+  faEnvelope,
+  faTimesCircle,
+  faSpinner,
+  faInboxIn,
+  faCheckCircle,
 )
 
 export {
@@ -47,4 +57,11 @@ export default {
     "draft": <FontAwesomeIcon className="menu-icon" icon={faPencil} />,
     "public": <FontAwesomeIcon className="menu-icon" icon={faEye} />,
   },
+  "mission_status": {
+    "applied": <FontAwesomeIcon icon={faEnvelope} />,
+    "rejected": <FontAwesomeIcon icon={faTimesCircle} />,
+    "accepted": <FontAwesomeIcon icon={faSpinner} spin />,
+    "completed": <FontAwesomeIcon icon={faInboxIn} />,
+    "reviewed": <FontAwesomeIcon icon={faCheckCircle} />
+  }
 }

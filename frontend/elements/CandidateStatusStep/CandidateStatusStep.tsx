@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { Tag, Popover, Steps } from 'antd';
 import { useLocale } from "../../hooks/useLocale";
 import omit from 'lodash/omit';
+import icons from '../../dictionaries/icons';
 
 
 interface Props {
@@ -22,40 +23,46 @@ interface Props {
   const {
     status
   } = mission_user
-  const steps = {
-    "applied": {
-      position: 0,
-      title: t('mission_user.applied.name')
-    },
-    "rejected": {
-      position: 1,
-      title: t('mission_user.rejected.name')
-    },
-    "accepted": {
-      position: 1,
-      title: t('mission_user.accepted.name')
-    },
-    "completed": {
-      position: 2,
-      title: t('mission_user.completed.name')
-    },
-    "reviewed": {
-      position: 3,
-      title: t('mission_user.reviewed.name')
-    }
-  }
+  // const steps = {
+  //   "applied": {
+  //     position: 0,
+  //     title: t('mission_user.applied.name')
+  //   },
+  //   "rejected": {
+  //     position: 1,
+  //     title: t('mission_user.rejected.name')
+  //   },
+  //   "accepted": {
+  //     position: 1,
+  //     title: t('mission_user.accepted.name')
+  //   },
+  //   "completed": {
+  //     position: 2,
+  //     title: t('mission_user.completed.name')
+  //   },
+  //   "reviewed": {
+  //     position: 3,
+  //     title: t('mission_user.reviewed.name')
+  //   }
+  // }
 
-   const active = steps[status].position
-   const toOmit = status === 'rejected' ? 'accepted' : 'rejected'
-   const statusColor = status === 'rejected' ? 'error' : (status === 'reviewed' ? 'finish' : 'process')
+  //  const active = steps[status].position
+  //  const toOmit = status === 'rejected' ? 'accepted' : 'rejected'
+  //  const statusColor = status === 'rejected' ? 'error' : (status === 'reviewed' ? 'finish' : 'process')
   
    return (
-     <Steps direction="horizontal" current={active} size="small" progressDot status={statusColor}>
-       {Object.values(omit(steps, toOmit)).map(st => 
-         <Steps.Step title={st.title} />
-        ) }
-     </Steps>
-  );
+     <span>
+       <span>{icons.mission_status && icons.mission_status[status]}</span>
+       <span>{' '}{t(`mission_user.${status}.name`)}</span>
+     </span>
+   )
+  //  return (
+  //    <Steps direction="horizontal" current={active} size="small" progressDot status={statusColor}>
+  //      {Object.values(omit(steps, toOmit)).map(st => 
+  //        <Steps.Step title={st.title} />
+  //       ) }
+  //    </Steps>
+  // );
 };
 
 CandidateStatusStep.displayName = 'CandidateStatusStep'

@@ -1,6 +1,5 @@
 import React from 'react'
 import classNames from 'classnames';
-import styles from './Title.module.css'
 
 
 interface Props {
@@ -14,7 +13,7 @@ const Title: React.FC<Props> = ({
 }) => {
 
   return (
-    <h1 className={styles.Title}>{children}</h1>
+    <h1 className={"Title"}>{children}</h1>
   );
 };
 

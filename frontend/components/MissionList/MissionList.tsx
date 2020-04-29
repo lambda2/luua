@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
 import MissionItem from '../MissionItem/MissionItem';
-import { List } from 'antd';
+import List from '../../elements/List/List';
 import PageSection from '../../elements/PageSection/PageSection';
 import { useLocale } from '../../hooks/useLocale';
 
