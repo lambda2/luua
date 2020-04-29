@@ -1,6 +1,6 @@
-# 
+#
 # When a user accept an invitation to join a workspace
-# 
+#
 class AcceptWorkspaceInvitation
   include Interactor
 
@@ -46,7 +46,6 @@ class AcceptWorkspaceInvitation
   end
 
   def add_member!(context)
-
     # We add the user to the workspace
     wu = WorkspaceUser.new(
       workspace: context.workspace_invitation.workspace,

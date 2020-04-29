@@ -33,7 +33,7 @@ class NotificationSerializer < Panko::Serializer
     when 'MissionUser'
       MissionUserLightSerializer.new.serialize(object.resource)
     when 'WorkspaceInvitation'
-      puts "~~~~~~~~~~~~ß"
+      puts '~~~~~~~~~~~~ß'
       puts object.inspect
       puts object.resource.inspect
       WorkspaceInvitationSerializer.new.serialize(object.resource)

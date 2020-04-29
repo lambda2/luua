@@ -59,7 +59,6 @@ class Api::WorkspaceUsersController < ApiController
     end
   end
 
-
   def workspace_user_params
     params.require(:workspace_user).permit(
       :id,

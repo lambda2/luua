@@ -1,8 +1,9 @@
 namespace :populate do
-  
-  desc "Create some random users and add them to the given workspace"
+
+  desc 'Create some random users and add them to the given workspace'
   task :workspace, [:workspace_id] => [:environment] do |task, args|
     raise unless Rails.env.development?
+
     puts task.inspect
     puts args.inspect
 

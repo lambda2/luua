@@ -79,7 +79,6 @@ class Api::WorkspaceInvitationsController < ApiController
     end
   end
 
-
   def workspace_invitation_params
     params.require(:workspace_invitation).permit(
       :id,

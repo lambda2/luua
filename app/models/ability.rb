@@ -9,7 +9,7 @@ class Ability
   end
 
   # For normal authed users
-  def regular_ability(user)
+  def regular_ability(user) # rubocop:todo Metrics/AbcSize
     can :manage, User, id: user.id
     can :read, Skill, skill_type: :global
     can :read, Skill, skill_type: :organization, organization: { id: user.organization_ids }
@@ -25,7 +25,7 @@ class Ability
     can %i[create update destroy], Mission, created_by: user.id
 
     can %i[manage], MissionUser, mission: { workspace: { id: user.admin_workspace_ids } }
-    can %i[accept complete reject], MissionUser, user_id: user.id
+    can %i[complete reject], MissionUser, user_id: user.id
     can %i[read], MissionUser, user_id: user.id
 
     can %i[apply], Mission

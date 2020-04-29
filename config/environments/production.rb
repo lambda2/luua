@@ -1,4 +1,4 @@
-Rails.application.configure do
+Rails.application.configure do # rubocop:todo Metrics/BlockLength
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -62,7 +62,6 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
 
   config.action_mailer.default_url_options = { host: ENV['API_HOST'] || 'luua.io' }
   config.action_mailer.delivery_method = :smtp

@@ -69,7 +69,6 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
       patch :read_all, on: :collection
     end
 
-
     resources :mission_users do
       concerns :mission_users_actions
     end

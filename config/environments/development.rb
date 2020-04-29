@@ -63,9 +63,8 @@ Rails.application.configure do # rubocop:todo Metrics/BlockLength
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-
   if ENV['LOCAL_MAILER'] == 'true'
-    puts "📩  Warning: Mailer is activated, mails will be sent for real"
+    puts '📩  Warning: Mailer is activated, mails will be sent for real'
 
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.perform_deliveries = true
@@ -82,7 +81,6 @@ Rails.application.configure do # rubocop:todo Metrics/BlockLength
 
     config.action_mailer.smtp_settings = mail_metadatas
   end
-
 
   # If we want to boot ngrok and we're running a server
   # We create a tunnel and update our postmark hooks with it

@@ -1,6 +1,6 @@
-# 
+#
 # When a user reject an invitation to join a workspace
-# 
+#
 class RejectWorkspaceInvitation
   include Interactor
 
