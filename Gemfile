@@ -45,6 +45,8 @@ gem 'aasm', '~> 5.0.8'
 gem 'globalize', '~> 5.3.0'
 gem 'globalize-accessors', '~> 0.2.1'
 gem 'devise-i18n'
+gem 'rack-contrib'
+gem 'i18n-tasks', '~> 0.9.31'
 
 # Errors & reporting
 gem 'appsignal', '~> 2.10.5'

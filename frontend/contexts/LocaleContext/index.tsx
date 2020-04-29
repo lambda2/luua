@@ -25,12 +25,10 @@ const LocaleContext = createContext(defaultValue)
 
 const LocaleProvider: React.FC<LocaleProviderProps> = ({children, ...props}) => {
 
-  // const resources = props.resources || import(`../../i18n/locales/${props.language}/common.json`).then(e => {
-
-  // })
 
   const resources = dicts[props.language]  
 
+  // Our cheap t() function
   const t = (key: string, object?: any): string => {
     const trans = get(resources, key)
     if (!trans) {
@@ -45,6 +43,7 @@ const LocaleProvider: React.FC<LocaleProviderProps> = ({children, ...props}) => 
     return trans
   }
 
+  // We set a little cookie to keep track of the picked locale
   useEffect(() => {
     console.log("Setting locale to ", props.language)
     cookie.set('locale', props.language)

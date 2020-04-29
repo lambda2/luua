@@ -18,6 +18,9 @@ module Luua
     # We throttle the requests
     config.middleware.use Rack::Attack
 
+    # We parse the locale
+    config.middleware.use Rack::Locale
+
     Raven.configure do |config|
       config.dsn = ENV['SENTRY_DSN']
       config.environments = %w[production]
