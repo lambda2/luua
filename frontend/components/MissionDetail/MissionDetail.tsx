@@ -16,6 +16,7 @@ import MissionSkillsForUser from '../MissionSkillsForUser/MissionSkillsForUser';
 
 import PageSection from '../../elements/PageSection/PageSection';
 import PageTitle from '../../elements/PageTitle/PageTitle';
+import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
 
 // import './MissionDetail.module.less'
 
@@ -86,7 +87,7 @@ const MissionDetail = (mission: Props) => {
       </PageSection>
 
       <PageSection title={t('mission.summary')}>
-        <div>{description}</div>
+        <MarkdownContent content={description} />
       </PageSection>
 
       <PageSection>

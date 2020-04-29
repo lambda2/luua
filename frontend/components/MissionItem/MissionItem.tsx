@@ -12,6 +12,7 @@ import MissionItemMeta from '../MissionItemMeta/MissionItemMeta';
 import MissionSkillsForUser from '../MissionSkillsForUser/MissionSkillsForUser';
 import CandidateStatusStep from '../../elements/CandidateStatusStep/CandidateStatusStep';
 import MessageBox from '../../elements/MessageBox/MessageBox';
+import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
 
 const { explore } = routes
 
@@ -72,7 +73,7 @@ const MissionItem = ({
             mission_skills={skills}
             user_skills={currentUser?.user_skills}
           /> */}
-          <p>{description}</p>
+          <MarkdownContent content={description} />
         </div>}
       />
     </List.Item>

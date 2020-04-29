@@ -13,6 +13,7 @@ import { useLocale } from '../../hooks/useLocale';
 import Router from 'next/router';
 import { cdnUrl } from '../../utils/http';
 import routes from '../../routes/manage'
+import TextArea from '../../elements/TextArea/TextArea';
 
 interface Props {
   workspace?: Workspace
@@ -34,6 +35,8 @@ const WorkspaceForm = ({ workspace, redirectOnSave }: Props) => {
     id: workspace?.id,
     name: workspace?.name || '',
     image: workspace?.image || '',
+    description: workspace?.description || '',
+    membership: workspace?.membership || 'closed',
     remove_image: false,
     globalErrors: undefined,
   }
@@ -41,6 +44,7 @@ const WorkspaceForm = ({ workspace, redirectOnSave }: Props) => {
   const EditSchema = Yup.object().shape({
     name: Yup.string().min(2, 'Too short').required(),
     image: Yup.string(),
+    description: Yup.string(),
   });
 
   const formItemLayout = {
@@ -120,9 +124,7 @@ const WorkspaceForm = ({ workspace, redirectOnSave }: Props) => {
               </Form.Item>
 
               <Form.Item label={t('form.workspace.description.label')} name='description'>
-                <Input prefix={<Tooltip title={t('form.workspace.description.hint')}>
-                  {icons.question}
-                </Tooltip>} name="description" placeholder={t('form.workspace.description.placeholder')} />
+                <TextArea name="description" />
               </Form.Item>
 
               <Form.Item name="end" {...tailFormItemLayout}>

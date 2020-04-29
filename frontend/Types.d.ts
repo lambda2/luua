@@ -16,6 +16,7 @@ type NotificationCode =
 
 type WorkspaceInvitationStatus = 'pending' | 'accepted' | 'rejected'
 type WorkspaceRequestStatus = 'pending' | 'accepted' | 'rejected'
+type WorkspaceMembership = 'closed' | 'approval' | 'open'
 
 declare interface BaseUser {
     id: number
@@ -78,6 +79,8 @@ declare interface LightWorkspace {
     image_url: string
     thumb_url: string
     image: string
+    description: string
+    membership: WorkspaceMembership
     users_count: number
     missions_count: number
     // workspace_type: 'main' | 'company' | 'personal'

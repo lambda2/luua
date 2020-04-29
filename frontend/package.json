@@ -35,8 +35,11 @@
     "next-cookies": "^2.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-mde": "^9.1.1",
     "react-query": "^1.2.0",
     "react-select": ">= 3.1.0",
+    "react-showdown": "^2.0.3",
+    "showdown": "^1.9.1",
     "yup": "^0.28.3"
   },
   "devDependencies": {

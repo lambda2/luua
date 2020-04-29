@@ -5,6 +5,8 @@ import { AxiosResponse } from "axios"
 export interface WorkspaceUpdateValues {
   id?: number
   name?: string
+  description?: string
+  membership?: WorkspaceMembership
   image?: string
 }
 

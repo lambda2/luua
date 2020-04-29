@@ -1,8 +1,8 @@
 import React from 'react';
 import { Form, Input, Switch } from 'formik-antd'
 import { useLocale } from '../../hooks/useLocale';
+import TextArea from '../../elements/TextArea/TextArea';
 
-const { TextArea } = Input;
 
 interface Props {
   mission?: Mission
@@ -20,7 +20,7 @@ const MissionInfoForm = ({ mission }: Props) => {
     </Form.Item>
     <Form.Item label={t('form.mission.description.label')} name='description'>
       <span className="hint">{t('form.mission.description.hint')}{' '}</span>
-      <TextArea name="description" placeholder={t('form.mission.description.placeholder')} autoSize />
+      <TextArea name="description" />
     </Form.Item>
 
     <Form.Item name='physical' label={t('form.mission.physical.label')}>

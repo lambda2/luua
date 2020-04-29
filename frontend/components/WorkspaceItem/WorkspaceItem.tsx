@@ -9,6 +9,7 @@ import { cdnUrl } from '../../utils/http';
 import find from 'lodash/find';
 import CandidateStatusStep from '../../elements/CandidateStatusStep/CandidateStatusStep';
 import MessageBox from '../../elements/MessageBox/MessageBox';
+import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
 
 const { manage } = routes
 
@@ -19,6 +20,7 @@ const WorkspaceItem = ({
   name,
   thumb_url,
   missions_count,
+  description,
   users_count,
   slug,
 }: Props) => {
@@ -37,6 +39,7 @@ const WorkspaceItem = ({
         </Link>}
       </h3>
       <div>
+        <MarkdownContent content={description} />
         <p>{missions_count} Missions · {users_count} Users</p>
       </div>
     </div>

@@ -48,7 +48,7 @@ const WorkspaceUserAvatar: React.FC<Props> = ({
   return (
     
     <Popover content={PopupContent} title={PopupTitle}>
-      <div className="workspace-user-avatar">
+      <div className="workspace-user-avatar" style={{ marginRight: '5px' }}>
         <img src={imgOrPlaceholder} alt={username} />
         {renderRoleBadge()}
       </div>

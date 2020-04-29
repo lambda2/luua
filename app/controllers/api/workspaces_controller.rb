@@ -83,6 +83,7 @@ class Api::WorkspacesController < ApiController
     params.require(:workspace).permit(
       :name,
       :description,
+      :membership,
       :region_id,
       :country_id,
       :workspace_type,
