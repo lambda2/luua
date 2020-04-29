@@ -304,6 +304,11 @@
         "hint": "Le nom de votre espace",
         "placeholder": "Ex: Association des Boulangers du Poitou"
       },
+      "description": {
+        "label": "Description",
+        "hint": "Une courte description",
+        "placeholder": "Ex: On fait du pain, et on aime ça."
+      },
       "image": {
         "label": "Image",
         "hint": "Une image pour votre espace",

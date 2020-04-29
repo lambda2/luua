@@ -9,6 +9,7 @@ import classNames from 'classnames';
 import { Badge } from 'antd';
 import UserContext from '../../contexts/UserContext';
 import { find } from 'lodash';
+import can from '../../utils/can';
 
 type ResourceAction = 'show' | 'new' | 'edit' | 'destroy'
 
@@ -60,19 +61,6 @@ const WorkspaceHeader = ({
       <li className={classNames({ active: active == 'missions' })} key={`/explore/${workspace.id}/missions`}>
         <Link {...ROUTES.explore.workspace.missions.index(workspace.slug)}><a>{t('menu.missions')}</a></Link>
       </li>
-{/* 
-
-      <li className={classNames({ active: active == 'candidates' })} key={`/manage/${workspace.id}/candidates`}>
-        <Link {...ROUTES.manage.workspace.candidates.index(workspace.id)}>
-          <a>{t('menu.candidates')}{' '}<Badge count={pendingCandidates.length} /></a>
-        </Link>
-      </li>
-
-      <li className={classNames({ active: active == 'contributors' })} key={`/manage/${workspace.id}/contributors`}>
-        <Link {...ROUTES.manage.workspace.contributors.index(workspace.id)}>
-          <a>{t('menu.contributors')}{' '}<Badge count={activeContributors.length} /></a>
-        </Link>
-      </li> */}
     </ul>)
   }
 
@@ -120,7 +108,10 @@ const WorkspaceHeader = ({
             {workspace.name}
             {tree.map(renderTree)}
           </>}
-          extra={actions.map(a => buttons[a])}
+          extra={actions
+                  .filter((act) => can(currentUser, `workspace.${act}`, workspace))
+                  .map(a => buttons[a])
+          }
           {...onBack}
         >
         </PageTitle>

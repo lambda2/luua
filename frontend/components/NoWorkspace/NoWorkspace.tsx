@@ -1,9 +1,9 @@
 import React from 'react';
-import LinkButton from '../../elements/LinkButton/LinkButton';
-import { Typography, Row, Col } from 'antd';
 import { useLocale } from '../../hooks/useLocale';
+import MessageBox from '../../elements/MessageBox/MessageBox';
+import ROUTES from '../../routes/manage';
+import Link from 'next/link';
 
-const { Title, Paragraph } = Typography
 
 /**
  * A box we will display when the user don't have a workspace yet...
@@ -16,21 +16,17 @@ const NoWorkspace = () => {
   const { t } = useLocale()
 
   return (
-  <>
-    <Row>
-      <Col xs={0} sm={2} md={6} lg={8} xl={10}></Col>
-      <Col xs={24} sm={20} md={12} lg={8} xl={4}>
-
-        <Title></Title>
-        <Paragraph strong>{t('workspace.no-workspace-yet.title')}</Paragraph>
-        <Paragraph>{t('help.workspace.what')}</Paragraph>
-        <LinkButton href={`/manage/workspaces/new`}>
+    <>
+      <MessageBox>
+        <p><b>{t('workspace.no-workspace-yet.title')}</b></p>
+        <p>{t('help.workspace.what')}</p>
+        <br/>
+        <Link {...ROUTES.manage.workspace.new()}>
           {t('workspace.no-workspace-yet.create-now')}
-        </LinkButton>
+        </Link>
 
-      </Col>
-      <Col xs={0} sm={2} md={6} lg={8} xl={10}></Col>
-    </Row>
+      </MessageBox>
+        {/* <Paragraph strong>{t('workspace.no-workspace-yet.title')}</Paragraph> */}
   </>)
 }
 

@@ -119,6 +119,12 @@ const WorkspaceForm = ({ workspace, redirectOnSave }: Props) => {
                 />
               </Form.Item>
 
+              <Form.Item label={t('form.workspace.description.label')} name='description'>
+                <Input prefix={<Tooltip title={t('form.workspace.description.hint')}>
+                  {icons.question}
+                </Tooltip>} name="description" placeholder={t('form.workspace.description.placeholder')} />
+              </Form.Item>
+
               <Form.Item name="end" {...tailFormItemLayout}>
                 <SubmitButton
                   isSubmitting={isSubmitting}

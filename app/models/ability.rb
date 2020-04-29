@@ -27,6 +27,7 @@ class Ability
     can %i[manage], MissionUser, mission: { workspace: { id: user.admin_workspace_ids } }
     can %i[complete reject], MissionUser, user_id: user.id
     can %i[read], MissionUser, user_id: user.id
+    can %i[read], MissionUser, mission: { workspace: { id: user.workspace_ids } }
 
     can %i[apply], Mission
 

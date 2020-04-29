@@ -4,6 +4,7 @@ import NoWorkspace from '../../components/NoWorkspace/NoWorkspace'
 import Router from 'next/router'
 import { withAuthSync } from '../../utils/auth'
 import LeftMenu from '../../layouts/LeftMenu/LeftMenu'
+import ContentLayout from '../../layouts/ContentLayout/ContentLayout'
 
 
 const ManagePage = () => {
@@ -18,8 +19,9 @@ const ManagePage = () => {
     return <p>GOTO</p> // @TODO
   } else {
     return <>
-      <LeftMenu />
-      <NoWorkspace />
+      <ContentLayout format="box">
+        <NoWorkspace />
+      </ContentLayout>
     </>
   } 
 }
