@@ -63,6 +63,27 @@ Rails.application.configure do # rubocop:todo Metrics/BlockLength
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+
+  if ENV['LOCAL_MAILER'] == 'true'
+    puts "📩  Warning: Mailer is activated, mails will be sent for real"
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.perform_deliveries = true
+
+    mail_metadatas = {
+      address: ENV['SMTP_ADDRESS'] || Rails.application.credentials.smtp_address,
+      port: ENV['SMTP_PORT'] || Rails.application.credentials.smtp_port,
+      user_name: ENV['SMTP_USER_NAME'] || Rails.application.credentials.smtp_user_name,
+      password: ENV['SMTP_PASSWORD'] || Rails.application.credentials.smtp_password,
+      domain: ENV['SMTP_DOMAIN'] || Rails.application.credentials.smtp_domain,
+      authentication: ENV['SMTP_AUTHENTICATION'] || Rails.application.credentials.smtp_authentication || 'login',
+      enable_starttls_auto: ENV['SMTP_ENABLE_STARTTLS_AUTO'] || Rails.application.credentials.smtp_enable_starttls_auto || true
+    }
+
+    config.action_mailer.smtp_settings = mail_metadatas
+  end
+
+
   # If we want to boot ngrok and we're running a server
   # We create a tunnel and update our postmark hooks with it
   if ENV['NGROK_TUNNEL'] == 'true' && Rails.const_defined?('Server')

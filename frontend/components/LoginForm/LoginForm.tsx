@@ -13,9 +13,11 @@ import MessageBox from '../../elements/MessageBox/MessageBox';
 import ROUTES from '../../routes/manage';
 import Link from 'next/link';
 
-interface Props { }
+interface Props {
+  email?: string
+}
 
-const SignupForm = () => {
+const SignupForm = (props: Props) => {
 
   const { t } = useLocale()
   const Yup = YupWithLocale()
@@ -47,7 +49,7 @@ const SignupForm = () => {
   };
 
   const initialValues = {
-    email: '',
+    email: props.email || '',
     password: '',
   }
 

@@ -7,3 +7,4 @@ class EmailDeliveryObserver
 end
 
 ActionMailer::Base.register_observer(EmailDeliveryObserver)
+

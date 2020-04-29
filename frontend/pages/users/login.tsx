@@ -1,5 +1,5 @@
 import React from 'react'
-import FullLoginForm from '../../components/LoginForm/LoginForm'
+import LoginForm from '../../components/LoginForm/LoginForm'
 import ContentLayout from '../../layouts/ContentLayout/ContentLayout'
 
 interface UserLoginData {
@@ -15,7 +15,7 @@ const Login = () => {
 
   return (
     <ContentLayout format="box">
-      <FullLoginForm />
+      <LoginForm />
     </ContentLayout>
   )
 }

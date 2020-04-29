@@ -217,6 +217,9 @@
     "cancel": "Annuler",
     "back": "Retour",
     "user": {
+      "confirm": {
+        "title": "Votre adresse email a bien été confirmée !"
+      },
       "sign-up": {
         "submit": "Créer mon compte",
         "no-account": "Pas encore de compte ?"

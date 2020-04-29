@@ -21,6 +21,7 @@ const NetworkBoundary = <T extends unknown>(
       return (<>
         <p>Network error !</p>
         <p>{error && error.message}</p>
+        {error?.response?.data && <pre>{JSON.stringify(error?.response?.data, null, 2)}</pre>}
       </>)  
     case 'loading':
       return (<>
@@ -32,7 +33,15 @@ const NetworkBoundary = <T extends unknown>(
         return <>{children}</>
       }
     default:
-      throw new Error("No status");
+      if (children && data) {
+        return <>{children}</>
+      } else {
+        console.error("No status");
+        return (<>
+          <p>Loading...</p>
+          {error && <p>{error.message}</p>}
+        </>)  
+      }
   }
 }
 
