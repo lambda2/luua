@@ -33,7 +33,7 @@ const WorkspaceUserActions: React.FC<Props> = ({
   return (
     <div className="WorkspaceUserActions">
       {imAdmin && !yourself && <Button.Group>
-        <Button size="small" type="danger" onClick={() => onRemove(id)}>{t('workspace_user.remove')}</Button>
+        <Button size="small" onClick={() => onRemove(id)}>{t('workspace_user.remove')}</Button>
         {!admin && <Button size="small" onClick={() => onAdmin(id)}>{t('workspace_user.set-admin')}</Button>}
         {admin && <Button size="small" onClick={() => onRegular(id)}>{t('workspace_user.unset-admin')}</Button>}
       </Button.Group>}

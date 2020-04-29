@@ -1,6 +1,6 @@
 .WorkspaceHeader {
   background-color: @layout-body-background;
-  border-bottom: 1px solid @nord4;
+  border-bottom: 1px solid @border-color-base;
 
   .WorkspaceHeaderContent {
     max-width: @content-width;
@@ -12,17 +12,19 @@
       // display: flex;
       margin: 0;
       padding: 0;
+      border-bottom: 1px solid @border-color-base;
       margin-bottom: -1px;
+      // border-bottom: 2px solid @border-color-base;
 
       li {
         // flex: 0 0  auto;
         display: inline-block;
         text-align: center;
         padding: @space-inset-m;
-        border-bottom: 1px solid transparent;
+        border-bottom: 2px solid transparent;
 
         a {
-          color: @nord3;
+          color: @text-color-light;
         }
         
         & + li {
@@ -32,9 +34,11 @@
 
         &.active {
           background-color: #fff;
-          border: 1px solid @nord4;
+          // border: 1px solid @nord4;
           // font-weight: bold;
-          border-bottom: 1px solid transparent;
+          // border-bottom: 1px solid transparent;
+
+          border-bottom: 2px solid @primary-color;
 
           a {
             color: @nord1;
