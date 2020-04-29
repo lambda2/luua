@@ -15,7 +15,10 @@ import { useLocale } from '../../../../../hooks/useLocale'
 const { manage } = routes
 const { workspace } = manage
 
-const MissionUser = (
+/**
+ * Show the current mission status for a user
+ */
+const Candidate = (
   { initialData, token }:
   { initialData: MissionUser, token?: string }
 ) => {
@@ -41,8 +44,8 @@ const MissionUser = (
   )
 }
 
-MissionUser.getInitialProps = async (ctx: NextPageContext) => {
+Candidate.getInitialProps = async (ctx: NextPageContext) => {
   return await fetchInitialData<MissionUser>(ctx, `/api/mission_users/${ctx.query.id}`)
 }
 
-export default withAuthSync(MissionUser)
+export default withAuthSync(Candidate)

@@ -25,4 +25,3 @@ const ManagePage = () => {
 }
 
 export default withAuthSync(ManagePage)
-// export default ManagePage

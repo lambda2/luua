@@ -10,7 +10,6 @@ import NetworkBoundary from '../../../../components/NetworkBoudary/NetworkBoudar
 import MissionUserList from '../../../../components/MissionUserList/MissionList'
 
 import ContentLayout from '../../../../layouts/ContentLayout/ContentLayout'
-import ManageLeftMenu from '../../../../layouts/ManageLeftMenu/ManageLeftMenu'
 import PageTitle from '../../../../elements/PageTitle/PageTitle';
 import { useContext } from 'react';
 import WorkspaceContext from '../../../../contexts/WorkspaceContext';
@@ -22,7 +21,7 @@ const { workspace } = manage
 /**
  * Will list all the contributors for our workspace's missions
  */
-const Candidates = (
+const Contributors = (
   { initialData, token }:
   { initialData: MissionUser[], token?: string }
 ) => {
@@ -47,10 +46,10 @@ const Candidates = (
       </NetworkBoundary>
   )
 }
-Candidates.getInitialProps = async (ctx: any) => {
+Contributors.getInitialProps = async (ctx: any) => {
   return await fetchInitialData<MissionUser[]>(
     ctx, `/api/workspaces/${ctx.query.workspace_id}/mission_users/contributors`
   )
 }
 
-export default withAuthSync(Candidates)
+export default withAuthSync(Contributors)

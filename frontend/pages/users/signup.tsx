@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react'
-import { signupWithCredentials } from '../../utils/auth'
 import Router from 'next/router'
 import UserContext from '../../contexts/UserContext'
 import SignupForm from '../../components/SignupForm/SignupForm'
@@ -7,9 +6,9 @@ import ContentLayout from '../../layouts/ContentLayout/ContentLayout'
 
 
 /**
- * This is the login form component
+ * This is the signup page
  */
-const Login = () => {
+const Signup = () => {
 
   const { currentUser } = useContext(UserContext)
 
@@ -24,4 +23,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Signup

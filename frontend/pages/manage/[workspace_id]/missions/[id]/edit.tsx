@@ -8,7 +8,6 @@ import NetworkBoundary from '../../../../../components/NetworkBoudary/NetworkBou
 import MissionForm from '../../../../../components/MissionForm/MissionForm';
 
 import ContentLayout from '../../../../../layouts/ContentLayout/ContentLayout'
-import ManageLeftMenu from '../../../../../layouts/ManageLeftMenu/ManageLeftMenu'
 import { useContext } from 'react'
 import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
 import WorkspaceHeader from '../../../../../components/WorkspaceHeader/WorkspaceHeader'

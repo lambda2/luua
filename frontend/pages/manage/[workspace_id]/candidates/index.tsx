@@ -9,7 +9,6 @@ import NetworkBoundary from '../../../../components/NetworkBoudary/NetworkBoudar
 import MissionUserList from '../../../../components/MissionUserList/MissionList'
 
 import ContentLayout from '../../../../layouts/ContentLayout/ContentLayout'
-import ManageLeftMenu from '../../../../layouts/ManageLeftMenu/ManageLeftMenu'
 import PageTitle from '../../../../elements/PageTitle/PageTitle';
 import WorkspaceHeader from '../../../../components/WorkspaceHeader/WorkspaceHeader';
 import WorkspaceContext from '../../../../contexts/WorkspaceContext';

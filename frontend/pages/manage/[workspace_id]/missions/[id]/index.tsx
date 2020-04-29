@@ -9,13 +9,11 @@ import { withAuthSync } from '../../../../../utils/auth'
 
 import NetworkBoundary from '../../../../../components/NetworkBoudary/NetworkBoudary'
 
-import ManageLeftMenu from '../../../../../layouts/ManageLeftMenu/ManageLeftMenu'
 import ContentLayout from '../../../../../layouts/ContentLayout/ContentLayout'
 import WorkspaceMissionDetail from '../../../../../components/WorkspaceMissionDetail/WorkspaceMissionDetail'
 import { useContext } from 'react'
 import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
 import WorkspaceHeader from '../../../../../components/WorkspaceHeader/WorkspaceHeader'
-import PageTitle from '../../../../../elements/PageTitle/PageTitle'
 import { useLocale } from '../../../../../hooks/useLocale'
 
 const { manage } = routes
@@ -23,7 +21,7 @@ const { workspace } = manage
 
 
 /**
- * Show workspace missions
+ * Show the requested workspace mission
  */
 const Mission = (
   { initialData, token }:

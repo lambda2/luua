@@ -9,12 +9,14 @@ import { useRouter } from 'next/router';
 import routes from '../../../../routes/manage'
 import Link from 'next/link'
 import ContentLayout from '../../../../layouts/ContentLayout/ContentLayout'
-import ManageLeftMenu from '../../../../layouts/ManageLeftMenu/ManageLeftMenu'
 import WorkspaceHeader from '../../../../components/WorkspaceHeader/WorkspaceHeader';
 import WorkspaceContext from '../../../../contexts/WorkspaceContext';
 import PageTitle from '../../../../elements/PageTitle/PageTitle';
 const { manage } = routes
 
+/**
+ * The missions list of a workspace
+ */
 const Missions = (
   { initialData, token }:
   { initialData: LightMission[], token?: string }

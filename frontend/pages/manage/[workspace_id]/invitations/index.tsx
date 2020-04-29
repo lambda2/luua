@@ -17,8 +17,6 @@ import WorkspaceHeader from '../../../../components/WorkspaceHeader/WorkspaceHea
 import WorkspaceInvitationItem from '../../../../elements/WorkspaceInvitationItem/WorkspaceInvitationItem'
 import PageTitle from '../../../../elements/PageTitle/PageTitle'
 import List from '../../../../elements/List/List'
-import WorkspaceUserActions from '../../../../elements/WorkspaceUserActions/WorkspaceUserActions'
-import { remove, update } from '../../../../api/workspace_user'
 import WorkspaceInvitationModal from '../../../../components/WorkspaceInvitationModal/WorkspaceInvitationModal'
 
 
@@ -36,20 +34,6 @@ const WorkspaceInvitations = (
     `/api/workspaces/${query.workspace_id}/workspace_invitations`, token, {}, { initialData }
   )
   const { currentWorkspace } = useContext(WorkspaceContext)
-
-  const onUserDelete = async (id: number) => {
-    await remove(id, token || '')
-    await refetch()
-  }
-
-  const onUserAdmin = async (id: number) => {
-    await update({ id, admin: true }, token || '')
-    await refetch()
-  }
-  const onUserRegular = async (id: number) => {
-    await update({ id, admin: false }, token || '')
-    await refetch()
-  }
 
   const itemStyle = {
     display: 'flex',

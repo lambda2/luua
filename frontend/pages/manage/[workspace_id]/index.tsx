@@ -5,13 +5,12 @@ import { useRouter } from 'next/router'
 import NetworkBoundary from '../../../components/NetworkBoudary/NetworkBoudary'
 import { NextPageContext } from 'next'
 import WorkspaceShow from '../../../components/WorkspaceShow/WorkspaceShow'
-import { Layout } from 'antd'
-const { Content } = Layout;
-import ManageLeftMenu from '../../../layouts/ManageLeftMenu/ManageLeftMenu'
 import ContentLayout from '../../../layouts/ContentLayout/ContentLayout'
 import WorkspaceHeader from '../../../components/WorkspaceHeader/WorkspaceHeader'
 
-
+/**
+ * Show the requested workspace, as a member of it
+ */
 const ShowWorkspace = (
   { initialData, token }:
   { initialData: Workspace, token?: string }

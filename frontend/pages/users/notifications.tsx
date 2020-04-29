@@ -1,21 +1,17 @@
 import React, { useContext } from 'react'
-import Router from 'next/router'
-import api, { getHeaders, useCollection, cdnUrl, fetchInitialData} from '../../utils/http'
-import nextCookie from 'next-cookies'
+import { useCollection, fetchInitialData} from '../../utils/http'
 import { withAuthSync } from '../../utils/auth'
 import NetworkBoundary from '../../components/NetworkBoudary/NetworkBoudary'
 import NotificationList from '../../components/NotificationList/NotificationList'
-import { NextPageContext } from 'next'
 import ContentLayout from '../../layouts/ContentLayout/ContentLayout'
-import ManageLeftMenu from '../../layouts/ManageLeftMenu/ManageLeftMenu'
 import PageTitle from '../../elements/PageTitle/PageTitle'
-import { Avatar, Typography, Button } from 'antd'
-import PrimaryLink from '../../elements/PrimaryLink/PrimaryLink'
-const { Title } = Typography;
-import manage from '../../routes/manage';
+import { Button } from 'antd'
 import { useLocale } from '../../hooks/useLocale';
 import UserContext from '../../contexts/UserContext'
 
+/**
+ * The user's notifications page
+ */
 const Notifications = (
   { initialData, token }:
   { initialData: UserNotification[], token?: string }

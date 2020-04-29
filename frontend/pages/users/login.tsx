@@ -9,7 +9,7 @@ interface UserLoginData {
 }
 
 /**
- * This is the login form component
+ * This is the login page
  */
 const Login = () => {
 

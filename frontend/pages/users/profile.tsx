@@ -1,35 +1,22 @@
 import React from 'react'
 import Router from 'next/router'
-import api, { getHeaders, useCollection, cdnUrl} from '../../utils/http'
+import api, { getHeaders, useCollection} from '../../utils/http'
 import nextCookie from 'next-cookies'
 import { withAuthSync } from '../../utils/auth'
 import NetworkBoundary from '../../components/NetworkBoudary/NetworkBoudary'
 import UserProfile from '../../components/UserProfile/UserProfile'
 import { NextPageContext } from 'next'
 import ContentLayout from '../../layouts/ContentLayout/ContentLayout'
-import ManageLeftMenu from '../../layouts/ManageLeftMenu/ManageLeftMenu'
-import PageTitle from '../../elements/PageTitle/PageTitle'
-import { Avatar, Typography } from 'antd'
-import PrimaryLink from '../../elements/PrimaryLink/PrimaryLink'
-const { Title } = Typography;
-import manage from '../../routes/manage';
-import { useLocale } from '../../hooks/useLocale';
 
 const Profile = (
   { initialData, token }:
   { initialData: AuthedUser, token?: string }
 ) => {
 
-  const { t } = useLocale()
-
   const response = useCollection<AuthedUser>(
     `/api/me`, token, {}, { initialData }
   )
   
-  const imgOrPlaceholder = response.data?.thumb_url ?
-    cdnUrl(response.data?.thumb_url) :
-    `https://robohash.org/${response.data?.username || 'default'}.png?size=200x200`
-
   return (
     <ContentLayout>
       <NetworkBoundary {...response}>
@@ -41,6 +28,8 @@ const Profile = (
 
 Profile.getInitialProps = async (ctx: NextPageContext) => {
 
+  // @TODO cleanup this mess
+  
   const { token } = nextCookie(ctx)
 
   const redirectOnError = () =>

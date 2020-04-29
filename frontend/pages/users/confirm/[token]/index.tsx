@@ -1,20 +1,10 @@
-import React, { useContext, useEffect } from 'react'
-import Router, { useRouter } from 'next/router'
-import api, { getHeaders, useCollection, cdnUrl, fetchInitialData} from '../../../../utils/http'
-import nextCookie from 'next-cookies'
+import React, { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { useCollection, fetchInitialData} from '../../../../utils/http'
 import { withAuthSync } from '../../../../utils/auth'
 import NetworkBoundary from '../../../../components/NetworkBoudary/NetworkBoudary'
-import NotificationList from '../../../../components/NotificationList/NotificationList'
-import { NextPageContext } from 'next'
 import ContentLayout from '../../../../layouts/ContentLayout/ContentLayout'
-import ManageLeftMenu from '../../../../layouts/ManageLeftMenu/ManageLeftMenu'
-import PageTitle from '../../../../elements/PageTitle/PageTitle'
-import { Avatar, Typography, Button } from 'antd'
-import PrimaryLink from '../../../../elements/PrimaryLink/PrimaryLink'
-const { Title } = Typography;
-import manage from '../../../../routes/manage';
 import { useLocale } from '../../../../hooks/useLocale';
-import UserContext from '../../../../contexts/UserContext'
 import MessageBox from '../../../../elements/MessageBox/MessageBox'
 import LoginForm from '../../../../components/LoginForm/LoginForm'
 
@@ -35,9 +25,6 @@ const UserConfirmation = ({ initialData }: any) => {
   useEffect(() => {
     response.refetch()
   }, [])
-
-  console.log({initialData})
-  console.log(response?.data)
 
   return (<>
     <NetworkBoundary<AuthedUser> {...response}>
