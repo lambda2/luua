@@ -6,7 +6,6 @@ import { useCollection, fetchInitialData } from '../../../utils/http'
 import { withAuthSync } from '../../../utils/auth'
 
 import ContentLayout from '../../../layouts/ContentLayout/ContentLayout'
-import ManageLeftMenu from '../../../layouts/ManageLeftMenu/ManageLeftMenu'
 
 import NetworkBoundary from '../../../components/NetworkBoudary/NetworkBoudary'
 import WorkspaceForm from '../../../components/WorkspaceForm/WorkspaceForm';
