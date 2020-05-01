@@ -3,7 +3,7 @@ import Link from 'next/link';
 import UserContext from '../../contexts/UserContext';
 import routes from '../../routes/manage'
 import WorkspaceMissionItem from '../WorkspaceMissionItem/WorkspaceMissionItem';
-import { List } from 'antd';
+import List from '../../elements/List/List';
 const { manage, users } = routes
 const { workspace, index } = manage
 

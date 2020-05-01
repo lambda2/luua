@@ -5,6 +5,7 @@ import WorkspaceMissionList from '../WorkspaceMissionList/WorkspaceMissionList';
 import WorkspaceUserAvatar from '../../elements/WorkspaceUserAvatar/WorkspaceUserAvatar';
 import PageSection from '../../elements/PageSection/PageSection';
 import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
+import MessageBox from '../../elements/MessageBox/MessageBox';
 
 interface Props {
   workspace: Workspace,
@@ -18,6 +19,11 @@ const WorkspaceShow = ({ workspace, missions }: Props) => {
   return (
   <>
       <MarkdownContent content={workspace.description} />
+
+      {/* @TODO */}
+      <div>
+        Membership: <b>{workspace.membership}</b>
+      </div>
 
       <PageSection title={t('workspace.members')}>
         {workspace.workspace_users.map((u: WorkspaceUser) =>

@@ -6,10 +6,11 @@ import PageTitle from '../../elements/PageTitle/PageTitle';
 import UserAvatar from '../../elements/UserAvatar/UserAvatar';
 import Link from 'next/link';
 import classNames from 'classnames';
-import { Badge } from 'antd';
+import { Badge, Button } from 'antd';
 import UserContext from '../../contexts/UserContext';
 import { find } from 'lodash';
 import can from '../../utils/can';
+import WorkspaceJoinButton from '../WorkspaceJoinButton/WorkspaceJoinButton';
 
 type ResourceAction = 'show' | 'new' | 'edit' | 'destroy'
 
@@ -98,6 +99,12 @@ const WorkspaceHeader = ({
     )
   }
 
+  const leftActions = [
+    <WorkspaceJoinButton workspace={workspace} user={currentUser}/>,
+    ...actions
+      .filter((act) => can(currentUser, `workspace.${act}`, workspace))
+      .map(a => buttons[a])
+  ]
   return (
     <div className="WorkspaceHeader">
       <header className="WorkspaceHeaderContent">
@@ -106,13 +113,10 @@ const WorkspaceHeader = ({
           title={<>
             <UserAvatar name={workspace.name} size="default" src={workspace.image_url} />
             {' '}
-            {workspace.name}
+            {tree.length > 0 ? <Link {...ROUTES.manage.workspace.show(workspace.slug)}>{workspace.name}</Link> : workspace.name }
             {tree.map(renderTree)}
           </>}
-          extra={actions
-                  .filter((act) => can(currentUser, `workspace.${act}`, workspace))
-                  .map(a => buttons[a])
-          }
+          extra={leftActions}
           {...onBack}
         >
         </PageTitle>

@@ -24,4 +24,5 @@ class WorkspaceRequest < ApplicationRecord
   belongs_to :workspace
 
   enum status: %i[pending accepted rejected], _suffix: true
+
 end

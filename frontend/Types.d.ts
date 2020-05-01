@@ -49,6 +49,7 @@ declare interface AuthedUser extends User {
     user_skills: UserSkill[]
     mission_users: LightMissionUser[]
     workspace_users: WorkspaceUser[]
+    workspace_requests: WorkspaceRequest[]
     jwt: string
 }
 
@@ -114,6 +115,16 @@ declare interface WorkspaceInvitation {
     created_at: string
     updated_at: string
     inviter: BaseUser
+    user: BaseUser
+}
+
+declare interface WorkspaceRequest {
+    id: number
+    status: WorkspaceRequestStatus
+    user_id: number
+    workspace_id: number
+    created_at: string
+    updated_at: string
     user: BaseUser
 }
 

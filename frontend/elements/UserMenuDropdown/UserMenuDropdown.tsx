@@ -33,7 +33,7 @@ const UserMenuDropdown = ({ user, notifications }: Props) => {
     <>
       <Link key={'profile'} {...users.profile()}>
         <a className="UserMenuDropdown">
-          <UserAvatar name={username} size="large" src={thumb_url} />
+          <UserAvatar name={username} size="small" src={thumb_url} />
           <span>{username}</span>
         </a>
       </Link>

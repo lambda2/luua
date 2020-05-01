@@ -36,10 +36,10 @@ const Notifications = (
     await response.refetch()
   }
 
-  return (
+  return (<>
+    {currentUser && <UserHeader user={currentUser as AuthedUser} active='notifications' />}
     <NetworkBoundary<UserNotification[]> {...response}>
       <ContentLayout>
-        {currentUser && <UserHeader user={currentUser as AuthedUser} active='notifications' />}
 
         <PageTitle
           title={t('menu.notifications')}
@@ -50,7 +50,7 @@ const Notifications = (
         <NotificationList onRead={onRead} data={response.data as UserNotification[]} />
       </ContentLayout>
     </NetworkBoundary>
-  )
+  </>)
 }
 
 Notifications.getInitialProps = async (ctx: any) => {

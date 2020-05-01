@@ -1,19 +1,21 @@
 import React from 'react'
 import classNames from 'classnames';
-// import './MessageBox.module.less'
 
 
 interface Props {
+  color?: 'default' | 'success' | 'danger'
+  title?: string
 }
 
 /**
  * A simple box
  */
-const MessageBox: React.FC<{ title?: string }> = ({
+const MessageBox: React.FC<Props> = ({
   title,
-  children
+  children,
+  color = 'default'
 }) => {
-  return <div className="MessageBox">
+  return <div className={classNames("MessageBox", color)}>
     {title && <h3>{title}</h3>}
     {children}
   </div>

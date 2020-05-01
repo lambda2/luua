@@ -48,7 +48,7 @@ export const authenticateWithCredentials = async (
   email: string, password: string
   ) => {
   const user = { email, password }
-  const endpoint = '/users/sign_in'
+  const endpoint = '/profile/sign_in'
   const { data, status, headers } = await api(endpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -72,7 +72,7 @@ export const authenticateWithCredentials = async (
  */
 export const login = (token: string) => {
   cookie.set('token', token, { expires: 1 })
-  Router.push('/users/profile')
+  Router.push('/profile')
 }
 
 
@@ -90,14 +90,14 @@ export const auth = (ctx: any) => {
     if (typeof window === 'undefined') {
 
       if (ctx && ctx.res) {
-        ctx.res.writeHead(302, { Location: '/users/login' })
+        ctx.res.writeHead(302, { Location: '/profile/login' })
         ctx.res.end()
       } else {
         console.log("[auth][server] WTF !");
         return null
       }
     } else {      
-      Router.push('/users/login')
+      Router.push('/profile/login')
     }
   }
 

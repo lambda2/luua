@@ -62,6 +62,7 @@ class User < ApplicationRecord
 
   mount_base64_uploader :image, AvatarUploader
 
+  has_many :workspace_requests, dependent: :destroy
   has_many :workspace_users, dependent: :destroy
   has_many :workspaces, through: :workspace_users
   has_many :organizations, through: :workspaces

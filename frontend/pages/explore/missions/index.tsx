@@ -30,15 +30,14 @@ const ExploreMissions = (
   
   return (
     <>
-      <ContentLayout>
-        <ExploreHeader
-          active='missions'
-        />
-
-        <NetworkBoundary<LightMission[]> {...response}>
+      <ExploreHeader
+        active='missions'
+      />
+      <NetworkBoundary<LightMission[]> {...response}>
+        <ContentLayout>
           <MissionList data={response.data as LightMission[]} />
-        </NetworkBoundary>
-      </ContentLayout>
+        </ContentLayout>
+      </NetworkBoundary>
     </>
   )
 }

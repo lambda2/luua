@@ -18,14 +18,14 @@ const Profile = (
     `/api/me`, token, {}, { initialData }
   )
   
-  return (
+  return (<>
+    {response.data && <UserHeader user={response.data as AuthedUser} active='summary' />}
     <ContentLayout>
       <NetworkBoundary {...response}>
-        <UserHeader user={response.data as AuthedUser} active='summary' />
         <UserProfile {...response.data as AuthedUser} />
       </NetworkBoundary>
     </ContentLayout>
-  )
+  </>)
 }
 
 Profile.getInitialProps = async (ctx: NextPageContext) => {

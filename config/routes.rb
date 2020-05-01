@@ -27,6 +27,7 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
 
     resources :workspaces do
       post 'invite', on: :member, action: :invite
+      post 'join', on: :member, action: :join
 
       resources :missions
 

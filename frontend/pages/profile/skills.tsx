@@ -14,13 +14,13 @@ const Skills = (props: any) => {
   const { t } = useLocale()
   const { currentUser } = useContext(UserContext)
   
-  return (
+  return (<>
+    {currentUser && <UserHeader user={currentUser as AuthedUser} active='skills' />}
     <ContentLayout>
-      {currentUser && <UserHeader user={currentUser as AuthedUser} active='skills' />}
       <PageTitle title={t('form.user.skills.submit')}/>
       <SkillsForm />
     </ContentLayout>
-  )
+  </>)
 }
 
 export default withAuthSync(Skills)

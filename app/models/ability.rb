@@ -38,6 +38,7 @@ class Ability
     can :me, Workspace, id: user.workspace_ids
     can :manage, Workspace, id: user.admin_workspace_ids
     can :create, Workspace
+    can [:join], Workspace, membership: %i[open approval]
 
     can :read, WorkspaceUser
     can :manage, WorkspaceUser, workspace_id: user.admin_workspace_ids

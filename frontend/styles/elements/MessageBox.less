@@ -6,4 +6,20 @@
   background-color: lighten(@nord4, 10%);
   border: 1px solid @nord4;
   border-radius: 3px;
+
+
+  &.success {
+    background-color: lighten(@success-color, 10%);
+    border: 1px solid @success-color;
+  }
+
+  &.default {
+
+  }
+
+  &.danger {
+    background-color: lighten(@error-color, 40%);
+    border: 1px solid @error-color;
+    color: @error-color;
+  }
 }

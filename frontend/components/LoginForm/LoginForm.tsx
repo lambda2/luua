@@ -51,6 +51,7 @@ const SignupForm = (props: Props) => {
   const initialValues = {
     email: props.email || '',
     password: '',
+    globalErrors: null,
   }
 
   const EditSchema = Yup.object().shape({
@@ -89,12 +90,13 @@ const SignupForm = (props: Props) => {
         {({
           isSubmitting,
           isValid,
-          dirty,
+          errors,
           submitCount
         }) => (
             <Form {...formItemLayout} scrollToFirstError>
-              <ErrorMessage name="globalErrors" />
-
+              {errors.globalErrors && <MessageBox color="danger">
+                {errors.globalErrors}
+              </MessageBox>}
               <Form.Item label={t('form.user.email.label')} name='email'>
                 <Input prefix={<Tooltip title={t('form.user.email.hint')}>
                   {icons.question}

@@ -10,18 +10,24 @@ import PrimaryLink from '../../elements/PrimaryLink/PrimaryLink';
 import routes from '../../routes/manage'
 import PageSection from '../../elements/PageSection/PageSection';
 import { nameForUser } from '../../utils/user';
+import List from '../../elements/List/List';
+import WorkspaceItem from '../WorkspaceItem/WorkspaceItem';
+import missions from '../../pages/manage/[workspace_id]/missions';
+import MissionUserItem from '../MissionUserItem/MissionUserItem';
 const { users } = routes
 
-const UserProfile = ({
-  username,
-  first_name,
-  last_name,
-  email,
-  user_skills,
-  thumb_url,
-  workspaces,
-}: AuthedUser) => {
+const UserProfile = (user: AuthedUser) => {
 
+  const {
+    username,
+    first_name,
+    last_name,
+    email,
+    user_skills,
+    mission_users,
+    thumb_url,
+    workspaces,
+  } = user
   const { t } = useLocale()
 
   return (
@@ -37,26 +43,21 @@ const UserProfile = ({
       </div>}
     </PageSection>
 
-    <PageSection title={t('menu.workspaces')}>
-      {workspaces.length === 0 && <p>
-        {t('workspace.no-workspace-yet.title')}
-        .{' '}
-        <Link {...routes.manage.workspace.new()}><a>{t('workspace.no-workspace-yet.create-now')}.</a></Link>
-      </p>}
-      {workspaces.length > 0 && <div>
-        <ul>{workspaces.map((s: LightWorkspace) => {
-        return (<li key={s.id}>
-          <Link key={s.id} {...routes.manage.workspace.show(s.slug)} as={`/workspaces/${s.slug}`}>
-            <a>
-              <h2>{s.name}</h2>
-              <p>{s.missions_count} Missions · {s.users_count} Users</p>
-            </a>
-          </Link>
-        </li>)
-      })}</ul>
-        <Link {...routes.manage.workspace.new()}><a>{t('workspace.no-workspace-yet.create-now')}</a></Link>
-      </div>}
+    <PageSection title={t('menu.missions')}>
+      <List
+        dataSource={mission_users}
+        renderItem={(e: LightMissionUser) => <MissionUserItem {...e} user={user} mission={e.mission} />}
+      />
     </PageSection>
+    
+    <PageSection title={t('menu.workspaces')}>
+        <List
+          dataSource={workspaces}
+          renderItem={(e: LightWorkspace) => <WorkspaceItem {...e} />}
+        />
+        <Link {...routes.manage.workspace.new()}><a>{t('workspace.no-workspace-yet.create-now')}</a></Link>
+    </PageSection>
+
 
     <hr />
     <div>

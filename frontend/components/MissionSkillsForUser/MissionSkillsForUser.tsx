@@ -60,7 +60,7 @@ const MissionSkillsForUser = ({
   return (
     
     <div className="MissionSkillsForUser">
-      {mission_skills.length === 0 && <p>{t('mission_user.no-skills-warning')}</p>}
+      {mission_skills.length === 0 && <p className="text-light">{t('mission_user.no-skills-warning')}</p>}
       <div>{computedSkills.map((s) => {
         return renderMissionSkillTag(s)
       })}

@@ -79,6 +79,20 @@ class Api::WorkspacesController < ApiController
     end
   end
 
+  # POST /api/workspaces/id/join
+  def join
+    result = JoinWorkspace.call(
+      workspace: @workspace,
+      user: current_user
+    )
+
+    if result.success?
+      render json: WorkspaceRequestSerializer.new.serialize(result.workspace_request)
+    else
+      render_error(result.messages, :unprocessable_entity)
+    end
+  end
+
   def workspace_params
     params.require(:workspace).permit(
       :name,
@@ -93,10 +107,4 @@ class Api::WorkspacesController < ApiController
     )
   end
 
-  private # rubocop:todo Lint/UselessAccessModifier
-
-  # Use callbacks to share common setup or constraints between actions.
-  # def set_workspace
-  #   @workspace = Workspace.friendly.find(params[:id])
-  # end
 end

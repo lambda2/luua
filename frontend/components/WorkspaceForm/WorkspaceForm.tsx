@@ -3,7 +3,7 @@ import { Field, ErrorMessage, Formik } from 'formik';
 import UserContext from '../../contexts/UserContext';
 import { createOrUpdate } from '../../api/workspace';
 import { errorsFromResponse } from '../../utils/forms/helpers';
-import { Form, Input, ResetButton, Select, Switch } from 'formik-antd'
+import { Form, Input, ResetButton, Select, Switch, Radio } from 'formik-antd'
 import YupWithLocale from '../../utils/forms/yup';
 import SubmitButton from '../../elements/SubmitButton/SubmitButton';
 import icons from '../../dictionaries/icons';
@@ -47,28 +47,28 @@ const WorkspaceForm = ({ workspace, redirectOnSave }: Props) => {
     description: Yup.string(),
   });
 
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 4 },
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 16 },
-    },
-  };
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0,
-      },
-      sm: {
-        span: 16,
-        offset: 8,
-      },
-    },
-  };
+  // const formItemLayout = {
+  //   labelCol: {
+  //     xs: { span: 24 },
+  //     sm: { span: 4 },
+  //   },
+  //   wrapperCol: {
+  //     xs: { span: 24 },
+  //     sm: { span: 16 },
+  //   },
+  // };
+  // const tailFormItemLayout = {
+  //   wrapperCol: {
+  //     xs: {
+  //       span: 24,
+  //       offset: 0,
+  //     },
+  //     sm: {
+  //       span: 16,
+  //       offset: 8,
+  //     },
+  //   },
+  // };
 
   const onUpload = (elt: any) => {
     console.log("onUpload", { elt });
@@ -103,7 +103,7 @@ const WorkspaceForm = ({ workspace, redirectOnSave }: Props) => {
           dirty,
           submitCount
         }) => (
-            <Form {...formItemLayout} scrollToFirstError>
+            <Form layout="vertical" scrollToFirstError>
               <ErrorMessage name="globalErrors" />
               
               <Form.Item label={t('form.workspace.name.label')} name='name'>
@@ -127,7 +127,25 @@ const WorkspaceForm = ({ workspace, redirectOnSave }: Props) => {
                 <TextArea name="description" />
               </Form.Item>
 
-              <Form.Item name="end" {...tailFormItemLayout}>
+              <Form.Item className="big-radio-group" label={t('form.workspace.membership.label')} name='membership'>
+                <span className="hint">{t('form.workspace.membership.hint')}{' '}</span>
+                <Radio.Group name={'membership'}>
+                  <Radio name={'membership'} value={'closed'}>
+                    <div><b>{t('form.workspace.membership.options.closed.title')}</b></div>
+                    <p>{t('form.workspace.membership.options.closed.description')}</p>
+                  </Radio>
+                  <Radio name={'membership'} value={'approval'}>
+                    <div><b>{t('form.workspace.membership.options.approval.title')}</b></div>
+                    <p>{t('form.workspace.membership.options.approval.description')}</p>
+                  </Radio>
+                  <Radio name={'membership'} value={'open'}>
+                    <div><b>{t('form.workspace.membership.options.open.title')}</b></div>
+                    <p>{t('form.workspace.membership.options.open.description')}</p>
+                  </Radio>
+                </Radio.Group>
+              </Form.Item>
+
+              <Form.Item name="end">
                 <SubmitButton
                   isSubmitting={isSubmitting}
                   dirty={dirty}

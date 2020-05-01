@@ -27,15 +27,14 @@ const ExploreWorkspaces = (
 
   return (
     <>
-      <ContentLayout>
-        <ExploreHeader
-          active='workspaces'
-        />
-
-        <NetworkBoundary<LightWorkspace[]> {...response}>
+      <ExploreHeader
+        active='workspaces'
+      />
+      <NetworkBoundary<LightWorkspace[]> {...response}>
+        <ContentLayout>
           <WorkspaceList data={response.data as LightWorkspace[]} />
-        </NetworkBoundary>
-      </ContentLayout>
+        </ContentLayout>
+      </NetworkBoundary>
     </>
   )
 }

@@ -167,6 +167,13 @@
     "set-admin": "Definir comme admin",
     "unset-admin": "Enlever les droits admin"
   },
+  "workspace_request": {
+    "status": {
+      "accepted": "Rejoint",
+      "pending": "Demande envoyée",
+      "rejected": "Demande refusée"
+    }
+  },
   "workspace_invitation": {
     "invited-by": "Invité par",
     "invite": {
@@ -193,6 +200,20 @@
       "invitations": "Invitations",
       "requests": "Requêtes",
       "member-since": "Membre depuis"
+    },
+    "membership": {
+      "closed": {
+        "label": "",
+        "button": "Espace fermé"
+      },
+      "approval": {
+        "label": "",
+        "button": "Demander a rejoindre"
+      },
+      "open": {
+        "label": "",
+        "button": "Rejoindre"
+      }
     },
     "no-workspace-yet": {
       "title": "Il semblerait que tu n'aies pas encore d'espace",
@@ -316,7 +337,25 @@
         "label": "Image",
         "hint": "Une image pour votre espace",
         "placeholder": "Télécharger une image"
-      }     
+      },
+      "membership": {
+        "label": "Paramètres d'adhésion",
+        "hint": "Qui peut rejoindre cet espace ?",
+        "options": {
+          "closed": {
+            "title": "Fermé",
+            "description": "Seuls les membres de l'espace peuvent inviter d'autres membres"
+          },
+          "approval": {
+            "title": "Sur demande",
+            "description": "Les demandes doivent être acceptées par un membre de l'espace"
+          },
+          "open": {
+            "title": "Ouvert",
+            "description": "Tout le monde peut rejoindre cet espace"
+          }
+        }
+      }
     },
     "skill": {
       "levels": {

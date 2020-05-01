@@ -48,6 +48,16 @@ export const invite = async (workspace_id: string | number, attributes: Workspac
   return await api<WorkspaceInvitation>(`/api/workspaces/${workspace_id}/invite`, { headers, data: attributes, method: 'POST' })
 }
 
+/**
+ * Request to join a workspace
+ * @param workspace_id
+ * @param token 
+ */
+export const requestToJoin = async (workspace_id: string | number, token: string): Promise<AxiosResponse<WorkspaceRequest>> => {
+  const headers = getHeaders(token)
+  return await api<WorkspaceRequest>(`/api/workspaces/${workspace_id}/join`, { headers, method: 'POST' })
+}
+
 
 export const createOrUpdate = async (attributes: WorkspaceUpdateValues, token: string): Promise<AxiosResponse<Workspace>> => {
   if (attributes.id) {
