@@ -14,7 +14,7 @@ import CandidateStatusStep from '../../elements/CandidateStatusStep/CandidateSta
 import MessageBox from '../../elements/MessageBox/MessageBox';
 import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
 
-const { explore } = routes
+const { manage } = routes
 
 interface Props extends LightMission {}
 
@@ -47,7 +47,7 @@ const MissionItem = ({
   return (
     <div className="MissionItem">
       <h3>
-        <Link key={id} {...explore.missions.show(slug)}>
+        <Link key={id} {...manage.workspace.missions.show(workspace?.slug || workspace_id, slug)}>
           <a>
             <header>
               <Avatar size="small" src={cdnUrl(workspace?.thumb_url || '')} />

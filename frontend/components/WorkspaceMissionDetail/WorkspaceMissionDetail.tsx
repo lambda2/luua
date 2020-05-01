@@ -16,6 +16,7 @@ import MissionSkillsForUser from '../MissionSkillsForUser/MissionSkillsForUser';
 
 import PageSection from '../../elements/PageSection/PageSection';
 import PageTitle from '../../elements/PageTitle/PageTitle';
+import can from '../../utils/can';
 
 const { Text } = Typography;
 
@@ -59,9 +60,9 @@ const WorkspaceMissionDetail = (mission: Props) => {
       <PageTitle
         title={name}
       >
-        <Link {...manage.workspace.missions.edit(`${workspace?.slug || workspace_id}`, `${id}`)}>
-          <a>Edit</a>
-        </Link>
+        {can(currentUser, 'mission.edit', mission) && <Link {...manage.workspace.missions.edit(`${workspace?.slug || workspace_id}`, `${id}`)}>
+          <a>{t('form.mission.edit')}</a>
+        </Link>}
       </PageTitle>
 
       {/* <MissionCandidateBox /> */}

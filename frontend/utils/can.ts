@@ -16,6 +16,17 @@ const can = (
     case 'workspace.destroy':
       return true
   
+    case 'mission.show':
+      // @TODO check membership & cie
+      return user &&
+        true ||
+        (resource.visibility === 'public')
+    case 'mission.create':
+      return user && find(user?.workspace_users, {workspace_id: resource.id, admin: true})
+    case 'mission.edit':
+      return user && find(user?.workspace_users, {workspace_id: resource.workspace_id, admin: true})
+    case 'mission.destroy':
+      return user && find(user?.workspace_users, { workspace_id: resource.workspace_id, admin: true })  
     default:
       return false
   }

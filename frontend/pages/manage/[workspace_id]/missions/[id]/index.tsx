@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import routes from '../../../../../routes/manage'
 
 import { useCollection, fetchInitialData } from '../../../../../utils/http'
-import { withAuthSync } from '../../../../../utils/auth'
+import { withAuthSync, withUserToken } from '../../../../../utils/auth'
 
 import NetworkBoundary from '../../../../../components/NetworkBoudary/NetworkBoudary'
 
@@ -40,7 +40,7 @@ const Mission = (
       {currentWorkspace && <WorkspaceHeader
         workspace={currentWorkspace}
         active='missions'
-        tree={[<Link {...workspace.missions.index(currentWorkspace.id)}><a>{t('menu.missions')}</a></Link>]}
+        tree={[<Link key="/missions" {...workspace.missions.index(currentWorkspace.id)}><a>{t('menu.missions')}</a></Link>]}
       />}
       <ContentLayout>
         <WorkspaceMissionDetail {...data as Mission} />
@@ -53,4 +53,4 @@ Mission.getInitialProps = async (ctx: NextPageContext) => {
   return await fetchInitialData<Mission>(ctx, `/api/missions/${ctx.query.id}`)
 }
 
-export default withAuthSync(Mission)
+export default withUserToken(Mission)

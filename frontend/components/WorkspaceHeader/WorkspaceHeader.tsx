@@ -56,10 +56,10 @@ const WorkspaceHeader = ({
   const renderGuestTabs = () => {
     return (<ul className="WorkspaceHeaderMenu">
       <li className={classNames({ active: active == 'summary' })} key="/">
-        <Link {...ROUTES.explore.workspace.show(workspace.slug)}><a>{t('menu.summary')}</a></Link>
+        <Link {...ROUTES.manage.workspace.show(workspace.slug)}><a>{t('menu.summary')}</a></Link>
       </li>
       <li className={classNames({ active: active == 'missions' })} key={`/explore/${workspace.id}/missions`}>
-        <Link {...ROUTES.explore.workspace.missions.index(workspace.slug)}><a>{t('menu.missions')}</a></Link>
+        <Link {...ROUTES.manage.workspace.missions.index(workspace.slug)}><a>{t('menu.missions')}</a></Link>
       </li>
     </ul>)
   }

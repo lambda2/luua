@@ -7,10 +7,11 @@ import PageSection from '../../elements/PageSection/PageSection';
 import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
 
 interface Props {
-  workspace: Workspace
+  workspace: Workspace,
+  missions?: LightMission[]
 }
 
-const WorkspaceShow = ({ workspace }: Props) => {
+const WorkspaceShow = ({ workspace, missions }: Props) => {
 
   const { t } = useLocale()
 
@@ -25,7 +26,7 @@ const WorkspaceShow = ({ workspace }: Props) => {
       </PageSection>
 
       <PageSection title={t('workspace.missions')}>
-        <WorkspaceMissionList data={workspace.missions} />
+        <WorkspaceMissionList data={missions || workspace.missions} />
       </PageSection>
 
       <PageSection title={t('workspace.applicants')}>

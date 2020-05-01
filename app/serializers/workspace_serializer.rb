@@ -30,7 +30,7 @@ class WorkspaceSerializer < Panko::Serializer
 
   has_one :organization, serializer: OrganizationLightSerializer
 
-  has_many :missions, serializer: MissionLightSerializer
+  # has_many :missions, serializer: MissionLightSerializer
   has_many :mission_users, serializer: MissionUserLightSerializer
   has_many :workspace_users, serializer: WorkspaceUserSerializer
 

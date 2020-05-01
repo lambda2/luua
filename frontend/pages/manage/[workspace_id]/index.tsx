@@ -1,5 +1,5 @@
 import React from 'react'
-import { withAuthSync } from '../../../utils/auth'
+import { withUserToken } from '../../../utils/auth'
 import { useCollection, fetchInitialData } from '../../../utils/http'
 import { useRouter } from 'next/router'
 import NetworkBoundary from '../../../components/NetworkBoudary/NetworkBoudary'
@@ -13,30 +13,39 @@ import WorkspaceHeader from '../../../components/WorkspaceHeader/WorkspaceHeader
  */
 const ShowWorkspace = (
   { initialData, token }:
-  { initialData: Workspace, token?: string }
+    { initialData: Workspace, token?: string }
 ) => {
   const { query } = useRouter()
-  const response= useCollection<Workspace>(
+  const workspaceResponse = useCollection<Workspace>(
     `/api/workspaces/${query.workspace_id}`, token, {}, { initialData }
+  )
+  const missionsResponse = useCollection<LightMission[]>(
+    `/api/workspaces/${query.workspace_id}/missions`, token, {}, {}
   )
 
   return (
-    <NetworkBoundary {...response}>
+    <NetworkBoundary {...workspaceResponse}>
       <WorkspaceHeader
-        workspace={response!.data as Workspace}
+        workspace={workspaceResponse!.data as Workspace}
         active='summary'
       />
       <ContentLayout>
-        <WorkspaceShow workspace={response!.data as Workspace} />
+        <NetworkBoundary {...missionsResponse}>
+          <WorkspaceShow
+            missions={missionsResponse!.data as LightMission[]}
+            workspace={workspaceResponse!.data as Workspace}
+          />
+        </NetworkBoundary>
       </ContentLayout>
     </NetworkBoundary>
   )
-
 }
+
+
 
 
 ShowWorkspace.getInitialProps = async(ctx: NextPageContext) => {
   return await fetchInitialData<Workspace>(ctx, `/api/workspaces/${ctx.query.workspace_id}`)
 }
 
-export default withAuthSync(ShowWorkspace)
+export default withUserToken(ShowWorkspace)

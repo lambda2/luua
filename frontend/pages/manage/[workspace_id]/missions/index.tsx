@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { useCollection, fetchInitialData } from '../../../../utils/http'
-import { withAuthSync } from '../../../../utils/auth'
+import { withUserToken } from '../../../../utils/auth'
 import { useLocale } from '../../../../hooks/useLocale';
 
 import NetworkBoundary from '../../../../components/NetworkBoudary/NetworkBoudary'
@@ -12,6 +12,8 @@ import ContentLayout from '../../../../layouts/ContentLayout/ContentLayout'
 import WorkspaceHeader from '../../../../components/WorkspaceHeader/WorkspaceHeader';
 import WorkspaceContext from '../../../../contexts/WorkspaceContext';
 import PageTitle from '../../../../elements/PageTitle/PageTitle';
+import can from '../../../../utils/can';
+import UserContext from '../../../../contexts/UserContext';
 const { manage } = routes
 
 /**
@@ -25,6 +27,7 @@ const Missions = (
 
   const { t } = useLocale()
   const { currentWorkspace } = useContext(WorkspaceContext)
+  const { currentUser } = useContext(UserContext)
 
   const response = useCollection<LightMission[]>(
     `/api/workspaces/${query.workspace_id}/missions`, token, {}, { initialData }
@@ -37,8 +40,12 @@ const Missions = (
         active='missions'
       />}
       <ContentLayout>
-        <PageTitle title={t('menu.missions')} />
-        <Link {...manage.workspace.missions.new(`${query.workspace_id}`)}><a>{t('mission.create.title')}</a></Link>
+        <PageTitle title={t('menu.missions')}>
+          {can(currentUser, 'mission.create', currentWorkspace) && <Link {...manage.workspace.missions.new(`${query.workspace_id}`)}>
+            <a>{t('mission.create.title')}</a>
+          </Link>}
+        </PageTitle>
+        
         <MissionList data={response.data as LightMission[]} />
       </ContentLayout>
     </NetworkBoundary>
@@ -50,4 +57,4 @@ Missions.getInitialProps = async (ctx: any) => {
   )
 }
 
-export default withAuthSync(Missions)
+export default withUserToken(Missions)
