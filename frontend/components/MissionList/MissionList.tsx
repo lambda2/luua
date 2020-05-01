@@ -1,29 +1,19 @@
-import React, { useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
+import React from 'react';
 import MissionItem from '../MissionItem/MissionItem';
 import List from '../../elements/List/List';
-import PageSection from '../../elements/PageSection/PageSection';
-import { useLocale } from '../../hooks/useLocale';
 
 interface Props {
   data: LightMission[]
 }
 
 const MissionList = ({ data }: Props) => {
-
-  const { t } = useLocale()
   
-  return (
-  <>
-      <PageSection title={t('menu.missions')}>
-        <List
-          itemLayout="vertical"
-          size="default"
-          dataSource={data}
-          renderItem={(item: LightMission) => <MissionItem {...item} />}
-        />
-      </PageSection>
-  </>)
+  return (<List
+    itemLayout="vertical"
+    size="default"
+    dataSource={data}
+    renderItem={(item: LightMission) => <MissionItem {...item} />}
+  />)
 }
 
 export default MissionList

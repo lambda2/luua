@@ -7,6 +7,7 @@ import NetworkBoundary from '../../components/NetworkBoudary/NetworkBoudary'
 import UserProfile from '../../components/UserProfile/UserProfile'
 import { NextPageContext } from 'next'
 import ContentLayout from '../../layouts/ContentLayout/ContentLayout'
+import UserHeader from '../../components/UserHeader/UserHeader'
 
 const Profile = (
   { initialData, token }:
@@ -20,6 +21,7 @@ const Profile = (
   return (
     <ContentLayout>
       <NetworkBoundary {...response}>
+        <UserHeader user={response.data as AuthedUser} active='summary' />
         <UserProfile {...response.data as AuthedUser} />
       </NetworkBoundary>
     </ContentLayout>

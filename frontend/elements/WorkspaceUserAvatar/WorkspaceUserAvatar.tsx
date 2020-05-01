@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import { cdnUrl } from '../../utils/http';
 import { Popover, Tag } from 'antd';
 import { useLocale } from '../../hooks/useLocale';
+import ROUTES from '../../routes/manage';
+import UserAvatar from '../UserAvatar/UserAvatar';
 
 interface Props extends WorkspaceUser {
 
@@ -35,21 +37,25 @@ const WorkspaceUserAvatar: React.FC<Props> = ({
 
   const PopupContent = () => {
     return <>
-      <div>{admin && <Tag color="red">{t('admin')}</Tag>}</div>
-      <div>{role && <Tag color="blue">{role}</Tag>}</div>
       <div>{first_name && last_name && <span>{first_name} {last_name}</span>}</div>
     </>
   }
 
   const PopupTitle = () => {
-    return <span>@{username}</span>
+    return <Link {...ROUTES.users.show(username)}>
+      <a>
+        <span>@{username}</span>
+        {' '}{admin && <Tag color="red">{t('admin')}</Tag>}
+        {' '}{role && <Tag color="blue">{role}</Tag>}
+      </a>
+    </Link>
   }
 
   return (
     
     <Popover content={PopupContent} title={PopupTitle}>
-      <div className="workspace-user-avatar" style={{ marginRight: '5px' }}>
-        <img src={imgOrPlaceholder} alt={username} />
+      <div className="WorkspaceUserAvatar" style={{ marginRight: '5px' }}>
+        <UserAvatar size="large" src={thumb_url} name={username} />
         {renderRoleBadge()}
       </div>
     </Popover>

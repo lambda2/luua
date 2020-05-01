@@ -34,15 +34,10 @@ const route = (
 const explore = {
   index: () => route(['explore']),
   missions: {
-    index: () => route(['explore', 'missions'], { }),
-    show: (id: string | number) => route(['explore', 'missions', '[id]'], { id }),
+    index: () => route(['explore', 'missions'], { })
   },
   workspace: {
-    index: () => route(['workspaces']),
-    show: (workspace_id: string | number) => route(['explore', '[workspace_id]'], { workspace_id }),
-    missions: {
-      index: (workspace_id: string | number) => route(['explore', '[workspace_id]', 'missions'], { workspace_id }),
-    }
+    index: () => route(['explore', 'workspaces'])
   }
 }
 
@@ -80,12 +75,13 @@ const manage = {
 export const ROUTES = {
   index: () => route([]),
   users: {
-    edit: () => route(['users', 'edit']),
-    login: () => route(['users', 'login']),
-    profile: () => route(['users', 'profile']),
-    notifications: () => route(['users', 'notifications']),
-    signup: () => route(['users', 'signup']),
-    skills: () => route(['users', 'skills']),
+    show: (username: string) => route(['users', '[username]'], { username }),
+    edit: () => route(['profile', 'edit']),
+    login: () => route(['profile', 'login']),
+    profile: () => route(['profile']),
+    notifications: () => route(['profile', 'notifications']),
+    signup: () => route(['profile', 'signup']),
+    skills: () => route(['profile', 'skills']),
   },
   manage,
   explore

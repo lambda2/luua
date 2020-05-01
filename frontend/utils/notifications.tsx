@@ -14,15 +14,15 @@ export const linkForNotification = ({
     case 'mission.candidate.applied':
       return ROUTES.manage.workspace.candidates.show(resource.workspace_id, resource.id)
     case 'mission.candidate.rejected':
-      return ROUTES.explore.missions.show(resource.mission_id)
+      return ROUTES.manage.workspace.missions.show(resource.workspace_id, resource.mission_id)
     case 'mission.candidate.canceled':
       return ROUTES.manage.workspace.candidates.show(resource.workspace_id, resource.id)
     case 'mission.candidate.accepted':
-      return ROUTES.explore.missions.show(resource.mission_id)
+      return ROUTES.manage.workspace.missions.show(resource.workspace_id, resource.mission_id)
     case 'mission.candidate.completed':
       return ROUTES.manage.workspace.candidates.show(resource.workspace_id, resource.id)
     case 'mission.candidate.reviewed':
-      return ROUTES.explore.missions.show(resource.mission_id)
+      return ROUTES.manage.workspace.missions.show(resource.workspace_id, resource.mission_id)
     default:
       console.warn(`Unknown notification code: ${code}`)
       return { href: link || '#' }

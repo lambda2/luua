@@ -177,6 +177,9 @@
     },
     "to-join": "a rejoindre l'espace"
   },
+  "user": {
+    "profile": "Profil"
+  },
   "workspace": {
     "create": {
       "title": "Créer un espace"
@@ -196,7 +199,7 @@
       "create-now": "Créer un espace"
     },
     "switching-workspace": "Changement d'espace...",
-    "members": "Membres",
+    "members": "Membre(s)",
     "missions": "Missions",
     "admin": "Admin",
     "applicants": "Candidatures"

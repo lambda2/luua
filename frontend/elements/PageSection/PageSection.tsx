@@ -1,10 +1,12 @@
 import React, { ReactNode } from 'react'
 import classNames from 'classnames';
+import Title from '../Title/Title';
 
 // import './PageSection.module.less'
 
 interface Props {
   className?: string
+  level?: '1' | '2' | '3' | '4' | '5' | '6'
   title?: string | ReactNode
 }
 
@@ -14,6 +16,7 @@ interface Props {
 const PageSection: React.FC<Props> = ({
   className,
   title,
+  level = '3',
   children
 }) => {
 
@@ -23,7 +26,7 @@ const PageSection: React.FC<Props> = ({
 
   const renderTitle = () => {
     if (isTitleString(title)) {
-      return <h2>{title}</h2>
+      return <Title level={level}>{title}</Title>
     } else {
       return title
     }

@@ -1,11 +1,16 @@
 class Api::UsersController < ApiController
   load_and_authorize_resource
   before_action :set_user, only: %i[show update destroy]
+  skip_before_action :authenticate_user!, only: %i[show]
 
   def me
     authorize! :me, current_user
 
     render json: UserDetailsSerializer.new.serialize(current_user)
+  end
+
+  def show
+    render json: UserSerializer.new.serialize(@user)
   end
 
   # PATCH/PUT /api/users/id

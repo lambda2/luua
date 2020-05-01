@@ -55,16 +55,16 @@
 
 class UserSerializer < Panko::Serializer
   attributes :id, :username, :image_url, :thumb_url, :first_name, :last_name,
-             :country_id, :timezone, :created_at, :updated_at,
-             :default_workspace, :workspaces
+             :country_id, :timezone, :created_at, :updated_at
+            #  :default_workspace, :workspaces
 
-  def default_workspace
-    object.workspaces.first&.as_json
-  end
+  # def default_workspace
+  #   object.workspaces.first&.as_json
+  # end
 
-  def workspaces
-    object.workspaces.map(&:as_json)
-  end
+  # def workspaces
+  #   object.workspaces.map(&:as_json)
+  # end
 
   def image_url
     object.image_url

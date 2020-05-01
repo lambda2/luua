@@ -102,6 +102,7 @@ const WorkspaceHeader = ({
     <div className="WorkspaceHeader">
       <header className="WorkspaceHeaderContent">
         <PageTitle
+          level='1'
           title={<>
             <UserAvatar name={workspace.name} size="default" src={workspace.image_url} />
             {' '}

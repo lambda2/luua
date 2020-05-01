@@ -25,6 +25,8 @@ class WorkspaceUserSerializer < Panko::Serializer
              :image_url, :thumb_url, :first_name, :last_name,
              :username, :created_at
 
+  has_one :workspace, serializer: WorkspaceLightSerializer
+
   def first_name
     object.user.first_name
   end

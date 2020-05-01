@@ -10,24 +10,30 @@ import PrimaryLink from '../../elements/PrimaryLink/PrimaryLink';
 import routes from '../../routes/manage'
 import PageSection from '../../elements/PageSection/PageSection';
 import { nameForUser } from '../../utils/user';
-const { users } = routes
 
-const UserProfile = ({
-  username,
-  first_name,
-  last_name,
-  email,
-  user_skills,
-  thumb_url,
-  workspaces,
-}: AuthedUser) => {
+interface Props {
+  user: User
+  workspaces?: LightWorkspace[]
+  missions?: LightMission[]
+}
+
+const UserShow = ({ user }: Props) => {
 
   const { t } = useLocale()
 
+  const {
+    username,
+    first_name,
+    last_name,
+    email,
+    thumb_url,
+  } = user
+
   return (
   <>
+    <p>{ email } </p>
 
-    <PageSection title={t('menu.skills')}>
+    {/* <PageSection title={t('menu.skills')}>
       {user_skills.length === 0 && <p>
           {t('skill.no-skills-yet.title')}. <Link {...users.skills()}><a>{t('skill.no-skills-yet.add-now')}</a></Link>
       </p>}
@@ -35,13 +41,11 @@ const UserProfile = ({
         <ul>{user_skills.map((s: UserSkill) => <li key={s.id}>{s.name}</li>)}</ul>
           <Link {...routes.users.skills()}><a>{t('form.skill.edit-skill')}</a></Link>
       </div>}
-    </PageSection>
-
-    <PageSection title={t('menu.workspaces')}>
+    </PageSection> */}
+{/* 
+    {<PageSection title={t('menu.workspaces')}>
       {workspaces.length === 0 && <p>
         {t('workspace.no-workspace-yet.title')}
-        .{' '}
-        <Link {...routes.manage.workspace.new()}><a>{t('workspace.no-workspace-yet.create-now')}.</a></Link>
       </p>}
       {workspaces.length > 0 && <div>
         <ul>{workspaces.map((s: LightWorkspace) => {
@@ -56,13 +60,9 @@ const UserProfile = ({
       })}</ul>
         <Link {...routes.manage.workspace.new()}><a>{t('workspace.no-workspace-yet.create-now')}</a></Link>
       </div>}
-    </PageSection>
+    </PageSection> */}
 
-    <hr />
-    <div>
-      <Button onClick={logout}>{t('menu.logout')}</Button>
-    </div>
   </>)
 }
 
-export default UserProfile
+export default UserShow

@@ -8,6 +8,7 @@ import PageTitle from '../../elements/PageTitle/PageTitle'
 import { Button } from 'antd'
 import { useLocale } from '../../hooks/useLocale';
 import UserContext from '../../contexts/UserContext'
+import UserHeader from '../../components/UserHeader/UserHeader'
 
 /**
  * The user's notifications page
@@ -23,7 +24,7 @@ const Notifications = (
     `/api/me/notifications`, token, {}, { initialData }
   )
 
-  const { readAllNotifications, readNotification } = useContext(UserContext)
+  const { currentUser, readAllNotifications, readNotification } = useContext(UserContext)
   
   const onReadAll = async () => {
     await readAllNotifications()
@@ -38,6 +39,8 @@ const Notifications = (
   return (
     <NetworkBoundary<UserNotification[]> {...response}>
       <ContentLayout>
+        {currentUser && <UserHeader user={currentUser as AuthedUser} active='notifications' />}
+
         <PageTitle
           title={t('menu.notifications')}
           extra={[

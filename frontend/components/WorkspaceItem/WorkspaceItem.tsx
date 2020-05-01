@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
 import routes from '../../routes/manage'
-import { Avatar } from 'antd';
 
 import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';
 import { cdnUrl } from '../../utils/http';
 import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
+import Title from '../../elements/Title/Title';
+import TitleWithAvatar from '../../elements/TitleWithAvatar/TitleWithAvatar';
+import UserAvatar from '../../elements/UserAvatar/UserAvatar';
 
 const { manage } = routes
 
@@ -27,17 +29,19 @@ const WorkspaceItem = ({
 
   return (
     <div className="WorkspaceItem">
-      <h3 className="List-title">
+      <TitleWithAvatar
+        level='4'
+        avatar={<UserAvatar size="large" src={thumb_url} name={slug} />}
+      >
         {<Link {...manage.workspace.show(slug)}>
           <a>
-            <Avatar size="large" src={cdnUrl(thumb_url || '')} />
             <span>{name}</span>
+            <div className="sub-title text-light">{missions_count} {t('workspace.missions')} · {users_count} {t('workspace.members')}</div>
           </a>
         </Link>}
-      </h3>
+      </TitleWithAvatar>
       <div>
         <MarkdownContent content={description} />
-        <p>{missions_count} Missions · {users_count} Users</p>
       </div>
     </div>
   )

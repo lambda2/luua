@@ -64,7 +64,7 @@ const MissionDetail = (mission: Props) => {
       >
         <aside>
           <div>
-            <Avatar size="large" src={cdnUrl(workspace?.thumb_url || '')} />
+            <Avatar size="xlarge" src={cdnUrl(workspace?.thumb_url || '')} />
           </div>
           <div className="org-title">
             <span>

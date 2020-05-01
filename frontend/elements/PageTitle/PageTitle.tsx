@@ -8,6 +8,7 @@ interface Props {
   title: string | React.ReactNode
   extra?: React.ReactNode[]
   className?: string
+  level?: '1' | '2' | '3' | '4' | '5' | '6'
 }
 
 /**
@@ -16,13 +17,14 @@ interface Props {
 const PageTitle: React.FC<Props> = ({
   children,
   title,
+  level = '2',
   extra = [],
   className = ''
 }) => {
 
   return (
     <header className={classNames(className, 'PageTitle')}>
-      <Title>{title}</Title>
+      <Title level={level}>{title}</Title>
       <aside>
         {extra}
       </aside>

@@ -9,8 +9,9 @@ class Ability
   end
 
   # For normal authed users
-  def regular_ability(user) # rubocop:todo Metrics/AbcSize
+  def regular_ability(user) # rubocop:todo Metrics/AbcSize Metrics/MethodLength
     can :manage, User, id: user.id
+    can :read, User
     can :read, Skill, skill_type: :global
     can :read, Skill, skill_type: :organization, organization: { id: user.organization_ids }
 
@@ -57,6 +58,9 @@ class Ability
     can :read, Country
     can :read, Region
     can :read, SkillCategory
+    can :read, User
+    can %i[read], MissionUser, mission: { visibility: :public }
+    can %i[read], WorkspaceUser
 
     # Everybody can see public missions
     can :read, Mission, visibility: :public

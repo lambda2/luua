@@ -1,7 +1,8 @@
 class Api::WorkspaceUsersController < ApiController
 
   load_and_authorize_resource :workspace
-  load_and_authorize_resource :workspace_user, through: %i[workspace], shallow: true
+  load_and_authorize_resource :user
+  load_and_authorize_resource :workspace_user, through: %i[user workspace], shallow: true
 
   skip_before_action :authenticate_user!
 

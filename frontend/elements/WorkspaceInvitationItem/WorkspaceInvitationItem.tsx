@@ -24,7 +24,7 @@ const WorkspaceInvitationItem: React.FC<WorkspaceInvitation> = ({
   return (
     <div className="WorkspaceInvitationItem">
       <aside>
-        <UserAvatar src={user?.thumb_url} size="large" name={user?.username || email} />
+        <UserAvatar src={user?.thumb_url} size="xlarge" name={user?.username || email} />
       </aside>
       <main>
         <h4>

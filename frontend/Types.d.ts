@@ -100,6 +100,7 @@ declare interface WorkspaceUser {
     last_name?: string
     username: string
     created_at: string
+    workspace?: LightWorkspace
 }
 
 declare interface WorkspaceInvitation {
@@ -185,6 +186,7 @@ declare interface LightMissionUser {
     workspace_id: number
     user_id: number
     status: MissionUserStatus
+    mission: LightMission
     applied_at: string | null
     accepted_at: string | null
     rejected_at: string | null

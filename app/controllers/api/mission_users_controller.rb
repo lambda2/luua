@@ -1,7 +1,8 @@
 class Api::MissionUsersController < ApiController
   load_and_authorize_resource :mission
   load_and_authorize_resource :workspace
-  load_and_authorize_resource :mission_user, through: %i[mission workspace], shallow: true
+  load_and_authorize_resource :user
+  load_and_authorize_resource :mission_user, through: %i[user mission workspace], shallow: true
 
   skip_before_action :authenticate_user!
 

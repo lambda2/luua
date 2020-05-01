@@ -40,7 +40,7 @@ const Missions = (
         active='missions'
       />}
       <ContentLayout>
-        <PageTitle title={t('menu.missions')}>
+        <PageTitle level='2' title={t('menu.missions')}>
           {can(currentUser, 'mission.create', currentWorkspace) && <Link {...manage.workspace.missions.new(`${query.workspace_id}`)}>
             <a>{t('mission.create.title')}</a>
           </Link>}

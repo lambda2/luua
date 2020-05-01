@@ -2,10 +2,11 @@ import React, { ReactNode } from 'react'
 import { Avatar } from 'antd';
 import { cdnUrl } from '../../utils/http';
 
+type AvatarSize = "small" | "default" | "large" | "xlarge" | "xxlarge"
 interface Props {
   src?: string
   name: string
-  size?: number | "small" | "large" | "default"
+  size?: number | AvatarSize
 }
 
 /**
@@ -25,12 +26,14 @@ const UserAvatar = ({
   const sizes = {
     small: 24,
     default: 32,
-    large: 64
+    large: 48,
+    xlarge: 64,
+    xxlarge: 96,
   }
 
   const imgStyles = {
-    maxHeight: (sizes[size as "small" | "large" | "default"]) || size || 32,
-    maxwidth: (sizes[size as "small" | "large" | "default"]) || size || 32,
+    maxHeight: (sizes[size as AvatarSize]) || size || 32,
+    maxWidth: (sizes[size as AvatarSize]) || size || 32,
     borderRadius: 3
   }
 

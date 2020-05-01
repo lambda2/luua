@@ -10,11 +10,17 @@ import { cdnUrl } from '../../utils/http';
 import UserAvatar from '../../elements/UserAvatar/UserAvatar';
 import MissionSkillsForUser from '../MissionSkillsForUser/MissionSkillsForUser';
 import { useRouter } from 'next/router';
+import TitleWithAvatar from '../../elements/TitleWithAvatar/TitleWithAvatar';
 
 
 const { explore, manage } = routes
 
-interface Props extends MissionUser {}
+interface Props {
+  mission: LightMission
+  user: User
+  status: MissionUserStatus
+  id: number
+}
 
 const MissionUserItem = ({
   id,
@@ -28,33 +34,19 @@ const MissionUserItem = ({
   const { query } = useRouter()
 
   return (
-    <List.Item
-      className="MissionUserItem"
-      key={id}
-      actions={[
-      ]}
-    >
-      <List.Item.Meta
-        avatar={<UserAvatar
-          name={user.username}
-          size="default"
-          src={user.thumb_url}
-        />}
-        title={<Link key={id} {...manage.workspace.candidates.show(`${query.workspace_id}`, `${id}`) }>
+    <div className="MissionUserItem">
+      <TitleWithAvatar
+        level='4'
+        avatar={<UserAvatar size="large" src={user.thumb_url} name={user.username} />}
+      >
+        <Link key={id} {...manage.workspace.candidates.show(`${query.workspace_id}`, `${id}`)}>
           <a>
-            <header>
-              <span className="org-title">
-                {user.username}{' '}
-                {t(`mission_user.${status}.state`, { name: mission.name })}
-              </span>
-            </header>
+            {mission.name}
+            <div className="sub-title text-light">{t(`mission_user.${status}.state`, { name: mission.name })}</div>
           </a>
-        </Link>}
-        description={<div>
-
-        </div>}
-      />
-    </List.Item>
+        </Link>
+      </TitleWithAvatar>
+    </div>
   )
 
 }
