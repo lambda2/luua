@@ -56,7 +56,9 @@ frontend/.env*
 # debug
 frontend/npm-debug.log*
 frontend/yarn-debug.log*
-frontend/yarn-error.log*
 frontend/scripts
 
 .npmrc.tmp
+TODO.md
+LOADS.md
+yarn-error.log

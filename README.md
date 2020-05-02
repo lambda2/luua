@@ -11,7 +11,7 @@ This project is a **work in progress**, and is not working yet.
 This is the monorepo for Luua, which is made of:
 
 - A REST API (a rails app), located here (under `/`)
-- Soon, A NextJS (React) web app, located under `/frontend`
+- A NextJS (React) web app, located under `/frontend`
 
 ## Setup
 
@@ -38,12 +38,3 @@ cd luua
 - PostgreSQL 10+
 - Redis 4+
 - Ruby 2.5+
-
-## Notes
-<!--
-### i18n
-
-All strings in database are stored in english for now.
-Future could be:
-- Translates server side, in database. Slow down queries and add more management to translate everything
-- (Current solution) Translates client side, very error prone -->
