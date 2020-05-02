@@ -1,22 +1,39 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+// import {
+//   // faQuestionSquare,
+//   faEyeSlash,
+//   faLock,
+//   faPencilAlt,
+//   faEye,
+//   faEnvelope,
+//   faTimesCircle,
+//   faSpinner,
+//   faInbox,
+//   faCheckCircle,
+// } from '@fortawesome/pro-duotone-svg-icons'
+// import {
+//   faQuestionSquare,
+//   faQuestionCircle,
+//   faTrash,
+// } from '@fortawesome/pro-light-svg-icons'
 import {
-  // faQuestionSquare,
+  faQuestionCircle,
+  faTrashAlt,
   faEyeSlash,
-  faLockAlt,
-  faPencil,
   faEye,
   faEnvelope,
   faTimesCircle,
-  faSpinner,
-  faInboxIn,
   faCheckCircle,
-} from '@fortawesome/pro-duotone-svg-icons'
+} from '@fortawesome/free-regular-svg-icons'
+
 import {
-  faQuestionSquare,
-  faQuestionCircle,
-  faTrash,
-} from '@fortawesome/pro-light-svg-icons'
+  faLock,
+  faPencilAlt,
+  faSpinner,
+  faInbox,
+} from '@fortawesome/free-solid-svg-icons'
 
 import {
   faFacebook,
@@ -26,42 +43,40 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 
 library.add(
-  faQuestionSquare,
-  faTrash,
+  faTrashAlt,
   faEyeSlash,
-  faLockAlt,
-  faPencil,
+  faLock,
+  faPencilAlt,
   faEye,
   faEnvelope,
   faTimesCircle,
   faSpinner,
-  faInboxIn,
+  faInbox,
   faCheckCircle,
 )
 
 export {
-  faQuestionSquare,
-  faTrash,
+  faTrashAlt,
   faEyeSlash,
-  faLockAlt,
-  faPencil,
+  faLock,
+  faPencilAlt,
   faEye,
 };
 
 export default {
   "question": <FontAwesomeIcon className="menu-icon" icon={faQuestionCircle} />,
-  "delete": <FontAwesomeIcon className="menu-icon" icon={faTrash} />,
-  "visibility": {
-    "hidden": <FontAwesomeIcon className="menu-icon" icon={faEyeSlash} />,
-    "protected": <FontAwesomeIcon className="menu-icon" icon={faLockAlt} />,
-    "draft": <FontAwesomeIcon className="menu-icon" icon={faPencil} />,
-    "public": <FontAwesomeIcon className="menu-icon" icon={faEye} />,
-  },
+  "delete": <FontAwesomeIcon className="menu-icon" icon={faTrashAlt} />,
+  // "visibility": {
+  //   "hidden": <FontAwesomeIcon className="menu-icon" icon={faEyeSlash} />,
+  //   "protected": <FontAwesomeIcon className="menu-icon" icon={faLock} />,
+  //   "draft": <FontAwesomeIcon className="menu-icon" icon={faPencilAlt} />,
+  //   "public": <FontAwesomeIcon className="menu-icon" icon={faEye} />,
+  // },
   "mission_status": {
     "applied": <FontAwesomeIcon icon={faEnvelope} />,
     "rejected": <FontAwesomeIcon icon={faTimesCircle} />,
     "accepted": <FontAwesomeIcon icon={faSpinner} spin />,
-    "completed": <FontAwesomeIcon icon={faInboxIn} />,
+    "completed": <FontAwesomeIcon icon={faInbox} />,
     "reviewed": <FontAwesomeIcon icon={faCheckCircle} />
   }
 }
