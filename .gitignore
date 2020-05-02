@@ -59,3 +59,4 @@ frontend/yarn-debug.log*
 frontend/yarn-error.log*
 frontend/scripts
 
+.npmrc.tmp
