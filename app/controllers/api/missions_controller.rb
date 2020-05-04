@@ -84,6 +84,7 @@ class Api::MissionsController < ApiController
       :modified_by,
       :participant_count,
       :hiring_validation,
+      :visibility,
       mission_skills_attributes: %i[id skill_id level name mandatory _destroy]
     )
   end

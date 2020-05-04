@@ -111,9 +111,7 @@ const MissionForm = ({ mission }: Props) => {
 
   const isValidForStep = (errors: FormikErrors<any>, st: number) => {
     const { fields } = steps[st]
-
     const err = pick(errors, fields)
-    console.log(`Errors for step ${st} =>  `, Object.keys(err).length, { errors, err });
     return Object.keys(err).length === 0
   }
 
@@ -138,7 +136,6 @@ const MissionForm = ({ mission }: Props) => {
         onSubmit={async (values, { setErrors, setValues }) => {
           try {
             const { data } = await createOrUpdate(values, currentUser.jwt)
-            console.log("After save: ", { data });
 
             if (step === steps.length - 1) {
               const dest = workspace.missions.show(data!.workspace_id, data.slug)

@@ -478,6 +478,28 @@
         "as-many-as-possible": "Autant que possible",
         "participant": "personne"
       },
+      "visibility": {
+        "label": "Visiblité de la mission",
+        "hint": "Qui peut voir et candidater à cette mission ?",
+        "options": {
+          "draft": {
+            "title": "Brouillon",
+            "description": "La mission n'est pas encore publiée et n'est visible que par vous."
+          },
+          "private": {
+            "title": "Privée",
+            "description": "La mission n'est visible que par vous et les administrateurs de l'espace."
+          },
+          "protected": {
+            "title": "Protégée",
+            "description": "La mission n'est visible que par vous et les membres de l'espace."
+          },
+          "public": {
+            "title": "Publique",
+            "description": "Tout le monde peut voir cette mission."
+          }
+        }
+      },
       "hiring_validation": {
         "label": "Validation des candidatures",
         "hint": "Lorsque une personne candidate a cette mission...",

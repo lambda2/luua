@@ -40,20 +40,43 @@ const MissionPeopleForm = ({ mission }: Props) => {
         <span className="hint">{t('form.mission.hiring_validation.hint')}{' '}</span>
         <Radio.Group name={'hiring_validation'}>
           <Radio name={'hiring_validation'} value={'review'}>
-            <h3>{t('form.mission.hiring_validation.options.review.title')}</h3>
+            <b>{t('form.mission.hiring_validation.options.review.title')}</b>
             <p>{t('form.mission.hiring_validation.options.review.description')}</p>
           </Radio>
           <Radio name={'hiring_validation'} value={'trusted'}>
-            <h3>{t('form.mission.hiring_validation.options.trusted.title')}</h3>
+            <b>{t('form.mission.hiring_validation.options.trusted.title')}</b>
             <p>{t('form.mission.hiring_validation.options.trusted.description')}</p>
           </Radio>
           <Radio name={'hiring_validation'} value={'requirements'}>
-              <h3>{t('form.mission.hiring_validation.options.requirements.title')}</h3>
+              <b>{t('form.mission.hiring_validation.options.requirements.title')}</b>
               <p>{t('form.mission.hiring_validation.options.requirements.description')}</p>
           </Radio>
           <Radio name={'hiring_validation'} value={'accept_all'}>
-            <h3>{t('form.mission.hiring_validation.options.accept_all.title')}</h3>
+            <b>{t('form.mission.hiring_validation.options.accept_all.title')}</b>
             <p>{t('form.mission.hiring_validation.options.accept_all.description')}</p>
+          </Radio>
+        </Radio.Group>
+
+      </Form.Item>
+
+      <Form.Item label={t('form.mission.visibility.label')} name='visibility'>
+        <span className="hint">{t('form.mission.visibility.hint')}{' '}</span>
+        <Radio.Group name={'visibility'}>
+          <Radio name={'visibility'} value={'draft'}>
+            <b>{t('form.mission.visibility.options.draft.title')}</b>
+            <p>{t('form.mission.visibility.options.draft.description')}</p>
+          </Radio>
+          <Radio name={'visibility'} value={'private'}>
+            <b>{t('form.mission.visibility.options.private.title')}</b>
+            <p>{t('form.mission.visibility.options.private.description')}</p>
+          </Radio>
+          <Radio name={'visibility'} value={'protected'}>
+            <b>{t('form.mission.visibility.options.protected.title')}</b>
+            <p>{t('form.mission.visibility.options.protected.description')}</p>
+          </Radio>
+          <Radio name={'visibility'} value={'public'}>
+              <b>{t('form.mission.visibility.options.public.title')}</b>
+              <p>{t('form.mission.visibility.options.public.description')}</p>
           </Radio>
         </Radio.Group>
 
