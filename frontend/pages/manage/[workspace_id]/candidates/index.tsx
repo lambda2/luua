@@ -6,7 +6,7 @@ import { withAuthSync } from '../../../../utils/auth'
 import { useLocale } from '../../../../hooks/useLocale';
 
 import NetworkBoundary from '../../../../components/NetworkBoudary/NetworkBoudary'
-import MissionUserList from '../../../../components/MissionUserList/MissionList'
+import MissionUserList from '../../../../components/MissionUserList/MissionUserList'
 
 import ContentLayout from '../../../../layouts/ContentLayout/ContentLayout'
 import PageTitle from '../../../../elements/PageTitle/PageTitle';

@@ -17,7 +17,7 @@ const { explore, manage } = routes
 
 interface Props {
   mission: LightMission
-  user: User
+  user: BaseUser
   status: MissionUserStatus
   id: number
 }
