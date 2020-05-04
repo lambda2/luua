@@ -18,8 +18,6 @@ interface Props {
   active?: string
 }
 
-
-
 const WorkspaceSettingsMenu = ({
   active
 }: Props) => {
@@ -49,9 +47,10 @@ const WorkspaceSettingsMenu = ({
         <Link {...workspace.invitations(workspace_id)}><a>{t('workspace.settings.invitations')}</a></Link>
       </li>
 
-      <li className={classNames({ active: active == 'requests' })} key="/requests">
+      {/* @TODO show workspace requests */}
+      {/* <li className={classNames({ active: active == 'requests' })} key="/requests">
         <Link {...workspace.requests(workspace_id)}><a>{t('workspace.settings.requests')}</a></Link>
-      </li>
+      </li> */}
 
   </ul>)
 

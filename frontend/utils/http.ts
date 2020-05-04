@@ -108,10 +108,7 @@ export function useCollection<T>(
   const headers = {
     'Accept-Language': language,
     ...authHeaders
-  }
-
-  console.log({ headers });
-  
+  }  
 
   const getCollection = (opts: any): Promise<T> => fetch<T>(endpoint, { headers, ...requestOpts, ...opts })
 

@@ -16,11 +16,6 @@ interface Props {
 const ExploreWorkspaces = (
   { initialData, token }: Props
 ) => {
-
-  const { t } = useLocale()
-
-  console.log({ initialData, token });
-
   const response = useCollection<LightWorkspace[]>(
     `/api/workspaces?for_user=true`, token, {}, { initialData }
   )

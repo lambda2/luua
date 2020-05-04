@@ -25,6 +25,8 @@
     "edit": "Éditer",
     "settings": "Paramètres",
     "show": "Voir",
+    "new": "Nouveau",
+    "destroy": "Supprimer",
     "delete": "Supprimer"
   },
   "status": {

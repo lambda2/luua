@@ -19,10 +19,6 @@ interface Props {
 const ExploreMissions = (
   { initialData, token }: Props
 ) => {
-
-  const { t } = useLocale()
-
-  console.log({ initialData, token });
   
   const response = useCollection<LightMission[]>(
     `/api/missions?for_user=true`, token, {}, { initialData }

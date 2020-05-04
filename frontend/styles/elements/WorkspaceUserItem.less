@@ -2,6 +2,7 @@
 .WorkspaceUserItem {
 
   display: flex;
+  flex: 1;
   align-items: center;
   
   aside {
@@ -10,6 +11,14 @@
 
   main {
     flex: auto;
+    h4 {
+      margin: 0;
+    }
+
+    .ant-tag {
+      position: relative;
+      bottom: 2px;
+    }
 
     span + span {
       margin-left: @space-s;

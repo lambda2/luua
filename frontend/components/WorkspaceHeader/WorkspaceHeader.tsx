@@ -44,10 +44,10 @@ const WorkspaceHeader = ({
   }
 
   const buttons: ResourceButtons = {
-    new: <PrimaryLink {...manage.manage.workspace.new()}>{t('menu.new')}</PrimaryLink>,
-    show: <PrimaryLink {...manage.manage.workspace.show(workspace.slug)}>{t('menu.show')}</PrimaryLink>,
-    edit: <PrimaryLink {...manage.manage.workspace.edit(workspace.slug)}>{t('menu.edit')}</PrimaryLink>,
-    destroy: <PrimaryLink href="?">{t('menu.destroy')}</PrimaryLink>,
+    new: <PrimaryLink key="new" {...manage.manage.workspace.new()}>{t('menu.new')}</PrimaryLink>,
+    show: <PrimaryLink key="show" {...manage.manage.workspace.show(workspace.slug)}>{t('menu.show')}</PrimaryLink>,
+    edit: <PrimaryLink key="edit" {...manage.manage.workspace.edit(workspace.slug)}>{t('menu.edit')}</PrimaryLink>,
+    destroy: <PrimaryLink key="destroy" href="?">{t('menu.destroy')}</PrimaryLink>,
   }
 
   const onBack = back ? { onBack: () => window.history.back() } : {}
@@ -100,7 +100,7 @@ const WorkspaceHeader = ({
   }
 
   const leftActions = [
-    <WorkspaceJoinButton workspace={workspace} user={currentUser}/>,
+    <WorkspaceJoinButton key="workspace-join" workspace={workspace} user={currentUser}/>,
     ...actions
       .filter((act) => can(currentUser, `workspace.${act}`, workspace))
       .map(a => buttons[a])
