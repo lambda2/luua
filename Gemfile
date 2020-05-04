@@ -41,16 +41,15 @@ gem 'friendly_id', '~> 5.2.5'
 # analytics
 gem 'ahoy_matey'
 
-
 # State machines
 gem 'aasm', '~> 5.0.8'
 
 # i18n
+gem 'devise-i18n'
 gem 'globalize', '~> 5.3.0'
 gem 'globalize-accessors', '~> 0.2.1'
-gem 'devise-i18n'
-gem 'rack-contrib'
 gem 'i18n-tasks', '~> 0.9.31'
+gem 'rack-contrib'
 
 # Errors & reporting
 gem 'appsignal', '~> 2.10.5'

@@ -1,6 +1,6 @@
-# 
+#
 # Will manage all requests from users wanting to join a workspace
-# 
+#
 class Api::WorkspaceRequestsController < ApiController
 
   load_and_authorize_resource :workspace

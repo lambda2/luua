@@ -24,5 +24,4 @@ module I18nAction
     Rails.logger.debug "🇪🇺 Parsed locale is #{parsed_locale}" if parsed_locale
     I18n.available_locales.map(&:to_s).include?(parsed_locale) ? parsed_locale : nil
   end
-
 end

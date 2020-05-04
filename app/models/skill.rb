@@ -58,7 +58,7 @@ class Skill < ApplicationRecord
   # before_validation :compute_users_count, on: :update
 
   # validates :name, uniqueness: true,
-                  #  presence: true
+  #  presence: true
 
   scope :root_level, -> { where(parent_id: nil) }
   scope :search, ->(q) { joins(:translations).where('LOWER(unaccent(skill_translations.full_name)) ILIKE LOWER(unaccent(?)) OR LOWER(unaccent(tags)) ILIKE LOWER(unaccent(?))', "%#{q}%", "%#{q}%") }

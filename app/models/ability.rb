@@ -9,7 +9,8 @@ class Ability
   end
 
   # For normal authed users
-  def regular_ability(user) # rubocop:todo Metrics/AbcSize Metrics/MethodLength
+  # rubocop:todo Metrics/MethodLength
+  def regular_ability(user) # rubocop:todo Metrics/AbcSize Metrics/MethodLength # rubocop:todo Metrics/MethodLength # rubocop:todo Metrics/MethodLength
     can :manage, User, id: user.id
     can :read, User
     can :read, Skill, skill_type: :global
@@ -52,6 +53,7 @@ class Ability
 
     can :create, Organization
   end
+  # rubocop:enable Metrics/MethodLength
 
   # For normal authed users
   def guest_ability

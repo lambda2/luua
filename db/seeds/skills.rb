@@ -1,7 +1,7 @@
 # Our main category
 SkillCategory.where(name: 'General').first_or_create!
 
-def save_skill(skill, cat, parent = nil)
+def save_skill(skill, cat, parent = nil) # rubocop:todo Metrics/PerceivedComplexity
   puts "🎒 Adding skill #{parent ? "#{parent.full_name} > " : ''}#{skill['name']}"
 
   s = Skill.where(
@@ -15,7 +15,7 @@ def save_skill(skill, cat, parent = nil)
 
   s.name_fr = skill['name_fr'] if skill['name_fr']
   s.description_fr = skill['description_fr'] if skill['description_fr']
-  s.description_en = skill['description_en'] || skill['description'] if (skill['description_en'] || skill['description'])
+  s.description_en = skill['description_en'] || skill['description'] if skill['description_en'] || skill['description']
 
   s.save
 

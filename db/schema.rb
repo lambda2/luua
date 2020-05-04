@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_112231) do
+ActiveRecord::Schema.define(version: 2020_05_04_135350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,31 @@ ActiveRecord::Schema.define(version: 2020_05_04_112231) do
     t.index ["name"], name: "index_countries_on_name", unique: true
     t.index ["region_id"], name: "index_countries_on_region_id"
     t.index ["slug"], name: "index_countries_on_slug", unique: true
+  end
+
+  create_table "discussions", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.text "description"
+    t.integer "visibility", default: 0, null: false
+    t.bigint "user_id", null: false
+    t.string "resource_type", null: false
+    t.bigint "resource_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_type", "resource_id"], name: "index_discussions_on_resource_type_and_resource_id"
+    t.index ["user_id"], name: "index_discussions_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.integer "parent_id"
+    t.bigint "user_id", null: false
+    t.bigint "discussion_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["discussion_id"], name: "index_messages_on_discussion_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "mission_categories", force: :cascade do |t|
@@ -405,6 +430,9 @@ ActiveRecord::Schema.define(version: 2020_05_04_112231) do
   end
 
   add_foreign_key "countries", "regions"
+  add_foreign_key "discussions", "users"
+  add_foreign_key "messages", "discussions"
+  add_foreign_key "messages", "users"
   add_foreign_key "mission_skills", "missions"
   add_foreign_key "mission_skills", "skills"
   add_foreign_key "mission_users", "missions"

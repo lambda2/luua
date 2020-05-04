@@ -28,7 +28,7 @@ class WorkspaceRequest < ApplicationRecord
 
   enum status: %i[pending accepted rejected], _suffix: true
 
-  aasm column: :status, enum: true, logger: Rails.logger do # rubocop:todo Metrics/BlockLength
+  aasm column: :status, enum: true, logger: Rails.logger do
     state :pending, initial: true
     state :accepted, :rejected
 

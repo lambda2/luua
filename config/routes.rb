@@ -66,7 +66,7 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
       end
     end
 
-    resources :users, only: [:update, :show] do
+    resources :users, only: %i[update show] do
       resources :notifications
       resources :mission_users, only: [:index]
       resources :workspace_users, only: [:index]
