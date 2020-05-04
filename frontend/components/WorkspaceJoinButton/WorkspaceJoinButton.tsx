@@ -45,6 +45,12 @@ const WorkspaceJoinButton = ({
     return <></>
   }
 
+  const activeUser = find(user.workspace_users, { workspace_id: id })
+
+  if (activeUser) {
+    return <Button disabled>{activeUser.admin ? t(`workspace.admin`) : t(`workspace.member`)}</Button>
+  }
+
   const activeRequest = find(user.workspace_requests, { workspace_id: id})
 
   if (activeRequest) {

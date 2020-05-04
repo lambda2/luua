@@ -22,7 +22,19 @@ class JoinWorkspace
 
     if context.workspace_request.save
       # We track this event
+      context.workspace_request.accept!
       WorkspaceHistory.track!(context.workspace, context.workspace_request, context.workspace_request.user)
+
+      context.workspace.admin_ids.each do |admin_id|
+        # And we notify the workspace admins that someone joined
+        Notification.create!(
+          code: 'workspace.member.joined',
+          user_id: admin_id,
+          title: "#{context.user.username} joined the workspace '#{context.workspace.name}'",
+          resource: context.workspace_request
+        )
+      end
+
     else
       context.fail!(messages: context.workspace_request.errors.messages)
     end
@@ -37,6 +49,17 @@ class JoinWorkspace
     if context.workspace_request.save
       # We track this event
       WorkspaceHistory.track!(context.workspace, context.workspace_request, context.workspace_request.user)
+
+      context.workspace.admin_ids.each do |admin_id|
+        # And we notify the workspace admins that someone joined
+        Notification.create!(
+          code: 'workspace.request.created',
+          user_id: admin_id,
+          title: "#{context.user.username} asked to join the workspace '#{context.workspace.name}'",
+          resource: context.workspace_request
+        )
+      end
+
     else
       context.fail!(messages: context.workspace_request.errors.messages)
     end

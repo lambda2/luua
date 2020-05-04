@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import NotificationItem from '../NotificationItem/NotificationItem';
 import InvitationNotification from '../NotificationItem/InvitationNotification';
+import WorkspaceRequestNotification from '../NotificationItem/WorkspaceRequestNotification';
 import List from '../../elements/List/List';
 import PageSection from '../../elements/PageSection/PageSection';
 import { useLocale } from '../../hooks/useLocale';
@@ -19,6 +20,8 @@ const NotificationList = ({ data, onRead }: Props) => {
     switch (type) {
       case 'workspace.invitation.created':
         return InvitationNotification
+      case 'workspace.request.created':
+        return WorkspaceRequestNotification
       default:
         return NotificationItem
     }

@@ -20,9 +20,39 @@
 #  fk_rails_...  (workspace_id => workspaces.id)
 #
 class WorkspaceRequest < ApplicationRecord
+  include AASM
+
   belongs_to :user
   belongs_to :workspace
+  has_many :notifications, as: :resource, dependent: :destroy
 
   enum status: %i[pending accepted rejected], _suffix: true
 
+  aasm column: :status, enum: true, logger: Rails.logger do # rubocop:todo Metrics/BlockLength
+    state :pending, initial: true
+    state :accepted, :rejected
+
+    event :accept do
+
+      # We add the member to the workspace users
+      before do
+        WorkspaceUser.create!(
+          user: user,
+          workspace: workspace
+        )
+      end
+
+      transitions from: :pending, to: :accepted
+    end
+
+    event :reject do
+      transitions from: %i[pending], to: :rejected
+    end
+    after_all_transitions :log_status_change
+
+  end
+
+  def log_status_change
+    puts "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
+  end
 end

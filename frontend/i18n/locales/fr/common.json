@@ -172,6 +172,12 @@
       "accepted": "Rejoint",
       "pending": "Demande envoyée",
       "rejected": "Demande refusée"
+    },
+    "request": {
+      "button": "Inviter...",
+      "accept": "Accepter",
+      "reject": "Refuser",
+      "title": "Inviter dans l'espace"
     }
   },
   "workspace_invitation": {
@@ -182,7 +188,7 @@
       "reject": "Refuser",
       "title": "Inviter dans l'espace"
     },
-    "to-join": "a rejoindre l'espace"
+    "to-join": "à rejoindre l'espace"
   },
   "user": {
     "profile": "Profil"
@@ -208,7 +214,7 @@
       },
       "approval": {
         "label": "",
-        "button": "Demander a rejoindre"
+        "button": "Demander à rejoindre"
       },
       "open": {
         "label": "",
@@ -223,6 +229,7 @@
     "members": "Membre(s)",
     "missions": "Missions",
     "admin": "Admin",
+    "member": "Membre",
     "applicants": "Candidatures"
   },
   "help": {
@@ -499,9 +506,37 @@
     "read-all": "Tout marquer comme lu",
     "read": "Marquer comme lu",
     "workspace": {
+      "member": {
+        "joined": {
+          "title": "@{{user.username}} a rejoint l'espace {{workspace.name}}",
+          "content": ""
+        }
+      },
+      "request": {
+        "created": {
+          "title": "@{{user.username}} a demandé à rejoindre l'espace {{workspace.name}}",
+          "content": ""
+        },
+        "accepted": {
+          "title": "Votre demande pour rejoindre l'espace {{workspace.name}} a été acceptée",
+          "content": ""
+        },
+        "rejected": {
+          "title": "Votre demande pour rejoindre l'espace {{workspace.name}} a été rejetée",
+          "content": ""
+        },
+        "_accepted": {
+          "title": "@{{user.username}} a été accepté dans l'espace {{workspace.name}}",
+          "content": ""
+        },
+        "_rejected": {
+          "title": "@{{user.username}} a été refusé dans l'espace {{workspace.name}}",
+          "content": ""
+        }
+      },
       "invitation": {
         "created": {
-          "title": "Vous avez été invité a rejoindre l'espace {{workspace.name}}",
+          "title": "Vous avez été invité à rejoindre l'espace {{workspace.name}}",
           "content": "Invité par @{{inviter.username}}"
         },
         "accepted": {

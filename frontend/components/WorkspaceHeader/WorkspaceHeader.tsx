@@ -100,7 +100,7 @@ const WorkspaceHeader = ({
   }
 
   const leftActions = [
-    // <WorkspaceJoinButton workspace={workspace} user={currentUser}/>,
+    <WorkspaceJoinButton workspace={workspace} user={currentUser}/>,
     ...actions
       .filter((act) => can(currentUser, `workspace.${act}`, workspace))
       .map(a => buttons[a])

@@ -48,7 +48,7 @@ export const authenticateWithCredentials = async (
   email: string, password: string
   ) => {
   const user = { email, password }
-  const endpoint = '/profile/sign_in'
+  const endpoint = '/users/sign_in'
   const { data, status, headers } = await api(endpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

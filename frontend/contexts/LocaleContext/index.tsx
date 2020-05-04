@@ -31,7 +31,7 @@ const LocaleProvider: React.FC<LocaleProviderProps> = ({children, ...props}) => 
   // Our cheap t() function
   const t = (key: string, object?: any): string => {
     const trans = get(resources, key)
-    if (!trans) {
+    if (trans === undefined) {
       console.warn(`[i18n] Unable to find '${key}'`)
       return key
     }

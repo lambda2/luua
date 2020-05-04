@@ -25,6 +25,7 @@ class WorkspaceUser < ApplicationRecord
 
   belongs_to :user
   belongs_to :workspace, counter_cache: :users_count
+  has_many :notifications, as: :resource, dependent: :destroy
 
   before_create :set_admin_on_first_user
   after_create :set_primary_workspace_for_user

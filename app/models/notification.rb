@@ -47,7 +47,13 @@ class Notification < ApplicationRecord
     'workspace.invitation.rejected' => 8,   # An user rejected to join a workspace
     'workspace.invitation._accepted' => 9,  # Placeholder for the user who accepted to join a workspace
     'workspace.invitation._rejected' => 10, # Placeholder for the user who rejected to join a workspace
-    'custom' => 100                         # A candidate has been reviewed on a mission
+    'workspace.member.joined' => 11,        # A user joined a workspace
+    'workspace.request.created' => 12,      # A user asked to join a workspace
+    'workspace.request.accepted' => 13,     # A user request to join a workspace has been accepted
+    'workspace.request.rejected' => 14,     # A user request to join a workspace has been rejected
+    'workspace.request._accepted' => 15,    # Placeholder for a user request to join a workspace has been accepted
+    'workspace.request._rejected' => 16,    # Placeholder for a user request to join a workspace has been rejected
+    'custom' => 100                         # A custom message
   }, _suffix: true
 
   def set_default_values
