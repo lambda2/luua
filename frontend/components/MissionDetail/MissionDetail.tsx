@@ -1,10 +1,8 @@
 import React, { useContext } from 'react';
-import { Avatar } from 'antd';
 import Link from 'next/link';
 import find from 'lodash/find';
 import { Typography } from 'antd';
 
-import { cdnUrl } from '../../utils/http';
 import momentWithLocale from '../../i18n/moment';
 import routes from '../../routes/manage'
 import { useLocale } from '../../hooks/useLocale';
@@ -17,12 +15,13 @@ import MissionSkillsForUser from '../MissionSkillsForUser/MissionSkillsForUser';
 import PageSection from '../../elements/PageSection/PageSection';
 import PageTitle from '../../elements/PageTitle/PageTitle';
 import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
+import UserAvatar from '../../elements/UserAvatar/UserAvatar';
 
 // import './MissionDetail.module.less'
 
 const { Text } = Typography;
 
-const { explore } = routes
+const { manage } = routes
 
 interface Props extends Mission {}
 
@@ -64,12 +63,12 @@ const MissionDetail = (mission: Props) => {
       >
         <aside>
           <div>
-            <Avatar size="xlarge" src={cdnUrl(workspace?.thumb_url || '')} />
+            <UserAvatar size="xlarge" name={workspace?.slug || ''} src={workspace?.thumb_url} />
           </div>
           <div className="org-title">
             <span>
               {t('mission.created-by')}{' '}
-              <Link {...explore.workspace.show(workspace?.slug || workspace_id)}><a>{workspace?.name}</a></Link>
+              <Link {...manage.workspace.show(workspace?.slug || workspace_id)}><a>{workspace?.name}</a></Link>
             </span>
             <Text type="secondary">{moment(created_at).calendar()}</Text>
           </div>
