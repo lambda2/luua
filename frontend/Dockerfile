@@ -6,7 +6,7 @@ WORKDIR /app
 ENV BACKEND_URL "http://luua"
 ENV API_URL "https://api.luua.io"
 ENV CDN_URL "https://luua.fra1.digitaloceanspaces.com"
-COPY .npmrc .
+# COPY .npmrc .
 COPY package.json .
 RUN yarn
 RUN yarn add --dev strip-ansi typescript @types/react @types/node @types/lodash
