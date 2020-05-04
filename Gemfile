@@ -38,6 +38,10 @@ gem 'interactor-rails', '~> 2.2.1'
 
 gem 'friendly_id', '~> 5.2.5'
 
+# analytics
+gem 'ahoy_matey'
+
+
 # State machines
 gem 'aasm', '~> 5.0.8'
 

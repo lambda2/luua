@@ -109,3 +109,61 @@ Page                                                           Size     First Lo
 ●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
 
 ```
+
+
+```bash
+# 4 mai
+Page                                                           Size     First Load JS
+┌ λ /                                                          1.88 kB         173 kB
+├   /_app                                                      29.3 kB         172 kB
+├ λ /explore                                                   233 B           306 kB
+├ λ /explore/missions                                          196 B           306 kB
+├ λ /explore/workspaces                                        834 B           243 kB
+├ λ /manage                                                    6.93 kB         178 kB
+├ λ /manage/[workspace_id]                                     1.77 kB         305 kB
+├ λ /manage/[workspace_id]/candidates                          3.13 kB         262 kB
+├ λ /manage/[workspace_id]/candidates/[id]                     3.3 kB          256 kB
+├ λ /manage/[workspace_id]/contributors                        3.14 kB         262 kB
+├ λ /manage/[workspace_id]/contributors/[id]                   17.3 kB         270 kB
+├ λ /manage/[workspace_id]/edit                                51.2 kB         373 kB
+├ λ /manage/[workspace_id]/invitations                         5.01 kB         304 kB
+├ λ /manage/[workspace_id]/members                             4.69 kB         233 kB
+├ λ /manage/[workspace_id]/missions                            1.76 kB         240 kB
+├ λ /manage/[workspace_id]/missions/[id]                       2.23 kB         272 kB
+├ λ /manage/[workspace_id]/missions/[id]/edit                  152 kB          474 kB
+├ λ /manage/[workspace_id]/missions/new                        153 kB          475 kB
+├ λ /manage/[workspace_id]/orgs                                4 kB            221 kB
+├ λ /manage/[workspace_id]/orgs/[id]                           1.43 kB         178 kB
+├ λ /manage/[workspace_id]/orgs/new                            30.7 kB         284 kB
+├ λ /manage/workspaces                                         2.67 kB         245 kB
+├ λ /manage/workspaces/new                                     18 kB           357 kB
+├ λ /profile                                                   6.65 kB         258 kB
+├ λ /profile/confirm/[token]                                   944 B           276 kB
+├ λ /profile/edit                                              5.18 kB         300 kB
+├ λ /profile/login                                             300 B           276 kB
+├ λ /profile/notifications                                     7.22 kB         216 kB
+├ λ /profile/signup                                            5.61 kB         277 kB
+├ λ /profile/skills                                            8.25 kB         297 kB
+└ λ /users/[username]                                          6.42 kB         245 kB
++ First Load JS shared by all                                  172 kB
+  ├ static/pages/_app.js                                       29.3 kB
+  ├ chunks/121cd3577dfdde175fe5bd667062e95521027ba1.c5d08e.js  7.81 kB
+  ├ chunks/29107295.45ee99.js                                  24.5 kB
+  ├ chunks/3139b63a403ede7ae6a964e190d0673af08a26e0.c1b9ad.js  12.6 kB
+  ├ chunks/58b704e43ea04ced3b8bfe1019f5f49cfabac31c.8faeff.js  15.9 kB
+  ├ chunks/735a0f0b.7926b6.js                                  65 B
+  ├ chunks/b8d6c7098284243725dee2f8da2c9c4d0c405f12.79d116.js  17.2 kB
+  ├ chunks/commons.aade45.js                                   2.78 kB
+  ├ chunks/d0b09e13d7e6461ca1c3880cee929f9ee7e81dfc.5b7be5.js  8.86 kB
+  ├ chunks/f297aae49f9e54951bd48240d95ce647c33eade5.709db7.js  5.29 kB
+  ├ chunks/framework.268903.js                                 40.3 kB
+  ├ chunks/styles.5e2df0.js                                    102 B
+  ├ runtime/main.01475f.js                                     6.18 kB
+  ├ runtime/webpack.4b444d.js                                  746 B
+  ├ css/735a0f0b.0da15c39.chunk.css                            64.2 kB
+  └ css/styles.17f97c44.chunk.css                              5.89 kB
+
+λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+```

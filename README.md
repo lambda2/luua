@@ -26,12 +26,24 @@ cd luua
 
 ```
 
-## Deployment
-
 ### Tech stack:
 
 - Ruby on Rails powers the REST API and other web pages
 - NextJS (React.js) is used for the web app
+
+### Privacy and security
+
+### Cookies
+
+Luua uses cookies to store the user token when logged in, and to store the prefered language.
+
+### Analytics
+
+Luua tracks analytics with [ahoy](https://github.com/ankane/ahoy), an open source solution that doesn't relies or shares your data with a third party provider.
+In order to respect the GDPR compliance, we
+- Don't store IP addresses
+- Track same users with [anonymity sets](https://privacypatterns.org/patterns/Anonymity-set) instead of cookies
+
 
 ### Requirements:
 

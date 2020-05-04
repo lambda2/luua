@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import MainMenu from '../MainMenu/MainMenu'
 
@@ -12,6 +12,7 @@ import fr from 'antd/lib/locale/fr_FR';
 import en from 'antd/lib/locale/en_US';
 import { LocaleProvider } from '../../contexts/LocaleContext'
 import Footer from '../Footer/Footer';
+import ahoy from '../../utils/analytics'
 
 const locales = { fr, en }
 
@@ -29,7 +30,12 @@ interface Props {
  * Our main container
  * @param className The class to add
  */
-const LuuaLayout = ({ token, locale, children, className }: Props) => {    
+const LuuaLayout = ({ token, locale, children, className }: Props) => {
+
+  useEffect(() => {
+    (ahoy as any)?.trackAll()
+  }, [])
+
   return (
     <LocaleProvider language={locale || 'en'}>
       <UserProvider token={token}>
