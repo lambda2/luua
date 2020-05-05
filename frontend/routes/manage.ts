@@ -67,6 +67,7 @@ const manage = {
       index: (workspace_id: string | number) => route(['manage', '[workspace_id]', 'missions'], { workspace_id }),
       new: (workspace_id: string | number) => route(['manage', '[workspace_id]', 'missions', 'new'], { workspace_id }),
       show: (workspace_id: string | number, id: string | number) => route(['manage', '[workspace_id]', 'missions', '[id]'], { workspace_id, id }),
+      discussion: (workspace_id: string | number, id: string | number) => route(['manage', '[workspace_id]', 'missions', '[id]', 'discussion'], { workspace_id, id }),
       edit: (workspace_id: string | number, id: string | number) => route(['manage', '[workspace_id]', 'missions', '[id]', 'edit'], { workspace_id, id }),
     }
   }

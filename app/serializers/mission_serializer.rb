@@ -48,5 +48,6 @@ class MissionSerializer < Panko::Serializer
   has_one :organization, serializer: OrganizationLightSerializer
   has_many :mission_skills, serializer: MissionSkillSerializer
   has_many :mission_users, serializer: MissionUserSerializer
+  has_many :discussions, serializer: DiscussionLightSerializer
 
 end

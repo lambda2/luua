@@ -64,4 +64,8 @@ class Discussion < ApplicationRecord
   def locked?
     !locked_at.nil?
   end
+
+  def workspace
+    resource_type == 'Workspace' ? resource : nil
+  end
 end

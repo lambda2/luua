@@ -10,12 +10,12 @@ import { withAuthSync, withUserToken } from '../../../../../utils/auth'
 import NetworkBoundary from '../../../../../components/NetworkBoudary/NetworkBoudary'
 
 import ContentLayout from '../../../../../layouts/ContentLayout/ContentLayout'
-import WorkspaceMissionDetail from '../../../../../components/WorkspaceMissionDetail/WorkspaceMissionDetail'
+import MissionDiscussion from '../../../../../components/MissionDiscussion/MissionDiscussion'
 import { useContext } from 'react'
 import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
 import MissionHeader from '../../../../../components/MissionHeader/MissionHeader'
 import { useLocale } from '../../../../../hooks/useLocale'
-import MissionLeftMenu from '../../../../../layouts/MissionLeftMenu/MissionLeftMenu'
+import DiscussionLeftMenu from '../../../../../layouts/DiscussionLeftMenu/DiscussionLeftMenu'
 
 const { manage } = routes
 const { workspace } = manage
@@ -26,7 +26,7 @@ const { workspace } = manage
  */
 const Mission = (
   { initialData, token }:
-  { initialData: Mission, token?: string }
+    { initialData: Mission, token?: string }
 ) => {
   const { query } = useRouter()
   const { currentWorkspace } = useContext(WorkspaceContext)
@@ -36,15 +36,23 @@ const Mission = (
     `/api/missions/${query.id}`, token, {}, { initialData }
   )
 
+  const discussionId = (data?.discussions?.length) && data?.discussions[0].id
+
+  const discussionResponse = useCollection<Discussion>(
+    discussionId && `/api/discussions/${discussionId}`, token, {}, {}
+  )
+
   return (
     <NetworkBoundary status={status} data={data} error={error}>
       {currentWorkspace && <MissionHeader
         workspace={currentWorkspace}
         mission={data as Mission}
-        active='summary'
+        active='chat'
       />}
-      <ContentLayout>
-        <WorkspaceMissionDetail {...data as Mission} />
+      <ContentLayout sideMenu={<DiscussionLeftMenu discussions={data?.discussions} />}>
+        <NetworkBoundary {...discussionResponse}>
+          <MissionDiscussion discussion={discussionResponse.data} mission={data as Mission} />
+        </NetworkBoundary>
       </ContentLayout>
     </NetworkBoundary>
   )

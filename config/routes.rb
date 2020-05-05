@@ -30,6 +30,7 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
       post 'join', on: :member, action: :join
 
       resources :missions
+      resources :discussions, shallow: true
 
       resources :workspace_users, shallow: true
       resources :workspace_invitations, shallow: true do
@@ -64,6 +65,7 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
       resources :mission_users do
         concerns :mission_users_filters
       end
+      resources :discussions, shallow: true
     end
 
     resources :users, only: %i[update show] do

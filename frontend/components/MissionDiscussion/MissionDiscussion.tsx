@@ -22,9 +22,12 @@ const { Text } = Typography;
 
 const { explore, manage } = routes
 
-interface Props extends Mission {}
+interface Props {
+  mission: LightMission,
+  discussion?: Discussion
+}
 
-const WorkspaceMissionDetail = (mission: Props) => {
+const MissionDiscussion = ({ mission, discussion }: Props) => {
 
   const {
     id,
@@ -40,7 +43,6 @@ const WorkspaceMissionDetail = (mission: Props) => {
     workspace,
     image,
     visibility,
-    mission_skills,
     banner_image,
     modified_at,
     created_at,
@@ -55,24 +57,7 @@ const WorkspaceMissionDetail = (mission: Props) => {
   const application = currentUser && find(currentUser?.mission_users, {mission_id: (slug || id)}) || null
   
   return (
-    <div className="WorkspaceMissionDetail">
-{/* 
-      <PageTitle
-        title={name}
-      >
-        {can(currentUser, 'mission.edit', mission) && <Link {...manage.workspace.missions.edit(`${workspace?.slug || workspace_id}`, `${id}`)}>
-          <a>{t('form.mission.edit')}</a>
-        </Link>}
-      </PageTitle> */}
-
-      {/* <MissionCandidateBox /> */}
-
-      <PageSection title={t('mission.required-skills')}>
-        <MissionSkillsForUser
-          mission_skills={mission_skills}
-          user_skills={currentUser?.user_skills}
-        />
-      </PageSection>
+    <div className="MissionDiscussion">
 
       <PageSection title={t('mission.summary')}>
         <div>{description}</div>
@@ -87,4 +72,4 @@ const WorkspaceMissionDetail = (mission: Props) => {
 
 }
 
-export default WorkspaceMissionDetail
+export default MissionDiscussion

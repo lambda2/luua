@@ -236,6 +236,35 @@ declare interface LightMission {
     updated_at: string
 }
 
+declare interface Message {
+    id: number
+    content: string
+    user: BaseUser
+    user_id: number
+    parent?: Message
+    parent_id: number
+    discussion_id: number
+    created_at: string
+    updated_at: string
+}
+
+declare interface LightDiscussion {
+    id: number
+    name: string
+    slug: string
+    description: string
+    user: BaseUser
+    resource_type: string
+    resource_id: number
+    created_at: string
+    updated_at: string
+}
+
+declare interface Discussion extends LightDiscussion {
+    workspace?: LightWorkspace
+    messages: Message[]
+}
+
 declare interface MissionSkill {
     id: number
     mission_id: number
@@ -248,4 +277,5 @@ declare interface MissionSkill {
 
 declare interface Mission extends LightMission {
     mission_skills: MissionSkill[]
+    discussions: LightDiscussion[]
 }

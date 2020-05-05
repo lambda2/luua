@@ -1,0 +1,33 @@
+.DiscussionLeftMenu {
+
+  list-style-type: none;
+  align-self: self-start;
+
+  margin: 0;
+  padding: 0;
+
+  margin-top: @space-l;
+  padding-right: @space-m;
+  margin-right: @space-m;
+
+  width: 200px;
+
+  li {
+    display: block;
+
+    a {
+      display: block;
+      color: @text-color-light;
+      padding: @space-inset-l;
+    }
+    
+    &.active {
+      background-color: #fff;
+
+      a {
+        color: @nord1;
+        font-weight: bold;
+      }
+    }
+  }
+}

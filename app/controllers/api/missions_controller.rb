@@ -61,6 +61,7 @@ class Api::MissionsController < ApiController
 
     if @mission.save
       WorkspaceHistory.track!(@workspace, @mission, current_user)
+      Discussion.create(resource: @mission, name: @mission.name, user: current_user)
       render json: MissionSerializer.new.serialize(@mission), status: :created
     else
       render_error(@mission.errors.messages, :unprocessable_entity)

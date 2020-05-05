@@ -62,6 +62,7 @@ class Ability
     can :read, Region
     can :read, SkillCategory
     can :read, User
+    can :read, Discussion
     can %i[read], MissionUser, mission: { visibility: :public }
     can %i[read], WorkspaceUser
 

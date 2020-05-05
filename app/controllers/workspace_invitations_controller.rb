@@ -1,2 +1,0 @@
-class WorkspaceInvitationsController < ApplicationController
-end

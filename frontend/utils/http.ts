@@ -9,6 +9,8 @@ import nextCookie from 'next-cookies'
 import { NextPageContext } from 'next'
 import { useLocale } from '../hooks/useLocale';
 import cookie from 'js-cookie'
+import isArray from 'lodash/isArray';
+import first from 'lodash/first';
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -100,7 +102,7 @@ export function cdnUrl(endpoint: string): string {
  * @returns {QueryResult<T>}
  */
 export function useCollection<T>(
-  endpoint: string, token?: string, requestOpts?: AxiosRequestConfig, hookOpts?: QueryOptions<T>
+  endpointKey: string | any[] | undefined | boolean | number, token?: string, requestOpts?: AxiosRequestConfig, hookOpts?: QueryOptions<T>
 ): QueryResult<T> {
 
   const { language } = useLocale()
@@ -110,10 +112,12 @@ export function useCollection<T>(
     ...authHeaders
   }  
 
+  const endpoint = isArray(endpointKey) ? first(endpointKey) : endpointKey
+  const fullKey = isArray(endpointKey) ? [...endpointKey, token] : [endpointKey, token]
   const getCollection = (opts: any): Promise<T> => fetch<T>(endpoint, { headers, ...requestOpts, ...opts })
 
   return useQuery<T, AnyQueryKey>(
-    [endpoint, token],
+    fullKey as any,
     getCollection,
     hookOpts
   )

@@ -60,6 +60,8 @@ class Mission < ApplicationRecord
   has_many :workspace_histories, as: :resource
   has_many :notifications, as: :resource
 
+  has_many :discussions, as: :resource
+
   validates :name, uniqueness: { scope: %i[workspace_id organization_id] }
 
   # - draft: Mission is not published yet, and only visible for the editor
