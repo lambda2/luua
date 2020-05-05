@@ -81,6 +81,12 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
     resources :mission_users do
       concerns :mission_users_actions
     end
+
+    resources :discussions, shallow: true do
+      resources :messages, shallow: true do
+
+      end
+    end
   end
 
 end

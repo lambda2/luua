@@ -52,6 +52,12 @@ class Ability
     can :manage, WorkspaceRequest, workspace_id: user.admin_workspace_ids
 
     can :create, Organization
+
+    can :read, Discussion
+    can :create, Discussion
+    can :read, Message
+    can :create, Message
+    can :update, Message, user_id: user.id
   end
   # rubocop:enable Metrics/MethodLength
 

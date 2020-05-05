@@ -36,10 +36,10 @@ const Mission = (
     `/api/missions/${query.id}`, token, {}, { initialData }
   )
 
-  const discussionId = (data?.discussions?.length) && data?.discussions[0].id
+  const discussion = ((data?.discussions?.length || 0) > 0) && data?.discussions[0] || undefined
 
-  const discussionResponse = useCollection<Discussion>(
-    discussionId && `/api/discussions/${discussionId}`, token, {}, {}
+  const messagesResponse = useCollection<Message[]>(
+    discussion?.id && `/api/discussions/${discussion?.id}/messages`, token, {}, {}
   )
 
   return (
@@ -50,8 +50,8 @@ const Mission = (
         active='chat'
       />}
       <ContentLayout sideMenu={<DiscussionLeftMenu discussions={data?.discussions} />}>
-        <NetworkBoundary {...discussionResponse}>
-          <MissionDiscussion discussion={discussionResponse.data} mission={data as Mission} />
+        <NetworkBoundary {...messagesResponse}>
+          <MissionDiscussion discussion={discussion} messages={messagesResponse?.data || []} mission={data as Mission} />
         </NetworkBoundary>
       </ContentLayout>
     </NetworkBoundary>

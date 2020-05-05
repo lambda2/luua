@@ -17,6 +17,12 @@ import MissionSkillsForUser from '../MissionSkillsForUser/MissionSkillsForUser';
 import PageSection from '../../elements/PageSection/PageSection';
 import PageTitle from '../../elements/PageTitle/PageTitle';
 import can from '../../utils/can';
+import DiscussionForm from '../../elements/DiscussionForm/DiscussionForm';
+import { create } from '../../api/message';
+import { useMutation, queryCache } from 'react-query';
+import UserAvatar from '../../elements/UserAvatar/UserAvatar';
+import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
+import MessageList from '../MessageList/MessageList';
 
 const { Text } = Typography;
 
@@ -24,10 +30,11 @@ const { explore, manage } = routes
 
 interface Props {
   mission: LightMission,
-  discussion?: Discussion
+  discussion?: LightDiscussion
+  messages: Message[]
 }
 
-const MissionDiscussion = ({ mission, discussion }: Props) => {
+const MissionDiscussion = ({ mission, discussion, messages }: Props) => {
 
   const {
     id,
@@ -54,18 +61,37 @@ const MissionDiscussion = ({ mission, discussion }: Props) => {
   const { t, language } = useLocale()
   const moment = momentWithLocale(language as AvailableLocale)
 
-  const application = currentUser && find(currentUser?.mission_users, {mission_id: (slug || id)}) || null
-  
+  const sendMessage = async (content: string) => {
+    if (!discussion) {
+      console.error("No discussion to attatch this message !")
+      return
+    }
+
+    return await create({ content, discussion_id: discussion.id }, currentUser?.jwt || '')
+  }
+
+  const [mutate] = useMutation(sendMessage, {
+    onSuccess: (data) => {
+      console.log("MUTATE ! onSuccess => ", data);
+      
+      queryCache.refetchQueries(`/api/discussions/${discussion?.id}/messages`)
+    },
+    onMutate: (data) => {
+      console.log("MUTATE ! onMutate => ", data);
+    },
+    onError: (data) => {
+      console.log("MUTATE ! onError => ", data);
+    },
+    onSettled: (data) => {
+      console.log("MUTATE ! onSettled => ", data);
+    }
+  })
+
   return (
     <div className="MissionDiscussion">
+      <MessageList messages={messages} />
 
-      <PageSection title={t('mission.summary')}>
-        <div>{description}</div>
-      </PageSection>
-
-      <PageSection>
-
-      </PageSection>
+      <DiscussionForm onSubmit={mutate}/>
 
     </div>
   )
