@@ -1,10 +1,8 @@
 import React, { useContext } from 'react'
 // import Link from "next/link"
 import { Layout, Menu, Dropdown, message, Badge } from 'antd';
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import WorkspaceContext from '../../contexts/WorkspaceContext';
-import WorkspaceLabel from '../../elements/WorkspaceLabel/WorkspaceLabel';
-import { ClickParam } from 'antd/lib/menu';
 import routes from '../../routes/manage'
 import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';

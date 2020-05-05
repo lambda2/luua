@@ -16,9 +16,6 @@ import ahoy from '../../utils/analytics'
 
 const locales = { fr, en }
 
-const { Content } = Layout;
-
-
 interface Props {
     children: React.ReactNode
     className?: string

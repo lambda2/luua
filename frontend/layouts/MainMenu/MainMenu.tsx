@@ -2,7 +2,6 @@
 import React, { useContext } from 'react'
 
 import UserContext from '../../contexts/UserContext'
-import LangSelect from '../../elements/LangSelect/LangSelect';
 import UserMenuDropdown from '../../elements/UserMenuDropdown/UserMenuDropdown';
 import routes from '../../routes/manage'
 import { useLocale } from '../../hooks/useLocale';
