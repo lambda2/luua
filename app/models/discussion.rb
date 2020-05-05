@@ -29,9 +29,9 @@ class Discussion < ApplicationRecord
   belongs_to :user
   belongs_to :resource, polymorphic: true, optional: true
 
-  has_many :messages
+  has_many :messages, dependent: :destroy
 
-  has_many :notifications, as: :resource
+  has_many :notifications, as: :resource, dependent: :destroy
 
   # @TODO discussion visibilities
   #

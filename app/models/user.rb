@@ -77,6 +77,8 @@ class User < ApplicationRecord
   has_many :workspace_histories, as: :resource, dependent: :nullify
 
   has_many :notifications, dependent: :destroy
+  
+  has_many :messages, dependent: :nullify
 
   has_many :mission_users, dependent: :destroy
   has_many :missions, through: :mission_users

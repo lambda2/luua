@@ -60,7 +60,8 @@ class Mission < ApplicationRecord
   has_many :workspace_histories, as: :resource
   has_many :notifications, as: :resource
 
-  has_many :discussions, as: :resource
+  # discussion in the mission
+  has_many :discussions, as: :resource, dependent: :destroy
 
   validates :name, uniqueness: { scope: %i[workspace_id organization_id] }
 

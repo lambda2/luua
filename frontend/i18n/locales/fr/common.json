@@ -1,6 +1,8 @@
 {
   "generics": {
     "or": "ou",
+    "write": "Composer",
+    "preview": "Apercu",
     "for": "pour",
     "yourself": "C'est vous",
     "since": "depuis",
@@ -36,6 +38,9 @@
   },
   "error": {
     "title": "Une erreur s'est produite"
+  },
+  "message": {
+    "send": "Envoyer"
   },
   "mission_user": {
     "applied": {

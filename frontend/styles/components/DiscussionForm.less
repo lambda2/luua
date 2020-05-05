@@ -1,0 +1,62 @@
+.DiscussionForm {
+
+  margin: @space-stack-default;
+  display: flex;
+  align-items: flex-start;
+
+  aside {
+    display: flex;
+    align-items: center;
+
+    padding: @space-s;
+    padding-top: 3px; // @TODO yuk 😰
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1;
+
+    header {
+      padding: @space-s;
+      border-bottom: 1px solid @border-color-base;
+    }
+
+    .content {
+      padding: @space-s;
+
+      .container p:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .DiscussionFormEditor {
+    border: 1px solid @border-color-base;
+    border-radius: 3px;
+
+    .DiscussionFormToolbar {
+      background-color: #fff;
+      border-bottom: 1px solid @border-color-base;
+    }
+
+    .DiscussionFormPreview {
+
+    }
+
+    .DiscussionFormText {
+
+    }
+
+    .DiscussionFormGrip {
+      background-color: transparent;
+      border-top: none;
+    }
+
+    .DiscussionFormDropdown {
+
+    }
+  }
+
+}
