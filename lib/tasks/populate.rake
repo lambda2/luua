@@ -1,4 +1,4 @@
-namespace :populate do
+namespace :populate do # rubocop:todo Metrics/BlockLength
 
   desc 'Create some random users and add them to the given workspace'
   task :workspace, [:workspace_id] => [:environment] do |task, args|
@@ -16,10 +16,11 @@ namespace :populate do
   end
 
   desc 'Create some random users and add them to the given workspace'
-  task conversation: :environment do
+  task conversation: :environment do # rubocop:todo Metrics/BlockLength
     raise unless Rails.env.development?
+
     FactoryBot.find_definitions
-    
+
     w = Workspace.where(slug: 'camelot').first_or_create(
       name: 'Camelot'
     )
@@ -64,29 +65,29 @@ namespace :populate do
     puts "Discussion: #{discussion.inspect}"
 
     messages = [
-      [arthur, "Mais c’est pas compliqué, bon Dieu ! Y a Calogrenant à droite, Léodagan à gauche, et nous on arrive par le milieu !"],
-      [lancelot, "C’est bon jusque là ?"],
-      [perceval, "Attendez, moi, si je me souviens bien du coin, il y a la rivière qui passe en travers !"],
-      [arthur, "Ah, mais merde avec votre rivière !"],
-      [perceval, "C’est un point de repère comme un autre !"],
-      [lancelot, "Mais bon Dieu, il y a pas besoin de point de repère puisque les envahisseurs vont nous attaquer de face !"],
-      [perceval, "De face, ça va ! C’est le reste qui va pas !"],
-      [arthur, "Mais quoi, nom d’un chien !?"],
-      [perceval, "Ben la gauche, la droite, là ! Moi j’aime pas ces trucs !"],
-      [lancelot, "Mais qu’est ce que vous aimez pas ?"],
-      [perceval, "Ces conneries de gauche et de droite ! Ça veut rien dire ces machins ! Selon comme on est tourné ça change tout !"],
-      [arthur, "Mais qu’est ce que vous nous chantez ?"],
-      [perceval, "Moi j’estime que quand on parle tactique militaire, il faut employer des termes précis !"],
-      [lancelot, "Ben oui, effectivement, ça peut prêter à confusion …"],
-      [arthur, "Non mais attendez, nous c’est pour vous qu’on dit gauche et droite ! C’est pour pas vous embrouiller !"],
-      [perceval, "Si, ça m’embrouille !"],
-      [lancelot, "Ah bon ? On peut parler normalement alors ?"],
-      [perceval, "Professionnel !"],
-      [arthur, "Bon, ben alors, OK, on reprend depuis le début ; donc, Calogrenant est posté depuis hier soir au Nord-Est de la zone d’attaque…"],
-      [lancelot, "…Léodagan, Sud-Sud-Est, un peu plus en retrait avec ses cavaliers…"],
-      [perceval, "Moi j’aime pas ces histoires de Sud-Est, Nord-Ouest, et tous ces machins !"],
-      [arthur, "Quoi, qu’est ce qu’il y a qui va pas encore ?!"],
-      [perceval, "C’est un coup à se planter ça ! De toutes façons, on dit le Nord ! Selon comme on est tourné ça change tout !"],
+      [arthur, 'Mais c’est pas compliqué, bon Dieu ! Y a Calogrenant à droite, Léodagan à gauche, et nous on arrive par le milieu !'],
+      [lancelot, 'C’est bon jusque là ?'],
+      [perceval, 'Attendez, moi, si je me souviens bien du coin, il y a la rivière qui passe en travers !'],
+      [arthur, 'Ah, mais merde avec votre rivière !'],
+      [perceval, 'C’est un point de repère comme un autre !'],
+      [lancelot, 'Mais bon Dieu, il y a pas besoin de point de repère puisque les envahisseurs vont nous attaquer de face !'],
+      [perceval, 'De face, ça va ! C’est le reste qui va pas !'],
+      [arthur, 'Mais quoi, nom d’un chien !?'],
+      [perceval, 'Ben la gauche, la droite, là ! Moi j’aime pas ces trucs !'],
+      [lancelot, 'Mais qu’est ce que vous aimez pas ?'],
+      [perceval, 'Ces conneries de gauche et de droite ! Ça veut rien dire ces machins ! Selon comme on est tourné ça change tout !'],
+      [arthur, 'Mais qu’est ce que vous nous chantez ?'],
+      [perceval, 'Moi j’estime que quand on parle tactique militaire, il faut employer des termes précis !'],
+      [lancelot, 'Ben oui, effectivement, ça peut prêter à confusion …'],
+      [arthur, 'Non mais attendez, nous c’est pour vous qu’on dit gauche et droite ! C’est pour pas vous embrouiller !'],
+      [perceval, 'Si, ça m’embrouille !'],
+      [lancelot, 'Ah bon ? On peut parler normalement alors ?'],
+      [perceval, 'Professionnel !'],
+      [arthur, 'Bon, ben alors, OK, on reprend depuis le début ; donc, Calogrenant est posté depuis hier soir au Nord-Est de la zone d’attaque…'],
+      [lancelot, '…Léodagan, Sud-Sud-Est, un peu plus en retrait avec ses cavaliers…'],
+      [perceval, 'Moi j’aime pas ces histoires de Sud-Est, Nord-Ouest, et tous ces machins !'],
+      [arthur, 'Quoi, qu’est ce qu’il y a qui va pas encore ?!'],
+      [perceval, 'C’est un coup à se planter ça ! De toutes façons, on dit le Nord ! Selon comme on est tourné ça change tout !']
     ].each do |user, message|
       Message.create(discussion: discussion, user: user, content: message)
     end

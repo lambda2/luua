@@ -23,5 +23,5 @@
 class Message < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :parent, optional: true, class_name: 'Message'
-  belongs_to :discussion #, counter_cache: :messages_count
+  belongs_to :discussion # , counter_cache: :messages_count
 end
