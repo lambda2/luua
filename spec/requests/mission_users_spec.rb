@@ -20,11 +20,12 @@ describe Api::MissionUsersController, type: :request do # rubocop:todo Metrics/B
     let(:mission_user) { create(:mission_user, user_id: candidate.id, mission_id: mission.id) }
     let(:other_mission_user) { create(:mission_user, mission_id: mission.id) }
 
-    it 'Anonymous users can\'t show mission users' do
+    it 'Anonymous users can show mission users' do
       json_get "/api/missions/#{mission.slug}/mission_users"
-      expect(response.status).to eq(403)
+      expect(response.status).to eq(200)
     end
 
+    # @TODO maybe hide them ?
     it 'Random users can\'t show other users mission users' do
       json_get "/api/missions/#{mission.slug}/mission_users", user: random_user
       expect(response.status).to eq(200)
@@ -66,14 +67,16 @@ describe Api::MissionUsersController, type: :request do # rubocop:todo Metrics/B
     let(:mission_user) { create(:mission_user, user_id: candidate.id, mission_id: mission.id) }
     let(:other_mission_user) { create(:mission_user, mission_id: mission.id) }
 
-    it 'Anonymous users can\'t show mission users' do
+    # @TODO maybe hide them ?
+    it 'Anonymous users can show mission users' do
       json_get "/api/missions/#{mission.slug}/mission_users/#{mission_user.id}"
-      expect(response.status).to eq(403)
+      expect(response.status).to eq(200)
     end
 
-    it 'Random users can\'t show mission users' do
+    # @TODO maybe hide them ?
+    it 'Random users can show mission users' do
       json_get "/api/missions/#{mission.slug}/mission_users/#{mission_user.id}", user: random_user
-      expect(response.status).to eq(403)
+      expect(response.status).to eq(200)
     end
 
     it 'Candidates can show his own mission users' do
