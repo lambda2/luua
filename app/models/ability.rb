@@ -44,11 +44,12 @@ class Ability
     can :read, WorkspaceUser
     can :manage, WorkspaceUser, workspace_id: user.admin_workspace_ids
 
-    can :read, WorkspaceInvitation
+    can :read, WorkspaceInvitation, workspace_id: user.workspace_ids
     can %i[create update destroy], WorkspaceInvitation, workspace_id: user.admin_workspace_ids
     can %i[accept reject], WorkspaceInvitation, user_id: user.id
 
-    can :read, WorkspaceRequest
+    can :read, WorkspaceRequest, workspace_id: user.workspace_ids
+    can :read, WorkspaceRequest, user_id: user.id
     can :manage, WorkspaceRequest, workspace_id: user.admin_workspace_ids
 
     can :create, Organization

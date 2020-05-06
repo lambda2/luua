@@ -67,17 +67,18 @@ class Api::WorkspaceInvitationsController < ApiController
     render_destroyed
   end
 
-  # POST /api/workspace_invitations
-  def create
-    @workspace_invitation = WorkspaceInvitation.new(workspace_invitation_params)
+  # @NOTE users usually go with workspace#invite instead of this action
+  # # POST /api/workspace_invitations
+  # def create
+  #   @workspace_invitation = WorkspaceInvitation.new(workspace_invitation_params)
 
-    if @workspace_invitation.save
-      WorkspaceHistory.track!(@workspace, @workspace_invitation, current_user)
-      render json: WorkspaceInvitationSerializer.new.serialize(@workspace_invitation)
-    else
-      render_error(@workspace_invitation.errors.messages, :unprocessable_entity)
-    end
-  end
+  #   if @workspace_invitation.save
+  #     WorkspaceHistory.track!(@workspace, @workspace_invitation, current_user)
+  #     render json: WorkspaceInvitationSerializer.new.serialize(@workspace_invitation)
+  #   else
+  #     render_error(@workspace_invitation.errors.messages, :unprocessable_entity)
+  #   end
+  # end
 
   def workspace_invitation_params
     params.require(:workspace_invitation).permit(
