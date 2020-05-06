@@ -257,6 +257,7 @@ declare interface LightDiscussion {
     user: BaseUser
     resource_type: DiscussionResourceType
     resource_id: number
+    workspace_id: number
     created_at: string
     updated_at: string
 }

@@ -4,7 +4,7 @@
 
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import getConfig from 'next/config'
-import { useQuery, QueryResult, QueryOptions, AnyQueryKey } from 'react-query';
+import { useQuery, QueryResult, QueryOptions, AnyQueryKey, usePaginatedQuery, PaginatedQueryResult } from 'react-query';
 import nextCookie from 'next-cookies'
 import { NextPageContext } from 'next'
 import { useLocale } from '../hooks/useLocale';
@@ -110,13 +110,58 @@ export function useCollection<T>(
   const headers = {
     'Accept-Language': language,
     ...authHeaders
-  }  
+  }
 
   const endpoint = isArray(endpointKey) ? first(endpointKey) : endpointKey
   const fullKey = isArray(endpointKey) ? [...endpointKey, token] : [endpointKey, token]
   const getCollection = (opts: any): Promise<T> => fetch<T>(endpoint, { headers, ...requestOpts, ...opts })
 
   return useQuery<T, AnyQueryKey>(
+    fullKey as any,
+    getCollection,
+    hookOpts
+  )
+}
+/**
+ * A hook allowing us to handle a remote collection properly
+ *
+ * @export
+ * @template T the response type
+ * @param {string} endpoint the url we want to fetch (without the domain)
+ * @param {string} [token] the user auth token if we have one
+ * @param {AxiosRequestConfig} [requestOpts]
+ * @param {QueryOptions<T>} [hookOpts]
+ * @returns {PaginatedQueryResult<T>}
+ */
+export function usePaginatedCollection<T>(
+  endpointKey: string | any[] | undefined | boolean | number,
+  startpage?: number | string | string[],
+  token?: string,
+  requestOpts?: AxiosRequestConfig,
+  hookOpts?: QueryOptions<AxiosResponse<T>>
+): PaginatedQueryResult<AxiosResponse<T>> {
+
+  const { language } = useLocale()
+  const authHeaders = getHeaders(token || '');
+  const headers = {
+    'Accept-Language': language,
+    ...authHeaders
+  }
+
+  const page = startpage || 1
+
+  const endpoint = isArray(endpointKey) ? first(endpointKey) : endpointKey
+  const fullKey = isArray(endpointKey) ? [...endpointKey, token, page] : [endpointKey, token, page]
+  
+  const getCollection = (opts: any, page: any): Promise<AxiosResponse<T>> => {
+    console.log({ opts, page });
+    
+    return api<T>(endpoint, { headers, ...requestOpts, ...opts })
+  }
+
+  console.log("Using usePaginatedCollection with ", { fullKey, getCollection, hookOpts });
+  
+  return usePaginatedQuery<AxiosResponse<T>, AnyQueryKey>(
     fullKey as any,
     getCollection,
     hookOpts

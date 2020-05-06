@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
 import routes from '../../routes/manage'
 import { useLocale } from '../../hooks/useLocale';
+import Link from 'next/link';
 
 const { manage } = routes
 
@@ -14,7 +15,9 @@ const DiscussionItem = ({ discussion }: Props) => {
   const {
     id,
     name,
+    description,
     slug,
+    workspace_id,
     // mission_category,
   } = discussion
 
@@ -24,19 +27,15 @@ const DiscussionItem = ({ discussion }: Props) => {
   return (
     <div className="DiscussionItem">
       <h3>
-        {name}
-        {/* <Link key={id} {...manage.workspace.missions.show(workspace?.slug || workspace_id, slug)}>
+        <Link key={id} {...manage.workspace.discussions.show(workspace_id, slug)}>
           <a>
-            <header>
-              <Avatar size="small" src={cdnUrl(workspace?.thumb_url || '')} />
-              <span className="org-title">{workspace?.name}</span>
-            </header>
             {name}
           </a>
-        </Link> */}
+        </Link>
       </h3>
 
       <div>
+        {description}
       </div>
     </div>
   )

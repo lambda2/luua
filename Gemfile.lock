@@ -70,6 +70,7 @@ GEM
     annotate (3.1.1)
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
+    api-pagination (4.8.2)
     apparition (0.5.0)
       capybara (~> 3.13, < 4)
       websocket-driver (>= 0.6.5)
@@ -499,6 +500,7 @@ DEPENDENCIES
   acts_as_list (~> 1.0.1)
   ahoy_matey
   annotate (~> 3.1.1)
+  api-pagination
   apparition (~> 0.5.0)
   appsignal (~> 2.10.5)
   bootsnap (~> 1.4.6)

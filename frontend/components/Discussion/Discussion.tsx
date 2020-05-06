@@ -14,7 +14,7 @@ interface Props {
   messages: Message[]
 }
 
-const MissionDiscussion = ({ discussion, messages }: Props) => {
+const Discussion = ({ discussion, messages }: Props) => {
 
   const { currentUser } = useContext(UserContext)
 
@@ -87,7 +87,7 @@ const MissionDiscussion = ({ discussion, messages }: Props) => {
   })
 
   return (
-    <div className="MissionDiscussion">
+    <div className="Discussion">
       <MessageList onEdit={onEdit} onDestroy={onDestroy} messages={messages} />
 
       <DiscussionForm onSubmit={onCreate}/>
@@ -96,4 +96,4 @@ const MissionDiscussion = ({ discussion, messages }: Props) => {
 
 }
 
-export default MissionDiscussion
+export default Discussion

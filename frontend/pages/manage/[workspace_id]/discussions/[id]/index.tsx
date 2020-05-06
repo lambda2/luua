@@ -1,9 +1,7 @@
 import { NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 
-import routes from '../../../../../routes/manage'
-
-import { useCollection, fetchInitialData } from '../../../../../utils/http'
+import { useCollection, fetchInitialData, usePaginatedCollection } from '../../../../../utils/http'
 import { withUserToken } from '../../../../../utils/auth'
 
 import NetworkBoundary from '../../../../../components/NetworkBoudary/NetworkBoudary'
@@ -12,12 +10,9 @@ import ContentLayout from '../../../../../layouts/ContentLayout/ContentLayout'
 import Discussion from '../../../../../components/Discussion/Discussion'
 import { useContext } from 'react'
 import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
-import MissionHeader from '../../../../../components/MissionHeader/MissionHeader'
 import { useLocale } from '../../../../../hooks/useLocale'
-import DiscussionLeftMenu from '../../../../../layouts/DiscussionLeftMenu/DiscussionLeftMenu'
 import WorkspaceHeader from '../../../../../components/WorkspaceHeader/WorkspaceHeader'
-
-const { manage } = routes
+import PaginatedNetworkBoudary from '../../../../../components/PaginatedNetworkBoudary/PaginatedNetworkBoudary'
 
 
 /**
@@ -35,8 +30,8 @@ const ShowDiscussion = (
     `/api/discussions/${query.id}`, token, {}, { initialData }
   )
 
-  const messagesResponse = useCollection<Message[]>(
-    data?.id && `/api/discussions/${data?.id}/messages`, token, {}, {}
+  const messagesResponse = usePaginatedCollection<Message[]>(
+    data?.id && `/api/discussions/${data?.id}/messages`, query.page, token, {}, {}
   )
 
   return (
@@ -46,9 +41,9 @@ const ShowDiscussion = (
         active='discussion'
       />}
       <ContentLayout>
-        <NetworkBoundary {...messagesResponse}>
-          <Discussion discussion={data as Discussion} messages={messagesResponse?.data || []} />
-        </NetworkBoundary>
+        <PaginatedNetworkBoudary {...messagesResponse}>
+          <Discussion discussion={data as Discussion} messages={messagesResponse?.resolvedData?.data || []} />
+        </PaginatedNetworkBoudary>
       </ContentLayout>
     </NetworkBoundary>
   )

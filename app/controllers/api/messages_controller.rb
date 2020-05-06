@@ -9,8 +9,8 @@ class Api::MessagesController < ApiController
   def index
     @messages = @messages.search(params[:q]) if params[:q]
     @messages = @messages.available_for(current_user&.id) if params[:for_user]
-    @messages = @messages.page(params[:page])
     @messages = @messages.order(created_at: :asc)
+    @messages = paginate(@messages)
 
     respond_to do |format|
       format.json do

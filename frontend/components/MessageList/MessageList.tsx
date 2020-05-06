@@ -15,10 +15,6 @@ interface Props {
 
 const MessageList = ({ messages, onEdit, onDestroy }: Props) => {
 
-  const { t, language } = useLocale()
-  const moment = momentWithLocale(language as AvailableLocale)
-
-
   return (
     <List
       className="MessageList"

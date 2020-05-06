@@ -8,7 +8,7 @@ const can = (
   resource: any
 ) => {
 
-  console.info(`Can ${user?.username || 'anonymous'} ${action} ${resource}`)
+  // console.info(`Can ${user?.username || 'anonymous'} ${action} ${resource}`)
   switch (action) {
     case 'workspace.show':
       return true

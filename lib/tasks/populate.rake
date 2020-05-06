@@ -1,3 +1,5 @@
+require "#{Rails.root}/db/seeds/examples/strangelove"
+
 namespace :populate do # rubocop:todo Metrics/BlockLength
 
   desc 'Create some random users and add them to the given workspace'
@@ -15,8 +17,15 @@ namespace :populate do # rubocop:todo Metrics/BlockLength
     end
   end
 
-  desc 'Create some random users and add them to the given workspace'
-  task conversation: :environment do # rubocop:todo Metrics/BlockLength
+  desc 'Create a workspace discussion from dr strangelove'
+  task strangelove_conversation: :environment do # rubocop:todo Metrics/BlockLength
+    raise unless Rails.env.development?
+
+    Examples::Strangelove.populate
+  end
+
+  desc 'Create a mission discussion from kaamelott'
+  task kaamelott_conversation: :environment do # rubocop:todo Metrics/BlockLength
     raise unless Rails.env.development?
 
     FactoryBot.find_definitions
