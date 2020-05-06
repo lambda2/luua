@@ -42,7 +42,7 @@ class Api::WorkspaceUsersController < ApiController
     end
   end
 
-  # PATCH/PUT /api/workspace_users/id
+  # DELETE /api/workspace_users/id
   def destroy
     @workspace_user.destroy!
     render_destroyed

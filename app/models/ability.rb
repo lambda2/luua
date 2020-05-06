@@ -56,9 +56,14 @@ class Ability
 
     can :read, Discussion
     can :create, Discussion
+    can :manage, Discussion, resource_type: 'Mission', resource: { workspace_id: user.admin_workspace_ids }
+    can :manage, Discussion, resource_type: 'Workspace', resource_id: user.admin_workspace_ids
+
     can :read, Message
     can :create, Message
-    can :update, Message, user_id: user.id
+    can :manage, Message, user_id: user.id
+    can :manage, Message, discussion: { resource_type: 'Mission', resource: { workspace_id: user.admin_workspace_ids } }
+    can :manage, Message, discussion: { resource_type: 'Workspace', resource_id: user.admin_workspace_ids }
   end
   # rubocop:enable Metrics/MethodLength
 

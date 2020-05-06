@@ -17,6 +17,7 @@ type NotificationCode =
 type WorkspaceInvitationStatus = 'pending' | 'accepted' | 'rejected'
 type WorkspaceRequestStatus = 'pending' | 'accepted' | 'rejected'
 type WorkspaceMembership = 'closed' | 'approval' | 'open'
+type DiscussionResourceType = 'Workspace' | 'Mission'
 
 declare interface BaseUser {
     id: number
@@ -254,7 +255,7 @@ declare interface LightDiscussion {
     slug: string
     description: string
     user: BaseUser
-    resource_type: string
+    resource_type: DiscussionResourceType
     resource_id: number
     created_at: string
     updated_at: string

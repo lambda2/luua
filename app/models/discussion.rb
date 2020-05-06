@@ -66,6 +66,11 @@ class Discussion < ApplicationRecord
   end
 
   def workspace
-    resource_type == 'Workspace' ? resource : nil
+    case resource_type
+    when 'Workspace'
+      resource
+    when 'Mission'
+      resource.workspace
+    end
   end
 end

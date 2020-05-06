@@ -16,6 +16,7 @@
     "summary": "Résumé",
     "workspaces": "Espaces",
     "missions": "Missions",
+    "discussions": "Discussions",
     "skills": "Compétences",
     "notifications": "Notifications",
     "candidates": "Candidats",
@@ -40,7 +41,10 @@
     "title": "Une erreur s'est produite"
   },
   "message": {
-    "send": "Envoyer"
+    "send": "Envoyer",
+    "destroy": "Supprimer",
+    "edit": "Éditer",
+    "cancel": "Annuler"
   },
   "mission_user": {
     "applied": {
@@ -123,6 +127,13 @@
       "title": "Il semblerait que tu n'aies pas encore précisé tes compétences",
       "add-now": "Ajouter une compétence"
     }
+  },
+  "discussion": {
+    "create": {
+      "title": "Créer une discussion"
+    },
+    "created-by": "Créee par",
+    "summary": "Résumé"
   },
   "mission": {
     "create": {
@@ -370,6 +381,20 @@
             "description": "Tout le monde peut rejoindre cet espace"
           }
         }
+      }
+    },
+    "discussion": {
+      "update": "Mettre à jour la discussion",
+      "submit": "Créer une discussion",
+      "name": {
+        "label": "Nom",
+        "hint": "Le sujet de la discussion",
+        "placeholder": "Ex: Les avantages d'une farine complète"
+      },
+      "description": {
+        "label": "Description",
+        "hint": "Une courte description pour introduire le sujet",
+        "placeholder": ""
       }
     },
     "skill": {

@@ -12,20 +12,24 @@ import UserMessageAvatar from '../UserMessageAvatar/UserMessageAvatar';
 
 interface Props {
   onSubmit: (message: string) => {}
+  onCancel?: () => void
   isSubmitting?: boolean
+  message?: Message
 }
 
 /**
- * Our own submit button
+ * A form to create or edit a discussion message
  */
 const DiscussionForm: React.FC<Props> = ({
   isSubmitting = false,
-  onSubmit
+  onSubmit,
+  onCancel,
+  message
 }) => {
 
   const { t } = useLocale()
   const { currentUser } = useContext(UserContext)
-  const [message, setMessage] = useState<string>('')
+  const [content, setContent] = useState<string>(message?.content || '')
   const [selectedTab, setSelectedTab] = useState<"write" | "preview">("write");
 
   const classes = {
@@ -44,8 +48,8 @@ const DiscussionForm: React.FC<Props> = ({
         <ReactMde
           minEditorHeight={100}
           l18n={{ write: <span>{t('generics.write')}</span>, preview: <span>{t('generics.preview')}</span> }}
-          value={message}
-          onChange={setMessage}
+          value={content}
+          onChange={setContent}
           classes={classes}
           selectedTab={selectedTab}
           onTabChange={setSelectedTab}
@@ -53,7 +57,10 @@ const DiscussionForm: React.FC<Props> = ({
             Promise.resolve(<MarkdownContent content={markdown} />)
           }
         />
-        <Button disabled={message.length === 0} loading={isSubmitting} onClick={() => onSubmit(message)}>{t('message.send')}</Button>
+        <Button.Group>
+          <Button disabled={content.length === 0 || content == message?.content} loading={isSubmitting} onClick={() => onSubmit(content)}>{t('message.send')}</Button>
+          {message && onCancel && <Button onClick={() => onCancel()}>{t('message.cancel')}</Button>}
+        </Button.Group>
       </main>
     </div>
   );

@@ -6,6 +6,7 @@ import { useLocale } from '../../hooks/useLocale';
 interface Props<T> {
   itemLayout?: 'vertical' | 'horizontal'
   size?: string
+  className?: string
   dataSource?: T[]
   key?: string
   renderItem: (element: T) => ReactElement | string
@@ -33,11 +34,12 @@ const List = <T extends unknown>(
     dataSource = [],
     key = 'id',
     renderItem,
+    className,
     renderEmpty = defaultRenderEmpty
   } = props
 
   return (
-    <ul className={classNames("List", `list-layout-${itemLayout} list-size-${size}`, { 'list-empty': !dataSource || dataSource.length === 0 })}>
+    <ul className={classNames("List", className, `list-layout-${itemLayout} list-size-${size}`, { 'list-empty': !dataSource || dataSource.length === 0 })}>
       {(!dataSource || dataSource.length === 0) && renderEmpty()}
       {dataSource?.map((item: T) => <li key={(item as any)[key]}>
         {renderItem(item)}

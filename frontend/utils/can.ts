@@ -1,6 +1,7 @@
 import workspaces from "../pages/manage/workspaces"
 import find from "lodash/find"
 
+// @TODO do a switch/case typing here
 const can = (
   user: AuthedUser | null, 
   action: string,
@@ -27,6 +28,26 @@ const can = (
       return user && find(user?.workspace_users, {workspace_id: resource.workspace_id, admin: true})
     case 'mission.destroy':
       return user && find(user?.workspace_users, { workspace_id: resource.workspace_id, admin: true })  
+    case 'discussion.create':
+      return user && find(user?.workspace_users, {workspace_id: resource.id})
+    case 'discussion.edit':
+      return user && (
+        (resource.user_id === user.id) ||
+        (find(user?.workspace_users, {workspace_id: resource.workspace_id, admin: true}))
+      )
+    case 'discussion.destroy':
+      return user && (
+        (resource.user_id === user.id) ||
+        (find(user?.workspace_users, { workspace_id: resource.workspace_id, admin: true }))
+      )
+    case 'message.destroy':
+      return user && (
+        (resource.user_id === user.id)
+      )
+    case 'message.edit':
+      return user && (
+        (resource.user_id === user.id)
+      )
     default:
       return false
   }

@@ -15,49 +15,47 @@ import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
 import MissionHeader from '../../../../../components/MissionHeader/MissionHeader'
 import { useLocale } from '../../../../../hooks/useLocale'
 import DiscussionLeftMenu from '../../../../../layouts/DiscussionLeftMenu/DiscussionLeftMenu'
+import WorkspaceHeader from '../../../../../components/WorkspaceHeader/WorkspaceHeader'
 
 const { manage } = routes
 
 
 /**
- * Show the mission main discussion
+ * Show the requested workspace mission
  */
-const MissionDiscussion = (
+const ShowDiscussion = (
   { initialData, token }:
-    { initialData: Mission, token?: string }
+    { initialData: Discussion, token?: string }
 ) => {
   const { query } = useRouter()
   const { currentWorkspace } = useContext(WorkspaceContext)
   const { t } = useLocale()
 
-  const { status, data, error } = useCollection<Mission>(
-    `/api/missions/${query.id}`, token, {}, { initialData }
+  const { status, data, error } = useCollection<Discussion>(
+    `/api/discussions/${query.id}`, token, {}, { initialData }
   )
 
-  const discussion = ((data?.discussions?.length || 0) > 0) && data?.discussions[0] || undefined
-
   const messagesResponse = useCollection<Message[]>(
-    discussion?.id && `/api/discussions/${discussion?.id}/messages`, token, {}, {}
+    data?.id && `/api/discussions/${data?.id}/messages`, token, {}, {}
   )
 
   return (
     <NetworkBoundary status={status} data={data} error={error}>
-      {currentWorkspace && <MissionHeader
+      {currentWorkspace && <WorkspaceHeader
         workspace={currentWorkspace}
-        mission={data as Mission}
-        active='chat'
+        active='discussion'
       />}
-      <ContentLayout sideMenu={<DiscussionLeftMenu discussions={data?.discussions} />}>
+      <ContentLayout>
         <NetworkBoundary {...messagesResponse}>
-          <Discussion discussion={discussion} messages={messagesResponse?.data || []} />
+          <Discussion discussion={data as Discussion} messages={messagesResponse?.data || []} />
         </NetworkBoundary>
       </ContentLayout>
     </NetworkBoundary>
   )
 }
 
-MissionDiscussion.getInitialProps = async (ctx: NextPageContext) => {
-  return await fetchInitialData<Mission>(ctx, `/api/missions/${ctx.query.id}`)
+ShowDiscussion.getInitialProps = async (ctx: NextPageContext) => {
+  return await fetchInitialData<Discussion>(ctx, `/api/discussions/${ctx.query.id}`)
 }
 
-export default withUserToken(MissionDiscussion)
+export default withUserToken(ShowDiscussion)

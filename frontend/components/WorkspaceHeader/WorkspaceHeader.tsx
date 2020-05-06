@@ -59,6 +59,9 @@ const WorkspaceHeader = ({
       <li className={classNames({ active: active == 'summary' })} key="/">
         <Link {...ROUTES.manage.workspace.show(workspace.slug)}><a>{t('menu.summary')}</a></Link>
       </li>
+      <li className={classNames({ active: active == 'discussions' })} key={`/explore/${workspace.id}/discussions`}>
+        <Link {...ROUTES.manage.workspace.discussions.index(workspace.slug)}><a>{t('menu.discussions')}</a></Link>
+      </li>
       <li className={classNames({ active: active == 'missions' })} key={`/explore/${workspace.id}/missions`}>
         <Link {...ROUTES.manage.workspace.missions.index(workspace.slug)}><a>{t('menu.missions')}</a></Link>
       </li>
@@ -72,6 +75,10 @@ const WorkspaceHeader = ({
     return (<ul className="WorkspaceHeaderMenu">
       <li className={classNames({ active: active == 'summary' })} key="/">
         <Link {...ROUTES.manage.workspace.show(workspace.id)}><a>{t('menu.summary')}</a></Link>
+      </li>
+
+      <li className={classNames({ active: active == 'discussions' })} key={`/manage/${workspace.id}/discussions`}>
+        <Link {...ROUTES.manage.workspace.discussions.index(workspace.id)}><a>{t('menu.discussions')}</a></Link>
       </li>
 
       <li className={classNames({ active: active == 'missions' })} key={`/manage/${workspace.id}/missions`}>

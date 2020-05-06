@@ -58,10 +58,10 @@ class Api::DiscussionsController < ApiController
   # POST /api/discussions
   def create
     @discussion = Discussion.new(discussion_params)
-    @discussion.created_by = current_user&.id
+    @discussion.user_id = current_user&.id
 
     if @discussion.save
-      WorkspaceHistory.track!(@workspace, @discussion, current_user)
+      WorkspaceHistory.track!(@discussion.workspace, @discussion, current_user)
       render json: DiscussionSerializer.new.serialize(@discussion), status: :created
     else
       render_error(@discussion.errors.messages, :unprocessable_entity)

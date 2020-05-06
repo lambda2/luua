@@ -34,7 +34,6 @@ class Api::MessagesController < ApiController
   # PATCH/PUT /api/messages/id
   def update
     if @message.update(message_params)
-      WorkspaceHistory.track!(@discussion, @message, current_user)
       render json: MessageSerializer.new.serialize(@message)
     else
       render_error(@message.errors.messages, :unprocessable_entity)
@@ -52,6 +51,12 @@ class Api::MessagesController < ApiController
     else
       render_error(@message.errors.messages, :unprocessable_entity)
     end
+  end
+
+  # DELETE /api/messages/id
+  def destroy
+    @message.destroy!
+    render_destroyed
   end
 
   def message_params
