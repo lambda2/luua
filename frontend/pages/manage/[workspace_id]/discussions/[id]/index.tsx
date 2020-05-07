@@ -42,9 +42,10 @@ const ShowDiscussion = (
         active='discussion'
       />}
       <ContentLayout>
-        <Paginated
-          {...messagesResponse}
-          renderList={(messages) => <Discussion discussion={data as Discussion} messages={messages} />}
+        <Discussion
+          discussion={data as Discussion}
+          messagesEndpoint={data?.id && `/api/discussions/${data?.id}/messages`}
+          page={`${query.page}`}
         />
       </ContentLayout>
     </NetworkBoundary>

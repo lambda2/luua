@@ -8,16 +8,27 @@ import DiscussionForm from '../../elements/DiscussionForm/DiscussionForm';
 import { create, update, destroy } from '../../api/message';
 import { useMutation, queryCache } from 'react-query';
 import MessageList from '../MessageList/MessageList';
+import { useInfiniteCollection } from '../../utils/http';
+import Paginated from '../Paginated/Paginated';
 
 interface Props {
   discussion?: LightDiscussion
-  messages: Message[]
+  messagesEndpoint: string | false | 0 | undefined
+  page?: number | string
 }
 
-const Discussion = ({ discussion, messages }: Props) => {
+const Discussion = ({
+  discussion,
+  messagesEndpoint,
+  page = 1
+}: Props) => {
 
   const { currentUser } = useContext(UserContext)
 
+  const messagesResponse = useInfiniteCollection<Message>(
+    messagesEndpoint, page, currentUser?.jwt, {}, {}
+  )
+  
   const createMessage = async (content: string) => {
     if (!discussion) {
       console.error("No discussion to attatch this message !")
@@ -39,7 +50,7 @@ const Discussion = ({ discussion, messages }: Props) => {
     onSuccess: (data) => {
       console.log("[Message Creation MUTATE] ! onSuccess => ", data);
       
-      queryCache.refetchQueries(`/api/discussions/${discussion?.id}/messages`)
+      messagesEndpoint && queryCache.refetchQueries(messagesEndpoint)
     },
     onMutate: (data) => {
       console.log("[Message Creation MUTATE] ! onMutate => ", data);
@@ -56,7 +67,7 @@ const Discussion = ({ discussion, messages }: Props) => {
     onSuccess: (data) => {
       console.log("[Message Edit MUTATE] ! onSuccess => ", data);
       
-      queryCache.refetchQueries(`/api/discussions/${discussion?.id}/messages`)
+      messagesEndpoint && queryCache.refetchQueries(messagesEndpoint)
     },
     onMutate: (data) => {
       console.log("[Message Edit MUTATE] ! onMutate => ", data);
@@ -73,7 +84,7 @@ const Discussion = ({ discussion, messages }: Props) => {
     onSuccess: (data) => {
       console.log("[Message Destroy MUTATE] ! onSuccess => ", data);
       
-      queryCache.refetchQueries(`/api/discussions/${discussion?.id}/messages`)
+      messagesEndpoint && queryCache.refetchQueries(messagesEndpoint)
     },
     onMutate: (data) => {
       console.log("[Message Destroy MUTATE] ! onMutate => ", data);
@@ -88,7 +99,10 @@ const Discussion = ({ discussion, messages }: Props) => {
 
   return (
     <div className="Discussion">
-      <MessageList onEdit={onEdit} onDestroy={onDestroy} messages={messages} />
+      <Paginated
+        {...messagesResponse}
+        renderList={(messages) => <MessageList onEdit={onEdit} onDestroy={onDestroy} messages={messages} />}
+      />
 
       <DiscussionForm onSubmit={onCreate}/>
     </div>

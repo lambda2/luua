@@ -1,6 +1,7 @@
 import React, { ReactElement, useState } from 'react'
 import { AxiosResponse } from 'axios'
 import flatten from 'lodash/flatten'
+import useIntersectionObserver from '../../hooks/useIntersectionObserver'
 
 interface Props<T> {
   renderList: (data: T[]) => React.ReactNode
@@ -11,7 +12,7 @@ interface Props<T> {
   canFetchMore?: boolean
   isFetchingMore?: boolean
   failureCount?: number
-  fetchMore?: () => Promise<AxiosResponse<T[]>[]> | undefined
+  fetchMore: () => Promise<AxiosResponse<T[]>[]> | undefined
   page?: number
 }
 
@@ -34,11 +35,24 @@ const Paginated = <T extends unknown>(
     isFetchingMore,
     page = 1
   } = props
+  
 
-  const [currentPage, setPage] = useState<number>(page)
+  const loadMoreButtonRef = React.useRef<HTMLButtonElement>(null)
+
+  useIntersectionObserver({
+    target: loadMoreButtonRef,
+    onIntersect: fetchMore,
+  })
   
-  const responseData = flatten<T>(data?.map(d => d.data))
-  
+  const renderCollection = (data: AxiosResponse<T[]>[]) => {
+    return (<>
+      {data.map((page, i) => <React.Fragment key={i}>
+          {renderList(page.data)}
+        </React.Fragment>
+      )}
+    </>)
+  }
+
   switch (status) {
     case 'error':
       return (<>
@@ -52,31 +66,37 @@ const Paginated = <T extends unknown>(
         {error && <p>{error.message}</p>}
       </>)  
     case 'success':
-      if (renderList && responseData) {
+      if (renderList && data) {
         return <>
-          {renderList(responseData)}
-          <button
-            onClick={() => fetchMore && fetchMore()}
-            disabled={!canFetchMore || isFetchingMore}
-          >
-            {isFetchingMore
-              ? 'Loading more...'
-              : canFetchMore
-                ? 'Load More'
-                : 'Nothing more to load'}
-          </button>
+          {renderCollection(data)}
+          <div>
+            <button
+              ref={loadMoreButtonRef}
+              onClick={() => fetchMore()}
+              disabled={!canFetchMore || isFetchingMore}
+            >
+              {isFetchingMore
+                ? 'Loading more...'
+                : canFetchMore
+                  ? 'Load More'
+                  : 'Nothing more to load'}
+            </button>
+          </div>
+          <div>
+            {isFetching && !isFetchingMore ? 'Background Updating...' : null}
+          </div>
 
         </>
       }
     default:
-      if (renderList && responseData) {
-        return <>{renderList(responseData)}</>
+      if (renderList && data) {
+        return <>{renderCollection(data)}</>
       } else {
         console.error("No status");
         return (<>
           <p>Loading...</p>
           {error && <p>{error.message}</p>}
-          {responseData && <pre>{JSON.stringify(responseData)}</pre>}
+          {data && <pre>{JSON.stringify(data)}</pre>}
         </>)  
       }
   }

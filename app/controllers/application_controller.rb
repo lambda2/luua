@@ -49,7 +49,7 @@ class ApplicationController < ActionController::API
   def respond_with_cache(collection, key = nil, last_modified = nil, delay = 5.seconds)
     expires_in delay
 
-    end_key = (key || "luua/#{params[:action] || 'gen'}/#{collection.respond_to?(:load) ? collection.load.cache_key : collection.cache_key}")
+    end_key = (key || "luua/#{params[:action] || 'gen'}/#{collection.cache_key}-#{collection.cache_version}")
 
     last_modified ||= collection.respond_to?(:updated_at) ? collection.updated_at : collection.order(:updated_at).last.try(:updated_at)
 

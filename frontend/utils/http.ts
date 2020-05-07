@@ -161,7 +161,7 @@ export function usePaginatedCollection<T>(
     return api<T>(endpoint, { headers, ...requestOpts, ...opts })
   }
 
-  console.log("Using usePaginatedCollection with ", { fullKey, getCollection, hookOpts });
+  // console.log("Using usePaginatedCollection with ", { fullKey, getCollection, hookOpts });
   
   return usePaginatedQuery<AxiosResponse<T>, AnyQueryKey>(
     fullKey as any,
@@ -196,29 +196,27 @@ export function useInfiniteCollection<T>(
     ...authHeaders
   }
 
-  const page = startpage || "1"
-
   const endpoint = isArray(endpointKey) ? first(endpointKey) : endpointKey
-  const fullKey = isArray(endpointKey) ? [...endpointKey, page] : [endpointKey, page]
   
-  const getCollection = (opts: any, page: any, a?: any, b?: any, c?: any): Promise<AxiosResponse<T[]>> => {
-    console.log({ opts, page, a, b, c, endpoint });
+  const getCollection = (opts: any, page: any, a: any, b: any, c: any): Promise<AxiosResponse<T[]>> => {
+    console.log({ opts, page, a, b, c });
     
     return api<T[]>(`${endpoint}?page=${page}`, { headers, ...requestOpts, ...opts })
   }
 
-  console.log("Using usePaginatedCollection with ", { fullKey, getCollection, hookOpts });
+  // console.log("Using usePaginatedCollection with ", { fullKey, getCollection, hookOpts });
   
   const getFetchMore = (lastPage: AxiosResponse<T[]>, allPages: AxiosResponse<T[]>[]) => {
     const parsed = plh(lastPage.headers.link)
 
-    console.log("getFetchMore => ", { lastPage, allPages, parsed, h: lastPage.headers});
+    // console.log("getFetchMore => ", { lastPage, allPages, parsed, h: lastPage.headers});
+    // console.log("Nextpage -> ", parsed?.next?.page);
     
-    parsed?.next && parsed?.next?.page
+    return parsed?.next && parsed?.next?.page
   }
 
   return useInfiniteQuery<AxiosResponse<T[]>, AnyQueryKey, unknown>(
-    fullKey as any,
+    endpoint as any,
     getCollection as any,
     { getFetchMore }
   )

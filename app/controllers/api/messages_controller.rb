@@ -7,11 +7,13 @@ class Api::MessagesController < ApiController
   skip_before_action :authenticate_user!
 
   def index
+    puts "<><><><><><><><>"
     @messages = @messages.search(params[:q]) if params[:q]
     @messages = @messages.available_for(current_user&.id) if params[:for_user]
     @messages = @messages.order(created_at: :asc)
     @messages = paginate(@messages)
-
+    puts "<><><><><><><><>"
+    
     respond_to do |format|
       format.json do
         respond_with_cache(@messages) do
