@@ -32,7 +32,7 @@ module Luua
         resource '*',
                  headers: :any,
                  methods: :any,
-                 expose: %w[Authorization],
+                 expose: %w[Authorization Link],
                  max_age: 600
       end
       allow do
@@ -40,7 +40,7 @@ module Luua
         resource '*',
                  headers: :any,
                  methods: :any,
-                 expose: %w[Authorization],
+                 expose: %w[Authorization Link],
                  max_age: 600
       end
     end

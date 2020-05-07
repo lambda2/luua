@@ -281,3 +281,6 @@ declare interface Mission extends LightMission {
     mission_skills: MissionSkill[]
     discussions: LightDiscussion[]
 }
+
+
+declare module 'parse-link-header';

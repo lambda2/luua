@@ -1,7 +1,7 @@
 import { NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 
-import { useCollection, fetchInitialData, usePaginatedCollection } from '../../../../../utils/http'
+import { useCollection, fetchInitialData, usePaginatedCollection, useInfiniteCollection } from '../../../../../utils/http'
 import { withUserToken } from '../../../../../utils/auth'
 
 import NetworkBoundary from '../../../../../components/NetworkBoudary/NetworkBoudary'
@@ -12,7 +12,8 @@ import { useContext } from 'react'
 import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
 import { useLocale } from '../../../../../hooks/useLocale'
 import WorkspaceHeader from '../../../../../components/WorkspaceHeader/WorkspaceHeader'
-import PaginatedNetworkBoudary from '../../../../../components/PaginatedNetworkBoudary/PaginatedNetworkBoudary'
+import Paginated from '../../../../../components/Paginated/Paginated'
+import { AxiosResponse } from 'axios'
 
 
 /**
@@ -30,7 +31,7 @@ const ShowDiscussion = (
     `/api/discussions/${query.id}`, token, {}, { initialData }
   )
 
-  const messagesResponse = usePaginatedCollection<Message[]>(
+  const messagesResponse = useInfiniteCollection<Message>(
     data?.id && `/api/discussions/${data?.id}/messages`, query.page, token, {}, {}
   )
 
@@ -41,9 +42,10 @@ const ShowDiscussion = (
         active='discussion'
       />}
       <ContentLayout>
-        <PaginatedNetworkBoudary {...messagesResponse}>
-          <Discussion discussion={data as Discussion} messages={messagesResponse?.resolvedData?.data || []} />
-        </PaginatedNetworkBoudary>
+        <Paginated
+          {...messagesResponse}
+          renderList={(messages) => <Discussion discussion={data as Discussion} messages={messages} />}
+        />
       </ContentLayout>
     </NetworkBoundary>
   )
