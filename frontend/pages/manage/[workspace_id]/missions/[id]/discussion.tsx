@@ -48,9 +48,11 @@ const MissionDiscussion = (
         active='chat'
       />}
       <ContentLayout sideMenu={<DiscussionLeftMenu discussions={data?.discussions} />}>
-        <NetworkBoundary {...messagesResponse}>
-          <Discussion discussion={discussion} messages={messagesResponse?.data || []} />
-        </NetworkBoundary>
+        <Discussion
+          discussion={discussion}
+          messagesEndpoint={discussion?.id && `/api/discussions/${discussion?.id}/messages`}
+          page={`${query.page}`}
+        />
       </ContentLayout>
     </NetworkBoundary>
   )

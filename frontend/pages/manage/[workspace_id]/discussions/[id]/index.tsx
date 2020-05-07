@@ -1,7 +1,7 @@
 import { NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 
-import { useCollection, fetchInitialData, usePaginatedCollection, useInfiniteCollection } from '../../../../../utils/http'
+import { useCollection, fetchInitialData } from '../../../../../utils/http'
 import { withUserToken } from '../../../../../utils/auth'
 
 import NetworkBoundary from '../../../../../components/NetworkBoudary/NetworkBoudary'

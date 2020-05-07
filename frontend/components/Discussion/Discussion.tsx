@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 
-import momentWithLocale from '../../i18n/moment';
-import { useLocale } from '../../hooks/useLocale';
 import UserContext from '../../contexts/UserContext';
 
 import DiscussionForm from '../../elements/DiscussionForm/DiscussionForm';
