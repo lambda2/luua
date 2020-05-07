@@ -50,7 +50,8 @@ const Discussion = ({
     onSuccess: (data) => {
       console.log("[Message Creation MUTATE] ! onSuccess => ", data);
       
-      messagesEndpoint && queryCache.refetchQueries(messagesEndpoint)
+      messagesResponse.refetch()
+      // messagesEndpoint && queryCache.refetchQueries(messagesEndpoint)
     },
     onMutate: (data) => {
       console.log("[Message Creation MUTATE] ! onMutate => ", data);
@@ -67,7 +68,8 @@ const Discussion = ({
     onSuccess: (data) => {
       console.log("[Message Edit MUTATE] ! onSuccess => ", data);
       
-      messagesEndpoint && queryCache.refetchQueries(messagesEndpoint)
+      messagesResponse.refetch()
+      // messagesEndpoint && queryCache.refetchQueries(messagesEndpoint)
     },
     onMutate: (data) => {
       console.log("[Message Edit MUTATE] ! onMutate => ", data);
@@ -84,7 +86,8 @@ const Discussion = ({
     onSuccess: (data) => {
       console.log("[Message Destroy MUTATE] ! onSuccess => ", data);
       
-      messagesEndpoint && queryCache.refetchQueries(messagesEndpoint)
+      messagesResponse.refetch()
+      // messagesEndpoint && queryCache.refetchQueries(messagesEndpoint)
     },
     onMutate: (data) => {
       console.log("[Message Destroy MUTATE] ! onMutate => ", data);

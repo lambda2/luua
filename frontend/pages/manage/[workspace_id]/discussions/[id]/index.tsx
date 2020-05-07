@@ -31,10 +31,6 @@ const ShowDiscussion = (
     `/api/discussions/${query.id}`, token, {}, { initialData }
   )
 
-  const messagesResponse = useInfiniteCollection<Message>(
-    data?.id && `/api/discussions/${data?.id}/messages`, query.page, token, {}, {}
-  )
-
   return (
     <NetworkBoundary status={status} data={data} error={error}>
       {currentWorkspace && <WorkspaceHeader
