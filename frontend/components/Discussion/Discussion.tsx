@@ -8,23 +8,26 @@ import { useMutation, queryCache } from 'react-query';
 import MessageList from '../MessageList/MessageList';
 import { useInfiniteCollection } from '../../utils/http';
 import Paginated from '../Paginated/Paginated';
+import usePaginatedCollection from '../../hooks/usePaginatedCollection';
 
 interface Props {
   discussion?: LightDiscussion
   messagesEndpoint: string | false | 0 | undefined
-  page?: number | string
+  page?: number | string,
+  token?: string
 }
 
 const Discussion = ({
   discussion,
   messagesEndpoint,
-  page = 1
+  page = 1,
+  token
 }: Props) => {
 
   const { currentUser } = useContext(UserContext)
 
-  const messagesResponse = useInfiniteCollection<Message>(
-    messagesEndpoint, page, currentUser?.jwt, {}, {}
+  const messagesResponse = usePaginatedCollection<Message[]>(
+    messagesEndpoint, page, (token || currentUser?.jwt)
   )
   
   const createMessage = async (content: string) => {

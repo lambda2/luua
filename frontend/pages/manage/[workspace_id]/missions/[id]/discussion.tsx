@@ -52,6 +52,7 @@ const MissionDiscussion = (
           discussion={discussion}
           messagesEndpoint={discussion?.id && `/api/discussions/${discussion?.id}/messages`}
           page={`${query.page}`}
+          token={token}
         />
       </ContentLayout>
     </NetworkBoundary>

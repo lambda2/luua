@@ -11,6 +11,7 @@ import UserAvatar from '../../elements/UserAvatar/UserAvatar';
 import MissionSkillsForUser from '../MissionSkillsForUser/MissionSkillsForUser';
 import { useRouter } from 'next/router';
 import TitleWithAvatar from '../../elements/TitleWithAvatar/TitleWithAvatar';
+import UserAvatarTooltip from '../../elements/UserAvatarTooltip/UserAvatarTooltip';
 
 
 const { explore, manage } = routes
@@ -42,7 +43,9 @@ const MissionUserItem = ({
         <Link key={id} {...manage.workspace.candidates.show(`${query.workspace_id}`, `${id}`)}>
           <a>
             {mission.name}
-            <div className="sub-title text-light">{t(`mission_user.${status}.state`, { name: mission.name })}</div>
+            <div className="sub-title text-light">
+              <UserAvatarTooltip {...user} /> {t(`mission_user.${status}.state`, { name: mission.name })}
+            </div>
           </a>
         </Link>
       </TitleWithAvatar>
