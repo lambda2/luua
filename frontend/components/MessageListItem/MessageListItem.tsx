@@ -3,7 +3,6 @@ import momentWithLocale from '../../i18n/moment';
 import { useLocale } from '../../hooks/useLocale';
 import UserMessageAvatar from '../../elements/UserMessageAvatar/UserMessageAvatar';
 import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
-import { nameForUser } from '../../utils/user';
 import UserAvatarTooltip from '../../elements/UserAvatarTooltip/UserAvatarTooltip';
 import can from '../../utils/can';
 import UserContext from '../../contexts/UserContext';

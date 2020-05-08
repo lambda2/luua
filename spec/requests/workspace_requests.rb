@@ -55,7 +55,7 @@ describe Api::WorkspaceRequestsController, type: :request do # rubocop:todo Metr
     end
   end
 
-  describe '#accept' do # rubocop:todo Metrics/BlockLength
+  describe '#accept' do
 
     let(:random_user) { create(:user, :confirmed) }
     let(:manager) { create(:user, :confirmed) }

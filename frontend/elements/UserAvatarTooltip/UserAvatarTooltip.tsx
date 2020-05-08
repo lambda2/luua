@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { Popover, Tag } from 'antd';
 import { useLocale } from '../../hooks/useLocale';
 import ROUTES from '../../routes/manage';
-import UserAvatar from '../UserAvatar/UserAvatar';
 
 interface Props {
   thumb_url?: string

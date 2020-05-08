@@ -1,7 +1,4 @@
-import React, { ReactElement, useState } from 'react'
-import { AxiosResponse } from 'axios'
-import flatten from 'lodash/flatten'
-import useIntersectionObserver from '../../hooks/useIntersectionObserver'
+import React from 'react'
 import { Button } from 'antd'
 
 interface Props<T> {
@@ -17,7 +14,9 @@ interface Props<T> {
 }
 
 /**
- * A boundary to handle network status
+ * A wrapper to manage pages
+ * @TODO no error handling here
+ * @TODO no infinite handling
  */
 const Paginated = <T extends unknown>(
   props: Props<T>
@@ -35,28 +34,9 @@ const Paginated = <T extends unknown>(
     lastPage
   } = props
   
-
-  // const loadMoreButtonRef = React.useRef<HTMLButtonElement>(null)
-
-  // useIntersectionObserver({
-  //   target: loadMoreButtonRef,
-  //   onIntersect: fetchMore,
-  // })
-  
-  // const renderCollection = (data: AxiosResponse<T[]>[]) => {
-  //   return (<>
-  //     {data.map((page, i) => <React.Fragment key={i}>
-  //         {renderList(page.data)}
-  //       </React.Fragment>
-  //     )}
-  //   </>)
-  // }
-
-  console.log({ data })
-
   return <>
     {prevPage && <Button onClick={prev}>Page {prevPage}</Button>}
-    
+
     {data && renderList(data)}
 
     <Button.Group>
@@ -66,53 +46,6 @@ const Paginated = <T extends unknown>(
     </Button.Group>
   </>
 
-  // switch (status) {
-  //   case 'error':
-  //     return (<>
-  //       <p>Network error !</p>
-  //       <p>{error && error.message}</p>
-  //       {error?.response?.data && <pre>{JSON.stringify(error?.response?.data, null, 2)}</pre>}
-  //     </>)
-  //   case 'loading':
-  //     return (<>
-  //       <p>Loading...</p>
-  //       {error && <p>{error.message}</p>}
-  //     </>)  
-  //   case 'success':
-  //     if (renderList && data) {
-  //       return <>
-  //         {renderCollection(data)}
-  //         <div>
-  //           <button
-  //             ref={loadMoreButtonRef}
-  //             onClick={() => fetchMore()}
-  //             disabled={!canFetchMore || isFetchingMore}
-  //           >
-  //             {isFetchingMore
-  //               ? 'Loading more...'
-  //               : canFetchMore
-  //                 ? 'Load More'
-  //                 : 'Nothing more to load'}
-  //           </button>
-  //         </div>
-  //         <div>
-  //           {isFetching && !isFetchingMore ? 'Background Updating...' : null}
-  //         </div>
-
-  //       </>
-  //     }
-  //   default:
-  //     if (renderList && data) {
-  //       return <>{renderCollection(data)}</>
-  //     } else {
-  //       console.error("No status");
-  //       return (<>
-  //         <p>Loading...</p>
-  //         {error && <p>{error.message}</p>}
-  //         {data && <pre>{JSON.stringify(data)}</pre>}
-  //       </>)  
-  //     }
-  // }
 }
 
 Paginated.displayName = 'Paginated'

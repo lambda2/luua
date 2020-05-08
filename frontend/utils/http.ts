@@ -11,7 +11,6 @@ import { useLocale } from '../hooks/useLocale';
 import cookie from 'js-cookie'
 import isArray from 'lodash/isArray';
 import first from 'lodash/first';
-import plh from 'parse-link-header';
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -170,57 +169,57 @@ export function useCollection<T>(
 //   )
 // }
 
-/**
- * A hook allowing us to handle a remote collection properly
- *
- * @export
- * @template T the response type
- * @param {string} endpoint the url we want to fetch (without the domain)
- * @param {string} [token] the user auth token if we have one
- * @param {AxiosRequestConfig} [requestOpts]
- * @param {QueryOptions<T>} [hookOpts]
- * @returns {PaginatedQueryResult<T>}
- */
-export function useInfiniteCollection<T>(
-  endpointKey: string | any[] | undefined | boolean | number,
-  startpage?: number | string | string[],
-  token?: string,
-  requestOpts?: AxiosRequestConfig,
-  hookOpts?: any
-): InfiniteQueryResult<AxiosResponse<T[]>, unknown> {
+// /**
+//  * A hook allowing us to handle a remote collection properly
+//  *
+//  * @export
+//  * @template T the response type
+//  * @param {string} endpoint the url we want to fetch (without the domain)
+//  * @param {string} [token] the user auth token if we have one
+//  * @param {AxiosRequestConfig} [requestOpts]
+//  * @param {QueryOptions<T>} [hookOpts]
+//  * @returns {PaginatedQueryResult<T>}
+//  */
+// export function useInfiniteCollection<T>(
+//   endpointKey: string | any[] | undefined | boolean | number,
+//   startpage?: number | string | string[],
+//   token?: string,
+//   requestOpts?: AxiosRequestConfig,
+//   hookOpts?: any
+// ): InfiniteQueryResult<AxiosResponse<T[]>, unknown> {
 
-  const { language } = useLocale()
-  const authHeaders = getHeaders(token || '');
-  const headers = {
-    'Accept-Language': language,
-    ...authHeaders
-  }
+//   const { language } = useLocale()
+//   const authHeaders = getHeaders(token || '');
+//   const headers = {
+//     'Accept-Language': language,
+//     ...authHeaders
+//   }
 
-  const endpoint = isArray(endpointKey) ? first(endpointKey) : endpointKey
+//   const endpoint = isArray(endpointKey) ? first(endpointKey) : endpointKey
   
-  const getCollection = (opts: any, page: any, a: any, b: any, c: any): Promise<AxiosResponse<T[]>> => {
-    console.log({ opts, page, a, b, c });
+//   const getCollection = (opts: any, page: any, a: any, b: any, c: any): Promise<AxiosResponse<T[]>> => {
+//     console.log({ opts, page, a, b, c });
     
-    return api<T[]>(`${endpoint}?page=${page}`, { headers, ...requestOpts, ...opts })
-  }
+//     return api<T[]>(`${endpoint}?page=${page}`, { headers, ...requestOpts, ...opts })
+//   }
 
-  // console.log("Using usePaginatedCollection with ", { fullKey, getCollection, hookOpts });
+//   // console.log("Using usePaginatedCollection with ", { fullKey, getCollection, hookOpts });
   
-  const getFetchMore = (lastPage: AxiosResponse<T[]>, allPages: AxiosResponse<T[]>[]) => {
-    const parsed = plh(lastPage.headers.link)
+//   const getFetchMore = (lastPage: AxiosResponse<T[]>, allPages: AxiosResponse<T[]>[]) => {
+//     const parsed = plh(lastPage.headers.link)
 
-    // console.log("getFetchMore => ", { lastPage, allPages, parsed, h: lastPage.headers});
-    // console.log("Nextpage -> ", parsed?.next?.page);
+//     // console.log("getFetchMore => ", { lastPage, allPages, parsed, h: lastPage.headers});
+//     // console.log("Nextpage -> ", parsed?.next?.page);
     
-    return parsed?.next && parsed?.next?.page
-  }
+//     return parsed?.next && parsed?.next?.page
+//   }
 
-  return useInfiniteQuery<AxiosResponse<T[]>, AnyQueryKey, unknown>(
-    endpoint as any,
-    getCollection as any,
-    { getFetchMore }
-  )
-}
+//   return useInfiniteQuery<AxiosResponse<T[]>, AnyQueryKey, unknown>(
+//     endpoint as any,
+//     getCollection as any,
+//     { getFetchMore }
+//   )
+// }
 
 /**
  * A simple fetch on our API, returning the data directly, not the whole response

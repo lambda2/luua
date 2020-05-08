@@ -18,7 +18,7 @@ namespace :populate do # rubocop:todo Metrics/BlockLength
   end
 
   desc 'Create a workspace discussion from dr strangelove'
-  task strangelove_conversation: :environment do # rubocop:todo Metrics/BlockLength
+  task strangelove_conversation: :environment do
     raise unless Rails.env.development?
 
     Examples::Strangelove.populate

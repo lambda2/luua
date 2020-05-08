@@ -10,7 +10,7 @@ describe Api::WorkspaceInvitationsController, type: :request do # rubocop:todo M
 
   let(:query) { SecureRandom.uuid }
 
-  describe '#index' do # rubocop:todo Metrics/BlockLength
+  describe '#index' do
 
     let(:random_user) { create(:user, :confirmed) }
     let(:candidate) { create(:user, :confirmed) }
@@ -56,7 +56,7 @@ describe Api::WorkspaceInvitationsController, type: :request do # rubocop:todo M
 
   end
 
-  describe '#accept' do # rubocop:todo Metrics/BlockLength
+  describe '#accept' do
 
     let(:random_user) { create(:user, :confirmed) }
     let(:manager) { create(:user, :confirmed) }
@@ -93,7 +93,7 @@ describe Api::WorkspaceInvitationsController, type: :request do # rubocop:todo M
     end
   end
 
-  describe '#reject' do # rubocop:todo Metrics/BlockLength
+  describe '#reject' do
 
     let(:random_user) { create(:user, :confirmed) }
     let(:manager) { create(:user, :confirmed) }

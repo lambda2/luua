@@ -1,8 +1,6 @@
 import { NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 
-import routes from '../../../../../routes/manage'
-
 import { useCollection, fetchInitialData } from '../../../../../utils/http'
 import { withUserToken } from '../../../../../utils/auth'
 
@@ -16,8 +14,6 @@ import MissionHeader from '../../../../../components/MissionHeader/MissionHeader
 import { useLocale } from '../../../../../hooks/useLocale'
 import DiscussionLeftMenu from '../../../../../layouts/DiscussionLeftMenu/DiscussionLeftMenu'
 
-const { manage } = routes
-
 
 /**
  * Show the mission main discussion
@@ -28,17 +24,12 @@ const MissionDiscussion = (
 ) => {
   const { query } = useRouter()
   const { currentWorkspace } = useContext(WorkspaceContext)
-  const { t } = useLocale()
 
   const { status, data, error } = useCollection<Mission>(
     `/api/missions/${query.id}`, token, {}, { initialData }
   )
 
   const discussion = ((data?.discussions?.length || 0) > 0) && data?.discussions[0] || undefined
-
-  const messagesResponse = useCollection<Message[]>(
-    discussion?.id && `/api/discussions/${discussion?.id}/messages`, token, {}, {}
-  )
 
   return (
     <NetworkBoundary status={status} data={data} error={error}>

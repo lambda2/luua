@@ -1,8 +1,4 @@
-import React, { useContext } from 'react';
-import momentWithLocale from '../../i18n/moment';
-import { useLocale } from '../../hooks/useLocale';
-import UserAvatar from '../../elements/UserAvatar/UserAvatar';
-import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
+import React from 'react';
 import MessageListItem from '../MessageListItem/MessageListItem';
 import List from '../../elements/List/List';
 

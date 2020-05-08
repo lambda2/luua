@@ -4,9 +4,8 @@ import UserContext from '../../contexts/UserContext';
 
 import DiscussionForm from '../../elements/DiscussionForm/DiscussionForm';
 import { create, update, destroy } from '../../api/message';
-import { useMutation, queryCache } from 'react-query';
+import { useMutation } from 'react-query';
 import MessageList from '../MessageList/MessageList';
-import { useInfiniteCollection } from '../../utils/http';
 import Paginated from '../Paginated/Paginated';
 import usePaginatedCollection from '../../hooks/usePaginatedCollection';
 
@@ -52,7 +51,6 @@ const Discussion = ({
       console.log("[Message Creation MUTATE] ! onSuccess => ", data);
       
       messagesResponse.refetch()
-      // messagesEndpoint && queryCache.refetchQueries(messagesEndpoint)
     },
     onMutate: (data) => {
       console.log("[Message Creation MUTATE] ! onMutate => ", data);
@@ -70,7 +68,6 @@ const Discussion = ({
       console.log("[Message Edit MUTATE] ! onSuccess => ", data);
       
       messagesResponse.refetch()
-      // messagesEndpoint && queryCache.refetchQueries(messagesEndpoint)
     },
     onMutate: (data) => {
       console.log("[Message Edit MUTATE] ! onMutate => ", data);
@@ -88,7 +85,6 @@ const Discussion = ({
       console.log("[Message Destroy MUTATE] ! onSuccess => ", data);
       
       messagesResponse.refetch()
-      // messagesEndpoint && queryCache.refetchQueries(messagesEndpoint)
     },
     onMutate: (data) => {
       console.log("[Message Destroy MUTATE] ! onMutate => ", data);

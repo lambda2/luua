@@ -14,12 +14,6 @@ import WorkspaceMissionDetail from '../../../../../components/WorkspaceMissionDe
 import { useContext } from 'react'
 import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
 import MissionHeader from '../../../../../components/MissionHeader/MissionHeader'
-import { useLocale } from '../../../../../hooks/useLocale'
-import MissionLeftMenu from '../../../../../layouts/MissionLeftMenu/MissionLeftMenu'
-
-const { manage } = routes
-const { workspace } = manage
-
 
 /**
  * Show the requested workspace mission
@@ -30,7 +24,6 @@ const Mission = (
 ) => {
   const { query } = useRouter()
   const { currentWorkspace } = useContext(WorkspaceContext)
-  const { t } = useLocale()
 
   const { status, data, error } = useCollection<Mission>(
     `/api/missions/${query.id}`, token, {}, { initialData }

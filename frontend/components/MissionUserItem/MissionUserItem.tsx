@@ -1,20 +1,13 @@
 import React, { useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
 import routes from '../../routes/manage'
-import { List, Tag } from 'antd';
-import MissionVisibilityBadge from '../../elements/MissionVisibilityBadge/MissionVisibilityBadge';
-// import './MissionUserItem.module.less'
 import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';
-import { cdnUrl } from '../../utils/http';
 import UserAvatar from '../../elements/UserAvatar/UserAvatar';
-import MissionSkillsForUser from '../MissionSkillsForUser/MissionSkillsForUser';
 import { useRouter } from 'next/router';
 import TitleWithAvatar from '../../elements/TitleWithAvatar/TitleWithAvatar';
 import UserAvatarTooltip from '../../elements/UserAvatarTooltip/UserAvatarTooltip';
 
-
-const { explore, manage } = routes
+const { manage } = routes
 
 interface Props {
   mission: LightMission
@@ -30,7 +23,6 @@ const MissionUserItem = ({
   status
 }: Props) => {
 
-  const { currentUser } = useContext(UserContext)
   const { t } = useLocale()
   const { query } = useRouter()
 

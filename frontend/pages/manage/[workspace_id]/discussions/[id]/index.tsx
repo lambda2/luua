@@ -10,14 +10,10 @@ import ContentLayout from '../../../../../layouts/ContentLayout/ContentLayout'
 import Discussion from '../../../../../components/Discussion/Discussion'
 import { useContext } from 'react'
 import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
-import { useLocale } from '../../../../../hooks/useLocale'
 import WorkspaceHeader from '../../../../../components/WorkspaceHeader/WorkspaceHeader'
-import Paginated from '../../../../../components/Paginated/Paginated'
-import { AxiosResponse } from 'axios'
-
 
 /**
- * Show the requested workspace mission
+ * Show the requested discussion
  */
 const ShowDiscussion = (
   { initialData, token }:
@@ -25,8 +21,6 @@ const ShowDiscussion = (
 ) => {
   const { query } = useRouter()
   const { currentWorkspace } = useContext(WorkspaceContext)
-  const { t } = useLocale()
-
   const { status, data, error } = useCollection<Discussion>(
     `/api/discussions/${query.id}`, token, {}, { initialData }
   )
@@ -38,6 +32,7 @@ const ShowDiscussion = (
         active='discussion'
       />}
       <ContentLayout>
+        {/* Paginated discussion @TODO */}
         <Discussion
           discussion={data as Discussion}
           messagesEndpoint={data?.id && `/api/discussions/${data?.id}/messages`}

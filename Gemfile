@@ -21,9 +21,9 @@ gem 'devise-jwt', '~> 0.6.0'
 # CORS
 gem 'rack-cors', '~> 1.1.1'
 
+gem 'api-pagination'
 gem 'has_scope', '~> 0.7.2'
 gem 'kaminari', '~> 1.2.0'
-gem 'api-pagination'
 gem 'panko_serializer', '~> 0.7.3'
 gem 'rack-attack', '~> 6.2.2'
 gem 'redis', '~> 4.1.3'
