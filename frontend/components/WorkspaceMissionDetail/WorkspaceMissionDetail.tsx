@@ -56,27 +56,26 @@ const WorkspaceMissionDetail = (mission: Props) => {
   
   return (
     <div className="WorkspaceMissionDetail">
-{/* 
-      <PageTitle
-        title={name}
-      >
-        {can(currentUser, 'mission.edit', mission) && <Link {...manage.workspace.missions.edit(`${workspace?.slug || workspace_id}`, `${id}`)}>
-          <a>{t('form.mission.edit')}</a>
-        </Link>}
-      </PageTitle> */}
-
-      {/* <MissionCandidateBox /> */}
-
+    
+      <PageSection title={t('mission.summary')}>
+        <div>{description}</div>
+      </PageSection>
+      
       <PageSection title={t('mission.required-skills')}>
         <MissionSkillsForUser
-          mission_skills={mission_skills}
+          mission_skills={mission_skills.filter(ms => ms.mandatory === true)}
           user_skills={currentUser?.user_skills}
         />
       </PageSection>
 
-      <PageSection title={t('mission.summary')}>
-        <div>{description}</div>
+      <PageSection title={t('mission.recommended-skills')}>
+        <MissionSkillsForUser
+          mission_skills={mission_skills.filter(ms => ms.mandatory === false)}
+          user_skills={currentUser?.user_skills}
+        />
       </PageSection>
+
+      <MissionCandidateBox />
 
       <PageSection>
 

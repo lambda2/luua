@@ -5,45 +5,49 @@ import routes from '../../routes/manage'
 import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';
 import classNames from 'classnames';
+import UserContext from '../../contexts/UserContext';
+import MissionFullMeta from '../../components/MissionFullMeta/MissionFullMeta';
 
 const { manage } = routes
 const { workspace } = manage
 
 interface Props {
-  active?: string
-  workspaceId?: string | number
-  missionId?: string | number
+  mission: Mission
 }
 
 const MissionLeftMenu = ({
-  active,
-  workspaceId,
-  missionId
+  mission
 }: Props) => {
+
+  const {
+    id,
+    name,
+    // mission_category_id,
+    physical,
+    description,
+    begin_at,
+    end_at,
+    due_at,
+    organization_id,
+    workspace_id,
+    workspace,
+    image,
+    visibility,
+    mission_skills,
+    banner_image,
+    modified_at,
+    created_at,
+    // modified_by,
+    slug,
+  } = mission
 
   const { t } = useLocale()
   const { pathname, query } = useRouter()
+  const { currentUser } = useContext(UserContext)
 
-  const workspace_id = workspaceId || (query.workspace_id && query.workspace_id.toString())
-  const mission_id = missionId || (query.id && query.id.toString())
-
-  if (!workspace_id || !mission_id) {
-    return <></>
-  }
-
-  return (<ul className="MissionLeftMenu">
-
-
-    <li className={classNames({ active: active == 'summary' })} key="/summary">
-      <Link {...workspace.missions.show(workspace_id, mission_id)}><a>{t('mission.summary')}</a></Link>
-    </li>
-
-    <li className={classNames({ active: active == 'chat' })} key="/chat">
-      <Link {...workspace.missions.discussion(workspace_id, mission_id)}><a>{t('mission.chat')}</a></Link>
-    </li>
-
-
-  </ul>)
+  return (<aside className="MissionLeftMenu">
+    <MissionFullMeta mission={mission} currentUser={currentUser}/>
+  </aside>)
 
 
 }

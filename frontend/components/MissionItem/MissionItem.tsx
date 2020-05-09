@@ -13,32 +13,39 @@ import MissionSkillsForUser from '../MissionSkillsForUser/MissionSkillsForUser';
 import CandidateStatusStep from '../../elements/CandidateStatusStep/CandidateStatusStep';
 import MessageBox from '../../elements/MessageBox/MessageBox';
 import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
+import icons from '../../dictionaries/icons';
+import momentWithLocale from '../../i18n/moment';
 
 const { manage } = routes
 
-interface Props extends LightMission {}
+interface Props {
+  mission: LightMission
+  activeWorkspace?: number
+}
 
-const MissionItem = ({
-  id,
-  name,
-  // mission_category_id,
-  physical,
-  description,
-  begin_at,
-  end_at,
-  due_at,
-  organization_id,
-  workspace_id,
-  workspace,
-  image,
-  visibility,
-  skills,
-  banner_image,
-  modified_at,
-  // modified_by,
-  slug,
-  // mission_category,
-}: Props) => {
+const MissionItem = ({ mission, activeWorkspace }: Props) => {
+
+  const {
+    id,
+    name,
+    // mission_category_id,
+    physical,
+    description,
+    begin_at,
+    end_at,
+    due_at,
+    organization_id,
+    workspace_id,
+    workspace,
+    image,
+    visibility,
+    skills,
+    banner_image,
+    modified_at,
+    // modified_by,
+    slug,
+    // mission_category,
+  } = mission
 
   const { currentUser } = useContext(UserContext)
   const { t } = useLocale()
@@ -46,30 +53,34 @@ const MissionItem = ({
   const mu = find(currentUser?.mission_users || [], {mission_id: id})
   return (
     <div className="MissionItem">
-      <h3>
+
+      {/* If the mission list is already on a workspace page, we don't display the workspace name */}
+      {(!activeWorkspace || activeWorkspace !== workspace_id) && <Link key={id} {...manage.workspace.show(workspace?.slug || workspace_id)}>
+        <a>
+          <header>
+            <Avatar size="small" src={cdnUrl(workspace?.thumb_url || '')} />
+            <span className="org-title">{workspace?.name}</span>
+          </header>
+        </a>
+      </Link>}
+
+      <h4>
         <Link key={id} {...manage.workspace.missions.show(workspace?.slug || workspace_id, slug)}>
           <a>
-            <header>
-              <Avatar size="small" src={cdnUrl(workspace?.thumb_url || '')} />
-              <span className="org-title">{workspace?.name}</span>
-            </header>
             {name}
           </a>
         </Link>
-      </h3>
+      </h4>
+      
+      <footer>
+        <MissionItemMeta mission={mission} currentUser={currentUser} />
+      </footer>
 
       <div>
         {mu && <MessageBox>
           <CandidateStatusStep mission_user={mu as MissionUser} />
           <p>{t(`mission_user.${mu.status}.state-user`, { name: name })}</p>
         </MessageBox>}
-
-        <MissionItemMeta skills={skills} />
-        {/* <MissionSkillsForUser
-          mission_skills={skills}
-          user_skills={currentUser?.user_skills}
-        /> */}
-        <MarkdownContent content={description} />
       </div>
     </div>
   )

@@ -189,6 +189,7 @@ declare interface LightOrganization {
     created_at: string
     updated_at: string
 }
+
 declare interface Organization extends LightOrganization {
 }
 
@@ -214,7 +215,7 @@ declare interface MissionUser extends LightMissionUser {
     user_skills: UserSkill[]
 }
 
-declare interface LightMission {
+declare interface BaseMission {
     id: number
     name: string
     slug: string
@@ -224,17 +225,37 @@ declare interface LightMission {
     organization_id: number
     workspace_id: number
     participant_count: number
+    accepted_count: number
     workspace?: LightWorkspace
     image: string
     begin_at: string
     end_at: string
     due_at: string
     physical: boolean
-    skills: string[]
     banner_image: string
     modified_at: string
     created_at: string
     updated_at: string
+}
+
+declare interface LightMission extends BaseMission {
+    skills: string[]
+}
+
+declare interface Mission extends BaseMission {
+    mission_skills: MissionSkill[]
+    mission_users: LightMissionUser[]
+    discussions: LightDiscussion[]
+}
+
+declare interface MissionSkill {
+    id: number
+    mission_id: number
+    skill_id: number
+    mandatory: boolean
+    level: number
+    name: string
+    category: SkillCategory
 }
 
 declare interface Message {
@@ -267,20 +288,6 @@ declare interface Discussion extends LightDiscussion {
     messages: Message[]
 }
 
-declare interface MissionSkill {
-    id: number
-    mission_id: number
-    skill_id: number
-    mandatory: boolean
-    level: number
-    name: string
-    category: SkillCategory
-}
-
-declare interface Mission extends LightMission {
-    mission_skills: MissionSkill[]
-    discussions: LightDiscussion[]
-}
 
 
 declare module 'parse-link-header';

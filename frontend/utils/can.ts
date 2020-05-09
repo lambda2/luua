@@ -13,39 +13,39 @@ const can = (
     case 'workspace.show':
       return true
     case 'workspace.edit':
-      return user && find(resource?.workspace_users, {user_id: user.id, admin: true})
+      return user && resource && find(resource?.workspace_users, {user_id: user.id, admin: true})
     case 'workspace.destroy':
       return true
   
     case 'mission.show':
       // @TODO check membership & cie
-      return user &&
+      return user && resource &&
         true ||
         (resource.visibility === 'public')
     case 'mission.create':
-      return user && find(user?.workspace_users, {workspace_id: resource.id, admin: true})
+      return user && resource && find(user?.workspace_users, {workspace_id: resource.id, admin: true})
     case 'mission.edit':
-      return user && find(user?.workspace_users, {workspace_id: resource.workspace_id, admin: true})
+      return user && resource && find(user?.workspace_users, {workspace_id: resource.workspace_id, admin: true})
     case 'mission.destroy':
-      return user && find(user?.workspace_users, { workspace_id: resource.workspace_id, admin: true })  
+      return user && resource && find(user?.workspace_users, { workspace_id: resource.workspace_id, admin: true })  
     case 'discussion.create':
-      return user && find(user?.workspace_users, {workspace_id: resource.id})
+      return user && resource && find(user?.workspace_users, {workspace_id: resource.id})
     case 'discussion.edit':
-      return user && (
+      return user && resource && (
         (resource.user_id === user.id) ||
         (find(user?.workspace_users, {workspace_id: resource.workspace_id, admin: true}))
       )
     case 'discussion.destroy':
-      return user && (
+      return user && resource && (
         (resource.user_id === user.id) ||
         (find(user?.workspace_users, { workspace_id: resource.workspace_id, admin: true }))
       )
     case 'message.destroy':
-      return user && (
+      return user && resource && (
         (resource.user_id === user.id)
       )
     case 'message.edit':
-      return user && (
+      return user && resource && (
         (resource.user_id === user.id)
       )
     default:

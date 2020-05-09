@@ -54,7 +54,7 @@ class MissionUser < ApplicationRecord
     canceled: 5
   }, _suffix: true
 
-  scope :contributors, -> { where.not(status: %i[applied rejected]) }
+  scope :contributors, -> { where.not(status: %i[applied rejected canceled]) }
 
   before_create do
     self.applied_at = Time.zone.now

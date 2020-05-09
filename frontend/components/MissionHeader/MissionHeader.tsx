@@ -20,7 +20,7 @@ type ResourceButtons = {
 
 interface Props {
   workspace: Workspace
-  mission: LightMission
+  mission: BaseMission
   tree?: (string | ReactElement)[]
   active?: string
   actions?: ResourceAction[]
@@ -44,9 +44,9 @@ const MissionHeader = ({
   }
 
   const buttons: ResourceButtons = {
-    new: <PrimaryLink key="new" {...manage.manage.workspace.new()}>{t('menu.new')}</PrimaryLink>,
-    show: <PrimaryLink key="show" {...manage.manage.workspace.show(workspace.slug)}>{t('menu.show')}</PrimaryLink>,
-    edit: <PrimaryLink key="edit" {...manage.manage.workspace.edit(workspace.slug)}>{t('menu.edit')}</PrimaryLink>,
+    new: <PrimaryLink key="new" {...manage.manage.workspace.missions.new(workspace.slug)}>{t('menu.new')}</PrimaryLink>,
+    show: <PrimaryLink key="show" {...manage.manage.workspace.missions.show(workspace.slug, mission.slug)}>{t('menu.show')}</PrimaryLink>,
+    edit: <PrimaryLink key="edit" {...manage.manage.workspace.missions.edit(workspace.slug, mission.slug)}>{t('menu.edit')}</PrimaryLink>,
     destroy: <PrimaryLink key="destroy" href="?">{t('menu.destroy')}</PrimaryLink>,
   }
 

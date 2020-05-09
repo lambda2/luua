@@ -4,20 +4,12 @@ import routes from '../../routes/manage'
 // import './MissionCandidateBox.module.less'
 import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';
+import MessageBox from '../../elements/MessageBox/MessageBox';
 
 const { users } = routes
 
 interface Props {}
 
-const MessageBox: React.FC<{title: string}> = ({
-  title,
-  children
-}) => {
-  return <div className="message-box">
-    <h3>{title}</h3>
-    {children}
-  </div>
-}
 
 const MissionCandidateBox = ({}: Props) => {
 

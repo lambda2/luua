@@ -4,7 +4,7 @@ import { withUserToken } from '../../../../utils/auth'
 import { useLocale } from '../../../../hooks/useLocale';
 
 import NetworkBoundary from '../../../../components/NetworkBoudary/NetworkBoudary'
-import MissionList from '../../../../components/WorkspaceMissionList/WorkspaceMissionList'
+import MissionList from '../../../../components/MissionList/MissionList'
 import { useRouter } from 'next/router';
 import routes from '../../../../routes/manage'
 import Link from 'next/link'
@@ -46,7 +46,7 @@ const Missions = (
           </Link>}
         </PageTitle>
         
-        <MissionList data={response.data as LightMission[]} />
+        <MissionList activeWorkspace={currentWorkspace?.id} data={response.data as LightMission[]} />
       </ContentLayout>
     </NetworkBoundary>
   )

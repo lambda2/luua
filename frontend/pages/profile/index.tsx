@@ -37,7 +37,7 @@ Profile.getInitialProps = async (ctx: NextPageContext) => {
   const redirectOnError = () =>
     typeof window !== 'undefined'
       ? Router.push('/users/login')
-      : ctx?.res?.writeHead(302, { Location: '/login' }).end()
+      : ctx?.res?.writeHead(302, { Location: '/users/login' }).end()
 
   try {
     const headers = getHeaders(token || '');

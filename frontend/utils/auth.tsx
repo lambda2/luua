@@ -27,7 +27,7 @@ export const signupWithCredentials = async (
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     data: { user },
-  })  
+  })
   if (status < 300) {
     
     login(headers.authorization)
@@ -130,7 +130,7 @@ export const withUserToken = (WrappedComponent: any) => {
     const syncLogout = (event: any) => {
       if (event.key === 'logout') {
         console.log('logged out from storage!')
-        Router.push('/login')
+        Router.push('/users/login')
       }
     }
 
@@ -174,7 +174,7 @@ export const withAuthSync = (WrappedComponent: any) => {
     const token = props.token || auth(props)
     const syncLogout = (event: any) => {
       if (event.key === 'logout') {
-        Router.push('/login')
+        Router.push('/users/login')
       }
     }
 

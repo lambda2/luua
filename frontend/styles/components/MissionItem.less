@@ -12,16 +12,30 @@
     }
   }
 
+  footer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    ul {
+      list-style-type: none;
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+
+      li {
+        padding-right: @space-l;
+        padding-bottom: @space-s;
+      }
+    }
+  }
+
   h2 {
     display: flex;
     align-items: center;
   }
 
-  // & > a:hover > * {
-  //   color: @primary-color;
-  // }
-
-  // & + & {
-  //   border-top: 1px solid @border-color-base;
-  // }
 }

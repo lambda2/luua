@@ -16,7 +16,7 @@ const MessageBox: React.FC<Props> = ({
   color = 'default'
 }) => {
   return <div className={classNames("MessageBox", color)}>
-    {title && <h3>{title}</h3>}
+    {title && <h5>{title}</h5>}
     {children}
   </div>
 }

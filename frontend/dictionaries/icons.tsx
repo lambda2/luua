@@ -26,6 +26,7 @@ import {
   faEnvelope,
   faTimesCircle,
   faCheckCircle,
+  faPaperPlane,
 } from '@fortawesome/free-regular-svg-icons'
 
 import {
@@ -33,6 +34,14 @@ import {
   faPencilAlt,
   faSpinner,
   faInbox,
+  faGlobeEurope,
+  faMapMarkerAlt,
+  faMapPin,
+  faPen,
+  faWrench,
+  faUser,
+  faDotCircle,
+  faClock,
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -66,12 +75,22 @@ export {
 export default {
   "question": <FontAwesomeIcon className="menu-icon" icon={faQuestionCircle} />,
   "delete": <FontAwesomeIcon className="menu-icon" icon={faTrashAlt} />,
-  // "visibility": {
-  //   "hidden": <FontAwesomeIcon className="menu-icon" icon={faEyeSlash} />,
-  //   "protected": <FontAwesomeIcon className="menu-icon" icon={faLock} />,
-  //   "draft": <FontAwesomeIcon className="menu-icon" icon={faPencilAlt} />,
-  //   "public": <FontAwesomeIcon className="menu-icon" icon={faEye} />,
-  // },
+  "edit": <FontAwesomeIcon className="menu-icon" icon={faPen} />,
+  "skills": <FontAwesomeIcon className="menu-icon" icon={faWrench} />,
+  "date": <FontAwesomeIcon className="menu-icon" icon={faClock} />,
+  "user": <FontAwesomeIcon className="menu-icon" icon={faUser} />,
+  "dot": <FontAwesomeIcon className="menu-icon" icon={faDotCircle} />,
+  "visibility": {
+    "hidden": <FontAwesomeIcon className="menu-icon" icon={faEyeSlash} />,
+    "protected": <FontAwesomeIcon className="menu-icon" icon={faLock} />,
+    "draft": <FontAwesomeIcon className="menu-icon" icon={faPencilAlt} />,
+    "public": <FontAwesomeIcon className="menu-icon" icon={faGlobeEurope} />,
+  },
+  "location": {
+    "physical": <FontAwesomeIcon className="menu-icon" icon={faMapPin} />,
+    "online": <FontAwesomeIcon className="menu-icon" icon={faGlobeEurope} />,
+    "location": <FontAwesomeIcon className="menu-icon" icon={faMapMarkerAlt} />,
+  },
   "mission_status": {
     "applied": <FontAwesomeIcon icon={faEnvelope} />,
     "rejected": <FontAwesomeIcon icon={faTimesCircle} />,

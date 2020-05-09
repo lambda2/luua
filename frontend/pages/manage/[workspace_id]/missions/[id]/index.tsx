@@ -14,6 +14,7 @@ import WorkspaceMissionDetail from '../../../../../components/WorkspaceMissionDe
 import { useContext } from 'react'
 import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
 import MissionHeader from '../../../../../components/MissionHeader/MissionHeader'
+import MissionLeftMenu from '../../../../../layouts/MissionLeftMenu/MissionLeftMenu'
 
 /**
  * Show the requested workspace mission
@@ -36,7 +37,7 @@ const Mission = (
         mission={data as Mission}
         active='summary'
       />}
-      <ContentLayout>
+      <ContentLayout sideMenu={<MissionLeftMenu mission={data as Mission} />}>
         <WorkspaceMissionDetail {...data as Mission} />
       </ContentLayout>
     </NetworkBoundary>

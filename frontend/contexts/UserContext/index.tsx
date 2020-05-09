@@ -54,6 +54,7 @@ const UserProvider: React.FC<UserProviderProps> = (props) => {
       }
     } catch (error) {
       console.warn("Invalid auth", { error })
+      dispatch({ type: 'AUTHENTICATION_FAIL' })
     }
   }
 
