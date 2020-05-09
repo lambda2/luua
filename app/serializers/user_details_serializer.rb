@@ -8,7 +8,7 @@ class UserDetailsSerializer < Panko::Serializer
   has_many :workspace_users, serializer: WorkspaceUserSerializer
   has_many :workspace_requests, serializer: WorkspaceRequestSerializer
   has_many :user_skills, serializer: UserSkillLightSerializer
-  has_many :mission_users, serializer: MissionUserLightSerializer
+  has_many :mission_users, serializer: MissionUserSerializer
 
   # def default_workspace
   #   object.workspaces.first&.as_json

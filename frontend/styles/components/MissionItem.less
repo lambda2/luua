@@ -12,6 +12,84 @@
     }
   }
 
+  h5 {
+    display: flex;
+    align-items: center;
+    align-content: space-between;
+  }
+
+  h5 a {
+    flex: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  &.mission-candidated {
+    &.mission-accepted h5 a {
+      color: @status-accepted-color;
+    }
+
+    &.mission-applied h5 a {
+      color: @status-applied-color;
+    }
+
+    &.mission-completed h5 a {
+      color: @status-completed-color;
+    }
+
+    &.mission-rejected h5 a {
+      color: @status-rejected-color;
+    }
+
+    &.mission-reviewed h5 a {
+      color: @status-reviewed-color;
+    }
+
+    &.mission-canceled h5 a {
+      color: @status-canceled-color;
+    }
+  }
+
+    .MissionUserStatusBadge {
+      font-size: .7em;
+      padding: @space-xs;
+      padding-right: @space-s;
+      margin-right: @space-s;
+      // font-weight: bold;
+      text-transform: uppercase;
+      border: 1px solid currentColor;
+      border-radius: 3px;
+
+      & > svg {
+        min-width: 20px;
+        text-align: center;
+      }
+      
+      &.status-accepted {
+        color: @status-accepted-color;
+      }
+
+      &.status-applied {
+        color: @status-applied-color;
+      }
+
+      &.status-completed {
+        color: @status-completed-color;
+      }
+
+      &.status-rejected {
+        color: @status-rejected-color;
+      }
+
+      &.status-reviewed {
+        color: @status-reviewed-color;
+      }
+
+      &.status-canceled {
+        color: @status-canceled-color;
+      }
+
+    }
   footer {
     display: flex;
     align-items: center;

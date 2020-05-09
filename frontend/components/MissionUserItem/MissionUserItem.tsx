@@ -4,12 +4,14 @@ import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';
 import UserAvatar from '../../elements/UserAvatar/UserAvatar';
 import { useRouter } from 'next/router';
-import TitleWithAvatar from '../../elements/TitleWithAvatar/TitleWithAvatar';
+import ComponentWithAvatar from '../../elements/ComponentWithAvatar/ComponentWithAvatar';
 import UserAvatarTooltip from '../../elements/UserAvatarTooltip/UserAvatarTooltip';
+import MissionUserStatusBadge from '../MissionUserStatusBadge/MissionUserStatusBadge';
 
 const { manage } = routes
 
 interface Props {
+  activeMission?: number
   mission: LightMission
   user: BaseUser
   status: MissionUserStatus
@@ -17,6 +19,7 @@ interface Props {
 }
 
 const MissionUserItem = ({
+  activeMission,
   id,
   user,
   mission,
@@ -28,19 +31,18 @@ const MissionUserItem = ({
 
   return (
     <div className="MissionUserItem">
-      <TitleWithAvatar
-        level='4'
+      <ComponentWithAvatar
         avatar={<UserAvatar size="large" src={user.thumb_url} name={user.username} />}
       >
-        <Link key={id} {...manage.workspace.candidates.show(`${query.workspace_id}`, `${id}`)}>
+        <Link key={id} {...manage.workspace.candidates.show(`${query.workspace_id || mission.workspace_id}`, `${id}`)}>
           <a>
-            {mission.name}
+            <MissionUserStatusBadge mission={mission} status={status} />{' '}{(!activeMission || activeMission !== mission.id) && mission && mission.name}
             <div className="sub-title text-light">
-              <UserAvatarTooltip {...user} /> {t(`mission_user.${status}.state`, { name: mission.name })}
+              <UserAvatarTooltip {...user} /> {t(`mission_user.${status}.state`, { name: mission && mission.name })}
             </div>
           </a>
         </Link>
-      </TitleWithAvatar>
+      </ComponentWithAvatar>
     </div>
   )
 

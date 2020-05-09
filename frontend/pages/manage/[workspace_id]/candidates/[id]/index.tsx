@@ -12,6 +12,7 @@ import MissionUserShow from '../../../../../components/MissionUserShow/MissionUs
 import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
 import WorkspaceHeader from '../../../../../components/WorkspaceHeader/WorkspaceHeader'
 import { useLocale } from '../../../../../hooks/useLocale'
+import MissionLeftMenu from '../../../../../layouts/MissionLeftMenu/MissionLeftMenu'
 const { manage } = routes
 const { workspace } = manage
 
@@ -37,7 +38,7 @@ const Candidate = (
         workspace={currentWorkspace}
         tree={[<Link {...workspace.candidates.index(currentWorkspace.id)}><a>{t('menu.contributors')}</a></Link>]}
       />}
-      <ContentLayout>
+      <ContentLayout sideMenu={<MissionLeftMenu mission={response!.data?.mission as LightMission} />}>
         <MissionUserShow refetch={response.refetch} mission_user={response!.data as MissionUser} />
       </ContentLayout>
     </NetworkBoundary>

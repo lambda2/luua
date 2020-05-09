@@ -22,11 +22,16 @@ const can = (
       return user && resource &&
         true ||
         (resource.visibility === 'public')
+    case 'mission.apply':
+      return true
     case 'mission.create':
       return user && resource && find(user?.workspace_users, {workspace_id: resource.id, admin: true})
     case 'mission.edit':
       return user && resource && find(user?.workspace_users, {workspace_id: resource.workspace_id, admin: true})
     case 'mission.destroy':
+      return user && resource && find(user?.workspace_users, { workspace_id: resource.workspace_id, admin: true })  
+    case 'mission_user.index':
+      // Resource is a mission
       return user && resource && find(user?.workspace_users, { workspace_id: resource.workspace_id, admin: true })  
     case 'discussion.create':
       return user && resource && find(user?.workspace_users, {workspace_id: resource.id})

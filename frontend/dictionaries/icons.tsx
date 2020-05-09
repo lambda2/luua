@@ -94,6 +94,7 @@ export default {
   "mission_status": {
     "applied": <FontAwesomeIcon icon={faEnvelope} />,
     "rejected": <FontAwesomeIcon icon={faTimesCircle} />,
+    "canceled": <FontAwesomeIcon icon={faTimesCircle} />,
     "accepted": <FontAwesomeIcon icon={faSpinner} spin />,
     "completed": <FontAwesomeIcon icon={faInbox} />,
     "reviewed": <FontAwesomeIcon icon={faCheckCircle} />

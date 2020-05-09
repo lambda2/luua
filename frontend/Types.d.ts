@@ -4,7 +4,7 @@ type MissionReview = 'review' | 'trusted' | 'requirements' | 'accept_all'
 type SkillType = 'global' | 'organization'
 type SkillCategory = 'language' | 'technical' | 'mobility'
 type OrgType = 'company' | 'individual' | 'association' | 'ngo'
-type MissionUserStatus = 'applied' | 'rejected' | 'accepted' | 'completed' | 'reviewed'
+type MissionUserStatus = 'applied' | 'rejected' | 'accepted' | 'completed' | 'reviewed' | 'canceled'
 type NotificationCode =
     'mission.candidate.applied'     | // A candidate applied
     'mission.candidate.rejected'    | // A candidate has been rejected on a mission
@@ -200,6 +200,7 @@ declare interface LightMissionUser {
     user_id: number
     status: MissionUserStatus
     mission: LightMission
+    user: BaseUser
     applied_at: string | null
     accepted_at: string | null
     rejected_at: string | null

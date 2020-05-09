@@ -35,6 +35,9 @@ const MissionUserNextStepButtons = ({
     "rejected": [
 
     ],
+    "canceled": [
+
+    ],
     "accepted": [
       <Button onClick={onComplete} key="complete" type="primary">{t(`mission_user.completed.button`)}</Button>
     ],

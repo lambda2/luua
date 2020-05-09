@@ -15,6 +15,8 @@ import { useContext } from 'react'
 import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
 import MissionHeader from '../../../../../components/MissionHeader/MissionHeader'
 import MissionLeftMenu from '../../../../../layouts/MissionLeftMenu/MissionLeftMenu'
+import UserContext from '../../../../../contexts/UserContext'
+import find from 'lodash/find'
 
 /**
  * Show the requested workspace mission
@@ -25,10 +27,13 @@ const Mission = (
 ) => {
   const { query } = useRouter()
   const { currentWorkspace } = useContext(WorkspaceContext)
+  const { currentUser } = useContext(UserContext)
 
   const { status, data, error } = useCollection<Mission>(
     `/api/missions/${query.id}`, token, {}, { initialData }
   )
+
+  const application = currentUser && data && find(currentUser?.mission_users, { mission_id: data.id }) || undefined
 
   return (
     <NetworkBoundary status={status} data={data} error={error}>
@@ -37,7 +42,7 @@ const Mission = (
         mission={data as Mission}
         active='summary'
       />}
-      <ContentLayout sideMenu={<MissionLeftMenu mission={data as Mission} />}>
+      <ContentLayout sideMenu={<MissionLeftMenu application={application} mission={data as Mission} />}>
         <WorkspaceMissionDetail {...data as Mission} />
       </ContentLayout>
     </NetworkBoundary>

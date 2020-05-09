@@ -17,6 +17,8 @@ import MissionSkillsForUser from '../MissionSkillsForUser/MissionSkillsForUser';
 import PageSection from '../../elements/PageSection/PageSection';
 import PageTitle from '../../elements/PageTitle/PageTitle';
 import can from '../../utils/can';
+import List from '../../elements/List/List';
+import MissionUserItem from '../MissionUserItem/MissionUserItem';
 
 const { Text } = Typography;
 
@@ -39,7 +41,7 @@ const WorkspaceMissionDetail = (mission: Props) => {
     workspace_id,
     workspace,
     image,
-    visibility,
+    mission_users,
     mission_skills,
     banner_image,
     modified_at,
@@ -52,8 +54,9 @@ const WorkspaceMissionDetail = (mission: Props) => {
   const { t, language } = useLocale()
   const moment = momentWithLocale(language as AvailableLocale)
 
-  const application = currentUser && find(currentUser?.mission_users, {mission_id: (slug || id)}) || null
-  
+  const application = currentUser && find(currentUser?.mission_users, { mission_id: id }) || null
+  const missionOwner = find(currentUser?.workspace_users, { workspace_id: workspace_id, admin: true }) !== undefined
+
   return (
     <div className="WorkspaceMissionDetail">
     
@@ -77,9 +80,16 @@ const WorkspaceMissionDetail = (mission: Props) => {
 
       <MissionCandidateBox />
 
-      <PageSection>
+      {(application || can(currentUser, 'mission.apply', mission)) && <PageSection>
+        <MissionApplication application={application} mission={mission} />
+      </PageSection>}
 
-      </PageSection>
+      {can(currentUser, 'mission_user.index', mission) && <PageSection title={t('menu.contributors')}>
+        <List
+          dataSource={mission_users}
+          renderItem={(mu: LightMissionUser) => <MissionUserItem activeMission={mission.id} {...mu} />}
+        />
+      </PageSection>}
 
     </div>
   )

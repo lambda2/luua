@@ -7,16 +7,19 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import UserContext from '../../contexts/UserContext';
 import MissionFullMeta from '../../components/MissionFullMeta/MissionFullMeta';
+import MissionUserStatusBadge from '../../components/MissionUserStatusBadge/MissionUserStatusBadge';
 
 const { manage } = routes
 const { workspace } = manage
 
 interface Props {
-  mission: Mission
+  mission: BaseMission,
+  application?: LightMissionUser
 }
 
 const MissionLeftMenu = ({
-  mission
+  mission,
+  application
 }: Props) => {
 
   const {
@@ -33,7 +36,6 @@ const MissionLeftMenu = ({
     workspace,
     image,
     visibility,
-    mission_skills,
     banner_image,
     modified_at,
     created_at,
@@ -46,6 +48,11 @@ const MissionLeftMenu = ({
   const { currentUser } = useContext(UserContext)
 
   return (<aside className="MissionLeftMenu">
+    {application && <ul className="text-light">
+      <li>
+        <MissionUserStatusBadge mission={mission} status={application.status} />
+      </li>
+    </ul>}
     <MissionFullMeta mission={mission} currentUser={currentUser}/>
   </aside>)
 

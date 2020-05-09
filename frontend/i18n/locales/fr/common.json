@@ -65,10 +65,17 @@
       "state": "A été rejecté pour la mission {{name}}",
       "state-user": "Vous n'avez pas été sélectionné pour la mission {{name}}"
     },
+    "accepted-waiting": {
+      "action": "a été accepté",
+      "button": "Accepter",
+      "name": "Prêt à commencer",
+      "state": "Commencera la mission {{date}}",
+      "state-user": "Vous avez été sélectionné pour effectuer la mission {{name}}"
+    },
     "accepted": {
       "action": "a été accepté",
       "button": "Accepter",
-      "name": "Accepté",
+      "name": "En cours",
       "state": "Effectue la mission {{name}}",
       "state-user": "Vous avez été sélectionné pour effectuer la mission {{name}}"
     },
@@ -162,6 +169,10 @@
       },
       "apply": {
         "title": "Envie de donner un coup de main ?",
+        "apply": "Postuler maintenant"
+      },
+      "apply-self": {
+        "title": "Envie de faire votre propre mission ?",
         "apply": "Postuler maintenant"
       },
       "applied": {

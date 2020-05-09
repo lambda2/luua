@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useCollection, fetchInitialData} from '../../../../utils/http'
 import { withAuthSync } from '../../../../utils/auth'
@@ -7,6 +7,9 @@ import ContentLayout from '../../../../layouts/ContentLayout/ContentLayout'
 import { useLocale } from '../../../../hooks/useLocale';
 import MessageBox from '../../../../elements/MessageBox/MessageBox'
 import LoginForm from '../../../../components/LoginForm/LoginForm'
+import UserContext from '../../../../contexts/UserContext'
+import Link from 'next/link'
+import ROUTES from '../../../../routes/manage'
 
 /**
  * This is the page used to confirm the email address
@@ -15,6 +18,7 @@ import LoginForm from '../../../../components/LoginForm/LoginForm'
 const UserConfirmation = ({ initialData }: any) => {
 
   const { query } = useRouter()
+  const { currentUser } = useContext(UserContext)
   const { t } = useLocale()
 
   const response = useCollection<AuthedUser>(
@@ -33,7 +37,8 @@ const UserConfirmation = ({ initialData }: any) => {
           {t('form.user.confirm.title')}
         </MessageBox>
 
-        <LoginForm email={response?.data?.email} />
+        {!currentUser && <LoginForm email={response?.data?.email} />}
+        {currentUser && <Link {...ROUTES.users.profile()}>{t('menu.profile')}</Link>}
       </ContentLayout>
     </NetworkBoundary>
     </>
