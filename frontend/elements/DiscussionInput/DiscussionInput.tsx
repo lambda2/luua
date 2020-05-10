@@ -38,6 +38,7 @@ const DiscussionInput: React.FC<Props> = ({
 
   // Allow submit form with CMD + ENTER
   useEffect(() => {
+
     const onKeydown = async (e: KeyboardEvent) => {
       if (e.keyCode == 13 && (e.metaKey || e.ctrlKey)) {
         if (!isSubmitting) {
@@ -48,12 +49,15 @@ const DiscussionInput: React.FC<Props> = ({
         }
       }
     }
-    textAeraRef.current?.addEventListener('keydown', debounce(onKeydown, 100));
+
+    const deb = debounce(onKeydown, 100)
+    
+    textAeraRef.current?.addEventListener('keydown', deb);
     return () => {
-      textAeraRef.current?.removeEventListener('keydown', debounce(onKeydown, 100));
+      textAeraRef.current?.removeEventListener('keydown', deb);
     }
   }, [content])
-  
+
 
   const classes = {
     reactMde: 'DiscussionFormEditor',
