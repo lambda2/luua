@@ -14,13 +14,24 @@
 
   main {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-direction: row;
+    justify-content: stretch;
     flex: 1;
 
     header {
       padding: @space-s;
       border-bottom: 1px solid @border-color-base;
+    }
+
+    .ant-btn-group {
+      display: flex;
+      flex-direction: column;
+      // align-items: center;
+      margin-top: @space-l;
+
+      button {
+        height: 100%;
+      }
     }
 
     .content {
@@ -35,6 +46,7 @@
   .DiscussionFormEditor {
     border: 1px solid @border-color-base;
     border-radius: 3px;
+    flex: 1;
 
     .DiscussionFormToolbar {
       background-color: #fff;

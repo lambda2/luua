@@ -8,6 +8,7 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import ReactMde from "react-mde";
 import UserContext from '../../contexts/UserContext';
 import UserMessageAvatar from '../UserMessageAvatar/UserMessageAvatar';
+import icons from '../../dictionaries/icons';
 
 
 interface Props {
@@ -46,7 +47,7 @@ const DiscussionForm: React.FC<Props> = ({
       <aside>{currentUser && <UserMessageAvatar size="large" name={currentUser?.username} src={currentUser?.thumb_url} />}</aside>
       <main className="container">
         <ReactMde
-          minEditorHeight={100}
+          minEditorHeight={50}
           l18n={{ write: <span>{t('generics.write')}</span>, preview: <span>{t('generics.preview')}</span> }}
           value={content}
           onChange={setContent}
@@ -58,8 +59,8 @@ const DiscussionForm: React.FC<Props> = ({
           }
         />
         <Button.Group>
-          <Button disabled={content.length === 0 || content == message?.content} loading={isSubmitting} onClick={() => onSubmit(content)}>{t('message.send')}</Button>
-          {message && onCancel && <Button onClick={() => onCancel()}>{t('message.cancel')}</Button>}
+          <Button type="link" disabled={content.length === 0 || content == message?.content} loading={isSubmitting} onClick={() => onSubmit(content)}>{icons.send}</Button>
+          {message && onCancel && <Button type="link" onClick={() => onCancel()}>{t('message.cancel')}</Button>}
         </Button.Group>
       </main>
     </div>

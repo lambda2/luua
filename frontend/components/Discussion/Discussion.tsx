@@ -25,6 +25,12 @@ const Discussion = ({
 
   const { currentUser } = useContext(UserContext)
 
+  console.log("Requesting messages with: ", { token, jwt: currentUser?.jwt });
+  
+  if (!token && !currentUser?.jwt) {
+    return <span>Loading</span>
+  }
+
   const messagesResponse = usePaginatedCollection<Message[]>(
     messagesEndpoint, page, (token || currentUser?.jwt)
   )

@@ -76,7 +76,7 @@ export function usePaginatedCollection<T>(
 
   useEffect(() => {
     perform(page)
-  }, [endpoint])
+  }, [endpoint, token, startpage])
 
 
   return {

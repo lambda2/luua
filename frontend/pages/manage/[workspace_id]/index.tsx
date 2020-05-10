@@ -7,6 +7,7 @@ import { NextPageContext } from 'next'
 import WorkspaceShow from '../../../components/WorkspaceShow/WorkspaceShow'
 import ContentLayout from '../../../layouts/ContentLayout/ContentLayout'
 import WorkspaceHeader from '../../../components/WorkspaceHeader/WorkspaceHeader'
+import WorkspaceLeftMenu from '../../../layouts/WorkspaceLeftMenu/WorkspaceLeftMenu'
 
 /**
  * Show the requested workspace, as a member of it
@@ -29,7 +30,7 @@ const ShowWorkspace = (
         workspace={workspaceResponse!.data as Workspace}
         active='summary'
       />
-      <ContentLayout>
+      <ContentLayout sideMenu={<WorkspaceLeftMenu workspace={workspaceResponse!.data as Workspace}/>}>
         <NetworkBoundary {...missionsResponse}>
           <WorkspaceShow
             missions={missionsResponse!.data as LightMission[]}

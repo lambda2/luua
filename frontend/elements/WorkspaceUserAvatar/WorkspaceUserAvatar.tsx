@@ -9,12 +9,13 @@ import ROUTES from '../../routes/manage';
 import UserAvatar from '../UserAvatar/UserAvatar';
 
 interface Props extends WorkspaceUser {
-
+  size?: number | "small" | "default" | "large" | "xlarge" | "xxlarge" | undefined
 }
 /**
  * Our styled link
  */
 const WorkspaceUserAvatar: React.FC<Props> = ({
+  size="large",
   thumb_url,
   admin,
   role,
@@ -55,7 +56,7 @@ const WorkspaceUserAvatar: React.FC<Props> = ({
     
     <Popover content={PopupContent} title={PopupTitle}>
       <div className="WorkspaceUserAvatar" style={{ marginRight: '5px' }}>
-        <UserAvatar size="large" src={thumb_url} name={username} />
+        <UserAvatar size={size} src={thumb_url} name={username} />
         {renderRoleBadge()}
       </div>
     </Popover>

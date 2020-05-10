@@ -35,8 +35,8 @@ const MessageListItem = ({ message, onEdit, onDestroy }: Props) => {
       {' '}
       <span className="datetime text-light">{moment(message.created_at).calendar()}</span>
       <div className="message-actions">
-        {can(currentUser, 'message.edit', message) && <Button onClick={() => setEditing(true)}>{t('message.edit')}</Button>}
-        {can(currentUser, 'message.destroy', message) && <Button onClick={() => onDestroy(message)}>{t('message.destroy')}</Button>}
+        {can(currentUser, 'message.edit', message) && <Button type="link" onClick={() => setEditing(true)}>{t('message.edit')}</Button>}
+        {can(currentUser, 'message.destroy', message) && <Button type="link" onClick={() => onDestroy(message)}>{t('message.destroy')}</Button>}
       </div>
     </header>)
   }

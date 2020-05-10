@@ -19,10 +19,12 @@ const WorkspaceShow = ({ workspace, missions }: Props) => {
 
   return (
   <>
-      <MarkdownContent content={workspace.description} />
 
-      {/* @TODO */}
-      <div>
+      <PageSection title={t('workspace.description')}>
+        <MarkdownContent content={workspace.description} />
+      </PageSection>
+
+      {/* <div>
         Membership: <b>{workspace.membership}</b>
       </div>
 
@@ -30,7 +32,7 @@ const WorkspaceShow = ({ workspace, missions }: Props) => {
         {workspace.workspace_users.map((u: WorkspaceUser) =>
           <WorkspaceUserAvatar {...u}/>
         )}
-      </PageSection>
+      </PageSection> */}
 
       {/* <PageSection title={t('workspace.missions')}>        
         <WorkspaceMissionList data={missions || workspace.missions} />

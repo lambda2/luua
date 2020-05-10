@@ -6,11 +6,12 @@ import PageTitle from '../../elements/PageTitle/PageTitle';
 import UserAvatar from '../../elements/UserAvatar/UserAvatar';
 import Link from 'next/link';
 import classNames from 'classnames';
-import { Badge, Button } from 'antd';
+import { Badge, Button, Menu, Dropdown, Tag } from 'antd';
 import UserContext from '../../contexts/UserContext';
 import { find } from 'lodash';
 import can from '../../utils/can';
 import WorkspaceJoinButton from '../WorkspaceJoinButton/WorkspaceJoinButton';
+import icons from '../../dictionaries/icons';
 
 type ResourceAction = 'show' | 'new' | 'edit' | 'destroy'
 
@@ -31,7 +32,7 @@ const WorkspaceHeader = ({
   tree = [],
   back = false,
   active,
-  actions = ['edit']
+  actions = []
 }: Props) => {
   const { t } = useLocale()
   const { currentUser } = useContext(UserContext)
@@ -53,6 +54,26 @@ const WorkspaceHeader = ({
   const onBack = back ? { onBack: () => window.history.back() } : {}
   const isAdmin = find(workspace.workspace_users, {admin: true, user_id: currentUser?.id})
   const isMember = isAdmin || find(workspace.workspace_users, {user_id: currentUser?.id})
+
+  const addActions = () => {
+
+    const menu = (
+      <Menu>
+        <Menu.Item key="add-mission">
+          <Link {...manage.manage.workspace.missions.new(`${workspace.id}`)}>{t('mission.create.title')}</Link>
+        </Menu.Item>
+        <Menu.Item key="add-discussion">
+          <Link {...manage.manage.workspace.discussions.new(`${workspace.id}`)}>{t('discussion.create.title')}</Link>
+        </Menu.Item>
+      </Menu>
+    );
+
+    return (<Dropdown overlay={menu}>
+      <Button type="link">
+        {icons.down}
+      </Button>
+    </Dropdown>)
+  }
 
   const renderGuestTabs = () => {
     return (<ul className="WorkspaceHeaderMenu">
@@ -108,6 +129,7 @@ const WorkspaceHeader = ({
 
   const leftActions = [
     <WorkspaceJoinButton key="workspace-join" workspace={workspace} user={currentUser}/>,
+    (isMember) && addActions(),
     ...actions
       .filter((act) => can(currentUser, `workspace.${act}`, workspace))
       .map(a => buttons[a])

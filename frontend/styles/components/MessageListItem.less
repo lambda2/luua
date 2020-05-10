@@ -24,6 +24,25 @@
     header {
       padding: @space-s;
       border-bottom: 1px solid @border-color-base;
+      display: flex;
+      align-items: center;
+
+      & > span {
+        padding-right: @space-m;
+      }
+
+      .message-actions {
+        align-self: flex-end;
+        justify-self: flex-end;
+        flex: auto;
+        text-align: right;
+
+        .ant-btn {
+          padding-bottom: 0;
+          padding-top: 0;
+          height: auto;
+        }
+      }
     }
 
     .content {
