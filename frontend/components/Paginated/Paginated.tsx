@@ -41,7 +41,7 @@ const Paginated = <T extends unknown>(
 
     <Button.Group>
       {prevPage && <Button onClick={prev}>Page {prevPage}</Button>}
-      <Button onClick={() => refetch()}>Refresh</Button>
+      {/* <Button onClick={() => refetch()}>Refresh</Button> */}
       {nextPage && <Button onClick={next}>Page {nextPage}</Button>}
     </Button.Group>
   </>

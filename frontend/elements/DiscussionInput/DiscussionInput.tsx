@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useRef, useEffect } from 'react'
 import { useLocale } from '../../hooks/useLocale';
 import { Button } from 'antd';
-import MarkdownContent from "../../elements/MarkdownContent/MarkdownContent";
+import MarkdownContent from "../MarkdownContent/MarkdownContent";
 // import * as Showdown from "showdown";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
@@ -9,6 +9,7 @@ import ReactMde from "react-mde";
 import UserContext from '../../contexts/UserContext';
 import UserMessageAvatar from '../UserMessageAvatar/UserMessageAvatar';
 import icons from '../../dictionaries/icons';
+import { debounce } from 'lodash';
 
 
 interface Props {
@@ -21,17 +22,38 @@ interface Props {
 /**
  * A form to create or edit a discussion message
  */
-const DiscussionForm: React.FC<Props> = ({
+const DiscussionInput: React.FC<Props> = ({
   isSubmitting = false,
   onSubmit,
   onCancel,
   message
 }) => {
 
+  const textAeraRef = useRef<HTMLElement>(null)
   const { t } = useLocale()
   const { currentUser } = useContext(UserContext)
   const [content, setContent] = useState<string>(message?.content || '')
   const [selectedTab, setSelectedTab] = useState<"write" | "preview">("write");
+
+
+  // Allow submit form with CMD + ENTER
+  useEffect(() => {
+    const onKeydown = async (e: KeyboardEvent) => {
+      if (e.keyCode == 13 && (e.metaKey || e.ctrlKey)) {
+        if (!isSubmitting) {
+          await onSubmit(content)
+          setContent('')
+        } else {
+          console.log("Not submiting");
+        }
+      }
+    }
+    textAeraRef.current?.addEventListener('keydown', debounce(onKeydown, 100));
+    return () => {
+      textAeraRef.current?.removeEventListener('keydown', debounce(onKeydown, 100));
+    }
+  }, [content])
+  
 
   const classes = {
     reactMde: 'DiscussionFormEditor',
@@ -45,7 +67,7 @@ const DiscussionForm: React.FC<Props> = ({
   return (
     <div className="DiscussionForm">
       <aside>{currentUser && <UserMessageAvatar size="large" name={currentUser?.username} src={currentUser?.thumb_url} />}</aside>
-      <main className="container">
+      <main className="container" ref={textAeraRef} >
         <ReactMde
           minEditorHeight={50}
           l18n={{ write: <span>{t('generics.write')}</span>, preview: <span>{t('generics.preview')}</span> }}
@@ -67,6 +89,6 @@ const DiscussionForm: React.FC<Props> = ({
   );
 };
 
-DiscussionForm.displayName = 'DiscussionForm'
+DiscussionInput.displayName = 'DiscussionInput'
 
-export default DiscussionForm
+export default DiscussionInput

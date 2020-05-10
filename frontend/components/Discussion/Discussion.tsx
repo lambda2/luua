@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import UserContext from '../../contexts/UserContext';
 
-import DiscussionForm from '../../elements/DiscussionForm/DiscussionForm';
+import DiscussionInput from '../../elements/DiscussionInput/DiscussionInput';
 import { create, update, destroy } from '../../api/message';
 import { useMutation } from 'react-query';
 import MessageList from '../MessageList/MessageList';
@@ -24,12 +24,10 @@ const Discussion = ({
 }: Props) => {
 
   const { currentUser } = useContext(UserContext)
-
-  console.log("Requesting messages with: ", { token, jwt: currentUser?.jwt });
   
-  if (!token && !currentUser?.jwt) {
-    return <span>Loading</span>
-  }
+  // if (!token && !currentUser?.jwt) {
+  //   return <span>Loading</span>
+  // }
 
   const messagesResponse = usePaginatedCollection<Message[]>(
     messagesEndpoint, page, (token || currentUser?.jwt)
@@ -110,7 +108,7 @@ const Discussion = ({
         renderList={(messages) => <MessageList onEdit={onEdit} onDestroy={onDestroy} messages={messages} />}
       />
 
-      <DiscussionForm onSubmit={onCreate}/>
+      <DiscussionInput onSubmit={onCreate}/>
     </div>
   )
 

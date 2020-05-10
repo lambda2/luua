@@ -36,7 +36,9 @@ const MissionPeopleForm = ({ mission }: Props) => {
         />
 
       </Form.Item>
-      <Form.Item label={t('form.mission.hiring_validation.label')} name='hiring_validation'>
+      
+      {/* @TODO later */}
+      {/* <Form.Item label={t('form.mission.hiring_validation.label')} name='hiring_validation'>
         <span className="hint">{t('form.mission.hiring_validation.hint')}{' '}</span>
         <Radio.Group name={'hiring_validation'}>
           <Radio name={'hiring_validation'} value={'review'}>
@@ -57,7 +59,7 @@ const MissionPeopleForm = ({ mission }: Props) => {
           </Radio>
         </Radio.Group>
 
-      </Form.Item>
+      </Form.Item> */}
 
       <Form.Item label={t('form.mission.visibility.label')} name='visibility'>
         <span className="hint">{t('form.mission.visibility.hint')}{' '}</span>

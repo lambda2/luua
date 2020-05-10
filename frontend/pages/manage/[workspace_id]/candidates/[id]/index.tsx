@@ -6,13 +6,13 @@ import NetworkBoundary from '../../../../../components/NetworkBoudary/NetworkBou
 import { NextPageContext } from 'next'
 import routes from '../../../../../routes/manage'
 import Link from 'next/link'
-import ManageLeftMenu from '../../../../../layouts/ManageLeftMenu/ManageLeftMenu'
 import ContentLayout from '../../../../../layouts/ContentLayout/ContentLayout'
 import MissionUserShow from '../../../../../components/MissionUserShow/MissionUserShow'
 import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
 import WorkspaceHeader from '../../../../../components/WorkspaceHeader/WorkspaceHeader'
 import { useLocale } from '../../../../../hooks/useLocale'
 import MissionLeftMenu from '../../../../../layouts/MissionLeftMenu/MissionLeftMenu'
+import MissionHeader from '../../../../../components/MissionHeader/MissionHeader'
 const { manage } = routes
 const { workspace } = manage
 
@@ -30,14 +30,15 @@ const Candidate = (
   const response = useCollection<MissionUser>(
     `/api/mission_users/${query.id}`, token, {}, { initialData }
   )
-
   
   return (
     <NetworkBoundary {...response}>
-      {currentWorkspace && <WorkspaceHeader
+      {currentWorkspace && <MissionHeader
         workspace={currentWorkspace}
-        tree={[<Link {...workspace.candidates.index(currentWorkspace.id)}><a>{t('menu.contributors')}</a></Link>]}
+        mission={response!.data?.mission as LightMission}
+        active='summary'
       />}
+
       <ContentLayout sideMenu={<MissionLeftMenu mission={response!.data?.mission as LightMission} />}>
         <MissionUserShow refetch={response.refetch} mission_user={response!.data as MissionUser} />
       </ContentLayout>

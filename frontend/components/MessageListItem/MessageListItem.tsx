@@ -7,7 +7,7 @@ import UserAvatarTooltip from '../../elements/UserAvatarTooltip/UserAvatarToolti
 import can from '../../utils/can';
 import UserContext from '../../contexts/UserContext';
 import Button from 'antd/lib/button';
-import DiscussionForm from '../../elements/DiscussionForm/DiscussionForm';
+import DiscussionForm from '../../elements/DiscussionInput/DiscussionInput';
 
 
 interface Props {

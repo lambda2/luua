@@ -11,6 +11,7 @@ import ContentLayout from '../../../../../layouts/ContentLayout/ContentLayout'
 import { useContext } from 'react'
 import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
 import WorkspaceHeader from '../../../../../components/WorkspaceHeader/WorkspaceHeader'
+import MissionHeader from '../../../../../components/MissionHeader/MissionHeader'
 
 /**
  * Edit a mission
@@ -28,9 +29,10 @@ const Mission = (
 
   return (
     <NetworkBoundary status={status} data={data} error={error}>
-      {currentWorkspace && <WorkspaceHeader
+      {currentWorkspace && <MissionHeader
         workspace={currentWorkspace}
-        active='missions'
+        mission={data as Mission}
+        active='settings'
       />}
       <ContentLayout>
       {data && <div>
