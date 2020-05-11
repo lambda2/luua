@@ -41,6 +41,7 @@ import {
   faWrench,
   faUser,
   faDotCircle,
+  faGlassCheers,
   faClock,
   faChevronDown,
 } from '@fortawesome/free-solid-svg-icons'
@@ -83,6 +84,7 @@ export default {
   "dot": <FontAwesomeIcon className="menu-icon" icon={faDotCircle} />,
   "down": <FontAwesomeIcon className="menu-icon" icon={faChevronDown} />,
   "send": <FontAwesomeIcon className="menu-icon" icon={faPaperPlane} />,
+  "glass": <FontAwesomeIcon className="menu-icon" icon={faGlassCheers} />,
   "visibility": {
     "hidden": <FontAwesomeIcon className="menu-icon" icon={faEyeSlash} />,
     "protected": <FontAwesomeIcon className="menu-icon" icon={faLock} />,

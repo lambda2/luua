@@ -29,8 +29,7 @@ export const signupWithCredentials = async (
     data: { user },
   })
   if (status < 300) {
-    
-    login(headers.authorization)
+    login(headers.authorization, { status: 'welcome' })
   } else {
     // https://github.com/developit/unfetch#caveats
     throw new NetworkError(`${status}`, data)
@@ -55,7 +54,6 @@ export const authenticateWithCredentials = async (
     data: { user },
   })  
   if (status < 300) {
-
     login(headers.authorization)
   } else {
     // https://github.com/developit/unfetch#caveats
@@ -70,9 +68,12 @@ export const authenticateWithCredentials = async (
  * @param {string} token The JWT token
  * @export
  */
-export const login = (token: string) => {
+export const login = (token: string, opts = {}) => {
   cookie.set('token', token, { expires: 1 })
-  Router.push('/profile')
+  Router.push({
+    pathname: '/profile',
+    query: opts,
+  })
 }
 
 
