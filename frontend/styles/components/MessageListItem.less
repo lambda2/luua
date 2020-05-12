@@ -41,11 +41,11 @@
         display: none;
       }
 
-      // &.vote-down {
-      //   &:before {
-      //     content: "-"
-      //   }
-      // }
+      &.vote-down:not(.vote-zero) {
+        &:before {
+          content: "-"
+        }
+      }
       &.vote-up button:hover {
         color: @success-color;
       }

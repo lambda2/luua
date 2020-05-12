@@ -70,6 +70,7 @@ const DiscussionInput: React.FC<Props> = ({
 
   return (
     <div className="DiscussionForm">
+      <div className="MessageVote"></div>
       <aside>{currentUser && <UserMessageAvatar size="large" name={currentUser?.username} src={currentUser?.thumb_url} />}</aside>
       <main className="container" ref={textAeraRef} >
         <ReactMde

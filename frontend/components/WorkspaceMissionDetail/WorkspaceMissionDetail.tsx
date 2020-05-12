@@ -19,6 +19,7 @@ import PageTitle from '../../elements/PageTitle/PageTitle';
 import can from '../../utils/can';
 import List from '../../elements/List/List';
 import MissionUserItem from '../MissionUserItem/MissionUserItem';
+import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
 
 const { Text } = Typography;
 
@@ -57,26 +58,29 @@ const WorkspaceMissionDetail = (mission: Props) => {
   const application = currentUser && find(currentUser?.mission_users, { mission_id: id }) || null
   const missionOwner = find(currentUser?.workspace_users, { workspace_id: workspace_id, admin: true }) !== undefined
 
+  const mandatorySkills = mission_skills.filter(ms => ms.mandatory === true)
+  const recommendedSkills = mission_skills.filter(ms => ms.mandatory === false)
+
   return (
     <div className="WorkspaceMissionDetail">
     
       <PageSection title={t('mission.summary')}>
-        <div>{description}</div>
+        <MarkdownContent content={description} />
       </PageSection>
       
-      <PageSection title={t('mission.required-skills')}>
+      {mandatorySkills.length > 0 && <PageSection title={t('mission.required-skills')}>
         <MissionSkillsForUser
-          mission_skills={mission_skills.filter(ms => ms.mandatory === true)}
+          mission_skills={mandatorySkills}
           user_skills={currentUser?.user_skills}
         />
-      </PageSection>
+      </PageSection>}
 
-      <PageSection title={t('mission.recommended-skills')}>
+      {recommendedSkills.length > 0 && <PageSection title={t('mission.recommended-skills')}>
         <MissionSkillsForUser
-          mission_skills={mission_skills.filter(ms => ms.mandatory === false)}
+          mission_skills={recommendedSkills}
           user_skills={currentUser?.user_skills}
         />
-      </PageSection>
+      </PageSection>}
 
       <MissionCandidateBox />
 

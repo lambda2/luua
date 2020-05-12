@@ -40,7 +40,7 @@ const Discussion = ({
     messagesEndpoint, page, (token || currentUser?.jwt)
   )
 
-  const votesResponse = useCollection<MessageVote[]>(
+  const votesResponse = currentUser && useCollection<MessageVote[]>(
     votesEndpoint, (token || currentUser?.jwt)
   )
   
@@ -64,7 +64,7 @@ const Discussion = ({
   const voteMessage = async (message: Message, selectedVote: MessageVoteOption) => {
     await vote(message.id, selectedVote, currentUser?.jwt || '')
     await messagesResponse.refetch()
-    return await votesResponse.refetch()
+    return await votesResponse?.refetch()
   }
 
   const [onCreate] = useMutation(createMessage, {
@@ -127,17 +127,17 @@ const Discussion = ({
         </Link>} */}
       </PageTitle>
 
-      <NetworkBoundary {...votesResponse}>
+      {/* <NetworkBoundary {...votesResponse}> */}
         <Paginated
           {...messagesResponse}
           renderList={(messages) => <MessageList
-            userVotes={votesResponse!.data as MessageVote[]}
+            userVotes={votesResponse?.data}
             onVote={voteMessage}
             onEdit={onEdit}
             onDestroy={onDestroy}
             messages={messages} />}
         />
-      </NetworkBoundary>
+      {/* </NetworkBoundary> */}
 
       { can(currentUser, 'discussion.post', discussion) &&
         <DiscussionInput onSubmit={onCreate}/> ||

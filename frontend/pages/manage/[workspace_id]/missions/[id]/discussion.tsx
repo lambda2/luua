@@ -45,6 +45,7 @@ const MissionDiscussion = (
         <Discussion
           discussion={discussion}
           messagesEndpoint={discussion?.id && `/api/discussions/${discussion?.id}/messages`}
+          votesEndpoint={discussion?.id && `/api/discussions/${discussion?.id}/message_votes/mines`}
           page={`${query.page}`}
           token={token}
         />

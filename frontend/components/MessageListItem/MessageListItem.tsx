@@ -59,11 +59,11 @@ const MessageListItem = ({
         <div className="MessageVote">
           <div className={classNames('vote', 'vote-up', { "vote-zero": message.positive_vote_count === 0, active: userVote?.vote === 'positive'})} key="vote-up">
             <span>{message.positive_vote_count}</span>
-            <button onClick={() => onVote && onVote(message, 'positive')}>{icons.up}</button>
+            <button onClick={() => currentUser && onVote && onVote(message, 'positive')}>{icons.up}</button>
           </div>
           <div className={classNames('vote', 'vote-down', { "vote-zero": message.negative_vote_count === 0, active: userVote?.vote === 'negative'})} key="vote-down">
             <span>{message.negative_vote_count}</span>
-            <button onClick={() => onVote && onVote(message, 'negative')}>{icons.down}</button>
+            <button onClick={() => currentUser && onVote && onVote(message, 'negative')}>{icons.down}</button>
           </div>
         </div>
         <aside>{message.user && <UserMessageAvatar size="large" name={message.user?.username} src={message.user?.thumb_url} />}</aside>
