@@ -592,6 +592,7 @@
   "notifications": {
     "read-all": "Tout marquer comme lu",
     "read": "Marquer comme lu",
+    "empty": "Aucune notification 🎉",
     "workspace": {
       "member": {
         "joined": {
@@ -680,6 +681,9 @@
     "contact": "Contact",
     "twitter": "Twitter",
     "suggest-feature": "Une idée ?"
+  },
+  "network": {
+    "loading": "Chargement..."
   },
   "popups": {
     "welcome": {

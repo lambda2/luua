@@ -17,7 +17,7 @@ interface Props {
 const PageTitle: React.FC<Props> = ({
   children,
   title,
-  level = '2',
+  level = '3',
   extra = [],
   className = ''
 }) => {

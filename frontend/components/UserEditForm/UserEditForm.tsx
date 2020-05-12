@@ -27,11 +27,11 @@ const UserEditForm = () => {
 
   const EditSchema = Yup.object().shape({
     username: Yup.string().min(4, 'Too short').required(),
-    image: Yup.string(),
-    first_name: Yup.string(),
-    last_name: Yup.string(),
-    country_id: Yup.number(),
-    // timezone: Yup.string(),
+    image: Yup.string().nullable(),
+    first_name: Yup.string().nullable(),
+    last_name: Yup.string().nullable(),
+    country_id: Yup.string().nullable(),
+    // timezone: Yup.string().nullable(),
   });
 
   const formItemLayout = {
@@ -69,7 +69,7 @@ const UserEditForm = () => {
         try {
           const data = await update(values)
           console.log("After save: ", { data });
-          Router.push('/users/profile', `/users/profile`, { shallow: true })
+          Router.push('/profile', `/profile`, { shallow: true })
         } catch (error) {
           setErrors(errorsFromResponse(error.response))
         }

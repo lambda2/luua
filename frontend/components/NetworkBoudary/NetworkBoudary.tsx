@@ -1,4 +1,6 @@
 import React, { ReactElement } from 'react'
+import Loader from '../../elements/Loader/Loader'
+import { useLocale } from '../../hooks/useLocale'
 
 interface Props<T> {
   children: React.ReactNode
@@ -14,6 +16,7 @@ const NetworkBoundary = <T extends unknown>(
   props: Props<T>
 ) => {
 
+  const { t } = useLocale()
   const { children, status, error, data } = props
 
   switch (status) {
@@ -22,11 +25,12 @@ const NetworkBoundary = <T extends unknown>(
         <p>Network error !</p>
         <p>{error && error.message}</p>
         {error?.response?.data && <pre>{JSON.stringify(error?.response?.data, null, 2)}</pre>}
-      </>)  
+      </>)
     case 'loading':
       return (<>
-        <p>Loading...</p>
-        {error && <p>{error.message}</p>}
+        <Loader title={t('network.loading')}>
+          {error && <p>{error.message}</p>}
+        </Loader>
       </>)  
     case 'success':
       if (children && data) {
@@ -38,8 +42,9 @@ const NetworkBoundary = <T extends unknown>(
       } else {
         console.error("No status");
         return (<>
-          <p>Loading...</p>
-          {error && <p>{error.message}</p>}
+          <Loader title={t('network.loading')}>
+            {error && <p>{error.message}</p>}
+          </Loader>
         </>)  
       }
   }

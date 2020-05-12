@@ -13,7 +13,7 @@ const Signup = () => {
   const { currentUser } = useContext(UserContext)
 
   if (currentUser) {
-    Router.push('/users/profile')
+    Router.push('/profile')
   }
 
   return (

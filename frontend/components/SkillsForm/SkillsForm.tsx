@@ -36,7 +36,6 @@ const SkillsForm = () => {
           console.log("After save: ", { data });
           setValues({ ...values, user_skills_attributes: (data?.user_skills || []) })
           check()
-          // Router.push('/users/profile', `/users/profile`, { shallow: true })
         } catch (error) {
           setErrors(errorsFromResponse(error.response))
         }
