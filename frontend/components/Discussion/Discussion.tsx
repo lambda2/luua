@@ -121,7 +121,11 @@ const Discussion = ({
   return (
     <div className="Discussion">
 
-      <PageTitle title={discussion?.name} />
+      <PageTitle title={discussion?.name}>
+        {/* {can(currentUser, 'mission.create', currentWorkspace) && <Link {...manage.workspace.missions.new(`${query.workspace_id}`)}>
+          <a>{t('mission.create.title')}</a>
+        </Link>} */}
+      </PageTitle>
 
       <NetworkBoundary {...votesResponse}>
         <Paginated
