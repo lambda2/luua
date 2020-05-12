@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { Avatar } from 'antd';
 import { cdnUrl } from '../../utils/http';
 
-type AvatarSize = "small" | "default" | "large" | "xlarge" | "xxlarge"
+type AvatarSize = "xsmall" | "small" | "default" | "large" | "xlarge" | "xxlarge"
 interface Props {
   src?: string
   name: string
@@ -24,6 +24,7 @@ const UserAvatar = ({
     `https://robohash.org/${name || 'default'}.png?size=200x200`
 
   const sizes = {
+    xsmall: 16,
     small: 24,
     default: 32,
     large: 48,

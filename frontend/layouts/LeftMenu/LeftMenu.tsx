@@ -1,8 +1,6 @@
 import React from 'react'
-// import Link from "next/link"
 import { Layout, Menu } from 'antd';
 import { useRouter } from 'next/router'
-import ManageLeftMenu from '../ManageLeftMenu/ManageLeftMenu';
 import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';
 

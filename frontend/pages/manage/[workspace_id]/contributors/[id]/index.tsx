@@ -1,12 +1,11 @@
 import React, { useContext } from 'react'
-import api, { getHeaders, useCollection, fetchInitialData } from '../../../../../utils/http'
+import { useCollection, fetchInitialData } from '../../../../../utils/http'
 import { withAuthSync } from '../../../../../utils/auth'
 import { useRouter } from 'next/router'
 import NetworkBoundary from '../../../../../components/NetworkBoudary/NetworkBoudary'
 import { NextPageContext } from 'next'
 import routes from '../../../../../routes/manage'
 import Link from 'next/link'
-import ManageLeftMenu from '../../../../../layouts/ManageLeftMenu/ManageLeftMenu'
 import ContentLayout from '../../../../../layouts/ContentLayout/ContentLayout'
 import MissionUserShow from '../../../../../components/MissionUserShow/MissionUserShow'
 import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
@@ -35,7 +34,7 @@ const Contributor = (
         workspace={currentWorkspace}
         tree={[<Link {...workspace.contributors.index(currentWorkspace.id)}><a>{t('menu.contributors')}</a></Link>]}
       />}
-      <ContentLayout sideMenu={<ManageLeftMenu />}>
+      <ContentLayout>
         <MissionUserShow mission_user={response!.data as MissionUser} />
       </ContentLayout>
     </NetworkBoundary>

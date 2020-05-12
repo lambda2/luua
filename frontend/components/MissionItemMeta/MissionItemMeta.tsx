@@ -10,12 +10,14 @@ import { cdnUrl } from '../../utils/http';
 import icons from '../../dictionaries/icons';
 import momentWithLocale from '../../i18n/moment';
 import MissionUserSmallBar from '../MissionUserSmallBar/MissionUserSmallBar';
+import UserAvatar from '../../elements/UserAvatar/UserAvatar';
 
 const { manage } = routes
 
 interface Props {
   mission: LightMission,
   currentUser?: AuthedUser | null
+  showWorkspace?: boolean
 }
 
 
@@ -24,7 +26,8 @@ interface Props {
  */
 const MissionItemMeta = ({
   mission,
-  currentUser
+  currentUser,
+  showWorkspace = true
 }: Props) => {
 
   const {
@@ -75,6 +78,19 @@ const MissionItemMeta = ({
   
   return (
     <ul className="text-light">
+      
+      {/* If the mission list is already on a workspace page, we don't display the workspace name */}
+      {showWorkspace && <li className="workspace">
+        <Link key={id} {...manage.workspace.show(workspace?.slug || workspace_id)}>
+          <a>
+            <header>
+              <UserAvatar size="xsmall" name={workspace?.name || ''} src={workspace?.thumb_url} />
+              <span className="org-title">{workspace?.name}</span>
+            </header>
+          </a>
+        </Link>
+      </li>}
+      
       {currentUser && renderVisibility()}
       <li className="physical">{icons.location.physical} {physical ? t('location.physical') : t('location.online')}</li>
       {begin_at && end_at && <li className="begin-at">{icons.date} {t('mission.from-to', { start: moment(begin_at).calendar().toLowerCase(), end: moment(end_at).calendar().toLowerCase() })}</li>}
