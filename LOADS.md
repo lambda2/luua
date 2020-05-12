@@ -167,3 +167,62 @@ Page                                                           Size     First Lo
 ○  (Static)  automatically rendered as static HTML (uses no initial props)
 ●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
 ```
+
+```bash
+# 13 mai
+Page                                                           Size     First Load JS
+┌ λ /                                                          1.88 kB         178 kB
+├   /_app                                                      29.1 kB         176 kB
+├ λ /explore                                                   229 B           320 kB
+├ λ /explore/missions                                          191 B           320 kB
+├ λ /explore/workspaces                                        3.59 kB         244 kB
+├ λ /manage                                                    6.71 kB         183 kB
+├ λ /manage/[workspace_id]                                     3.04 kB         394 kB
+├ λ /manage/[workspace_id]/candidates                          3.35 kB         330 kB
+├ λ /manage/[workspace_id]/candidates/[id]                     2.27 kB         338 kB
+├ λ /manage/[workspace_id]/contributors                        3.37 kB         330 kB
+├ λ /manage/[workspace_id]/contributors/[id]                   4.07 kB         271 kB
+├ λ /manage/[workspace_id]/discussions                         3.06 kB         329 kB
+├ λ /manage/[workspace_id]/discussions/[id]                    729 B           420 kB
+├ λ /manage/[workspace_id]/discussions/[id]/edit               107 kB          541 kB
+├ λ /manage/[workspace_id]/discussions/new                     29.5 kB         393 kB
+├ λ /manage/[workspace_id]/edit                                20.2 kB         383 kB
+├ λ /manage/[workspace_id]/invitations                         19.1 kB         393 kB
+├ λ /manage/[workspace_id]/members                             6.64 kB         328 kB
+├ λ /manage/[workspace_id]/missions                            7.01 kB         329 kB
+├ λ /manage/[workspace_id]/missions/[id]                       5.33 kB         406 kB
+├ λ /manage/[workspace_id]/missions/[id]/discussion            2.1 kB          401 kB
+├ λ /manage/[workspace_id]/missions/[id]/edit                  99.6 kB         527 kB
+├ λ /manage/[workspace_id]/missions/new                        107 kB          541 kB
+├ λ /manage/[workspace_id]/orgs                                5.9 kB          224 kB
+├ λ /manage/[workspace_id]/orgs/[id]                           2.44 kB         183 kB
+├ λ /manage/[workspace_id]/orgs/new                            32.3 kB         287 kB
+├ λ /manage/workspaces                                         5.48 kB         246 kB
+├ λ /manage/workspaces/new                                     5.71 kB         362 kB
+├ λ /profile                                                   5.33 kB         380 kB
+├ λ /profile/confirm/[token]                                   3.33 kB         284 kB
+├ λ /profile/edit                                              6.42 kB         301 kB
+├ λ /profile/login                                             293 B           281 kB
+├ λ /profile/notifications                                     7.82 kB         264 kB
+├ λ /profile/signup                                            6.15 kB         282 kB
+├ λ /profile/skills                                            18.2 kB         298 kB
+└ λ /users/[username]                                          4.81 kB         362 kB
++ First Load JS shared by all                                  176 kB
+  ├ static/pages/_app.js                                       29.1 kB
+  ├ chunks/1155745f136f47c76c38cd60c65d08ae24dc508f.2535d8.js  9.39 kB
+  ├ chunks/29107295.a8733e.js                                  24.5 kB
+  ├ chunks/48b867960c7799d3dc320a8b5023303cebec6f1a.1a2e1e.js  12.1 kB
+  ├ chunks/65cb3aa0.88da01.js                                  65 B
+  ├ chunks/6f60ec956a9d7c8a4146709e81dae392350c634d.2c1e7c.js  3.66 kB
+  ├ chunks/727d558f902f2bd7d995c7727d9e43ddf3d08729.6a66cc.js  15.7 kB
+  ├ chunks/a8bd2c7322f051cc6fbb1e12ee9c528067db34d4.430cd0.js  4.45 kB
+  ├ chunks/c19b5077f796fad50f8705253898395e44e2cd31.b1d376.js  7.81 kB
+  ├ chunks/commons.aade45.js                                   2.78 kB
+  ├ chunks/eb68485a2b145ead0b23170fd9ae84cbcd4adba9.e10922.js  19.1 kB
+  ├ chunks/framework.268903.js                                 40.3 kB
+  ├ chunks/styles.96d639.js                                    102 B
+  ├ runtime/main.aa2787.js                                     6.17 kB
+  ├ runtime/webpack.4b444d.js                                  746 B
+  ├ css/65cb3aa0.ad9a3163.chunk.css                            63.2 kB
+  └ css/styles.57aa5bb8.chunk.css                              7.44 kB
+```
