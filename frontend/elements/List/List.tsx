@@ -11,6 +11,7 @@ interface Props<T> {
   key?: string
   renderItem: (element: T) => ReactElement | string
   renderEmpty?: () => ReactElement | string
+  emptyText?: ReactElement | string
 }
 
 /**
@@ -24,7 +25,7 @@ const List = <T extends unknown>(
 
   const defaultRenderEmpty = () => {
     return <div>
-      <p style={{ textAlign: 'center', padding: '1em'}} className="text-light">{t('generics.collection.empty')}</p>
+      <p style={{ textAlign: 'center', padding: '1em' }} className="text-light">{props.emptyText || t('generics.collection.empty')}</p>
     </div>
   }
 

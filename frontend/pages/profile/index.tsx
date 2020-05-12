@@ -24,11 +24,11 @@ const Profile = (
 
   console.log({ query })
 
-  useEffect(() => {
-    if (query?.status === 'welcome') {
-      welcomeToLuua()
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (query?.status === 'welcome') {
+  //     welcomeToLuua()
+  //   }
+  // }, [])
   
   return (<>
     {response.data && <UserHeader user={response.data as AuthedUser} active='summary' />}

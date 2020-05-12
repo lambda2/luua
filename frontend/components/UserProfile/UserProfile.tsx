@@ -45,6 +45,7 @@ const UserProfile = (user: AuthedUser) => {
 
     <PageSection title={t('menu.missions')}>
       <List
+        emptyText={t('mission_user.empty')}
         dataSource={mission_users}
         renderItem={(e: LightMissionUser) => <MissionUserItem {...e} user={user} mission={e.mission} />}
       />
@@ -52,6 +53,7 @@ const UserProfile = (user: AuthedUser) => {
     
     <PageSection title={t('menu.workspaces')}>
         <List
+          emptyText={t('workspace.empty')}
           dataSource={workspaces}
           renderItem={(e: LightWorkspace) => <WorkspaceItem {...e} />}
         />

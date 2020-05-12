@@ -35,6 +35,7 @@ const NotificationList = ({ data, onRead }: Props) => {
           itemLayout="vertical"
           size="default"
           dataSource={data}
+          emptyText={t('notification.empty')}
           renderItem={(item: UserNotification) => {
             const Not = notificationForType(item.code)
             return <Not onRead={onRead} notification={item} />

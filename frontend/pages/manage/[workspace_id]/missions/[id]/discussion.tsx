@@ -2,7 +2,7 @@ import { NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 
 import { useCollection, fetchInitialData } from '../../../../../utils/http'
-import { withUserToken } from '../../../../../utils/auth'
+import { withAuthSync } from '../../../../../utils/auth'
 
 import NetworkBoundary from '../../../../../components/NetworkBoudary/NetworkBoudary'
 
@@ -13,6 +13,7 @@ import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
 import MissionHeader from '../../../../../components/MissionHeader/MissionHeader'
 import { useLocale } from '../../../../../hooks/useLocale'
 import DiscussionLeftMenu from '../../../../../layouts/DiscussionLeftMenu/DiscussionLeftMenu'
+import MessageBox from '../../../../../elements/MessageBox/MessageBox'
 
 
 /**
@@ -24,6 +25,7 @@ const MissionDiscussion = (
 ) => {
   const { query } = useRouter()
   const { currentWorkspace } = useContext(WorkspaceContext)
+  const { t } = useLocale()
 
   const { status, data, error } = useCollection<Mission>(
     `/api/missions/${query.id}`, token, {}, { initialData }
@@ -39,6 +41,7 @@ const MissionDiscussion = (
         active='chat'
       />}
       <ContentLayout sideMenu={<DiscussionLeftMenu discussions={data?.discussions} />}>
+        {!discussion?.id && <p className="text-light text-centered">{t('discussion.no-discussion')}</p>}
         <Discussion
           discussion={discussion}
           messagesEndpoint={discussion?.id && `/api/discussions/${discussion?.id}/messages`}
@@ -54,4 +57,4 @@ MissionDiscussion.getInitialProps = async (ctx: NextPageContext) => {
   return await fetchInitialData<Mission>(ctx, `/api/missions/${ctx.query.id}`)
 }
 
-export default withUserToken(MissionDiscussion)
+export default withAuthSync(MissionDiscussion)

@@ -86,6 +86,7 @@ const WorkspaceMissionDetail = (mission: Props) => {
 
       {can(currentUser, 'mission_user.index', mission) && <PageSection title={t('menu.contributors')}>
         <List
+          emptyText={t('mission_user.empty')}
           dataSource={mission_users}
           renderItem={(mu: LightMissionUser) => <MissionUserItem activeMission={mission.id} {...mu} />}
         />

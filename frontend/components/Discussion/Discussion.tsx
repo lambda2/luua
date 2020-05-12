@@ -8,6 +8,9 @@ import { useMutation } from 'react-query';
 import MessageList from '../MessageList/MessageList';
 import Paginated from '../Paginated/Paginated';
 import usePaginatedCollection from '../../hooks/usePaginatedCollection';
+import can from '../../utils/can';
+import MessageBox from '../../elements/MessageBox/MessageBox';
+import { useLocale } from '../../hooks/useLocale';
 
 interface Props {
   discussion?: LightDiscussion
@@ -24,6 +27,7 @@ const Discussion = ({
 }: Props) => {
 
   const { currentUser } = useContext(UserContext)
+  const { t } = useLocale()
   
   // if (!token && !currentUser?.jwt) {
   //   return <span>Loading</span>
@@ -108,7 +112,10 @@ const Discussion = ({
         renderList={(messages) => <MessageList onEdit={onEdit} onDestroy={onDestroy} messages={messages} />}
       />
 
-      <DiscussionInput onSubmit={onCreate}/>
+      { can(currentUser, 'discussion.post', discussion) &&
+        <DiscussionInput onSubmit={onCreate}/> ||
+        <MessageBox>{t('discussion.cant-post-auth')}</MessageBox>  
+      }
     </div>
   )
 

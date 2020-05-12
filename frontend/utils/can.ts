@@ -33,6 +33,8 @@ const can = (
     case 'mission_user.index':
       // Resource is a mission
       return user && resource && find(user?.workspace_users, { workspace_id: resource.workspace_id, admin: true })  
+    case 'discussion.post':
+      return user
     case 'discussion.create':
       return user && resource && find(user?.workspace_users, {workspace_id: resource.id})
     case 'discussion.edit':

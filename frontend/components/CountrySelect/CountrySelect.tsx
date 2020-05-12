@@ -4,6 +4,7 @@ import UserContext from '../../contexts/UserContext';
 import { fetch, getHeaders } from '../../utils/http';
 import { useQuery, AnyQueryKey } from 'react-query'
 import { useField } from 'formik';
+import find from 'lodash/find';
 
 const { Option } = Select;
 
@@ -44,7 +45,7 @@ const CountrySelect = ({
     setList(data || [])
   }, [status])
 
-  const options = list.map((d: Country) => <Option value={d.id} key={d.id}>{d.name}</Option>);
+  const options = list.map((d: Country) => <Option value={`${d.id}`} key={`${d.id}`}>{d.name}</Option>);
   return (
     <Select
       showSearch

@@ -48,7 +48,8 @@
     "send": "Envoyer",
     "destroy": "Supprimer",
     "edit": "Éditer",
-    "cancel": "Annuler"
+    "cancel": "Annuler",
+    "empty": "Aucun message"
   },
   "mission_user": {
     "applied": {
@@ -125,7 +126,8 @@
     "on-the-mission": "sur la mission",
     "no-skills-warning": "Pas compétences définies pour cette mission",
     "no-skills-short": "Pas de compétences",
-    "recommended-at": "Recommandé à"
+    "recommended-at": "Recommandé à",
+    "empty": "Aucun candidat"
   },
   "skill": {
     "compatibility": {
@@ -138,14 +140,18 @@
     "no-skills-yet": {
       "title": "Il semblerait que tu n'aies pas encore précisé tes compétences",
       "add-now": "Ajouter une compétence"
-    }
+    },
+    "empty": "Aucune compétence"
   },
   "discussion": {
     "create": {
       "title": "Créer une discussion"
     },
     "created-by": "Créee par",
-    "summary": "Résumé"
+    "summary": "Résumé",
+    "cant-post-auth": "Vous devez être connecté pour poster un message",
+    "no-discussion": "Aucune discussion",
+    "empty": "Aucune discussion"
   },
   "mission": {
     "create": {
@@ -197,7 +203,8 @@
         "title": "Mission terminée et évaluée !",
         "description": ""
       }
-    }
+    },
+    "empty": "Aucune mission"
   },
   "explore": {
     "title": "Explorer"
@@ -272,7 +279,8 @@
     "admin": "Admin",
     "member": "Membre",
     "description": "Description",
-    "applicants": "Candidatures"
+    "applicants": "Candidatures",
+    "empty": "Aucun espace"
   },
   "help": {
     "workspace": {
@@ -483,7 +491,7 @@
         },
         "public": {
           "title": "Public",
-          "description": "Visible par tout le monde"
+          "description": "Ouverte à tout le monde"
         }
       },
       "next": "Continuer",
@@ -553,7 +561,7 @@
           },
           "public": {
             "title": "Publique",
-            "description": "Tout le monde peut voir cette mission."
+            "description": "Tout le monde peut voir et postuler à cette mission."
           }
         }
       },
@@ -672,6 +680,22 @@
     "contact": "Contact",
     "twitter": "Twitter",
     "suggest-feature": "Une idée ?"
+  },
+  "popups": {
+    "welcome": {
+      "title": "Bienvenue sur Luua {{first_name}} !",
+      "description": "On est très contents de t'avoir avec nous pour cette alpha 🎉",
+      "few-notes": "Quelques remarques:",
+      "steps": {
+        "feedbacks": {
+          "pre": "Si tu as des remarques, des bugs ou des retours, tu peux",
+          "write-us": "nous écrire",
+          "tweet-us": "nous envoyer un message sur twitter",
+          "post-a-message": "poster un message sur l'espace Luua"
+        },
+        "confirmation_email": "On a envoyé un mail de confirmation à {{email}}. Tu as deux jours pour confirmer ton compte !"
+      }
+    }
   }
 
 }
