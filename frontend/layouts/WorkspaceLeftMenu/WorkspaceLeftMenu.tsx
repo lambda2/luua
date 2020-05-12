@@ -34,7 +34,7 @@ const WorkspaceLeftMenu = ({
       </li>
       <li>
         {workspace.workspace_users.map((u: WorkspaceUser) =>
-          <WorkspaceUserAvatar size="default" {...u} />
+          <WorkspaceUserAvatar key={u.id} size="default" {...u} />
         )}
       </li>
     </ul>

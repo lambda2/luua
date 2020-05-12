@@ -46,21 +46,19 @@ const WorkspaceUserAvatar: React.FC<Props> = ({
     return <Link {...ROUTES.users.show(username)}>
       <a>
         <span>@{username}</span>
-        {' '}{admin && <Tag color="red">{t('admin')}</Tag>}
+        {' '}{admin && <Tag color="red">{t('workspace.admin')}</Tag>}
         {' '}{role && <Tag color="blue">{role}</Tag>}
       </a>
     </Link>
   }
 
   return (
-    
     <Popover content={PopupContent} title={PopupTitle}>
       <div className="WorkspaceUserAvatar" style={{ marginRight: '5px' }}>
         <UserAvatar size={size} src={thumb_url} name={username} />
         {renderRoleBadge()}
       </div>
     </Popover>
-
   );
 };
 
