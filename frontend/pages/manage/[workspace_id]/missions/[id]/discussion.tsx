@@ -38,7 +38,7 @@ const MissionDiscussion = (
       {currentWorkspace && <MissionHeader
         workspace={currentWorkspace}
         mission={data as Mission}
-        active='chat'
+        active='discussion'
       />}
       <ContentLayout sideMenu={<DiscussionLeftMenu discussions={data?.discussions} />}>
         {!discussion?.id && <p className="text-light text-centered">{t('discussion.no-discussion')}</p>}

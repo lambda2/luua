@@ -59,7 +59,7 @@ const MissionHeader = ({
         <Link {...ROUTES.manage.workspace.missions.show(workspace.slug, mission.slug)}><a>{t('mission.summary')}</a></Link>
       </li>
 
-      <li className={classNames({ active: active == 'chat' })} key="/chat">
+      <li className={classNames({ active: active == 'discussion' })} key="/chat">
         <Link {...ROUTES.manage.workspace.missions.discussion(workspace.slug, mission.slug)}><a>{t('mission.chat')}</a></Link>
       </li>
     </ul>)
@@ -75,7 +75,7 @@ const MissionHeader = ({
         <Link {...ROUTES.manage.workspace.missions.show(workspace.slug, mission.slug)}><a>{t('mission.summary')}</a></Link>
       </li>
 
-      <li className={classNames({ active: active == 'chat' })} key="/chat">
+      <li className={classNames({ active: active == 'discussion' })} key="/chat">
         <Link {...ROUTES.manage.workspace.missions.discussion(workspace.slug, mission.slug)}><a>{t('mission.chat')}</a></Link>
       </li>
 

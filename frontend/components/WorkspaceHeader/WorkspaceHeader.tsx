@@ -6,12 +6,13 @@ import PageTitle from '../../elements/PageTitle/PageTitle';
 import UserAvatar from '../../elements/UserAvatar/UserAvatar';
 import Link from 'next/link';
 import classNames from 'classnames';
-import { Badge, Button, Menu, Dropdown, Tag } from 'antd';
+import { Button, Menu, Dropdown } from 'antd';
 import UserContext from '../../contexts/UserContext';
 import { find } from 'lodash';
 import can from '../../utils/can';
 import WorkspaceJoinButton from '../WorkspaceJoinButton/WorkspaceJoinButton';
 import icons from '../../dictionaries/icons';
+import Badge from '../../elements/Badge/Badge';
 
 type ResourceAction = 'show' | 'new' | 'edit' | 'destroy'
 
@@ -81,10 +82,15 @@ const WorkspaceHeader = ({
         <Link {...ROUTES.manage.workspace.show(workspace.slug)}><a>{t('menu.summary')}</a></Link>
       </li>
       <li className={classNames({ active: active == 'discussions' })} key={`/explore/${workspace.id}/discussions`}>
-        <Link {...ROUTES.manage.workspace.discussions.index(workspace.slug)}><a>{t('menu.discussions')}</a></Link>
+        <Link {...ROUTES.manage.workspace.discussions.index(workspace.slug)}><a>{t('menu.discussions')}{' '}<Badge count={workspace.discussions_count} /></a></Link>
       </li>
+      <li className={classNames({ active: active == 'votes' })} key={`/manage/${workspace.id}/votes`}>
+        {/* <Link {...ROUTES.manage.workspace.votes.index(workspace.id)}><a>{t('menu.votes')}{' '}<Badge count={workspace.missions_count} /></a></Link> */}
+        <span className="text-lighter">{t('menu.votes')} (TODO)</span>
+      </li>
+
       <li className={classNames({ active: active == 'missions' })} key={`/explore/${workspace.id}/missions`}>
-        <Link {...ROUTES.manage.workspace.missions.index(workspace.slug)}><a>{t('menu.missions')}</a></Link>
+        <Link {...ROUTES.manage.workspace.missions.index(workspace.slug)}><a>{t('menu.missions')}{' '}<Badge count={workspace.missions_count} /></a></Link>
       </li>
     </ul>)
   }
@@ -99,11 +105,16 @@ const WorkspaceHeader = ({
       </li>
 
       <li className={classNames({ active: active == 'discussions' })} key={`/manage/${workspace.id}/discussions`}>
-        <Link {...ROUTES.manage.workspace.discussions.index(workspace.id)}><a>{t('menu.discussions')}</a></Link>
+        <Link {...ROUTES.manage.workspace.discussions.index(workspace.id)}><a>{t('menu.discussions')}{' '}<Badge count={workspace.discussions_count} /></a></Link>
       </li>
 
       <li className={classNames({ active: active == 'missions' })} key={`/manage/${workspace.id}/missions`}>
-        <Link {...ROUTES.manage.workspace.missions.index(workspace.id)}><a>{t('menu.missions')}</a></Link>
+        <Link {...ROUTES.manage.workspace.missions.index(workspace.id)}><a>{t('menu.missions')}{' '}<Badge count={workspace.missions_count} /></a></Link>
+      </li>
+
+      <li className={classNames({ active: active == 'votes' })} key={`/manage/${workspace.id}/votes`}>
+        {/* <Link {...ROUTES.manage.workspace.votes.index(workspace.id)}><a>{t('menu.votes')}{' '}<Badge count={workspace.missions_count} /></a></Link> */}
+        <span className="text-lighter">{t('menu.votes')} (TODO)</span>
       </li>
 
       <li className={classNames({ active: active == 'candidates' })} key={`/manage/${workspace.id}/candidates`}>

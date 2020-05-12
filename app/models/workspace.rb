@@ -2,17 +2,18 @@
 #
 # Table name: workspaces
 #
-#  id              :bigint           not null, primary key
-#  description     :text
-#  image           :string
-#  membership      :integer          default("closed"), not null
-#  missions_count  :integer          default(0), not null
-#  name            :string           not null
-#  slug            :string           not null
-#  users_count     :integer          default(0), not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  organization_id :bigint
+#  id                :bigint           not null, primary key
+#  description       :text
+#  discussions_count :integer          default(0), not null
+#  image             :string
+#  membership        :integer          default("closed"), not null
+#  missions_count    :integer          default(0), not null
+#  name              :string           not null
+#  slug              :string           not null
+#  users_count       :integer          default(0), not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  organization_id   :bigint
 #
 # Indexes
 #

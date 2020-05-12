@@ -11,6 +11,8 @@ import usePaginatedCollection from '../../hooks/usePaginatedCollection';
 import can from '../../utils/can';
 import MessageBox from '../../elements/MessageBox/MessageBox';
 import { useLocale } from '../../hooks/useLocale';
+import PageTitle from '../../elements/PageTitle/PageTitle';
+import PageSection from '../../elements/PageSection/PageSection';
 
 interface Props {
   discussion?: LightDiscussion
@@ -28,10 +30,6 @@ const Discussion = ({
 
   const { currentUser } = useContext(UserContext)
   const { t } = useLocale()
-  
-  // if (!token && !currentUser?.jwt) {
-  //   return <span>Loading</span>
-  // }
 
   const messagesResponse = usePaginatedCollection<Message[]>(
     messagesEndpoint, page, (token || currentUser?.jwt)
@@ -107,6 +105,9 @@ const Discussion = ({
 
   return (
     <div className="Discussion">
+
+      <PageTitle title={discussion?.name} />
+
       <Paginated
         {...messagesResponse}
         renderList={(messages) => <MessageList onEdit={onEdit} onDestroy={onDestroy} messages={messages} />}

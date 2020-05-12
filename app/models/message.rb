@@ -4,6 +4,7 @@
 #
 #  id            :bigint           not null, primary key
 #  content       :text
+#  root          :boolean          default(FALSE), not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  discussion_id :bigint           not null
@@ -23,5 +24,7 @@
 class Message < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :parent, optional: true, class_name: 'Message'
-  belongs_to :discussion # , counter_cache: :messages_count
+  belongs_to :discussion, counter_cache: :messages_count
+
+  validates :content, presence: true
 end

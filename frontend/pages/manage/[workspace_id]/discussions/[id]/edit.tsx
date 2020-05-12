@@ -30,7 +30,7 @@ const Mission = (
     <NetworkBoundary status={status} data={data} error={error}>
       {currentWorkspace && <WorkspaceHeader
         workspace={currentWorkspace}
-        active='missions'
+        active='discussions'
       />}
       <ContentLayout>
       {data && <div>

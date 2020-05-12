@@ -2,8 +2,9 @@ import React, { ReactNode } from 'react'
 import { Avatar } from 'antd';
 import { cdnUrl } from '../../utils/http';
 
-type AvatarSize = "small" | "default" | "large" | "xlarge" | "xxlarge"
+type AvatarSize = "xsmall" | "small" | "default" | "large" | "xlarge" | "xxlarge"
 interface Props {
+  inline?: boolean
   src?: string
   name: string
   size?: number | AvatarSize
@@ -14,6 +15,7 @@ interface Props {
  */
 const UserMessageAvatar = ({
   src,
+  inline,
   name,
   size = 'default'
 }: Props) => {
@@ -24,6 +26,7 @@ const UserMessageAvatar = ({
     `https://robohash.org/${name || 'default'}.png?size=200x200`
 
   const sizes = {
+    xsmall: 16,
     small: 24,
     default: 32,
     large: 48,
@@ -32,7 +35,7 @@ const UserMessageAvatar = ({
   }
 
   const imgStyles = {
-    display: 'block',
+    display: inline ? 'inline-block' : 'block',
     backgroundColor: `rgba(0, 0, 0, .1)`,
     backgroundImage: `url(${imgOrPlaceholder})`,
     backgroundSize: 'cover',
@@ -44,7 +47,7 @@ const UserMessageAvatar = ({
   }
 
   return (
-    <div style={imgStyles}></div>
+    <span style={imgStyles}></span>
   )
 };
 

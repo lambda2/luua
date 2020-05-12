@@ -26,6 +26,7 @@ import {
   faEnvelope,
   faTimesCircle,
   faCheckCircle,
+  faComments,
   faPaperPlane,
 } from '@fortawesome/free-regular-svg-icons'
 
@@ -85,6 +86,7 @@ export default {
   "down": <FontAwesomeIcon className="menu-icon" icon={faChevronDown} />,
   "send": <FontAwesomeIcon className="menu-icon" icon={faPaperPlane} />,
   "glass": <FontAwesomeIcon className="menu-icon" icon={faGlassCheers} />,
+  "comments": <FontAwesomeIcon className="menu-icon" icon={faComments} />,
   "visibility": {
     "hidden": <FontAwesomeIcon className="menu-icon" icon={faEyeSlash} />,
     "protected": <FontAwesomeIcon className="menu-icon" icon={faLock} />,

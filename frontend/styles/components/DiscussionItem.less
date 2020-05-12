@@ -1,0 +1,70 @@
+.DiscussionItem {
+  // padding-top: 15px;
+
+  header {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+
+    .org-title {
+      padding-left: 5px;
+
+    }
+  }
+
+  h5 {
+    display: flex;
+    align-items: center;
+    align-content: space-between;
+  }
+
+  h5 a {
+    flex: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  footer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    ul {
+      list-style-type: none;
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+
+      li {
+        padding-right: @space-l;
+        // padding-bottom: @space-s;
+
+        &.created-by {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          
+          & > span { 
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-right: @space-s;
+
+            & > span {
+              margin-right: @space-s;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  h2 {
+    display: flex;
+    align-items: center;
+  }
+
+}

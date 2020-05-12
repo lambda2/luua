@@ -17,6 +17,7 @@
     "workspaces": "Espaces",
     "missions": "Missions",
     "discussions": "Discussions",
+    "votes": "Votes",
     "skills": "Compétences",
     "notifications": "Notifications",
     "candidates": "Candidats",
@@ -151,6 +152,9 @@
     "summary": "Résumé",
     "cant-post-auth": "Vous devez être connecté pour poster un message",
     "no-discussion": "Aucune discussion",
+    "created_at": "Commencée",
+    "created_by": "Par",
+    "messages_count": "{{count}} messages",
     "empty": "Aucune discussion"
   },
   "mission": {
@@ -238,7 +242,8 @@
     "to-join": "à rejoindre l'espace"
   },
   "user": {
-    "profile": "Profil"
+    "profile": "Profil",
+    "member-since": "Inscrit"
   },
   "workspace": {
     "create": {

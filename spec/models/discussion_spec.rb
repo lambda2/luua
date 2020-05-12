@@ -2,16 +2,16 @@
 #
 # Table name: discussions
 #
-#  id            :bigint           not null, primary key
-#  description   :text
-#  name          :string           not null
-#  resource_type :string           not null
-#  slug          :string           not null
-#  visibility    :integer          default(0), not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  resource_id   :bigint           not null
-#  user_id       :bigint           not null
+#  id             :bigint           not null, primary key
+#  messages_count :integer          default(0), not null
+#  name           :string           not null
+#  resource_type  :string           not null
+#  slug           :string           not null
+#  visibility     :integer          default(0), not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  resource_id    :bigint           not null
+#  user_id        :bigint           not null
 #
 # Indexes
 #

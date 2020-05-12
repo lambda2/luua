@@ -85,6 +85,7 @@ declare interface LightWorkspace {
     membership: WorkspaceMembership
     users_count: number
     missions_count: number
+    discussions_count: number
     // workspace_type: 'main' | 'company' | 'personal'
     created_at: string
     updated_at: string
@@ -275,11 +276,12 @@ declare interface LightDiscussion {
     id: number
     name: string
     slug: string
-    description: string
+    // description: string
     user: BaseUser
     resource_type: DiscussionResourceType
     resource_id: number
     workspace_id: number
+    messages_count: number
     created_at: string
     updated_at: string
 }

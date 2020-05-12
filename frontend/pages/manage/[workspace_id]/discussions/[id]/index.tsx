@@ -29,7 +29,7 @@ const ShowDiscussion = (
     <NetworkBoundary status={status} data={data} error={error}>
       {currentWorkspace && <WorkspaceHeader
         workspace={currentWorkspace}
-        active='discussion'
+        active='discussions'
       />}
       <ContentLayout>
         {/* Paginated discussion @TODO */}

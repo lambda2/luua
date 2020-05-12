@@ -2,16 +2,16 @@
 #
 # Table name: discussions
 #
-#  id            :bigint           not null, primary key
-#  description   :text
-#  name          :string           not null
-#  resource_type :string           not null
-#  slug          :string           not null
-#  visibility    :integer          default(0), not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  resource_id   :bigint           not null
-#  user_id       :bigint           not null
+#  id             :bigint           not null, primary key
+#  messages_count :integer          default(0), not null
+#  name           :string           not null
+#  resource_type  :string           not null
+#  slug           :string           not null
+#  visibility     :integer          default(0), not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  resource_id    :bigint           not null
+#  user_id        :bigint           not null
 #
 # Indexes
 #
@@ -23,6 +23,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Discussion < ApplicationRecord
+
+  attr_accessor :description
+
   extend FriendlyId
   friendly_id :name, use: :slugged
 
@@ -32,6 +35,8 @@ class Discussion < ApplicationRecord
   has_many :messages, dependent: :destroy
 
   has_many :notifications, as: :resource, dependent: :destroy
+
+  after_create :create_root_message!
 
   # @TODO discussion visibilities
   #
@@ -56,6 +61,18 @@ class Discussion < ApplicationRecord
 
   #   joins(workspace: :workspace_users).where(disc)
   # end
+
+  # @TODO risky, as this can fail in many ways...
+  def create_root_message!
+    return if description.blank?
+
+    Message.create!(
+      content: description,
+      root: true,
+      user: user,
+      discussion_id: id
+    )
+  end
 
   def lock!
     update(locked_at: Time.zone.now, locked_by: Current.user&.id)
