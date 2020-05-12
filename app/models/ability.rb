@@ -64,6 +64,9 @@ class Ability
     can %i[update destroy], Message, user_id: user.id
     can [:destroy], Message, discussion: { resource_type: 'Mission', resource: { workspace_id: user.admin_workspace_ids } }
     can [:destroy], Message, discussion: { resource_type: 'Workspace', resource_id: user.admin_workspace_ids }
+    can [:mines], MessageVote
+    can [:create], MessageVote # @TODO restrict this
+    can %i[update destroy], MessageVote, user_id: user.id
   end
   # rubocop:enable Metrics/MethodLength
 

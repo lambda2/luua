@@ -50,6 +50,16 @@ export const destroy = async (attributes: DiscussionUpdateValues, token: string)
   return await api<Discussion>(`/api/discussions/${attributes.id}`, { headers, data: { discussion: attributes }, method: 'DELETE' })
 }
 
+/**
+ * Get user votes for a discussion
+ * @param discussion_id
+ * @param token 
+ */
+export const votes = async (discussion_id: number | string, token: string): Promise<AxiosResponse<MessageVote[]>> => {
+  const headers = getHeaders(token)
+  return await api<MessageVote[]>(`/api/discussions/${discussion_id}/message_votes/mines`, { headers })
+}
+
 
 export const createOrUpdate = async (attributes: DiscussionUpdateValues, token: string): Promise<AxiosResponse<Discussion>> => {
   if (attributes.id) {

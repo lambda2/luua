@@ -53,6 +53,26 @@ class Api::MessagesController < ApiController
     end
   end
 
+  # POST /api/messages/:id/vote
+  # @TODO do an interactor here
+  def vote
+    actual_vote = vote_params
+    puts "actual_vote -> #{actual_vote.inspect}"
+    existing = MessageVote.find_by(user_id: current_user.id, message_id: @message.id)
+    puts "existing -> #{existing.inspect}"
+
+    if existing && existing.vote == actual_vote[:vote]
+      existing.destroy
+      render_destroyed
+    elsif existing && existing.vote != actual_vote[:vote]
+      existing.update(actual_vote)
+      render json: MessageVoteSerializer.new.serialize(existing), status: :ok
+    else
+      existing = MessageVote.create(vote: actual_vote[:vote], user_id: current_user.id, message_id: @message.id)
+      render json: MessageVoteSerializer.new.serialize(existing), status: :created
+    end
+  end
+
   # DELETE /api/messages/id
   def destroy
     @message.destroy!
@@ -65,6 +85,12 @@ class Api::MessagesController < ApiController
       :content,
       :parent_id,
       :discussion_id
+    )
+  end
+
+  def vote_params
+    params.require(:message_vote).permit(
+      :vote
     )
   end
 

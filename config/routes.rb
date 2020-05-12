@@ -83,8 +83,12 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
     end
 
     resources :discussions, shallow: true do
-      resources :messages, shallow: true do
+      resources :message_votes do
+        get 'mines', on: :collection, action: :mines
+      end
 
+      resources :messages, shallow: true do
+        post 'vote', on: :member, action: :vote
       end
     end
   end

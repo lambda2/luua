@@ -20,6 +20,16 @@ export const create = async (attributes: MessageUpdateValues, token: string): Pr
 }
 
 /**
+ * For for a message
+ * @param attributes
+ * @param token 
+ */
+export const vote = async (message_id: string | number, vote: MessageVoteOption, token: string): Promise<AxiosResponse<MessageVote>> => {
+  const headers = getHeaders(token)
+  return await api<MessageVote>(`/api/messages/${message_id}/vote`, { headers, data: { message_vote: { vote } }, method: 'POST' })
+}
+
+/**
  * Update an existing message
  * @param attributes 
  * @param token 

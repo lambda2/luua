@@ -9,7 +9,7 @@ class CreateDiscussions < ActiveRecord::Migration[6.0]
       t.references :resource, polymorphic: true, null: false
 
       t.string :locale, null: false, default: 'en'
-      t.integer :messages_count, null: false, default: 0
+      # t.integer :messages_count, null: false, default: 0
       t.datetime :locked_at
       t.integer :locked_by
       t.timestamps

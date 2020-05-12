@@ -18,6 +18,7 @@ type WorkspaceInvitationStatus = 'pending' | 'accepted' | 'rejected'
 type WorkspaceRequestStatus = 'pending' | 'accepted' | 'rejected'
 type WorkspaceMembership = 'closed' | 'approval' | 'open'
 type DiscussionResourceType = 'Workspace' | 'Mission'
+type MessageVoteOption = 'positive' | 'negative'
 
 declare interface BaseUser {
     id: number
@@ -260,6 +261,13 @@ declare interface MissionSkill {
     category: SkillCategory
 }
 
+declare interface MessageVote {
+    user_id: number
+    message_id: number
+    vote: MessageVoteOption
+    id: number
+}
+
 declare interface Message {
     id: number
     content: string
@@ -268,6 +276,8 @@ declare interface Message {
     parent?: Message
     parent_id: number
     discussion_id: number
+    positive_vote_count: number
+    negative_vote_count: number
     created_at: string
     updated_at: string
 }

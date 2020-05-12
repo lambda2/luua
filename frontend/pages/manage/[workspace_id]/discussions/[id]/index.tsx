@@ -36,6 +36,7 @@ const ShowDiscussion = (
         <Discussion
           discussion={data as Discussion}
           messagesEndpoint={data?.id && `/api/discussions/${data?.id}/messages`}
+          votesEndpoint={data?.id && `/api/discussions/${data?.id}/message_votes/mines`}
           page={`${query.page}`}
         />
       </ContentLayout>

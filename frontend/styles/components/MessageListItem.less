@@ -4,6 +4,75 @@
   display: flex;
   align-items: flex-start;
 
+  &:hover .MessageVote .vote.vote-zero {
+    display: flex;
+  }
+
+  .MessageVote {
+    display: flex;
+    flex-direction: column;
+    min-width: 50px;
+    align-items: flex-end;
+    font-size: 16px;
+
+    .vote {
+      opacity: .7;
+      display: flex;
+      min-width: 50px;
+      align-items: center;
+      justify-content: flex-end;
+      
+      button {
+        background: none;
+        border: none;
+        box-shadow: none;
+        -webkit-appearance: none;
+        cursor: pointer;
+
+        &:focus {
+          border: none;
+          box-shadow: none;
+        }
+
+      }
+
+      &.vote-zero {
+        // opacity: 0;
+        display: none;
+      }
+
+      // &.vote-down {
+      //   &:before {
+      //     content: "-"
+      //   }
+      // }
+      &.vote-up button:hover {
+        color: @success-color;
+      }
+
+      &.vote-down button:hover {
+        color: @error-color;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &.active {
+        font-weight: bold;
+        opacity: 1;
+
+        &.vote-up {
+          color: @success-color;
+        }
+
+        &.vote-down {
+          color: @error-color;
+        }
+      }
+    }
+  }
+
   aside {
     display: flex;
     align-items: center;
@@ -11,7 +80,6 @@
     padding: @space-s;
     padding-top: 3px; // @TODO yuk 😰
   }
-
 
   main {
     display: flex;

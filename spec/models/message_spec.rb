@@ -2,14 +2,16 @@
 #
 # Table name: messages
 #
-#  id            :bigint           not null, primary key
-#  content       :text
-#  root          :boolean          default(FALSE), not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  discussion_id :bigint           not null
-#  parent_id     :integer
-#  user_id       :bigint           not null
+#  id                  :bigint           not null, primary key
+#  content             :text
+#  negative_vote_count :integer          default(0), not null
+#  positive_vote_count :integer          default(0), not null
+#  root                :boolean          default(FALSE), not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  discussion_id       :bigint           not null
+#  parent_id           :integer
+#  user_id             :bigint           not null
 #
 # Indexes
 #

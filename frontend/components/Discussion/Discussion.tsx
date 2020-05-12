@@ -13,16 +13,21 @@ import MessageBox from '../../elements/MessageBox/MessageBox';
 import { useLocale } from '../../hooks/useLocale';
 import PageTitle from '../../elements/PageTitle/PageTitle';
 import PageSection from '../../elements/PageSection/PageSection';
+import { vote } from '../../api/message';
+import { useCollection } from '../../utils/http';
+import NetworkBoundary from '../NetworkBoudary/NetworkBoudary';
 
 interface Props {
   discussion?: LightDiscussion
   messagesEndpoint: string | false | 0 | undefined
+  votesEndpoint: string | false | 0 | undefined
   page?: number | string,
   token?: string
 }
 
 const Discussion = ({
   discussion,
+  votesEndpoint,
   messagesEndpoint,
   page = 1,
   token
@@ -33,6 +38,10 @@ const Discussion = ({
 
   const messagesResponse = usePaginatedCollection<Message[]>(
     messagesEndpoint, page, (token || currentUser?.jwt)
+  )
+
+  const votesResponse = useCollection<MessageVote[]>(
+    votesEndpoint, (token || currentUser?.jwt)
   )
   
   const createMessage = async (content: string) => {
@@ -50,6 +59,12 @@ const Discussion = ({
 
   const destroyMessage = async (message: Message) => {
     return await destroy(message, currentUser?.jwt || '')
+  }
+
+  const voteMessage = async (message: Message, selectedVote: MessageVoteOption) => {
+    await vote(message.id, selectedVote, currentUser?.jwt || '')
+    await messagesResponse.refetch()
+    return await votesResponse.refetch()
   }
 
   const [onCreate] = useMutation(createMessage, {
@@ -108,10 +123,17 @@ const Discussion = ({
 
       <PageTitle title={discussion?.name} />
 
-      <Paginated
-        {...messagesResponse}
-        renderList={(messages) => <MessageList onEdit={onEdit} onDestroy={onDestroy} messages={messages} />}
-      />
+      <NetworkBoundary {...votesResponse}>
+        <Paginated
+          {...messagesResponse}
+          renderList={(messages) => <MessageList
+            userVotes={votesResponse!.data as MessageVote[]}
+            onVote={voteMessage}
+            onEdit={onEdit}
+            onDestroy={onDestroy}
+            messages={messages} />}
+        />
+      </NetworkBoundary>
 
       { can(currentUser, 'discussion.post', discussion) &&
         <DiscussionInput onSubmit={onCreate}/> ||

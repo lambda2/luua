@@ -34,7 +34,7 @@ const DiscussionForm = ({ discussion, redirectOnSave, workspace }: Props) => {
   const initialValues = {
     id: discussion?.id,
     name: discussion?.name || '',
-    description: discussion?.description || '',
+    description: '',
     resource_type: discussion?.resource_type || 'Workspace',
     resource_id: discussion?.resource_id || workspace?.id,
     globalErrors: undefined,
