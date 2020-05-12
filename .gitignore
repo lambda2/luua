@@ -34,6 +34,7 @@ lib/gen_serializer_test.rb
 
 # sql files
 *.sql
+db/seeds.local
 
 coverage
 

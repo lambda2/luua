@@ -14,7 +14,7 @@ This is the monorepo for Luua, which is made of:
 This project is a **work in progress**, and is not working yet.
 
 
-## Setup
+## How to run the API locally
 
 ```bash
 # Clone the repo
@@ -22,7 +22,12 @@ git clone git@github.com:lambda2/luua.git
 
 cd luua
 
-# Setup
+# Copy the config file
+cp .env.local.example .env.local
+
+# EDIT THE config file with your database credentials & cie
+
+# Setup the database and seed the initial data
 ./bin/setup
 
 ```
@@ -50,4 +55,3 @@ Luua tracks analytics with [ahoy](https://github.com/ankane/ahoy), an open sourc
 In order to respect the GDPR compliance, we
 - Don't store IP addresses
 - Track same users with [anonymity sets](https://privacypatterns.org/patterns/Anonymity-set) instead of cookies
-
