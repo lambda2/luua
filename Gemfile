@@ -42,6 +42,9 @@ gem 'friendly_id', '~> 5.2.5'
 # analytics
 gem 'ahoy_matey'
 
+# Colors
+gem 'colorize'
+
 # State machines
 gem 'aasm', '~> 5.0.8'
 

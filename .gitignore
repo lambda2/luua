@@ -32,6 +32,9 @@ lib/gen_serializer_test.rb
 .env.local
 .env.*.local
 
+# sql files
+*.sql
+
 coverage
 
 
