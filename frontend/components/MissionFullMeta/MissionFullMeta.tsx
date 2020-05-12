@@ -63,7 +63,7 @@ const MissionFullMeta = ({
     <ul className="text-light">
       {renderVisibility()}
       <li>
-        {icons.user} {t('mission.contributors')}: {accepted_count} / {participant_count}
+        {icons.user} {t('mission.contributors')}: {accepted_count} / {participant_count || '∞'}
       </li>
       <li className="physical">{icons.location.physical} { physical ? t('location.physical') : t('location.online')}</li>
       {/* {currentUser && <li className="visibility">{visibility}</li>} */}
