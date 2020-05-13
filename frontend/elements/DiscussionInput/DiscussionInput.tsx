@@ -2,14 +2,13 @@ import React, { useState, useContext, useRef, useEffect } from 'react'
 import { useLocale } from '../../hooks/useLocale';
 import { Button } from 'antd';
 import MarkdownContent from "../MarkdownContent/MarkdownContent";
-// import * as Showdown from "showdown";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
 import ReactMde from "react-mde";
 import UserContext from '../../contexts/UserContext';
 import UserMessageAvatar from '../UserMessageAvatar/UserMessageAvatar';
 import icons from '../../dictionaries/icons';
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 
 
 interface Props {

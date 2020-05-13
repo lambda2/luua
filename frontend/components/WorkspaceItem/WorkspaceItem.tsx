@@ -1,12 +1,10 @@
 import React, { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
-import routes from '../../routes/manage'
+import routes from '../../routes/routes'
 
 import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';
-import { cdnUrl } from '../../utils/http';
 import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
-import Title from '../../elements/Title/Title';
 import TitleWithAvatar from '../../elements/TitleWithAvatar/TitleWithAvatar';
 import UserAvatar from '../../elements/UserAvatar/UserAvatar';
 

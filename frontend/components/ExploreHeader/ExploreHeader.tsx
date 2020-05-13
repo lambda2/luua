@@ -1,15 +1,10 @@
 import React, { ReactElement, useContext } from 'react';
 import { useLocale } from '../../hooks/useLocale';
-import manage, { ROUTES } from '../../routes/manage';
-import PrimaryLink from '../../elements/PrimaryLink/PrimaryLink';
+import { ROUTES } from '../../routes/routes';
 import PageTitle from '../../elements/PageTitle/PageTitle';
-import UserAvatar from '../../elements/UserAvatar/UserAvatar';
 import Link from 'next/link';
 import classNames from 'classnames';
-import { Badge } from 'antd';
 import UserContext from '../../contexts/UserContext';
-import { find } from 'lodash';
-import can from '../../utils/can';
 
 type ResourceAction = 'show' | 'new' | 'edit' | 'destroy'
 

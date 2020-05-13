@@ -1,11 +1,8 @@
-import React, { useContext } from 'react';
-import routes from '../../routes/manage'
+import React from 'react';
 import Tooltip from 'antd/lib/tooltip';
 import { useLocale } from '../../hooks/useLocale';
 import icons from '../../dictionaries/icons';
 import momentWithLocale from '../../i18n/moment';
-
-const { manage } = routes
 
 interface Props {
   mission: BaseMission,
@@ -69,11 +66,6 @@ const MissionFullMeta = ({
       {/* {currentUser && <li className="visibility">{visibility}</li>} */}
       {begin_at && <li className="begin-at">{icons.date} {t('mission.starts')} <b>{moment(begin_at).calendar().toLowerCase()}</b></li>}
       {end_at && <li className="end-at">{icons.date} {t('mission.ends')} <b>{moment(end_at).calendar().toLowerCase()}</b></li>}
-      {/* <li className="skills">
-        {icons.skills} {mission_skills.length > 0 ?
-          mission_skills.map((s: MissionSkill) => <Tag key={s}>{s}</Tag>) :
-          <span className="text-lighter">{t('mission_user.no-skills-short')}</span>}
-      </li> */}
     </ul>
   )
 

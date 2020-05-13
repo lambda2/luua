@@ -1,4 +1,3 @@
-import { SingletonRouter } from "next/router"
 
 const route = (
   pageName: string[],

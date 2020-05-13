@@ -1,6 +1,6 @@
 import React, { ReactElement, useContext } from 'react';
 import { useLocale } from '../../hooks/useLocale';
-import manage, { ROUTES } from '../../routes/manage';
+import manage, { ROUTES } from '../../routes/routes';
 import PrimaryLink from '../../elements/PrimaryLink/PrimaryLink';
 import PageTitle from '../../elements/PageTitle/PageTitle';
 import UserAvatar from '../../elements/UserAvatar/UserAvatar';
@@ -8,7 +8,7 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import { Button, Menu, Dropdown } from 'antd';
 import UserContext from '../../contexts/UserContext';
-import { find } from 'lodash';
+import find from 'lodash/find';
 import can from '../../utils/can';
 import WorkspaceJoinButton from '../WorkspaceJoinButton/WorkspaceJoinButton';
 import icons from '../../dictionaries/icons';

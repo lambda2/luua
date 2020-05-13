@@ -1,12 +1,9 @@
 import React, { useContext } from 'react';
-import { Avatar } from 'antd';
-import Link from 'next/link';
 import find from 'lodash/find';
 import { Typography } from 'antd';
 
-import { cdnUrl } from '../../utils/http';
 import momentWithLocale from '../../i18n/moment';
-import routes from '../../routes/manage'
+import routes from '../../routes/routes'
 import { useLocale } from '../../hooks/useLocale';
 import UserContext from '../../contexts/UserContext';
 

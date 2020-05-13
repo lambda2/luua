@@ -1,12 +1,8 @@
-import React, { useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
-import routes from '../../routes/manage'
-import { Tag, List, Avatar } from 'antd';
-import MissionVisibilityBadge from '../../elements/MissionVisibilityBadge/MissionVisibilityBadge';
-// import './MissionSkillsForUser.module.less'
+import React from 'react';
+import { Tag } from 'antd';
 import { useLocale } from '../../hooks/useLocale';
-import { Typography } from 'antd';
-import { fromPairs, sumBy } from 'lodash';
+import fromPairs from 'lodash/fromPairs';
+import sumBy from 'lodash/sumBy';
 import SkillTag from '../../elements/SkillTag/SkillTag';
 
 
