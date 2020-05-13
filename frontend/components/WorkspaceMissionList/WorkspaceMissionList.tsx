@@ -1,12 +1,7 @@
-import React, { useContext } from 'react';
-import Link from 'next/link';
-import UserContext from '../../contexts/UserContext';
-import routes from '../../routes/manage'
+import React from 'react';
 import WorkspaceMissionItem from '../WorkspaceMissionItem/WorkspaceMissionItem';
 import List from '../../elements/List/List';
 import { useLocale } from '../../hooks/useLocale';
-const { manage, users } = routes
-const { workspace, index } = manage
 
 interface Props {
   data: LightMission[]
@@ -14,7 +9,6 @@ interface Props {
 
 const WorkspaceMissionList = ({ data }: Props) => {
 
-  const { currentUser } = useContext(UserContext)
   const { t } = useLocale()
   
   return (

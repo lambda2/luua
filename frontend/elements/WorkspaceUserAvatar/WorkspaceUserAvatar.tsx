@@ -1,11 +1,9 @@
 import React from 'react'
-import Link, { LinkProps } from 'next/link';
-import classNames from 'classnames';
-// import './WorkspaceUserAvatar.module.less'
+import Link from 'next/link';
 import { cdnUrl } from '../../utils/http';
 import { Popover, Tag } from 'antd';
 import { useLocale } from '../../hooks/useLocale';
-import ROUTES from '../../routes/manage';
+import ROUTES from '../../routes/routes';
 import UserAvatar from '../UserAvatar/UserAvatar';
 
 interface Props extends WorkspaceUser {

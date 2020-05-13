@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, Avatar, Steps, Space, Progress, Button } from 'antd';
 import { useLocale } from '../../hooks/useLocale';
-import routes from '../../routes/manage'
+import routes from '../../routes/routes'
 import PrimaryLink from '../../elements/PrimaryLink/PrimaryLink';
 const { Title } = Typography;
 

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
-import routes from '../../routes/manage'
+import routes from '../../routes/routes'
 import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';
 import momentWithLocale from '../../i18n/moment';

@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import routes from '../../routes/manage'
+import React from 'react';
+import routes from '../../routes/routes'
 import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';
 import UserAvatar from '../../elements/UserAvatar/UserAvatar';
