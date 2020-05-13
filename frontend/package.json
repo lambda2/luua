@@ -6,6 +6,7 @@
     "genmod": "node scripts/scaffold.js",
     "build": "next build",
     "setup": "yarn",
+    "test": "jest",
     "unused": "node scripts/detect_unused.js",
     "start": "NODE_ENV=production node server/server.js"
   },
@@ -75,10 +76,11 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.1",
-    "jest": "^25.4.0",
+    "jest": "^26.0.1",
     "madge": "^3.9.0",
     "mustache": "^4.0.1",
     "react-test-renderer": "^16.13.1",
+    "ts-jest": "^25.5.1",
     "typescript": ">= 3.5.2"
   },
   "license": "ISC"
