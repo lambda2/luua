@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ErrorMessage, Formik } from 'formik';
+import { ErrorMessage, Formik, useFormikContext } from 'formik';
 import * as Yup from 'yup';
 import AsyncSelect from 'react-select/async';
 import UserContext from '../../contexts/UserContext';
@@ -10,7 +10,38 @@ import SubmitButton from '../../elements/SubmitButton/SubmitButton';
 import { useLocale } from '../../hooks/useLocale';
 import { errorsFromResponse } from '../../utils/forms/helpers';
 import Router from 'next/router';
+import debounce from 'lodash/debounce';
+import icons from '../../dictionaries/icons';
 
+// Copied from https://github.com/jaredpalmer/formik/blob/e51f09a318cba216a1ba3932da0906202df0b979/examples/DebouncedAutoSave.js
+const AutoSave = ({ debounceMs }: { debounceMs: number }) => {
+  const formik = useFormikContext();
+  const { t } = useLocale()
+
+  const [lastSaved, setLastSaved] = React.useState(null);
+  const debouncedSubmit = React.useCallback(
+    debounce(
+      () =>
+        formik.submitForm().then(() => setLastSaved(new Date().toISOString() as any)),
+      debounceMs
+    ),
+    [debounceMs, formik.submitForm]
+  );
+
+  React.useEffect(() => {
+    debouncedSubmit();    
+  }, [debouncedSubmit, formik.dirty]);
+
+  return (
+    <>
+      {!!formik.isSubmitting
+        ? icons.loading
+        : lastSaved !== null
+          ? t('generics.saved')
+          : null}
+    </>
+  );
+};
 
 
 const SkillsForm = () => {
@@ -41,30 +72,17 @@ const SkillsForm = () => {
         }
       }}
     >
-      {({
-        values,
-        isValid,
-        isSubmitting,
-        dirty,
-        submitCount,
-        setFieldValue,
-      }) => (
+      {() => (
           <Form layout="vertical">
+              <small style={{ color: 'gray', fontSize: 11 }}>
+                <AutoSave debounceMs={300} />
+              </small>
+
             <ErrorMessage name="globalErrors" />
 
             <UserSkillsSelect
               addLabel={t('form.skill.add-skill')}
               name="user_skills_attributes"
-            />
-
-            <br />
-            <br />
-            <SubmitButton
-              isSubmitting={isSubmitting}
-              dirty={dirty}
-              submitCount={submitCount}
-              isValid={isValid}
-              label={t('form.user.skills.submit')}
             />
           </Form>
         )}

@@ -46,6 +46,7 @@ import {
   faClock,
   faChevronUp,
   faChevronDown,
+  faPlus,
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -86,8 +87,10 @@ export default {
   "dot": <FontAwesomeIcon className="menu-icon" icon={faDotCircle} />,
   "up": <FontAwesomeIcon className="menu-icon" icon={faChevronUp} />,
   "down": <FontAwesomeIcon className="menu-icon" icon={faChevronDown} />,
+  "plus": <FontAwesomeIcon className="menu-icon" icon={faPlus} />,
   "send": <FontAwesomeIcon className="menu-icon" icon={faPaperPlane} />,
   "glass": <FontAwesomeIcon className="menu-icon" icon={faGlassCheers} />,
+  "loading": < FontAwesomeIcon icon ={faSpinner} spin />,
   "comments": <FontAwesomeIcon className="menu-icon" icon={faComments} />,
   "visibility": {
     "hidden": <FontAwesomeIcon className="menu-icon" icon={faEyeSlash} />,

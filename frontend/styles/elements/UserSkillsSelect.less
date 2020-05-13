@@ -1,8 +1,54 @@
 
 
-.MissionSkillsSelect {
+.UserSkillsSelect {
 
-   
+  .skill-select-item-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: @space-stack-l;
+  }
 
 
+  .skill-select-item,
+  .skill-add-item {
+    display: flex;
+    border: 1px solid @border-color-base;
+    border-radius: 3px;
+    margin-right: @space-s;
+    margin-bottom: @space-s;
+    color: @text-color-light;
+
+    &:hover {
+      color: @text-color;
+
+      aside {
+        opacity: 1;
+        span {
+          color: @error-color;
+        }
+      }
+    }
+     
+    main {
+      padding: @space-inset-s;
+      flex: auto;
+    }
+     
+    aside {
+      // opacity: 0;
+      flex: auto;
+      padding: @space-inset-s;
+      border-left: 1px solid @border-color-base;
+
+      span {
+        cursor: pointer;
+      }
+    }
+  }
+  .skill-add-item {
+    color: @text-color;
+    & > span {
+      margin-right: @space-s;
+    }
+  }
 }

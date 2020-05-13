@@ -65,36 +65,30 @@ const UserSkillsSelect = ({
         {meta.touched && meta.error ? (
           <div className='error'>{meta.error}</div>
         ) : null}
-        <List
-          itemLayout="horizontal"
-          dataSource={value.filter(e => !e._destroy)}
-          locale={{ emptyText: t('form.skill.empty') }}
-          renderItem={item => (
-            <List.Item key={item.skill_id}
-              actions={[
-                <span key="delete" onClick={() => deleteSkill(item)}>{icons.delete}</span>
-              ]}
-            >
-              <List.Item.Meta
-                title={<p>
-                  <Tag>
-                    {t('form.skill.skill')}
-                  </Tag>{' '}
+        <div className="skill-select-item-list">
+
+          {value.filter(e => !e._destroy).map((item: UserSkill) => {
+            return (<div key={item.skill_id} className="skill-select-item">
+              <main>
+                {item.category !== 'mobility' && <span>
                   {t(`form.skill.levels.${item.category}.${item.level}`)}{' '}
                   {t('form.skill.in-level')}{' '}
-                  {item.name}
-                </p>}
-              />
-            </List.Item>
-          )}
-        />
-        <UserSkillsModal
-          title={modalLabel || t('form.skill.modal.title')}
-          addLabel={addLabel || t('form.skill.add-skill')}
-          onOk={handleOk}
-          onCancel={handleCancel}
-          selected={value.map(e => e.skill_id)}
-        />
+                </span>}
+                {item.name}
+              </main>
+              <aside>
+                <span key="delete" onClick={() => deleteSkill(item)}>{icons.delete}</span>
+              </aside>
+            </div>)
+          })}
+          <UserSkillsModal
+            title={modalLabel || t('form.skill.modal.title')}
+            addLabel={addLabel || t('form.skill.add-skill')}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            selected={value.map(e => e.skill_id)}
+          />
+        </div>
       </div>
     </div>
   );

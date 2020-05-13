@@ -10,6 +10,7 @@ import querystring from 'querystring';
 import { fetch, getHeaders } from "../../utils/http";
 import UserContext from "../../contexts/UserContext";
 import { useLocale } from "../../hooks/useLocale";
+import icons from "../../dictionaries/icons";
 
 const { Option } = Select;
 
@@ -132,7 +133,8 @@ const UserSkillsModal = ({
 
   return (
     <>
-      <Button block type="primary" onClick={showModal}>
+      <Button className="skill-add-item" onClick={showModal}>
+        <span>{icons.plus}</span>{' '}
         {addLabel || t('add-skill')}
       </Button>
       <Modal

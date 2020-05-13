@@ -8,6 +8,7 @@ import PageSection from '../../elements/PageSection/PageSection';
 import List from '../../elements/List/List';
 import WorkspaceItem from '../WorkspaceItem/WorkspaceItem';
 import MissionUserItem from '../MissionUserItem/MissionUserItem';
+import SkillsForm from '../SkillsForm/SkillsForm';
 const { users } = routes
 
 const UserProfile = (user: AuthedUser) => {
@@ -31,15 +32,16 @@ const UserProfile = (user: AuthedUser) => {
       {user_skills.length === 0 && <p>
           {t('skill.no-skills-yet.title')}. <Link {...users.skills()}><a>{t('skill.no-skills-yet.add-now')}</a></Link>
       </p>}
-      {user_skills.length > 0 && <div>
+        <SkillsForm />
+      {/* {user_skills.length > 0 && <div>
         <ul>{user_skills.map((s: UserSkill) => <li key={s.id}>{s.name}</li>)}</ul>
           <Link {...routes.users.skills()}><a>{t('form.skill.edit-skill')}</a></Link>
-      </div>}
+      </div>} */}
     </PageSection>
 
     <PageSection title={t('menu.missions')}>
       <List
-        emptyText={t('mission_user.empty')}
+        emptyText={t('mission.empty')}
         dataSource={mission_users}
         renderItem={(e: LightMissionUser) => <MissionUserItem {...e} user={user} mission={e.mission} />}
       />

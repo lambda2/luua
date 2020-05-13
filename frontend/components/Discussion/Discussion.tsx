@@ -40,7 +40,7 @@ const Discussion = ({
     messagesEndpoint, page, (token || currentUser?.jwt)
   )
 
-  const votesResponse = currentUser && useCollection<MessageVote[]>(
+  const votesResponse = useCollection<MessageVote[]>(
     votesEndpoint, (token || currentUser?.jwt)
   )
   
@@ -64,7 +64,7 @@ const Discussion = ({
   const voteMessage = async (message: Message, selectedVote: MessageVoteOption) => {
     await vote(message.id, selectedVote, currentUser?.jwt || '')
     await messagesResponse.refetch()
-    return await votesResponse?.refetch()
+    return await votesResponse?.refetch({ force: true })
   }
 
   const [onCreate] = useMutation(createMessage, {

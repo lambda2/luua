@@ -32,6 +32,7 @@ export function usePaginatedCollection<T>(
   const authHeaders = getHeaders(token || '');
   const headers = {
     'Accept-Language': language,
+    'Cache-Control': 'no-cache',
     ...authHeaders
   }
 
