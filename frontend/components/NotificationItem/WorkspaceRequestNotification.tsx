@@ -1,17 +1,12 @@
 import React, { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
-import routes from '../../routes/manage'
-import { Tag, List, Avatar, Button } from 'antd';
+import { Button } from 'antd';
 import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';
-import { cdnUrl } from '../../utils/http';
-import find from 'lodash/find';
 import momentWithLocale from '../../i18n/moment';
 import { linkForNotification } from '../../utils/notifications';
 import classNames from 'classnames';
 import { accept, reject } from '../../api/workspace_requests';
-
-const { explore } = routes
 
 interface Props {
   notification: UserNotification,

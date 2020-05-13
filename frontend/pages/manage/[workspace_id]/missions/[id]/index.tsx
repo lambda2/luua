@@ -2,7 +2,7 @@ import { NextPageContext } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import routes from '../../../../../routes/manage'
+import routes from '../../../../../routes/routes'
 
 import { useCollection, fetchInitialData } from '../../../../../utils/http'
 import { withAuthSync, withUserToken } from '../../../../../utils/auth'

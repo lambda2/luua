@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocale } from '../../hooks/useLocale';
 import MessageBox from '../../elements/MessageBox/MessageBox';
-import ROUTES from '../../routes/manage';
+import ROUTES from '../../routes/routes';
 import Link from 'next/link';
 
 

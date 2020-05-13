@@ -1,12 +1,10 @@
 
 import Link from 'next/link';
-import { Menu, Dropdown, Button } from 'antd';
-import routes from '../../routes/manage'
+import routes from '../../routes/routes'
 import { useLocale } from "../../hooks/useLocale";
 import UserAvatar from '../UserAvatar/UserAvatar';
 import PrimaryLink from '../PrimaryLink/PrimaryLink';
 import classNames from 'classnames';
-// import './UserMenuDropdown.module.less'
 
 const { users } = routes
 

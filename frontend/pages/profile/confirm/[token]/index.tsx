@@ -9,7 +9,7 @@ import MessageBox from '../../../../elements/MessageBox/MessageBox'
 import LoginForm from '../../../../components/LoginForm/LoginForm'
 import UserContext from '../../../../contexts/UserContext'
 import Link from 'next/link'
-import ROUTES from '../../../../routes/manage'
+import ROUTES from '../../../../routes/routes'
 
 /**
  * This is the page used to confirm the email address

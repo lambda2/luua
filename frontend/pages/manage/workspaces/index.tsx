@@ -8,7 +8,7 @@ import Link from 'next/link'
 import ContentLayout from '../../../layouts/ContentLayout/ContentLayout'
 import PageTitle from '../../../elements/PageTitle/PageTitle'
 import { useLocale } from '../../../hooks/useLocale'
-import ROUTES from '../../../routes/manage'
+import ROUTES from '../../../routes/routes'
 
 const Workspaces = (
   { initialData, token }:

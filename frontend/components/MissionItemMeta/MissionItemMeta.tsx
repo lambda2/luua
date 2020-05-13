@@ -1,15 +1,10 @@
-import React, { useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
-import routes from '../../routes/manage'
-import { Tag, List, Avatar, Tooltip } from 'antd';
-import MissionVisibilityBadge from '../../elements/MissionVisibilityBadge/MissionVisibilityBadge';
-// import './MissionItemMeta.module.less'
+import React from 'react';
+import routes from '../../routes/routes'
+import { Tag, Tooltip } from 'antd';
 import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';
-import { cdnUrl } from '../../utils/http';
 import icons from '../../dictionaries/icons';
 import momentWithLocale from '../../i18n/moment';
-import MissionUserSmallBar from '../MissionUserSmallBar/MissionUserSmallBar';
 import UserAvatar from '../../elements/UserAvatar/UserAvatar';
 
 const { manage } = routes
@@ -19,7 +14,6 @@ interface Props {
   currentUser?: AuthedUser | null
   showWorkspace?: boolean
 }
-
 
 /**
  * This shows the metadata around a mission, like location, start date etc...

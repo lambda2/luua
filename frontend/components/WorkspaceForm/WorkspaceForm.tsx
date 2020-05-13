@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { Field, ErrorMessage, Formik } from 'formik';
+import { ErrorMessage, Formik } from 'formik';
 import UserContext from '../../contexts/UserContext';
 import { createOrUpdate } from '../../api/workspace';
 import { errorsFromResponse } from '../../utils/forms/helpers';
-import { Form, Input, ResetButton, Select, Switch, Radio } from 'formik-antd'
+import { Form, Input, Radio } from 'formik-antd'
 import YupWithLocale from '../../utils/forms/yup';
 import SubmitButton from '../../elements/SubmitButton/SubmitButton';
 import icons from '../../dictionaries/icons';
@@ -12,7 +12,7 @@ import UploadAvatar from '../../elements/UploadAvatar/UploadAvatar';
 import { useLocale } from '../../hooks/useLocale';
 import Router from 'next/router';
 import { cdnUrl } from '../../utils/http';
-import routes from '../../routes/manage'
+import routes from '../../routes/routes'
 import TextArea from '../../elements/TextArea/TextArea';
 
 interface Props {

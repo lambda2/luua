@@ -6,7 +6,7 @@ import { useLocale } from '../../../../hooks/useLocale';
 import NetworkBoundary from '../../../../components/NetworkBoudary/NetworkBoudary'
 import MissionList from '../../../../components/MissionList/MissionList'
 import { useRouter } from 'next/router';
-import routes from '../../../../routes/manage'
+import routes from '../../../../routes/routes'
 import Link from 'next/link'
 import ContentLayout from '../../../../layouts/ContentLayout/ContentLayout'
 import WorkspaceHeader from '../../../../components/WorkspaceHeader/WorkspaceHeader';
@@ -23,7 +23,7 @@ const Missions = (
   { initialData, token }:
   { initialData: LightMission[], token?: string }
 ) => {
-  const { pathname, query } = useRouter()
+  const { query } = useRouter()
 
   const { t } = useLocale()
   const { currentWorkspace } = useContext(WorkspaceContext)

@@ -1,10 +1,5 @@
 import React from 'react';
-import { Typography, Avatar, Steps, Space, Progress } from 'antd';
 import { useLocale } from '../../hooks/useLocale';
-import routes from '../../routes/manage'
-const { Title } = Typography;
-
-const { explore } = routes
 
 interface Props {
   mission_user: MissionUser

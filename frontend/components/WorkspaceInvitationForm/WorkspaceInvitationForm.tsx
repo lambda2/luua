@@ -3,12 +3,12 @@ import { ErrorMessage, Formik } from 'formik';
 import UserContext from '../../contexts/UserContext';
 import { invite } from '../../api/workspace';
 import { errorsFromResponse } from '../../utils/forms/helpers';
-import { Form, Input, ResetButton, Select, Switch } from 'formik-antd'
+import { Form, Input } from 'formik-antd'
 import YupWithLocale from '../../utils/forms/yup';
 import SubmitButton from '../../elements/SubmitButton/SubmitButton';
 import { useLocale } from '../../hooks/useLocale';
 import Router, { useRouter } from 'next/router';
-import routes from '../../routes/manage'
+import routes from '../../routes/routes'
 import MessageBox from '../../elements/MessageBox/MessageBox';
 
 interface Props {

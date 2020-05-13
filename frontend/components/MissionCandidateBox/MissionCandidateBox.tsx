@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
-import routes from '../../routes/manage'
-// import './MissionCandidateBox.module.less'
+import routes from '../../routes/routes'
 import { useLocale } from '../../hooks/useLocale';
 import Link from 'next/link';
 import MessageBox from '../../elements/MessageBox/MessageBox';

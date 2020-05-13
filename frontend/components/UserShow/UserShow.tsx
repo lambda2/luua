@@ -1,15 +1,5 @@
-import React, { useContext } from 'react';
-import Link from 'next/link';
+import React from 'react';
 import { useLocale } from '../../hooks/useLocale';
-import { logout } from '../../utils/auth'
-import { Button } from 'antd';
-import PageTitle from '../../elements/PageTitle/PageTitle';
-
-import UserAvatar from '../../elements/UserAvatar/UserAvatar';
-import PrimaryLink from '../../elements/PrimaryLink/PrimaryLink';
-import routes from '../../routes/manage'
-import PageSection from '../../elements/PageSection/PageSection';
-import { nameForUser } from '../../utils/user';
 
 interface Props {
   user: User

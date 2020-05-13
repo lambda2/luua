@@ -11,7 +11,7 @@ import { useLocale } from '../../hooks/useLocale';
 import PageSection from '../../elements/PageSection/PageSection';
 import MessageBox from '../../elements/MessageBox/MessageBox';
 import Link from 'next/link';
-import ROUTES from '../../routes/manage';
+import ROUTES from '../../routes/routes';
 
 const SignupForm = () => {
 

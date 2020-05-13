@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import routes from '../../routes/manage'
+import React from 'react';
 import { useLocale } from '../../hooks/useLocale';
 import classNames from 'classnames';
 import icons from '../../dictionaries/icons';

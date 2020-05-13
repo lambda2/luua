@@ -1,4 +1,4 @@
-import ROUTES from "../routes/manage"
+import ROUTES from "../routes/routes"
 
 
 /**

@@ -5,7 +5,6 @@ import { withAuthSync } from '../../../../utils/auth'
 
 import { useLocale } from '../../../../hooks/useLocale';
 
-import routes from '../../../../routes/manage'
 import NetworkBoundary from '../../../../components/NetworkBoudary/NetworkBoudary'
 import MissionUserList from '../../../../components/MissionUserList/MissionUserList'
 
@@ -14,9 +13,6 @@ import PageTitle from '../../../../elements/PageTitle/PageTitle';
 import { useContext } from 'react';
 import WorkspaceContext from '../../../../contexts/WorkspaceContext';
 import WorkspaceHeader from '../../../../components/WorkspaceHeader/WorkspaceHeader';
-import Link from 'next/link';
-const { manage } = routes
-const { workspace } = manage
 
 /**
  * Will list all the contributors for our workspace's missions
