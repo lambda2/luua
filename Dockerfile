@@ -42,6 +42,7 @@ RUN rm -rf /app/node_modules storage /usr/local/share/.cache/yarn log/* *.md tes
 
 ARG SENTRY_RELEASE=untagged
 ENV SENTRY_RELEASE=${SENTRY_RELEASE}
+ENV APP_REVISION=${SENTRY_RELEASE}
 
 ARG RAILS_MASTER_KEY=unset
 ENV RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
