@@ -22,7 +22,7 @@
 #
 class MessageVote < ApplicationRecord
   belongs_to :user
-  belongs_to :message
+  belongs_to :message, touch: true
 
   validates :message_id, uniqueness: { scope: %i[user_id] }
 

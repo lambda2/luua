@@ -30,7 +30,7 @@
 class MissionUser < ApplicationRecord
   include AASM
 
-  belongs_to :mission
+  belongs_to :mission, touch: true
   belongs_to :user
 
   has_many :workspace_histories, as: :resource

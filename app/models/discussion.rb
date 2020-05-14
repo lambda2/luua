@@ -30,7 +30,7 @@ class Discussion < ApplicationRecord
   friendly_id :name, use: :slugged
 
   belongs_to :user
-  belongs_to :resource, polymorphic: true, optional: true
+  belongs_to :resource, polymorphic: true, optional: true, touch: true
 
   has_many :messages, dependent: :destroy
 

@@ -55,7 +55,7 @@ class Mission < ApplicationRecord
   has_many :users, through: :mission_users
 
   belongs_to :organization, optional: true
-  belongs_to :workspace, counter_cache: true
+  belongs_to :workspace, counter_cache: true, touch: true
 
   has_many :workspace_histories, as: :resource
   has_many :notifications, as: :resource

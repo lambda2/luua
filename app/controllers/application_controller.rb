@@ -51,7 +51,7 @@ class ApplicationController < ActionController::API
 
     end_key = (key || "luua/#{params[:action] || 'gen'}/#{collection.cache_key}-#{collection.cache_version}")
 
-    last_modified ||= collection.respond_to?(:updated_at) ? collection.updated_at : collection.order(:updated_at).last.try(:updated_at)
+    last_modified ||= collection.respond_to?(:updated_at) ? collection.updated_at : collection.maximum(:updated_at)
 
     if stale?(etag: end_key, template: false, last_modified: last_modified) # rubocop:todo Style/GuardClause
       serialized_collection = Rails.cache.fetch(end_key) do

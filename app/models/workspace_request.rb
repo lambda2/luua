@@ -23,7 +23,7 @@ class WorkspaceRequest < ApplicationRecord
   include AASM
 
   belongs_to :user
-  belongs_to :workspace
+  belongs_to :workspace, touch: true
   has_many :notifications, as: :resource, dependent: :destroy
 
   enum status: %i[pending accepted rejected], _suffix: true

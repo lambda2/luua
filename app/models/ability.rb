@@ -61,6 +61,7 @@ class Ability
 
     can %i[show index], Message
     can :create, Message
+    can :vote, Message
     can %i[update destroy], Message, user_id: user.id
     can [:destroy], Message, discussion: { resource_type: 'Mission', resource: { workspace_id: user.admin_workspace_ids } }
     can [:destroy], Message, discussion: { resource_type: 'Workspace', resource_id: user.admin_workspace_ids }

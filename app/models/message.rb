@@ -25,8 +25,8 @@
 #
 class Message < ApplicationRecord
   belongs_to :user, optional: true
-  belongs_to :parent, optional: true, class_name: 'Message'
-  belongs_to :discussion, counter_cache: :messages_count
+  belongs_to :parent, optional: true, class_name: 'Message', touch: true
+  belongs_to :discussion, counter_cache: :messages_count, touch: true
   has_many :message_votes, dependent: :destroy
   validates :content, presence: true
 end

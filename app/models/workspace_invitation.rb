@@ -35,7 +35,7 @@ class WorkspaceInvitation < ApplicationRecord
   include ActiveModel::Validations
 
   belongs_to :user, optional: true
-  belongs_to :workspace
+  belongs_to :workspace, touch: true
   belongs_to :inviter, class_name: 'User'
 
   has_many :notifications, as: :resource, dependent: :destroy
