@@ -1,15 +1,11 @@
-# Changelog
 
-All notable changes to this project will be documented in this file.
+0.1.0 / 2020-05-14
+==================
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+  * Feat: Adding popups and additional step for user onboarding
+  * Feat: Anonymous users can see messages
+  * Feat: User can vote on discussion messages
+  * Feat: Adding workpaces discussions and messages
+  * Feat: add basic analytics with ahoy
 
-## [Unreleased]
 
-## [0.0.1] - 2020-04-22
-
-### Added
-- First scaffold of API routes and controllers
-- Basic roles
-- Basic user auth and JWT token generation
