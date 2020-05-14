@@ -1,0 +1,5 @@
+
+URL=https://api.luua.io/api
+
+$(URL)/workspaces.json
+$(URL)/missions.json
