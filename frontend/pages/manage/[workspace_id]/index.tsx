@@ -24,6 +24,10 @@ const ShowWorkspace = (
     `/api/workspaces/${query.workspace_id}/missions`, token, {}, {}
   )
 
+  const discussionsResponse = useCollection<LightDiscussion[]>(
+    `/api/workspaces/${query.workspace_id}/discussions?per_page=5`, token, {}, {}
+  )
+
   return (
     <NetworkBoundary {...workspaceResponse}>
       <WorkspaceHeader
@@ -34,6 +38,7 @@ const ShowWorkspace = (
         <NetworkBoundary {...missionsResponse}>
           <WorkspaceShow
             missions={missionsResponse!.data as LightMission[]}
+            discussions={discussionsResponse!.data as LightDiscussion[]}
             workspace={workspaceResponse!.data as Workspace}
           />
         </NetworkBoundary>

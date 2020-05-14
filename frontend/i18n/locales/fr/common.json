@@ -286,6 +286,7 @@
     "switching-workspace": "Changement d'espace...",
     "members": "Membre(s)",
     "missions": "Missions",
+    "latest-discussions": "Dernières discussions",
     "admin": "Admin",
     "member": "Membre",
     "description": "Description",
@@ -604,10 +605,24 @@
     "read-all": "Tout marquer comme lu",
     "read": "Marquer comme lu",
     "empty": "Aucune notification 🎉",
+    "discussion": {
+      "message": {
+        "created": {
+          "title": "@{{user.username}} a envoyé un message",
+          "content": ""
+        }
+      }
+    },
     "workspace": {
       "member": {
         "joined": {
           "title": "@{{user.username}} a rejoint l'espace {{workspace.name}}",
+          "content": ""
+        }
+      },
+      "discussion": {
+        "created": {
+          "title": "@{{user.username}} a crée une discussion '{{name}}'",
           "content": ""
         }
       },

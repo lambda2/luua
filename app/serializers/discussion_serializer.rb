@@ -34,5 +34,6 @@ class DiscussionSerializer < Panko::Serializer
   has_one :user, serializer: UserLightSerializer
   has_one :workspace, serializer: WorkspaceLightSerializer
   has_many :messages, serializer: MessageSerializer
+  has_many :participants, serializer: UserLightSerializer
 
 end

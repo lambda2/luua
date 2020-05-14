@@ -33,6 +33,8 @@ class Discussion < ApplicationRecord
   belongs_to :resource, polymorphic: true, optional: true, touch: true
 
   has_many :messages, dependent: :destroy
+  has_many :participants, -> { distinct }, through: :messages, source: :user
+  has_many :message_votes, through: :messages
 
   has_many :notifications, as: :resource, dependent: :destroy
 
@@ -80,6 +82,12 @@ class Discussion < ApplicationRecord
 
   def locked?
     !locked_at.nil?
+  end
+
+  # People to notify when new messages are published.
+  # @TODO create subscriptions later ?
+  def subscriber_ids
+    participant_ids
   end
 
   def workspace

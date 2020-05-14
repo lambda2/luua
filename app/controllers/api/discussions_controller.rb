@@ -11,7 +11,9 @@ class Api::DiscussionsController < ApiController
   def index
     @discussions = @discussions.search(params[:q]) if params[:q]
     @discussions = @discussions.available_for(current_user&.id) if params[:for_user]
-    @discussions = @discussions.page(params[:page])
+    @discussions = @discussions.order(order_params)
+    # @discussions = @discussions.page(params[:page])
+    @discussions = paginate(@discussions)
 
     respond_to do |format|
       format.json do
@@ -32,19 +34,6 @@ class Api::DiscussionsController < ApiController
     end
   end
 
-  # Apply for the discussion
-  # POST /api/discussions/id/apply
-  # def apply
-  #   application = ApplyToDiscussion.call(discussion: @discussion, user: current_user)
-  #   # @discussion_user = DiscussionUser.new(discussion: @discussion, user: current_user)
-  #   if application.success?
-  #     # WorkspaceHistory.track!(@workspace, @discussion_user, current_user)
-  #     render json: DiscussionUserSerializer.new.serialize(application.discussion_user)
-  #   else
-  #     render_error(application.messages, :unprocessable_entity)
-  #   end
-  # end
-
   # PATCH/PUT /api/discussions/id
   def update
     if @discussion.update(discussion_params)
@@ -57,14 +46,12 @@ class Api::DiscussionsController < ApiController
 
   # POST /api/discussions
   def create
-    @discussion = Discussion.new(discussion_params)
-    @discussion.user_id = current_user&.id
+    publish = PublishDiscussion.call(discussion_params: discussion_params, user: current_user)
 
-    if @discussion.save
-      WorkspaceHistory.track!(@discussion.workspace, @discussion, current_user)
-      render json: DiscussionSerializer.new.serialize(@discussion), status: :created
+    if publish.success?
+      render json: DiscussionSerializer.new.serialize(publish.discussion), status: :created
     else
-      render_error(@discussion.errors.messages, :unprocessable_entity)
+      render_error(publish.messages, :unprocessable_entity)
     end
   end
 
@@ -87,5 +74,13 @@ class Api::DiscussionsController < ApiController
 
   def set_workspace
     @workspace ||= @discussion&.workspace # rubocop:todo Naming/MemoizedInstanceVariableName
+  end
+
+  def order_params
+    return { updated_at: :desc } unless params[:order]
+
+    params[:order].split(',').reject(&:blank?).map do |o|
+      [o.gsub('-', '').to_sym, o.first == '-' ? :desc : :asc]
+    end.to_h
   end
 end

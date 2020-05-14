@@ -41,7 +41,7 @@ const MessageListItem = ({
 
   const renderMessageHeader = () => {
     return (<header>
-      <span className="username"><UserAvatarTooltip {...message.user} /></span>
+      <span className="username"><UserAvatarTooltip text {...message.user} /></span>
       {' '}
       <span className="datetime text-light">{moment(message.created_at).calendar()}</span>
       <div className="message-actions">

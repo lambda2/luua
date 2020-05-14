@@ -25,9 +25,13 @@
 #
 class MessageSerializer < Panko::Serializer
   attributes :id, :content, :parent_id, :user_id, :discussion_id,
-             :created_at, :updated_at,
+             :created_at, :updated_at, :workspace_id,
              :positive_vote_count, :negative_vote_count
 
   has_one :user, serializer: UserLightSerializer
   has_one :parent, serializer: MessageSerializer
+
+  def workspace_id
+    object&.discussion&.workspace&.id
+  end
 end

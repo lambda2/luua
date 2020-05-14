@@ -24,6 +24,7 @@ const DiscussionItem = ({ discussion }: Props) => {
     user,
     slug,
     workspace_id,
+    participants,
     // mission_category,
   } = discussion
 
@@ -45,10 +46,15 @@ const DiscussionItem = ({ discussion }: Props) => {
         <ul className="text-light">
           <li className="created-by">
             {/* <span>{t('discussion.created_by')}</span> */}
-            <UserAvatarTooltip image {...user} />
+            <UserAvatarTooltip text image {...user} />
           </li>
-          <li className="created-at">{icons.date} {t('discussion.created_at')} {moment(created_at).calendar().toLowerCase()}</li>
+          <li className="created-at">{icons.date} {moment(updated_at).calendar()}</li>
           <li className="messages-count">{icons.comments} {t('discussion.messages_count', {count: discussion.messages_count})}</li>
+          <li className="participants">
+
+            {participants.slice(0, 5).map(u => <UserAvatarTooltip text={false} image {...u} />)}
+          </li>
+
         </ul>
       </footer>
     </div>

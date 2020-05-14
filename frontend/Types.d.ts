@@ -12,6 +12,9 @@ type NotificationCode =
     'mission.candidate.accepted'    | // A candidate has been accepted on a mission
     'mission.candidate.completed'   | // A candidate has completed a mission
     'mission.candidate.reviewed'    | // A candidate has been reviewed on a mission
+    'workspace.member.joined'       | // A new member joined the workspace
+    'workspace.discussion.created'  | // A new discussion is created
+    'discussion.message.created'    | // A user posted a message
     'custom'                          // A custom content
 
 type WorkspaceInvitationStatus = 'pending' | 'accepted' | 'rejected'
@@ -289,6 +292,7 @@ declare interface LightDiscussion {
     slug: string
     // description: string
     user: BaseUser
+    participants: BaseUser[]
     resource_type: DiscussionResourceType
     resource_id: number
     workspace_id: number

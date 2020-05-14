@@ -35,10 +35,11 @@ class NotificationSerializer < Panko::Serializer
     when 'WorkspaceRequest'
       WorkspaceRequestSerializer.new.serialize(object.resource)
     when 'WorkspaceInvitation'
-      puts '~~~~~~~~~~~~ß'
-      puts object.inspect
-      puts object.resource.inspect
       WorkspaceInvitationSerializer.new.serialize(object.resource)
+    when 'Discussion'
+      DiscussionLightSerializer.new.serialize(object.resource)
+    when 'Message'
+      MessageSerializer.new.serialize(object.resource)
     end
   end
 end

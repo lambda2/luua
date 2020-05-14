@@ -39,8 +39,14 @@
       padding: 0;
 
       li {
-        padding-right: @space-l;
+        padding-right: @space-m;
         // padding-bottom: @space-s;
+
+        &.participants {
+          & > span {
+            margin-right: @space-s;
+          }
+        }
 
         &.created-by {
           display: flex;

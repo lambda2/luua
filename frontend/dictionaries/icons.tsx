@@ -27,6 +27,7 @@ import {
   faTimesCircle,
   faCheckCircle,
   faComments,
+  faClock,
   faPaperPlane,
 } from '@fortawesome/free-regular-svg-icons'
 
@@ -43,7 +44,6 @@ import {
   faUser,
   faDotCircle,
   faGlassCheers,
-  faClock,
   faChevronUp,
   faChevronDown,
   faPlus,

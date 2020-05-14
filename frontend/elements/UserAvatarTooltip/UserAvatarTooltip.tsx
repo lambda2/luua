@@ -9,6 +9,7 @@ import momentWithLocale from '../../i18n/moment';
 
 interface Props {
   image?: boolean
+  text?: boolean
   thumb_url?: string
   admin?: string
   role?: string
@@ -22,6 +23,7 @@ interface Props {
  */
 const UserAvatarTooltip: React.FC<Props> = ({
   image,
+  text = false,
   thumb_url,
   admin,
   role,
@@ -64,7 +66,7 @@ const UserAvatarTooltip: React.FC<Props> = ({
     <Popover className="UserAvatarTooltip" content={PopupContent} title={PopupTitle}>
       <span>
         {image && <UserMessageAvatar inline size="small" name={username} src={thumb_url} />}
-        {(first_name && last_name) ? `${first_name} ${last_name}` : username}
+        {text && ((first_name && last_name) ? `${first_name} ${last_name}` : username)}
       </span>
     </Popover>
 

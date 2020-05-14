@@ -53,6 +53,8 @@ class Notification < ApplicationRecord
     'workspace.request.rejected' => 14,     # A user request to join a workspace has been rejected
     'workspace.request._accepted' => 15,    # Placeholder for a user request to join a workspace has been accepted
     'workspace.request._rejected' => 16,    # Placeholder for a user request to join a workspace has been rejected
+    'workspace.discussion.created' => 17,   # A user posted a discussion
+    'discussion.message.created' => 18,     # A user posted a message
     'custom' => 100                         # A custom message
   }, _suffix: true
 

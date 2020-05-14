@@ -71,7 +71,9 @@ const WorkspaceHeader = ({
 
     return (<Dropdown key="dropdown" overlay={menu}>
       <Button type="link">
-        {icons.down}
+        {/* {icons.plus}
+        {' '} */}
+        <span className="text-light">{' '}{icons.down}</span>
       </Button>
     </Dropdown>)
   }

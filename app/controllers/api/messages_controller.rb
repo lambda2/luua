@@ -42,14 +42,12 @@ class Api::MessagesController < ApiController
 
   # POST /api/messages
   def create
-    @message = Message.new(message_params)
-    @message.user = current_user
+    publish = PostMessage.call(message_params: message_params, user: current_user)
 
-    if @message.save
-      # WorkspaceHistory.track!(@discussion, @message, current_user)
-      render json: MessageSerializer.new.serialize(@message), status: :created
+    if publish.success?
+      render json: MessageSerializer.new.serialize(publish.message), status: :created
     else
-      render_error(@message.errors.messages, :unprocessable_entity)
+      render_error(publish.messages, :unprocessable_entity)
     end
   end
 

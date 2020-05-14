@@ -7,13 +7,15 @@ import PageSection from '../../elements/PageSection/PageSection';
 import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
 import MessageBox from '../../elements/MessageBox/MessageBox';
 import MissionList from '../MissionList/MissionList';
+import DiscussionList from '../DiscussionList/DiscussionList';
 
 interface Props {
   workspace: Workspace,
   missions?: LightMission[]
+  discussions?: LightDiscussion[]
 }
 
-const WorkspaceShow = ({ workspace, missions }: Props) => {
+const WorkspaceShow = ({ workspace, missions, discussions }: Props) => {
 
   const { t } = useLocale()
 
@@ -24,6 +26,9 @@ const WorkspaceShow = ({ workspace, missions }: Props) => {
         <MarkdownContent content={workspace.description} />
       </PageSection>
 
+      <PageSection title={t('workspace.latest-discussions')}>
+        <DiscussionList data={discussions as LightDiscussion[]} />
+      </PageSection>
       {/* <div>
         Membership: <b>{workspace.membership}</b>
       </div>
@@ -38,13 +43,13 @@ const WorkspaceShow = ({ workspace, missions }: Props) => {
         <WorkspaceMissionList data={missions || workspace.missions} />
       </PageSection> */}
 
-      <PageSection title={t('workspace.missions')}>
+      {missions && missions?.length > 0 && <PageSection title={t('workspace.missions')}>
         <MissionList activeWorkspace={workspace?.id} data={missions as LightMission[]} />
-      </PageSection>
+      </PageSection>}
 
-      <PageSection title={t('workspace.applicants')}>
+      {/* <PageSection title={t('workspace.applicants')}>
 
-      </PageSection>
+      </PageSection> */}
 
   </>)
 }
