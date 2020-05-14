@@ -29,7 +29,9 @@ export const signupWithCredentials = async (
     data: { user },
   })
   if (status < 300) {
-    login(headers.authorization, { status: 'welcome' })
+    cookie.set('token', headers.authorization, { expires: 1 })
+    // login(headers.authorization, { status: 'welcome' })
+    return data
   } else {
     // https://github.com/developit/unfetch#caveats
     throw new NetworkError(`${status}`, data)

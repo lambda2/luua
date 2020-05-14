@@ -20,10 +20,7 @@ interface Props {
 const SignupForm = (props: Props) => {
 
   const { t } = useLocale()
-  const Yup = YupWithLocale()
-
-  console.log({ Yup });
-  
+  const Yup = YupWithLocale()  
 
   const formItemLayout = {
     labelCol: {
@@ -116,7 +113,8 @@ const SignupForm = (props: Props) => {
           )}
         </Formik>
         <MessageBox>
-          <span>{t('form.user.sign-up.no-account')}{' '}</span><Link {...ROUTES.users.signup()}>{t('form.user.sign-up.submit')}</Link>
+          <span>{t('form.user.sign-up.no-account')}{' '}</span>
+          <Link {...ROUTES.users.signup()}><a>{t('form.user.sign-up.submit')}</a></Link>
         </MessageBox>
       </PageSection>
     </div>)

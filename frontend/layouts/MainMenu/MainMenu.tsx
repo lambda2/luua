@@ -31,7 +31,7 @@ const MainMenu: React.FC<Props> = () => {
         }
       </li>}
       {currentUser && !activeWorkspace && <li key="/manage">
-        <Link {...manage.index()}><a>{t('menu.manage')}</a></Link>
+        <Link {...manage.index()}><a>{t('menu.no-workspace')}</a></Link>
       </li>}
 
       <li className="pusher"></li>

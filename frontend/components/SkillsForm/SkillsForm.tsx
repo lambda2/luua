@@ -33,14 +33,18 @@ const AutoSave = ({ debounceMs }: { debounceMs: number }) => {
   }, [debouncedSubmit, formik.dirty]);
 
   return (
-    <>
-      {!!formik.isSubmitting
-        ? icons.loading
-        : lastSaved !== null
-          ? t('generics.saved')
-          : null}
-    </>
+    <></>
   );
+
+  // return (
+  //   <>
+  //     {!!formik.isSubmitting
+  //       ? icons.loading
+  //       : lastSaved !== null
+  //         ? null
+  //         : null}
+  //   </>
+  // );
 };
 
 
@@ -72,18 +76,20 @@ const SkillsForm = () => {
         }
       }}
     >
-      {() => (
+      {({values}) => (
           <Form layout="vertical">
-              <small style={{ color: 'gray', fontSize: 11 }}>
-                <AutoSave debounceMs={300} />
-              </small>
 
             <ErrorMessage name="globalErrors" />
+
+            {values.user_skills_attributes.length === 0 && <p className="text-light">
+              {t('skill.no-skills-yet.title')}
+            </p>}
 
             <UserSkillsSelect
               addLabel={t('form.skill.add-skill')}
               name="user_skills_attributes"
             />
+            <AutoSave debounceMs={300} />
           </Form>
         )}
     </Formik>

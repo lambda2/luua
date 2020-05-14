@@ -42,6 +42,7 @@ declare interface User extends BaseUser {
 
 declare interface AuthedUser extends User {
     admin: boolean,
+    country_id: number,
     jti: string,
     provider: string | null
     token: string

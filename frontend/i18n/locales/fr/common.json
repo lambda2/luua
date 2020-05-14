@@ -7,6 +7,7 @@
     "for": "pour",
     "yourself": "C'est vous",
     "since": "depuis",
+    "optional": "optionel",
     "collection": {
       "empty": "Aucun élément"
     }
@@ -14,6 +15,7 @@
   "menu": {
     "explore": "Explorer",
     "manage": "Espaces",
+    "no-workspace": "Mes espaces",
     "summary": "Résumé",
     "workspaces": "Espaces",
     "missions": "Missions",
@@ -245,7 +247,8 @@
   },
   "user": {
     "profile": "Profil",
-    "member-since": "Inscrit"
+    "member-since": "Inscrit",
+    "complete-infos": "Quelques infos supplémentaires"
   },
   "workspace": {
     "create": {
@@ -318,6 +321,7 @@
       },
       "edit": {
         "submit": "Mettre à jour",
+        "skip": "Passer cette étape",
         "title": "Modifier mon profil"
       },
       "username": {

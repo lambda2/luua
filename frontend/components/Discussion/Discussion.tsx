@@ -40,6 +40,7 @@ const Discussion = ({
     messagesEndpoint, page, (token || currentUser?.jwt)
   )
 
+  // @TODO this hits the browser cache each time the user is voting
   const votesResponse = useCollection<MessageVote[]>(
     votesEndpoint, (token || currentUser?.jwt)
   )

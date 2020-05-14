@@ -7,14 +7,21 @@ import { errorsFromResponse } from '../../utils/forms/helpers';
 import icons from '../../dictionaries/icons';
 import SubmitButton from '../../elements/SubmitButton/SubmitButton';
 import YupWithLocale from '../../utils/forms/yup';
-import { Tooltip } from 'antd';
+import { Tooltip, Button } from 'antd';
 import UploadAvatar from '../../elements/UploadAvatar/UploadAvatar';
 import { FormCountrySelect } from '../CountrySelect/CountrySelect';
 import Router from 'next/router';
 import { useLocale } from '../../hooks/useLocale';
 
+interface Props {
+  onSave: () => void
+  onSkip: () => void
+}
 
-const UserEditForm = () => {
+const UserEditPopupForm = ({
+  onSave,
+  onSkip
+}: Props) => {
   const { t } = useLocale()
   const Yup = YupWithLocale()
 
@@ -34,55 +41,32 @@ const UserEditForm = () => {
     // timezone: Yup.string().nullable(),
   });
 
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 8 },
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 16 },
-    },
-  };
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0,
-      },
-      sm: {
-        span: 16,
-        offset: 8,
-      },
-    },
-  };
-
   const onUpload = (elt: any) => {
     console.log("onUpload", { elt });
   }
 
   return (
-  <div>
-    <Formik
+    <div>
+      <Formik
         initialValues={{ remove_image: false, ...currentUser, country_id: `${currentUser?.country_id}` }}
         onSubmit={async (values, { setErrors }) => {
-        try {
-          const data = await update(values)
-          console.log("After save: ", { data });
-          Router.push('/profile', `/profile`, { shallow: true })
-        } catch (error) {
-          setErrors(errorsFromResponse(error.response))
-        }
-      }}
-      validationSchema={EditSchema}
-    >
+          try {
+            const data = await update(values)
+            console.log("After save: ", { data });
+            onSave()
+          } catch (error) {
+            setErrors(errorsFromResponse(error.response))
+          }
+        }}
+        validationSchema={EditSchema}
+      >
         {({ errors, isValid, isSubmitting, dirty, submitCount }) => (
-          <Form {...formItemLayout} scrollToFirstError>
+          <Form scrollToFirstError>
             <ErrorMessage name="globalErrors" />
 
-            <Form.Item label={t('form.user.username.label')} name='username'>
+            {/* <Form.Item label={t('form.user.username.label')} name='username'>
               <Input disabled name="username" placeholder={t('form.user.username.placeholder')} />
-            </Form.Item>
+            </Form.Item> */}
 
             <Form.Item label={t('form.user.first_name.label')} name='first_name'>
               <Input name="first_name" placeholder={t('form.user.first_name.placeholder')} />
@@ -104,27 +88,30 @@ const UserEditForm = () => {
             </Form.Item>
 
             <Form.Item label={t('form.user.country.label')} name='country_id'>
-              <FormCountrySelect name="country_id" placeholder={t('form.user.country.placeholder')}/>
+              <FormCountrySelect name="country_id" placeholder={t('form.user.country.placeholder')} />
             </Form.Item>
 
             {/* <Form.Item label={t('form.user.timezone.label')} name='timezone'>
-              <Input name="timezone" placeholder={t('form.user.timezone.placeholder')} />
-            </Form.Item> */}
+                <Input name="timezone" placeholder={t('form.user.timezone.placeholder')} />
+              </Form.Item> */}
 
-            <Form.Item name="end" {...tailFormItemLayout}>
-              <SubmitButton
-                isSubmitting={isSubmitting}
-                dirty={dirty}
-                submitCount={submitCount}
-                isValid={isValid}
-                label={t('form.user.edit.submit')}
-              />
-            </Form.Item>
-
-            </Form>
+            <Form.Item name="end">
+              <footer style={{display: 'flex', justifyContent: 'space-between'}}>
+                <Button type="link" onClick={onSkip}>{t('form.user.edit.skip')}</Button>
+                <SubmitButton
+                  isSubmitting={isSubmitting}
+                  dirty={dirty}
+                  submitCount={submitCount}
+                  isValid={isValid}
+                  label={t('form.user.edit.submit')}
+                />
+              </footer>
+              </Form.Item>
+          </Form>
         )}
-    </Formik>
-  </div>)
+      </Formik>
+    </div>
+  )
 }
 
-export default UserEditForm
+export default UserEditPopupForm

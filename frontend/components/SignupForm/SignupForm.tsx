@@ -12,6 +12,7 @@ import PageSection from '../../elements/PageSection/PageSection';
 import MessageBox from '../../elements/MessageBox/MessageBox';
 import Link from 'next/link';
 import ROUTES from '../../routes/routes';
+import Router from 'next/router';
 
 const SignupForm = () => {
 
@@ -83,6 +84,8 @@ const SignupForm = () => {
               values.password || '',
               values.password_confirmation || ''
             )
+            Router.push('/profile/setup/complete-infos')
+            
           } catch (error) {
             console.log({ error });
             console.log({ errors: errorsFromResponse(error.response) });

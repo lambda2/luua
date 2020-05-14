@@ -49,16 +49,16 @@ const UserHeader = ({
       <li className={classNames({ active: active == 'summary' })} key="/profile">
         <Link {...ROUTES.users.profile()}><a>{t('menu.summary')}</a></Link>
       </li>
-      <li className={classNames({ active: active == 'skills' })} key="/profile/skills">
+      {/* <li className={classNames({ active: active == 'skills' })} key="/profile/skills">
         <Link {...ROUTES.users.skills()}><a>{t('menu.skills')}</a></Link>
-      </li>
+      </li> */}
       <li className={classNames({ active: active == 'notifications' })} key="/profile/notifications">
         <Link {...ROUTES.users.notifications()}><a>{t('menu.notifications')}</a></Link>
       </li>
-      <li className="spacer"></li>
+      <li className="pusher"></li>
 
       <li className={classNames({ active: active == 'edit' })} key="/profile/edit">
-        <Link {...ROUTES.users.edit()}><a>{t('menu.edit')}</a></Link>
+        <Link {...ROUTES.users.edit()}><a>{t('menu.settings')}</a></Link>
       </li>
 
     </ul>

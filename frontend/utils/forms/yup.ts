@@ -13,10 +13,7 @@ const locales: any = {
 
 const YupWithLocale = () => {
   const { language } = useLocale()
-
   const lang = language || 'fr'
-  console.log("Yup is ", lang);
-  
   Yup.setLocale(locales[lang])
 
   return Yup

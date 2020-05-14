@@ -29,10 +29,10 @@ const UserProfile = (user: AuthedUser) => {
   <>
 
     <PageSection title={t('menu.skills')}>
-      {user_skills.length === 0 && <p>
-          {t('skill.no-skills-yet.title')}. <Link {...users.skills()}><a>{t('skill.no-skills-yet.add-now')}</a></Link>
-      </p>}
-        <SkillsForm />
+      {/* {user_skills.length === 0 && <p>
+          {t('skill.no-skills-yet.title')}
+      </p>} */}
+      <SkillsForm />
       {/* {user_skills.length > 0 && <div>
         <ul>{user_skills.map((s: UserSkill) => <li key={s.id}>{s.name}</li>)}</ul>
           <Link {...routes.users.skills()}><a>{t('form.skill.edit-skill')}</a></Link>
