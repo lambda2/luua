@@ -9,7 +9,7 @@ describe Api::SkillsController do # rubocop:todo Metrics/BlockLength
   let(:user) { create(:user, :confirmed) }
 
   before :each do
-    expect(Skill.count).to eq(0)
+    # expect(Skill.count).to eq(0)
     FactoryBot.create_list(:skill, 3, skill_category: category)
   end
 
