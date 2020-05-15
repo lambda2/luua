@@ -3,7 +3,7 @@
 # Table name: message_votes
 #
 #  id         :bigint           not null, primary key
-#  vote       :integer          default(0), not null
+#  vote       :integer          default("positive"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  message_id :bigint           not null

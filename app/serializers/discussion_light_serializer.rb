@@ -5,6 +5,7 @@ class DiscussionLightSerializer < Panko::Serializer
 
   has_one :user, serializer: UserLightSerializer
   has_one :workspace, serializer: WorkspaceLightSerializer
+  has_one :discussion_category, serializer: DiscussionCategorySerializer
   has_many :participants, serializer: UserLightSerializer
 
   def workspace_id

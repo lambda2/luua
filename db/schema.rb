@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_12_213704) do
+ActiveRecord::Schema.define(version: 2020_05_15_110333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,18 @@ ActiveRecord::Schema.define(version: 2020_05_12_213704) do
     t.index ["slug"], name: "index_countries_on_slug", unique: true
   end
 
+  create_table "discussion_categories", force: :cascade do |t|
+    t.bigint "workspace_id", null: false
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.string "icon"
+    t.string "color"
+    t.integer "category", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["workspace_id"], name: "index_discussion_categories_on_workspace_id"
+  end
+
   create_table "discussions", force: :cascade do |t|
     t.string "name", null: false
     t.string "slug", null: false
@@ -82,6 +94,8 @@ ActiveRecord::Schema.define(version: 2020_05_12_213704) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "messages_count", default: 0, null: false
+    t.bigint "discussion_category_id"
+    t.index ["discussion_category_id"], name: "index_discussions_on_discussion_category_id"
     t.index ["resource_type", "resource_id"], name: "index_discussions_on_resource_type_and_resource_id"
     t.index ["user_id"], name: "index_discussions_on_user_id"
   end
@@ -445,6 +459,8 @@ ActiveRecord::Schema.define(version: 2020_05_12_213704) do
   end
 
   add_foreign_key "countries", "regions"
+  add_foreign_key "discussion_categories", "workspaces"
+  add_foreign_key "discussions", "discussion_categories"
   add_foreign_key "discussions", "users"
   add_foreign_key "message_votes", "messages"
   add_foreign_key "message_votes", "users"

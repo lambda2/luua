@@ -29,6 +29,7 @@ import {
   faComments,
   faClock,
   faPaperPlane,
+  faLightbulb,
 } from '@fortawesome/free-regular-svg-icons'
 
 import {
@@ -47,6 +48,7 @@ import {
   faChevronUp,
   faChevronDown,
   faPlus,
+  faBug,
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -69,12 +71,17 @@ library.add(
   faCheckCircle,
 )
 
+const isEmoji = (str: string): boolean => {
+  return str.match(/(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/) !== null
+}
+
 export {
   faTrashAlt,
   faEyeSlash,
   faLock,
   faPencilAlt,
   faEye,
+  isEmoji,
 };
 
 export default {
@@ -89,6 +96,8 @@ export default {
   "down": <FontAwesomeIcon className="menu-icon" icon={faChevronDown} />,
   "plus": <FontAwesomeIcon className="menu-icon" icon={faPlus} />,
   "send": <FontAwesomeIcon className="menu-icon" icon={faPaperPlane} />,
+  "bug": <FontAwesomeIcon className="menu-icon" icon={faBug} />,
+  "idea": <FontAwesomeIcon className="menu-icon" icon={faLightbulb} />,
   "glass": <FontAwesomeIcon className="menu-icon" icon={faGlassCheers} />,
   "loading": < FontAwesomeIcon icon ={faSpinner} spin />,
   "comments": <FontAwesomeIcon className="menu-icon" icon={faComments} />,

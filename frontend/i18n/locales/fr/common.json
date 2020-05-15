@@ -430,10 +430,16 @@
     "discussion": {
       "update": "Mettre à jour la discussion",
       "submit": "Créer une discussion",
+      "edit": "Éditer",
       "name": {
         "label": "Nom",
         "hint": "Le sujet de la discussion",
         "placeholder": "Ex: Les avantages d'une farine complète"
+      },
+      "discussion_category_id": {
+        "label": "Catégorie",
+        "hint": "",
+        "placeholder": ""
       },
       "description": {
         "label": "Description",

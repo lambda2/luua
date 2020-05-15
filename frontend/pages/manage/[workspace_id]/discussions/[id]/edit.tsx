@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { NextPageContext } from 'next'
 
 import { useCollection, fetchInitialData } from '../../../../../utils/http'
-import { withAuthSync } from '../../../../../utils/auth'
+import { withAuthSync, withUserToken } from '../../../../../utils/auth'
 
 import NetworkBoundary from '../../../../../components/NetworkBoudary/NetworkBoudary'
 import MissionForm from '../../../../../components/MissionForm/MissionForm';
@@ -11,19 +11,20 @@ import ContentLayout from '../../../../../layouts/ContentLayout/ContentLayout'
 import { useContext } from 'react'
 import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
 import WorkspaceHeader from '../../../../../components/WorkspaceHeader/WorkspaceHeader'
+import DiscussionForm from '../../../../../components/DiscussionForm/DiscussionForm'
+import discussion from '../../missions/[id]/discussion'
 
 /**
- * Edit a mission
+ * Edit the requested discussion
  */
-const Mission = (
+const EditDiscussion = (
   { initialData, token }:
-  { initialData: Mission, token?: string }
+    { initialData: Discussion, token?: string }
 ) => {
   const { query } = useRouter()
   const { currentWorkspace } = useContext(WorkspaceContext)
-
-  const { status, data, error } = useCollection<Mission>(
-    `/api/missions/${query.id}`, token, {}, { initialData }
+  const { status, data, error } = useCollection<Discussion>(
+    `/api/discussions/${query.id}`, token, {}, { initialData }
   )
 
   return (
@@ -33,16 +34,14 @@ const Mission = (
         active='discussions'
       />}
       <ContentLayout>
-      {data && <div>
-        <MissionForm mission={data} />
-      </div>}
+        <DiscussionForm discussion={data}/>
       </ContentLayout>
     </NetworkBoundary>
   )
 }
 
-Mission.getInitialProps = async (ctx: NextPageContext) => {
-  return await fetchInitialData<Mission>(ctx, `/api/missions/${ctx.query.id}`)
+EditDiscussion.getInitialProps = async (ctx: NextPageContext) => {
+  return await fetchInitialData<Discussion>(ctx, `/api/discussions/${ctx.query.id}`)
 }
 
-export default withAuthSync(Mission)
+export default withUserToken(EditDiscussion)

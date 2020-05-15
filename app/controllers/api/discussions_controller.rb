@@ -63,6 +63,7 @@ class Api::DiscussionsController < ApiController
       :description,
       :visibility,
       :user_id,
+      :discussion_category_id,
       :resource_type,
       :resource_id,
       :created_at,

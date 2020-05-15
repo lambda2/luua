@@ -16,6 +16,10 @@ import PageSection from '../../elements/PageSection/PageSection';
 import { vote } from '../../api/message';
 import { useCollection } from '../../utils/http';
 import NetworkBoundary from '../NetworkBoudary/NetworkBoudary';
+import Title from '../../elements/Title/Title';
+import DiscussionCategoryBadge from '../../elements/DiscussionCategoryBadge/DiscussionCategoryBadge';
+import ROUTES from '../../routes/routes';
+import Link from 'next/link';
 
 interface Props {
   discussion?: LightDiscussion
@@ -122,11 +126,17 @@ const Discussion = ({
   return (
     <div className="Discussion">
 
-      <PageTitle title={discussion?.name}>
-        {/* {can(currentUser, 'mission.create', currentWorkspace) && <Link {...manage.workspace.missions.new(`${query.workspace_id}`)}>
-          <a>{t('mission.create.title')}</a>
-        </Link>} */}
-      </PageTitle>
+      <header className="PageTitle DiscussionTitle">
+        <Title level={"3"}>
+          {discussion?.discussion_category && <DiscussionCategoryBadge size="large" text category={discussion?.discussion_category} />}
+          {discussion?.name}
+        </Title>
+        <aside>
+          {discussion && can(currentUser, 'discussion.edit', discussion) &&
+            <Link {...ROUTES.manage.workspace.discussions.edit(discussion?.workspace_id, discussion?.slug)}>{t(('form.discussion.edit'))}</Link>
+          }
+        </aside>
+      </header>
 
       {/* <NetworkBoundary {...votesResponse}> */}
         <Paginated

@@ -30,6 +30,20 @@ class Api::WorkspacesController < ApiController
     end
   end
 
+  def categories
+    @discussion_categories = @workspace.discussion_categories
+    @discussion_categories = @discussion_categories.search(params[:q]) if params[:q]
+    @discussion_categories = @discussion_categories.page(params[:page])
+
+    respond_to do |format|
+      format.json do
+        respond_with_cache(@discussion_categories) do
+          Panko::ArraySerializer.new(@discussion_categories, each_serializer: DiscussionCategorySerializer).to_json
+        end
+      end
+    end
+  end
+
   def show
     respond_to do |format|
       format.json do

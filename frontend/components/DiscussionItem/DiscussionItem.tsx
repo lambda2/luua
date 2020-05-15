@@ -7,6 +7,7 @@ import momentWithLocale from '../../i18n/moment';
 import icons from '../../dictionaries/icons';
 import UserAvatarTooltip from '../../elements/UserAvatarTooltip/UserAvatarTooltip';
 import UserAvatar from '../../elements/UserAvatar/UserAvatar';
+import DiscussionCategoryBadge from '../../elements/DiscussionCategoryBadge/DiscussionCategoryBadge';
 
 const { manage } = routes
 
@@ -25,6 +26,7 @@ const DiscussionItem = ({ discussion }: Props) => {
     slug,
     workspace_id,
     participants,
+    discussion_category,
     // mission_category,
   } = discussion
 
@@ -35,6 +37,8 @@ const DiscussionItem = ({ discussion }: Props) => {
   return (
     <div className="DiscussionItem">
       <h5>
+        {discussion_category && <DiscussionCategoryBadge size="small" text category={discussion_category} />}
+
         <Link key={id} {...manage.workspace.discussions.show(workspace_id, slug)}>
           <a>
             {name}

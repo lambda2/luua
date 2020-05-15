@@ -55,11 +55,15 @@ class Workspace < ApplicationRecord
   has_many :mission_users, through: :missions
 
   has_many :projects, dependent: :destroy
+  
   has_many :priorities, dependent: :destroy
+  
+  has_many :discussion_categories, dependent: :destroy
 
   validates :name, uniqueness: true
 
   after_create :create_default_priorities!
+  after_create :create_default_discussion_categories!
   before_validation :generate_slug
   before_destroy :roll_default_workspaces
 
@@ -83,6 +87,12 @@ class Workspace < ApplicationRecord
     return unless priorities.empty?
 
     Priority.defaults!(id)
+  end
+
+  def create_default_discussion_categories!
+    return unless discussion_categories.empty?
+
+    DiscussionCategory.defaults!(id)
   end
 
   def roll_default_workspaces

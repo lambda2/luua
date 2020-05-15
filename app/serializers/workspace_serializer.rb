@@ -36,6 +36,7 @@ class WorkspaceSerializer < Panko::Serializer
   # has_many :discussions, serializer: DiscussionLightSerializer
   has_many :mission_users, serializer: MissionUserLightSerializer
   has_many :workspace_users, serializer: WorkspaceUserSerializer
+  has_many :discussion_categories, serializer: DiscussionCategorySerializer
 
   def image_url
     object.image_url

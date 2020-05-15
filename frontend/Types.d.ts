@@ -140,6 +140,19 @@ declare interface Workspace extends LightWorkspace {
     workspace_users: WorkspaceUser[]
     organization: LightOrganization
     mission_users: LightMissionUser[]
+    discussion_categories: DiscussionCategory[]
+}
+
+declare interface DiscussionCategory {
+    id: number
+    workspace_id: number
+    name: string
+    slug: string
+    icon?: string
+    color?: string
+    category: string
+    created_at: string
+    updated_at: string
 }
 
 declare interface UserSkill {
@@ -296,6 +309,7 @@ declare interface LightDiscussion {
     resource_type: DiscussionResourceType
     resource_id: number
     workspace_id: number
+    discussion_category: DiscussionCategory
     messages_count: number
     created_at: string
     updated_at: string

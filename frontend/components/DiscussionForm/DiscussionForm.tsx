@@ -3,7 +3,7 @@ import { ErrorMessage, Formik } from 'formik';
 import UserContext from '../../contexts/UserContext';
 import { createOrUpdate } from '../../api/discussion';
 import { errorsFromResponse } from '../../utils/forms/helpers';
-import { Form, Input } from 'formik-antd'
+import { Form, Input, Select } from 'formik-antd'
 import YupWithLocale from '../../utils/forms/yup';
 import SubmitButton from '../../elements/SubmitButton/SubmitButton';
 import icons from '../../dictionaries/icons';
@@ -12,6 +12,7 @@ import { useLocale } from '../../hooks/useLocale';
 import Router from 'next/router';
 import routes from '../../routes/routes'
 import TextArea from '../../elements/TextArea/TextArea';
+import FormDiscussionCategorySelect from '../DiscussionCategorySelect/DiscussionCategorySelect';
 
 interface Props {
   discussion?: Discussion
@@ -33,6 +34,7 @@ const DiscussionForm = ({ discussion, redirectOnSave, workspace }: Props) => {
   const initialValues = {
     id: discussion?.id,
     name: discussion?.name || '',
+    discussion_category_id: discussion?.discussion_category?.id?.toString(),
     description: '',
     resource_type: discussion?.resource_type || 'Workspace',
     resource_id: discussion?.resource_id || workspace?.id,
@@ -43,6 +45,7 @@ const DiscussionForm = ({ discussion, redirectOnSave, workspace }: Props) => {
     name: Yup.string().min(2).required(),
     description: Yup.string(),
   });
+
 
   return (
   <div>
@@ -75,15 +78,23 @@ const DiscussionForm = ({ discussion, redirectOnSave, workspace }: Props) => {
             <Form layout="vertical" scrollToFirstError>
               <ErrorMessage name="globalErrors" />
               
-              <Form.Item label={t('form.discussion.name.label')} name='name'>
-                <Input prefix={<Tooltip title={t('form.discussion.name.hint')}>
-                  {icons.question}
-                </Tooltip>} name="name" placeholder={t('form.discussion.name.placeholder')} />
-              </Form.Item>
+              <div className="form-group">
+                <Form.Item className="form-group-constraint" label={t('form.discussion.discussion_category_id.label')} name='discussion_category_id'>
+                  <FormDiscussionCategorySelect
+                    name="discussion_category_id"
+                    workspace_id={workspace?.id || discussion?.resource_id || 0}
+                  />
+                </Form.Item>
+                <Form.Item className="form-group-expanded"  label={t('form.discussion.name.label')} name='name'>
+                  <Input prefix={<Tooltip title={t('form.discussion.name.hint')}>
+                    {icons.question}
+                  </Tooltip>} name="name" placeholder={t('form.discussion.name.placeholder')} />
+                </Form.Item>
+              </div>
 
-              <Form.Item label={t('form.discussion.description.label')} name='description'>
+              {!discussion?.id && <Form.Item label={t('form.discussion.description.label')} name='description'>
                 <TextArea name="description" />
-              </Form.Item>
+              </Form.Item>}
 
               <Form.Item name="end">
                 <SubmitButton
