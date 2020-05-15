@@ -16,7 +16,7 @@ class PostMessage
       # )
 
       # And we notify the discussion participants
-      to_notify = message.discussion.subscriber_ids
+      to_notify = message.discussion.subscriber_ids - [message.user_id]
       puts "Notifying #{to_notify.inspect}"
       [*to_notify].compact.map do |uid|
         Notification.create!(
