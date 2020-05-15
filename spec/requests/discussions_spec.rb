@@ -5,7 +5,6 @@ require 'devise/jwt/test_helpers'
 
 describe Api::DiscussionsController do # rubocop:todo Metrics/BlockLength
 
-
   before :each do
     expect(Discussion.count).to eq(0)
     FactoryBot.create_list(:discussion, 3)
@@ -41,7 +40,6 @@ describe Api::DiscussionsController do # rubocop:todo Metrics/BlockLength
       end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
-
 
   describe '#update' do
 

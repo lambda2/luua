@@ -1,4 +1,3 @@
-
 FactoryBot.define do
 
   factory :message, class: Message do

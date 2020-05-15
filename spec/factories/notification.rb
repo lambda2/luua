@@ -1,4 +1,3 @@
-
 FactoryBot.define do
 
   factory :notification, class: Notification do
@@ -6,5 +5,5 @@ FactoryBot.define do
     association :resource, factory: :mission
     user
   end
-  
- end
+
+end

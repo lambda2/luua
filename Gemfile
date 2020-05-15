@@ -37,8 +37,8 @@ gem 'sidekiq-cron', '~> 0.6.3'
 
 gem 'interactor-rails', '~> 2.2.1'
 
-gem 'friendly_id', '~> 5.2.5'
 gem 'counter_culture', '~> 2.0'
+gem 'friendly_id', '~> 5.2.5'
 
 # analytics
 gem 'ahoy_matey'

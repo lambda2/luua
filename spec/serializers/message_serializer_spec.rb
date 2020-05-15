@@ -1,4 +1,3 @@
-
 require 'rails_helper'
 
 describe MessageSerializer do
@@ -23,4 +22,3 @@ describe MessageSerializer do
     expect(serialized.count).to eq(messages.count)
   end
 end
-

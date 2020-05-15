@@ -1,4 +1,3 @@
-
 require 'rails_helper'
 
 describe WorkspaceInvitationSerializer do
@@ -23,4 +22,3 @@ describe WorkspaceInvitationSerializer do
     expect(serialized.count).to eq(workspace_invitations.count)
   end
 end
-

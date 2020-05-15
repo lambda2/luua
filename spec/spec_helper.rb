@@ -2,14 +2,12 @@ require 'simplecov'
 require 'coveralls'
 
 # Coveralls on the CI only
-unless ENV['LIGHT_SEED']
-  SimpleCov.formatter = Coveralls::SimpleCov::Formatter
-end
+SimpleCov.formatter = Coveralls::SimpleCov::Formatter unless ENV['LIGHT_SEED']
 
 SimpleCov.start 'rails' do
-  add_group "Interactors", "app/interactors"
-  add_group "Serializers", "app/serializers"
-  add_group "Uploaders", "app/uploaders"
+  add_group 'Interactors', 'app/interactors'
+  add_group 'Serializers', 'app/serializers'
+  add_group 'Uploaders', 'app/uploaders'
 
   add_filter 'lib/gen_serializer_test.rb'
 end

@@ -1,4 +1,3 @@
-
 require 'rails_helper'
 
 describe MessageVoteSerializer do
@@ -23,4 +22,3 @@ describe MessageVoteSerializer do
     expect(serialized.count).to eq(message_votes.count)
   end
 end
-

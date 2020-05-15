@@ -1,4 +1,3 @@
-
 require 'rails_helper'
 
 describe NotificationSerializer do
@@ -23,4 +22,3 @@ describe NotificationSerializer do
     expect(serialized.count).to eq(notifications.count)
   end
 end
-

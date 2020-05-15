@@ -1,9 +1,7 @@
 class MessageVoteSerializer < Panko::Serializer
   attributes :id, :message_id, :vote, :user_id
 
-  
 end
-
 
 # curl 'http://localhost:3232/api/discussions/roles-des-utilisateurs/messages_votes/mines' \
 #   -H 'Connection: keep-alive' \

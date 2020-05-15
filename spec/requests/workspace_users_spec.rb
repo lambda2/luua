@@ -10,7 +10,7 @@ describe Api::WorkspaceUsersController, type: :request do # rubocop:todo Metrics
 
   let(:query) { SecureRandom.uuid }
 
-  describe '#index' do # rubocop:todo Metrics/BlockLength
+  describe '#index' do
 
     let(:random_user) { create(:user, :confirmed) }
     let(:user) { create(:user, :confirmed) }
@@ -34,7 +34,7 @@ describe Api::WorkspaceUsersController, type: :request do # rubocop:todo Metrics
 
   end
 
-  describe '#show' do # rubocop:todo Metrics/BlockLength
+  describe '#show' do
 
     let(:user) { create(:user, :confirmed) }
     let(:manager) { create(:user, :confirmed) }
@@ -57,7 +57,7 @@ describe Api::WorkspaceUsersController, type: :request do # rubocop:todo Metrics
 
   end
 
-  describe '#update' do
+  describe '#update' do # rubocop:todo Metrics/BlockLength
 
     let(:user) { create(:user, :confirmed) }
     let(:other_user) { create(:user, :confirmed) }

@@ -1,4 +1,3 @@
-
 FactoryBot.define do
 
   factory :discussion, class: Discussion do

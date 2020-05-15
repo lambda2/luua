@@ -26,6 +26,5 @@ class Api::MessageVotesController < ApiController
         end
       end
     end
-
   end
 end

@@ -1,4 +1,3 @@
-
 require 'rails_helper'
 
 describe DiscussionSerializer do
@@ -23,4 +22,3 @@ describe DiscussionSerializer do
     expect(serialized.count).to eq(discussions.count)
   end
 end
-

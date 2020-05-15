@@ -5,7 +5,6 @@ require 'devise/jwt/test_helpers'
 
 describe Api::MessagesController do # rubocop:todo Metrics/BlockLength
 
-
   before :each do
     expect(Message.count).to eq(0)
   end
@@ -13,7 +12,6 @@ describe Api::MessagesController do # rubocop:todo Metrics/BlockLength
   let(:user) { create(:user, :confirmed) }
   let(:workspace) { create(:user, :confirmed) }
   let(:discussion) { create(:discussion, user: user) }
-
 
   describe '#index' do
 
@@ -50,7 +48,6 @@ describe Api::MessagesController do # rubocop:todo Metrics/BlockLength
       end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
-
 
   describe '#update' do
 
@@ -97,20 +94,19 @@ describe Api::MessagesController do # rubocop:todo Metrics/BlockLength
     let(:user) { create(:user, :confirmed) }
     let(:message) { create(:message, user_id: user.id) }
 
-
     it 'Create a vote' do
       # We create a vote
-      json_post "/api/messages/#{message.id}/vote", user: user, params: { message_vote: { vote: "positive" } }.to_json
+      json_post "/api/messages/#{message.id}/vote", user: user, params: { message_vote: { vote: 'positive' } }.to_json
       expect(response.status).to eq(201)
-      expect(response.body).to match_attributes_in_json({ message_id: message.id, user_id: user.id, vote: "positive" })
+      expect(response.body).to match_attributes_in_json({ message_id: message.id, user_id: user.id, vote: 'positive' })
 
       # We change it
-      json_post "/api/messages/#{message.id}/vote", user: user, params: { message_vote: { vote: "negative" } }.to_json
+      json_post "/api/messages/#{message.id}/vote", user: user, params: { message_vote: { vote: 'negative' } }.to_json
       expect(response.status).to eq(200)
-      expect(response.body).to match_attributes_in_json({ message_id: message.id, user_id: user.id, vote: "negative" })
+      expect(response.body).to match_attributes_in_json({ message_id: message.id, user_id: user.id, vote: 'negative' })
 
       # We cancel it
-      json_post "/api/messages/#{message.id}/vote", user: user, params: { message_vote: { vote: "negative" } }.to_json
+      json_post "/api/messages/#{message.id}/vote", user: user, params: { message_vote: { vote: 'negative' } }.to_json
       expect(response.status).to eq(204)
       expect(response.body).to eq('')
     end
