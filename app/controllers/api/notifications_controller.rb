@@ -5,19 +5,19 @@ class Api::NotificationsController < ApiController
   has_scope :unread, type: :boolean
   has_scope :read, type: :boolean
 
-  def index
-    @notifications = apply_scopes(@notifications)
-      .order(created_at: :desc)
-      .page(params[:page])
+  # def index
+  #   @notifications = apply_scopes(@notifications)
+  #     .order(created_at: :desc)
+  #     .page(params[:page])
 
-    respond_to do |format|
-      format.json do
-        respond_with_cache(@notifications) do
-          Panko::ArraySerializer.new(@notifications, each_serializer: NotificationSerializer).to_json
-        end
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     format.json do
+  #       respond_with_cache(@notifications) do
+  #         Panko::ArraySerializer.new(@notifications, each_serializer: NotificationSerializer).to_json
+  #       end
+  #     end
+  #   end
+  # end
 
   def me
     @notifications = apply_scopes(current_user.notifications)
@@ -33,15 +33,15 @@ class Api::NotificationsController < ApiController
     end
   end
 
-  def show
-    respond_to do |format|
-      format.json do
-        respond_with_cache(@notification) do
-          NotificationSerializer.new.serialize(@notification).to_json
-        end
-      end
-    end
-  end
+  # def show
+  #   respond_to do |format|
+  #     format.json do
+  #       respond_with_cache(@notification) do
+  #         NotificationSerializer.new.serialize(@notification).to_json
+  #       end
+  #     end
+  #   end
+  # end
 
   def read
     if @notification.read!

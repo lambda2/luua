@@ -15,13 +15,13 @@ class Api::SkillsController < ApiController
     end
   end
 
-  def show
-    respond_to do |format|
-      format.json do
-        respond_with_cache(@skill) do
-          skillSerializer.new.serialize(@skill).to_json
-        end
-      end
-    end
-  end
+  # def show
+  #   respond_to do |format|
+  #     format.json do
+  #       respond_with_cache(@skill) do
+  #         SkillSerializer.new.serialize(@skill).to_json
+  #       end
+  #     end
+  #   end
+  # end
 end
