@@ -74,7 +74,7 @@ describe Api::DiscussionsController do # rubocop:todo Metrics/BlockLength
       pp JSON.parse(response.body)
       puts "~~~~~~~~~~~"
       pp (discussion.as_json)
-      expect(response.body).to match_attributes_in_json(discussion.as_json.select {|_k, e| e })
+      expect(response.body).to match_attributes_in_json(discussion.as_json.without('locale').select {|_k, e| e })
     end
 
     it 'Create a discussion in a workspace the user isn\'t a member of' do
