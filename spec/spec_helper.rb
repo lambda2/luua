@@ -9,6 +9,7 @@ SimpleCov.start 'rails' do
   add_group 'Serializers', 'app/serializers'
   add_group 'Uploaders', 'app/uploaders'
 
+  add_filter 'app/models/ahoy'
   add_filter 'lib/gen_serializer_test.rb'
 end
 
