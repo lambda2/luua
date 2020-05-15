@@ -4,6 +4,7 @@ FactoryBot.define do
 
     sequence(:email) {|n| Faker::Internet.email(name: "email-#{n}") }
     send_email { false }
+    association :inviter, factory: :user
 
     trait :for_user do
       user

@@ -49,16 +49,17 @@ class Api::WorkspaceUsersController < ApiController
   end
 
   # POST /api/workspace_users
-  def create
-    @workspace_user = WorkspaceUser.new(workspace_user_params)
+  # Muss pass trough invite
+  # def create
+  #   @workspace_user = WorkspaceUser.new(workspace_user_params)
 
-    if @workspace_user.save
-      WorkspaceHistory.track!(@workspace, @workspace_user, current_user)
-      render json: WorkspaceUserSerializer.new.serialize(@workspace_user)
-    else
-      render_error(@workspace_user.errors.messages, :unprocessable_entity)
-    end
-  end
+  #   if @workspace_user.save
+  #     WorkspaceHistory.track!(@workspace, @workspace_user, current_user)
+  #     render json: WorkspaceUserSerializer.new.serialize(@workspace_user)
+  #   else
+  #     render_error(@workspace_user.errors.messages, :unprocessable_entity)
+  #   end
+  # end
 
   def workspace_user_params
     params.require(:workspace_user).permit(

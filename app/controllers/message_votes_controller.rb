@@ -1,2 +1,0 @@
-class MessageVotesController < ApplicationController
-end
