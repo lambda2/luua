@@ -12,6 +12,7 @@ module JsonRequestHelper
     match do |actual|
       e = actual.is_a?(String) ? JSON.parse(actual) : actual
       attributes.all? do |k, v|
+        puts "Testing that #{k.to_s} [#{e[k.to_s]} == #{v}]"
         e[k.to_s] == v
       end
     end
