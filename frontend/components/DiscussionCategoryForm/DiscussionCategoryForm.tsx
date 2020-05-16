@@ -35,9 +35,9 @@ const DiscussionCategoryForm = ({ discussion_category, onSave }: Props) => {
   const initialValues = {
     id: discussion_category?.id,
     workspace_id: currentWorkspace?.id || discussion_category?.workspace_id || (query.workspace_id && parseInt(query.workspace_id as string)) || 0,
-    name: discussion_category?.name || '',
-    color: discussion_category?.color || '',
-    icon: discussion_category?.icon || '',
+    name: discussion_category?.name || t('form.discussion_category.name.placeholder'),
+    color: discussion_category?.color || t('form.discussion_category.color.placeholder'),
+    icon: discussion_category?.icon || t('form.discussion_category.icon.placeholder'),
     globalErrors: undefined,
   }
 
@@ -113,9 +113,9 @@ const DiscussionCategoryForm = ({ discussion_category, onSave }: Props) => {
                 <Input name="icon" />
               </Form.Item>
 
-              <MessageBox>
+              <Form.Item name="preview" label={t('generics.preview')}>
                 <DiscussionCategoryBadge text category={values as unknown as DiscussionCategory} />
-              </MessageBox>
+              </Form.Item>
 
               <br />
               <SubmitButton

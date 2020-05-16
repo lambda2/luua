@@ -402,13 +402,16 @@
     "discussion_category": {
       "submit": "Créer {{name}}",
       "name": {
-        "label": "Nom"
+        "label": "Nom",
+        "placeholder": "Sans titre"
       },
       "color": {
-        "label": "Couleur"
+        "label": "Couleur",
+        "placeholder": "#007caa"
       },
       "icon": {
-        "label": "Icone"
+        "label": "Icone",
+        "placeholder": "🤷‍♂️ "
       }
     },
     "workspace": {

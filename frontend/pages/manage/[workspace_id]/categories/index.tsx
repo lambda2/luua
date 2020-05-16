@@ -19,6 +19,7 @@ import PageTitle from '../../../../elements/PageTitle/PageTitle'
 import List from '../../../../elements/List/List'
 import DiscussionCategoryModal from '../../../../components/DiscussionCategoryModal/DiscussionCategoryModal'
 import { destroy } from '../../../../api/discussion_category'
+import { queryCache } from 'react-query'
 
 
 /**
@@ -44,13 +45,13 @@ const WorkspaceCategories = (
 
   const onUpdate = async () => {
     console.log("Update !");
-    await refetch()
+    queryCache.refetchQueries(`/api/workspaces/${query.workspace_id}/discussion_categories`)
   }
 
   const onDelete = async (id: number) => {
     console.log("Update !");
     await destroy({ id }, token || '')
-    await refetch()
+    queryCache.refetchQueries(`/api/workspaces/${query.workspace_id}/discussion_categories`)
   }
 
   return (
