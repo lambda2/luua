@@ -5,7 +5,7 @@ import { useLocale } from '../../../../hooks/useLocale';
 
 import NetworkBoundary from '../../../../components/NetworkBoudary/NetworkBoudary'
 import { useRouter } from 'next/router';
-import routes from '../../../../routes/routes'
+import routes, { ROUTES } from '../../../../routes/routes'
 import Link from 'next/link'
 import ContentLayout from '../../../../layouts/ContentLayout/ContentLayout'
 import WorkspaceHeader from '../../../../components/WorkspaceHeader/WorkspaceHeader';
@@ -14,6 +14,8 @@ import PageTitle from '../../../../elements/PageTitle/PageTitle';
 import can from '../../../../utils/can';
 import UserContext from '../../../../contexts/UserContext';
 import DiscussionList from '../../../../components/DiscussionList/DiscussionList';
+import { Menu, Dropdown, Button } from 'antd';
+import icons from '../../../../dictionaries/icons';
 const { manage } = routes
 
 /**
@@ -32,7 +34,17 @@ const Discussions = (
   const response = useCollection<LightDiscussion[]>(
     `/api/workspaces/${query.workspace_id}/discussions`, token, {}, { initialData }
   )
-  
+
+  const menu = (
+    <Menu>
+      {can(currentUser, 'discussion.create', currentWorkspace) && <Menu.Item key="create-discussion">
+        <Link {...manage.workspace.discussions.new(`${query.workspace_id}`)}>
+          <a>{t('discussion.create.title')}</a>
+        </Link>
+      </Menu.Item>}
+    </Menu>
+  );
+
   return (
     <NetworkBoundary<LightDiscussion[]> {...response}>
       {currentWorkspace && <WorkspaceHeader
@@ -41,9 +53,11 @@ const Discussions = (
       />}
       <ContentLayout>
         <PageTitle level='2' title={t('menu.discussions')}>
-          {can(currentUser, 'discussion.create', currentWorkspace) && <Link {...manage.workspace.discussions.new(`${query.workspace_id}`)}>
-            <a>{t('discussion.create.title')}</a>
-          </Link>}
+          <Dropdown key="dropdown" overlay={menu}>
+            <Button type="link">
+              <span className="text-light">{' '}{icons.plussquare}</span>
+            </Button>
+          </Dropdown>
         </PageTitle>
         
         <DiscussionList data={response.data as LightDiscussion[]} />
