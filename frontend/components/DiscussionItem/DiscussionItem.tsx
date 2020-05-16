@@ -48,15 +48,13 @@ const DiscussionItem = ({ discussion }: Props) => {
 
       <footer>
         <ul className="text-light">
-          <li className="created-by">
-            {/* <span>{t('discussion.created_by')}</span> */}
+          <li key="created-by" className="created-by">
             <UserAvatarTooltip text image {...user} />
           </li>
-          <li className="created-at">{icons.date} {moment(updated_at).calendar()}</li>
-          <li className="messages-count">{icons.comments} {t('discussion.messages_count', {count: discussion.messages_count})}</li>
-          <li className="participants">
-
-            {participants.slice(0, 5).map(u => <UserAvatarTooltip text={false} image {...u} />)}
+          <li key="created-at" className="created-at">{icons.date} {moment(updated_at).calendar()}</li>
+          <li key="messages-count" className="messages-count">{icons.comments} {t('discussion.messages_count', {count: discussion.messages_count})}</li>
+          <li key="participants" className="participants">
+            {participants.slice(0, 5).map(u => <UserAvatarTooltip key={u.id} text={false} image {...u} />)}
           </li>
 
         </ul>

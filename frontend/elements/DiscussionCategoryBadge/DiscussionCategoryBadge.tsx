@@ -1,5 +1,5 @@
 import React from 'react'
-import icons from '../../dictionaries/icons';
+import icons, { isEmoji } from '../../dictionaries/icons';
 
 
 interface Props {
@@ -18,7 +18,9 @@ const DiscussionCategoryBadge: React.FC<Props> = ({
   category
 }) => {
 
-  const icon = category.icon && (icons as any)[(category.icon as any)]
+  const icon = category.icon && (
+    isEmoji(category.icon) && category.icon
+  ) || (icons as any)[(category.icon as any)]
 
   const style = {
     color: category.color

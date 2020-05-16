@@ -42,6 +42,10 @@ const WorkspaceSettingsMenu = ({
         <Link {...workspace.invitations(workspace_id)}><a>{t('workspace.settings.invitations')}</a></Link>
       </li>
 
+      <li className={classNames({ active: active == 'categories' })} key="/categories">
+        <Link {...workspace.categories(workspace_id)}><a>{t('workspace.settings.categories')}</a></Link>
+      </li>
+
       {/* @TODO show workspace requests */}
       {/* <li className={classNames({ active: active == 'requests' })} key="/requests">
         <Link {...workspace.requests(workspace_id)}><a>{t('workspace.settings.requests')}</a></Link>

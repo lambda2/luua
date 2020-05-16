@@ -30,17 +30,17 @@ class Ability
     can %i[complete reject], MissionUser, user_id: user.id
     can %i[read], MissionUser, user_id: user.id
     can %i[read], MissionUser, mission: { workspace: { id: user.workspace_ids } }
-
+    
     can %i[apply], Mission
-
+    
     can %i[read read! me read_all], Notification, user_id: user.id
-
+    
     can [:read, :categories], Workspace
     can :me, Workspace, id: user.workspace_ids
     can :manage, Workspace, id: user.admin_workspace_ids
     can :create, Workspace
     can [:join], Workspace, membership: %i[open approval]
-
+    
     can :read, WorkspaceUser
     can :manage, WorkspaceUser, workspace_id: user.admin_workspace_ids
 
@@ -69,9 +69,14 @@ class Ability
     can %i[update destroy], Message, user_id: user.id
     can [:destroy], Message, discussion: { resource_type: 'Mission', resource: { workspace_id: user.admin_workspace_ids } }
     can [:destroy], Message, discussion: { resource_type: 'Workspace', resource_id: user.admin_workspace_ids }
+    
     can [:mines], MessageVote
     can [:create], MessageVote # @TODO restrict this
     can %i[update destroy], MessageVote, user_id: user.id
+
+    can %i[read], DiscussionCategory
+    can %i[manage], DiscussionCategory, workspace: { id: user.admin_workspace_ids }
+    
   end
   # rubocop:enable Metrics/MethodLength
 

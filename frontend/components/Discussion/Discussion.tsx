@@ -133,7 +133,7 @@ const Discussion = ({
         </Title>
         <aside>
           {discussion && can(currentUser, 'discussion.edit', discussion) &&
-            <Link {...ROUTES.manage.workspace.discussions.edit(discussion?.workspace_id, discussion?.slug)}>{t(('form.discussion.edit'))}</Link>
+            <Link {...ROUTES.manage.workspace.discussions.edit(discussion?.workspace_id, discussion?.slug)}><a>{t(('form.discussion.edit'))}</a></Link>
           }
         </aside>
       </header>

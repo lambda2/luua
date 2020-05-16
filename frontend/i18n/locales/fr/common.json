@@ -161,6 +161,15 @@
     "messages_count": "{{count}} messages",
     "empty": "Aucune discussion"
   },
+  "discussion_category": {
+    "create": {
+      "title": "Créer une catégorie"
+    },
+    "add": "Ajouter",
+    "edit": "Éditer",
+    "created-by": "Créee par",
+    "empty": "Aucune catégorie"
+  },
   "mission": {
     "create": {
       "title": "Créer une mission"
@@ -261,6 +270,7 @@
       "edit": "Informations",
       "members": "Membres",
       "invitations": "Invitations",
+      "categories": "Catégories",
       "requests": "Requêtes",
       "member-since": "Membre depuis"
     },
@@ -387,6 +397,18 @@
       },
       "email": {
         "label": "Email"
+      }
+    },
+    "discussion_category": {
+      "submit": "Créer {{name}}",
+      "name": {
+        "label": "Nom"
+      },
+      "color": {
+        "label": "Couleur"
+      },
+      "icon": {
+        "label": "Icone"
       }
     },
     "workspace": {

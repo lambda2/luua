@@ -32,6 +32,7 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
 
       resources :missions
       resources :discussions, shallow: true
+      resources :discussion_categories, shallow: true
 
       resources :workspace_users, shallow: true
       resources :workspace_invitations, shallow: true do

@@ -24,10 +24,12 @@ class DiscussionCategory < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  belongs_to :workspace
+  belongs_to :workspace, touch: true
   has_many :discussions, dependent: :nullify
 
   validates :name, uniqueness: { scope: %i[workspace_id] }
+
+  after_commit :touch_discussions, only: %i[update destroy]
 
   enum category: {
     other: 0,
@@ -46,5 +48,9 @@ class DiscussionCategory < ApplicationRecord
         name: params[:name], workspace_id: workspace_id
       ).first_or_create(params)
     end
+  end
+
+  def touch_discussions
+    discussions.update_all(updated_at: Time.zone.now)
   end
 end
