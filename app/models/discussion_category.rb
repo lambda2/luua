@@ -38,11 +38,29 @@ class DiscussionCategory < ApplicationRecord
     question: 3
   }, _suffix: true
 
+
+  
+
   def self.defaults!(workspace_id)
     [
-      { name: 'Bug', icon: 'bug', color: 'red', category: :bug },
-      { name: 'Idea', icon: 'idea', color: 'blue', category: :idea },
-      { name: 'Question', icon: 'question', color: 'purple', category: :question },
+      {
+        name: "Idée",
+        icon: "🧙🏼‍♂️ ",
+        color: "#008d46",
+        category: "idea"
+      },
+      {
+        name: "Problème",
+        icon: "🚧 ",
+        color: "#ae5051",
+        category: "other"
+      },
+      {
+        name: "Question",
+        icon: "🤔 ",
+        color: "#8d8d8d",
+        category: "question"
+      }
     ].each do |params|
       DiscussionCategory.where(
         name: params[:name], workspace_id: workspace_id
