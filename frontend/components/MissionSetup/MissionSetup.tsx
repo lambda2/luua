@@ -8,9 +8,10 @@ const { Title } = Typography;
 
 interface Props {
   mission?: Mission
+  workspace_id?: number
 }
 
-const MissionSetup = ({ mission }: Props) => {
+const MissionSetup = ({ mission, workspace_id }: Props) => {
 
   const { currentUser } = useContext(UserContext)
   const { t } = useLocale()
@@ -28,7 +29,7 @@ const MissionSetup = ({ mission }: Props) => {
   }
 
   return (<div>
-    <MissionForm />
+    <MissionForm workspace_id={workspace_id} />
   </div>)
 }
 

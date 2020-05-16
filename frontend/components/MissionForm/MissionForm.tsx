@@ -23,9 +23,10 @@ const { Step } = Steps;
 
 interface Props {
   mission?: Mission
+  workspace_id?: number
 }
 
-const MissionForm = ({ mission }: Props) => {
+const MissionForm = ({ mission, workspace_id }: Props) => {
 
   const { currentUser } = useContext(UserContext)
   const { t } = useLocale()
@@ -49,7 +50,7 @@ const MissionForm = ({ mission }: Props) => {
       begin_at: mission?.begin_at || '',
       end_at: mission?.end_at || '',
       due_at: mission?.due_at || '',
-      workspace_id: mission?.workspace_id || currentUser.workspaces.length > 0 ? currentUser.workspaces[0].id : undefined,
+      workspace_id: mission?.workspace_id || workspace_id || currentUser.workspaces.length > 0 ? currentUser.workspaces[0].id : undefined,
       image: mission?.image || '',
       banner_image: mission?.banner_image || '',
       visibility: mission?.visibility || 'draft',

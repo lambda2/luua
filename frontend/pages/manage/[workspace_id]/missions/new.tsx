@@ -18,7 +18,7 @@ const NewMission = (props: any) => {
       active='missions'
     />}
     <ContentLayout>
-      <MissionSetup />
+      <MissionSetup workspace_id={currentWorkspace?.id} />
     </ContentLayout>
   </>)
 }
