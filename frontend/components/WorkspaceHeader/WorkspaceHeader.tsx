@@ -73,7 +73,7 @@ const WorkspaceHeader = ({
       <Button type="link">
         {/* {icons.plus}
         {' '} */}
-        <span className="text-light">{' '}{icons.down}</span>
+        <span className="text-light">{' '}{icons.plussquare}</span>
       </Button>
     </Dropdown>)
   }

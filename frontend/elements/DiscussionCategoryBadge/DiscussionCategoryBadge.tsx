@@ -1,5 +1,6 @@
 import React from 'react'
 import icons, { isEmoji } from '../../dictionaries/icons';
+import classNames from 'classnames';
 
 
 interface Props {
@@ -11,12 +12,11 @@ interface Props {
 /**
  * Our own submit button
  */
-const DiscussionCategoryBadge: React.FC<Props> = ({
-  children,
+const DiscussionCategoryBadge = ({
   text = false,
   size = 'default',
   category
-}) => {
+}: Props) => {
 
   const icon = category.icon && (
     isEmoji(category.icon) && category.icon
@@ -27,10 +27,9 @@ const DiscussionCategoryBadge: React.FC<Props> = ({
   }
 
   return (
-    <span style={style} className={`DiscussionCategoryBadge ${size}`}>
+    <span style={style} className={classNames('DiscussionCategoryBadge', size, { "has-text": text})}>
       {icon}
       {text && <span>{category.name}</span>}
-      {children}
     </span>
   );
 };

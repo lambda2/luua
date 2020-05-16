@@ -55,6 +55,12 @@ class Api::DiscussionsController < ApiController
     end
   end
 
+  # DELETE /api/discussions/id
+  def destroy
+    @discussion.destroy!
+    render_destroyed
+  end
+
   def discussion_params
     params.require(:discussion).permit(
       :id,

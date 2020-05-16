@@ -4,6 +4,7 @@ import UserContext from '../../contexts/UserContext';
 
 import DiscussionInput from '../../elements/DiscussionInput/DiscussionInput';
 import { create, update, destroy } from '../../api/message';
+import { destroy as destroyDiscussion } from '../../api/discussion';
 import { useMutation } from 'react-query';
 import MessageList from '../MessageList/MessageList';
 import Paginated from '../Paginated/Paginated';
@@ -20,6 +21,9 @@ import Title from '../../elements/Title/Title';
 import DiscussionCategoryBadge from '../../elements/DiscussionCategoryBadge/DiscussionCategoryBadge';
 import ROUTES from '../../routes/routes';
 import Link from 'next/link';
+import { Dropdown, Menu, Button, Popconfirm } from 'antd';
+import icons from '../../dictionaries/icons';
+import Router from 'next/router';
 
 interface Props {
   discussion?: LightDiscussion
@@ -48,7 +52,15 @@ const Discussion = ({
   const votesResponse = useCollection<MessageVote[]>(
     votesEndpoint, (token || currentUser?.jwt)
   )
-  
+
+  const onDestroyDiscussion = async (discussion: LightDiscussion) => {
+    const deleted = await destroyDiscussion(discussion, currentUser?.jwt || '')
+    Router.push(
+      ROUTES.manage.workspace.discussions.index(discussion.workspace_id).href,
+      ROUTES.manage.workspace.discussions.index(discussion.workspace_id).as
+    )
+  }
+
   const createMessage = async (content: string) => {
     if (!discussion) {
       console.error("No discussion to attatch this message !")
@@ -123,6 +135,22 @@ const Discussion = ({
     }
   })
 
+  if (!discussion) {
+    return <></>
+  }
+
+  const menu = (
+    <Menu>
+      {can(currentUser, 'discussion.edit', discussion) &&<Menu.Item key="edit-discussion">
+        <Link {...ROUTES.manage.workspace.discussions.edit(discussion?.workspace_id, discussion?.slug)}><a>{t(('form.discussion.edit'))}</a></Link>
+      </Menu.Item>}
+
+      {can(currentUser, 'discussion.destroy', discussion) && <Menu.Item key="destroy-discussion">
+        <a href="#" className="text-danger" onClick={() => onDestroyDiscussion(discussion)}>{t(('form.discussion.delete'))}</a>
+      </Menu.Item>}
+    </Menu>
+  );
+
   return (
     <div className="Discussion">
 
@@ -132,9 +160,11 @@ const Discussion = ({
           {discussion?.name}
         </Title>
         <aside>
-          {discussion && can(currentUser, 'discussion.edit', discussion) &&
-            <Link {...ROUTES.manage.workspace.discussions.edit(discussion?.workspace_id, discussion?.slug)}><a>{t(('form.discussion.edit'))}</a></Link>
-          }
+          <Dropdown key="dropdown" overlay={menu}>
+            <Button type="link">
+              <span className="text-light">{' '}{icons.down}</span>
+            </Button>
+          </Dropdown>
         </aside>
       </header>
 

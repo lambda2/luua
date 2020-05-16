@@ -30,6 +30,7 @@ import {
   faClock,
   faPaperPlane,
   faLightbulb,
+  faPlusSquare,
 } from '@fortawesome/free-regular-svg-icons'
 
 import {
@@ -95,6 +96,7 @@ export default {
   "up": <FontAwesomeIcon className="menu-icon" icon={faChevronUp} />,
   "down": <FontAwesomeIcon className="menu-icon" icon={faChevronDown} />,
   "plus": <FontAwesomeIcon className="menu-icon" icon={faPlus} />,
+  "plussquare": <FontAwesomeIcon className="menu-icon" icon={faPlusSquare} />,
   "send": <FontAwesomeIcon className="menu-icon" icon={faPaperPlane} />,
   "bug": <FontAwesomeIcon className="menu-icon" icon={faBug} />,
   "idea": <FontAwesomeIcon className="menu-icon" icon={faLightbulb} />,

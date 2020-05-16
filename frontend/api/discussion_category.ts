@@ -45,6 +45,6 @@ export const createOrUpdate = async (attributes: DiscussionCategoryUpdateValues,
   if (attributes.id) {
     return update(attributes, token)
   } else {
-    return create(attributes.workspace_id, attributes, token)
+    return create(attributes.workspace_id || 0, attributes, token)
   }
 }

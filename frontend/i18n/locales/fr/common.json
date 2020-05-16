@@ -453,6 +453,7 @@
       "update": "Mettre à jour la discussion",
       "submit": "Créer une discussion",
       "edit": "Éditer",
+      "delete": "Supprimer",
       "name": {
         "label": "Nom",
         "hint": "Le sujet de la discussion",
