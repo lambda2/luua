@@ -4,6 +4,7 @@ FactoryBot.define do
     sequence(:name) {|n| "Discussion #{Faker::Space.launch_vehicle}-#{n}" }
     description { Faker::Lorem.sentences.join("\n") }
     association :resource, factory: :workspace
+    # discussion_category
     user
   end
 end
