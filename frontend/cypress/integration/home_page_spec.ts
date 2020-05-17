@@ -1,5 +1,7 @@
 describe('The Home Page', () => {
   it('successfully loads', () => {
-    cy.visit('/') // change URL to match your dev URL
+    cy.visit('/')
+    // UI should reflect this user being logged in
+    cy.get('h1').should('contain', 'Hello world')
   })
 })
