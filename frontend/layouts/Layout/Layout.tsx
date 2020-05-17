@@ -1,18 +1,14 @@
-import React, { useEffect } from 'react'
-
-import MainMenu from '../MainMenu/MainMenu'
-
-import { UserProvider } from 'contexts/UserContext'
-
-import { Layout, ConfigProvider } from 'antd';
-
-import { WorkspaceProvider } from 'contexts/WorkspaceContext'
-
-import fr from 'antd/lib/locale/fr_FR';
+import { ConfigProvider, Layout } from 'antd';
 import en from 'antd/lib/locale/en_US';
-import { LocaleProvider } from 'contexts/LocaleContext'
+import fr from 'antd/lib/locale/fr_FR';
+import { LocaleProvider } from 'contexts/LocaleContext';
+import { UserProvider } from 'contexts/UserContext';
+import { WorkspaceProvider } from 'contexts/WorkspaceContext';
+import React, { useEffect } from 'react';
+import ahoy from 'utils/analytics';
+
 import Footer from '../Footer/Footer';
-import ahoy from 'utils/analytics'
+import MainMenu from '../MainMenu/MainMenu';
 
 const locales = { fr, en }
 

@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
-import { withAuthSync } from 'utils/auth'
-import MissionSetup from 'components/MissionSetup/MissionSetup'
-import ContentLayout from 'layouts/ContentLayout/ContentLayout'
-import WorkspaceContext from 'contexts/WorkspaceContext'
-import WorkspaceHeader from 'components/WorkspaceHeader/WorkspaceHeader'
+import MissionSetup from 'components/MissionSetup/MissionSetup';
+import WorkspaceHeader from 'components/WorkspaceHeader/WorkspaceHeader';
+import WorkspaceContext from 'contexts/WorkspaceContext';
+import ContentLayout from 'layouts/ContentLayout/ContentLayout';
+import React, { useContext } from 'react';
+import { withAuthSync } from 'utils/auth';
 
 /**
  * Form to create a new mission
