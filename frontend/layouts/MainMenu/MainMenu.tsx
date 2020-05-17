@@ -1,10 +1,10 @@
 
 import React, { useContext } from 'react'
 
-import UserContext from '../../contexts/UserContext'
-import UserMenuDropdown from '../../elements/UserMenuDropdown/UserMenuDropdown';
-import routes from '../../routes/routes'
-import { useLocale } from '../../hooks/useLocale';
+import UserContext from 'contexts/UserContext'
+import UserMenuDropdown from 'elements/UserMenuDropdown/UserMenuDropdown';
+import routes from 'routes/routes'
+import { useLocale } from 'hooks/useLocale';
 import Link from 'next/link';
 const { manage, explore } = routes
 

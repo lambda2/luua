@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, DatePicker } from 'formik-antd'
-import { useLocale } from '../../hooks/useLocale';
-import momentWithLocale from '../../i18n/moment';
+import { useLocale } from 'hooks/useLocale';
+import momentWithLocale from 'i18n/moment';
 import { useField } from 'formik';
 import { Button } from 'antd';
 

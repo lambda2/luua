@@ -2,8 +2,8 @@ import React, { createContext, useMemo, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import cookie from 'js-cookie'
 
-import fr from '../../i18n/locales/fr/common.json'
-import en from '../../i18n/locales/en/common.json'
+import fr from 'i18n/locales/fr/common.json'
+import en from 'i18n/locales/en/common.json'
 import { get, templateSettings, template } from 'lodash'
 
 const dicts = {

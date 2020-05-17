@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import classNames from 'classnames';
-import { useLocale } from '../../hooks/useLocale';
+import { useLocale } from 'hooks/useLocale';
 
 
 interface Props<T> {

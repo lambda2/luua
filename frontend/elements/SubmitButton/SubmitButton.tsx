@@ -1,6 +1,6 @@
 import React from 'react'
 import { SubmitButton as OriginalButton } from 'formik-antd'
-import { useLocale } from '../../hooks/useLocale';
+import { useLocale } from 'hooks/useLocale';
 
 
 interface Props {

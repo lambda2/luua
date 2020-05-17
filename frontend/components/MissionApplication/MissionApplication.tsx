@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
-import UserContext from '../../contexts/UserContext';
+import UserContext from 'contexts/UserContext';
 
-import { useLocale } from '../../hooks/useLocale';
-import { apply } from '../../api/mission';
-import { complete } from '../../api/mission_user';
+import { useLocale } from 'hooks/useLocale';
+import { apply } from 'api/mission';
+import { complete } from 'api/mission_user';
 import { Button } from 'antd';
-import ErrorBox from '../../elements/ErrorBox/ErrorBox';
+import ErrorBox from 'elements/ErrorBox/ErrorBox';
 import checkCustomRoutes from 'next/dist/lib/check-custom-routes';
 import MissionApplyBox from '../MissionApplyBox/MissionApplyBox';
 import MissionPerformBox from '../MissionPerformBox/MissionPerformBox';

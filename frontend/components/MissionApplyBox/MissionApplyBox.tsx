@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
-import UserContext from '../../contexts/UserContext';
-import { useLocale } from '../../hooks/useLocale';
-import { apply } from '../../api/mission';
+import UserContext from 'contexts/UserContext';
+import { useLocale } from 'hooks/useLocale';
+import { apply } from 'api/mission';
 import { Button } from 'antd';
-import ErrorBox from '../../elements/ErrorBox/ErrorBox';
+import ErrorBox from 'elements/ErrorBox/ErrorBox';
 import checkCustomRoutes from 'next/dist/lib/check-custom-routes';
-import MessageBox from '../../elements/MessageBox/MessageBox';
+import MessageBox from 'elements/MessageBox/MessageBox';
 
 interface Props {
   onApply: () => Promise<void>

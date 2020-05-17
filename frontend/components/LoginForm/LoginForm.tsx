@@ -1,16 +1,16 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { errorsFromResponse } from '../../utils/forms/helpers';
+import { errorsFromResponse } from 'utils/forms/helpers';
 import { Form, Input } from 'formik-antd'
-import { authenticateWithCredentials } from '../../utils/auth';
+import { authenticateWithCredentials } from 'utils/auth';
 import { Tooltip } from 'antd';
-import icons from '../../dictionaries/icons';
+import icons from 'dictionaries/icons';
 import { SubmitButton } from 'formik-antd';
-import YupWithLocale from '../../utils/forms/yup';
-import { useLocale } from '../../hooks/useLocale';
-import PageSection from '../../elements/PageSection/PageSection';
-import MessageBox from '../../elements/MessageBox/MessageBox';
-import ROUTES from '../../routes/routes';
+import YupWithLocale from 'utils/forms/yup';
+import { useLocale } from 'hooks/useLocale';
+import PageSection from 'elements/PageSection/PageSection';
+import MessageBox from 'elements/MessageBox/MessageBox';
+import ROUTES from 'routes/routes';
 import Link from 'next/link';
 
 interface Props {

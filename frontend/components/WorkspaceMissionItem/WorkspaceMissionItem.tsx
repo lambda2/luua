@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
-import routes from '../../routes/routes'
+import UserContext from 'contexts/UserContext';
+import routes from 'routes/routes'
 import { Tag } from 'antd';
-import MissionVisibilityBadge from '../../elements/MissionVisibilityBadge/MissionVisibilityBadge';
-import { useLocale } from '../../hooks/useLocale';
+import MissionVisibilityBadge from 'elements/MissionVisibilityBadge/MissionVisibilityBadge';
+import { useLocale } from 'hooks/useLocale';
 import Link from 'next/link';
-import Title from '../../elements/Title/Title';
+import Title from 'elements/Title/Title';
 
 const { manage } = routes
 

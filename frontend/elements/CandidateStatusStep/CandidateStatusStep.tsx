@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { Tag, Popover, Steps } from 'antd';
 import { useLocale } from "../../hooks/useLocale";
 import omit from 'lodash/omit';
-import icons from '../../dictionaries/icons';
+import icons from 'dictionaries/icons';
 
 
 interface Props {

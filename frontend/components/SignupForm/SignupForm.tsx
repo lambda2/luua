@@ -1,17 +1,17 @@
 import React from 'react';
 import { ErrorMessage, Formik } from 'formik';
-import { errorsFromResponse } from '../../utils/forms/helpers';
+import { errorsFromResponse } from 'utils/forms/helpers';
 import { Form, Input } from 'formik-antd'
-import { signupWithCredentials } from '../../utils/auth';
+import { signupWithCredentials } from 'utils/auth';
 import { Tooltip } from 'antd';
-import icons from '../../dictionaries/icons';
-import SubmitButton from '../../elements/SubmitButton/SubmitButton';
-import YupWithLocale from '../../utils/forms/yup';
-import { useLocale } from '../../hooks/useLocale';
-import PageSection from '../../elements/PageSection/PageSection';
-import MessageBox from '../../elements/MessageBox/MessageBox';
+import icons from 'dictionaries/icons';
+import SubmitButton from 'elements/SubmitButton/SubmitButton';
+import YupWithLocale from 'utils/forms/yup';
+import { useLocale } from 'hooks/useLocale';
+import PageSection from 'elements/PageSection/PageSection';
+import MessageBox from 'elements/MessageBox/MessageBox';
 import Link from 'next/link';
-import ROUTES from '../../routes/routes';
+import ROUTES from 'routes/routes';
 import Router from 'next/router';
 
 const SignupForm = () => {

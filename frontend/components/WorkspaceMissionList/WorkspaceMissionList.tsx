@@ -1,7 +1,7 @@
 import React from 'react';
 import WorkspaceMissionItem from '../WorkspaceMissionItem/WorkspaceMissionItem';
-import List from '../../elements/List/List';
-import { useLocale } from '../../hooks/useLocale';
+import List from 'elements/List/List';
+import { useLocale } from 'hooks/useLocale';
 
 interface Props {
   data: LightMission[]

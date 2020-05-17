@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import NotificationItem from '../NotificationItem/NotificationItem';
 import InvitationNotification from '../NotificationItem/InvitationNotification';
 import WorkspaceRequestNotification from '../NotificationItem/WorkspaceRequestNotification';
-import List from '../../elements/List/List';
-import PageSection from '../../elements/PageSection/PageSection';
-import { useLocale } from '../../hooks/useLocale';
+import List from 'elements/List/List';
+import PageSection from 'elements/PageSection/PageSection';
+import { useLocale } from 'hooks/useLocale';
 
 interface Props {
   data: UserNotification[],

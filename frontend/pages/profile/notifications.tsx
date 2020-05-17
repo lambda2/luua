@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
-import { useCollection, fetchInitialData} from '../../utils/http'
-import { withAuthSync } from '../../utils/auth'
-import NetworkBoundary from '../../components/NetworkBoudary/NetworkBoudary'
-import NotificationList from '../../components/NotificationList/NotificationList'
-import ContentLayout from '../../layouts/ContentLayout/ContentLayout'
-import PageTitle from '../../elements/PageTitle/PageTitle'
+import { useCollection, fetchInitialData} from 'utils/http'
+import { withAuthSync } from 'utils/auth'
+import NetworkBoundary from 'components/NetworkBoudary/NetworkBoudary'
+import NotificationList from 'components/NotificationList/NotificationList'
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
+import PageTitle from 'elements/PageTitle/PageTitle'
 import { Button } from 'antd'
-import { useLocale } from '../../hooks/useLocale';
-import UserContext from '../../contexts/UserContext'
-import UserHeader from '../../components/UserHeader/UserHeader'
+import { useLocale } from 'hooks/useLocale';
+import UserContext from 'contexts/UserContext'
+import UserHeader from 'components/UserHeader/UserHeader'
 
 /**
  * The user's notifications page

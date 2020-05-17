@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import Tag, { TagProps } from 'antd/lib/tag';
-import icons from '../../dictionaries/icons';
-import { useLocale } from '../../hooks/useLocale';
+import icons from 'dictionaries/icons';
+import { useLocale } from 'hooks/useLocale';
 import { Tooltip } from 'antd';
 
 

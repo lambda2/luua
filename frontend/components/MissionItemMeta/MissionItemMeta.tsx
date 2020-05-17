@@ -1,11 +1,11 @@
 import React from 'react';
-import routes from '../../routes/routes'
+import routes from 'routes/routes'
 import { Tag, Tooltip } from 'antd';
-import { useLocale } from '../../hooks/useLocale';
+import { useLocale } from 'hooks/useLocale';
 import Link from 'next/link';
-import icons from '../../dictionaries/icons';
-import momentWithLocale from '../../i18n/moment';
-import UserAvatar from '../../elements/UserAvatar/UserAvatar';
+import icons from 'dictionaries/icons';
+import momentWithLocale from 'i18n/moment';
+import UserAvatar from 'elements/UserAvatar/UserAvatar';
 
 const { manage } = routes
 

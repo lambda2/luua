@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react';
-import momentWithLocale from '../../i18n/moment';
-import { useLocale } from '../../hooks/useLocale';
-import UserMessageAvatar from '../../elements/UserMessageAvatar/UserMessageAvatar';
-import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
-import UserAvatarTooltip from '../../elements/UserAvatarTooltip/UserAvatarTooltip';
-import can from '../../utils/can';
-import UserContext from '../../contexts/UserContext';
+import momentWithLocale from 'i18n/moment';
+import { useLocale } from 'hooks/useLocale';
+import UserMessageAvatar from 'elements/UserMessageAvatar/UserMessageAvatar';
+import MarkdownContent from 'elements/MarkdownContent/MarkdownContent';
+import UserAvatarTooltip from 'elements/UserAvatarTooltip/UserAvatarTooltip';
+import can from 'utils/can';
+import UserContext from 'contexts/UserContext';
 import Button from 'antd/lib/button';
-import DiscussionForm from '../../elements/DiscussionInput/DiscussionInput';
-import icons from '../../dictionaries/icons';
+import DiscussionForm from 'elements/DiscussionInput/DiscussionInput';
+import icons from 'dictionaries/icons';
 import classNames from 'classnames';
 
 

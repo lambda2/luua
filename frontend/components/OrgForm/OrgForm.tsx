@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { Form, Field, ErrorMessage, Formik } from 'formik';
 import * as Yup from 'yup';
-import UserContext from '../../contexts/UserContext';
-import { createOrUpdate } from '../../api/organisation';
+import UserContext from 'contexts/UserContext';
+import { createOrUpdate } from 'api/organisation';
 import RegionSelect from '../RegionSelect/RegionSelect';
 import CountrySelect from '../CountrySelect/CountrySelect';
-import { errorsFromResponse } from '../../utils/forms/helpers';
+import { errorsFromResponse } from 'utils/forms/helpers';
 import Router from 'next/router';
 
 interface Props {

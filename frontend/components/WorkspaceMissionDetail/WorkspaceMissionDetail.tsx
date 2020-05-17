@@ -2,21 +2,21 @@ import React, { useContext } from 'react';
 import find from 'lodash/find';
 import { Typography } from 'antd';
 
-import momentWithLocale from '../../i18n/moment';
-import routes from '../../routes/routes'
-import { useLocale } from '../../hooks/useLocale';
-import UserContext from '../../contexts/UserContext';
+import momentWithLocale from 'i18n/moment';
+import routes from 'routes/routes'
+import { useLocale } from 'hooks/useLocale';
+import UserContext from 'contexts/UserContext';
 
 import MissionApplication from '../MissionApplication/MissionApplication';
 import MissionCandidateBox from '../MissionCandidateBox/MissionCandidateBox';
 import MissionSkillsForUser from '../MissionSkillsForUser/MissionSkillsForUser';
 
-import PageSection from '../../elements/PageSection/PageSection';
-import PageTitle from '../../elements/PageTitle/PageTitle';
-import can from '../../utils/can';
-import List from '../../elements/List/List';
+import PageSection from 'elements/PageSection/PageSection';
+import PageTitle from 'elements/PageTitle/PageTitle';
+import can from 'utils/can';
+import List from 'elements/List/List';
 import MissionUserItem from '../MissionUserItem/MissionUserItem';
-import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
+import MarkdownContent from 'elements/MarkdownContent/MarkdownContent';
 
 const { Text } = Typography;
 

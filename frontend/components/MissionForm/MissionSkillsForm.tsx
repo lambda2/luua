@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { Form, Input, ResetButton, Select, Switch } from 'formik-antd'
-import SubmitButton from '../../elements/SubmitButton/SubmitButton';
+import SubmitButton from 'elements/SubmitButton/SubmitButton';
 import { Steps, Button } from 'antd';
-import MissionSkillsSelect from '../../elements/MissionSkillsSelect/MissionSkillsSelect';
-import { useLocale } from '../../hooks/useLocale';
+import MissionSkillsSelect from 'elements/MissionSkillsSelect/MissionSkillsSelect';
+import { useLocale } from 'hooks/useLocale';
 
 const { TextArea } = Input;
 

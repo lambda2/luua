@@ -1,28 +1,28 @@
 import React, { useContext } from 'react';
 
-import UserContext from '../../contexts/UserContext';
+import UserContext from 'contexts/UserContext';
 
-import DiscussionInput from '../../elements/DiscussionInput/DiscussionInput';
-import { create, update, destroy } from '../../api/message';
-import { destroy as destroyDiscussion } from '../../api/discussion';
+import DiscussionInput from 'elements/DiscussionInput/DiscussionInput';
+import { create, update, destroy } from 'api/message';
+import { destroy as destroyDiscussion } from 'api/discussion';
 import { useMutation } from 'react-query';
 import MessageList from '../MessageList/MessageList';
 import Paginated from '../Paginated/Paginated';
-import usePaginatedCollection from '../../hooks/usePaginatedCollection';
-import can from '../../utils/can';
-import MessageBox from '../../elements/MessageBox/MessageBox';
-import { useLocale } from '../../hooks/useLocale';
-import PageTitle from '../../elements/PageTitle/PageTitle';
-import PageSection from '../../elements/PageSection/PageSection';
-import { vote } from '../../api/message';
-import { useCollection } from '../../utils/http';
+import usePaginatedCollection from 'hooks/usePaginatedCollection';
+import can from 'utils/can';
+import MessageBox from 'elements/MessageBox/MessageBox';
+import { useLocale } from 'hooks/useLocale';
+import PageTitle from 'elements/PageTitle/PageTitle';
+import PageSection from 'elements/PageSection/PageSection';
+import { vote } from 'api/message';
+import { useCollection } from 'utils/http';
 import NetworkBoundary from '../NetworkBoudary/NetworkBoudary';
-import Title from '../../elements/Title/Title';
-import DiscussionCategoryBadge from '../../elements/DiscussionCategoryBadge/DiscussionCategoryBadge';
-import ROUTES from '../../routes/routes';
+import Title from 'elements/Title/Title';
+import DiscussionCategoryBadge from 'elements/DiscussionCategoryBadge/DiscussionCategoryBadge';
+import ROUTES from 'routes/routes';
 import Link from 'next/link';
 import { Dropdown, Menu, Button, Popconfirm } from 'antd';
-import icons from '../../dictionaries/icons';
+import icons from 'dictionaries/icons';
 import Router from 'next/router';
 
 interface Props {

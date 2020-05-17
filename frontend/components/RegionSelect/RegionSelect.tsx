@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Select from 'react-select';
-import UserContext from '../../contexts/UserContext';
-import { getHeaders, fetch } from '../../utils/http';
+import UserContext from 'contexts/UserContext';
+import { getHeaders, fetch } from 'utils/http';
 import { useQuery } from 'react-query'
 
 declare interface Props {

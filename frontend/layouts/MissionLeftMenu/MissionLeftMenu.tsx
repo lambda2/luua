@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import UserContext from '../../contexts/UserContext';
-import MissionFullMeta from '../../components/MissionFullMeta/MissionFullMeta';
-import MissionUserStatusBadge from '../../components/MissionUserStatusBadge/MissionUserStatusBadge';
+import UserContext from 'contexts/UserContext';
+import MissionFullMeta from 'components/MissionFullMeta/MissionFullMeta';
+import MissionUserStatusBadge from 'components/MissionUserStatusBadge/MissionUserStatusBadge';
 
 interface Props {
   mission: BaseMission,

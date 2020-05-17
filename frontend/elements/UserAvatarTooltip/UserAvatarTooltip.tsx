@@ -1,11 +1,11 @@
 import React from 'react'
 import Link from 'next/link';
 import { Popover, Tag } from 'antd';
-import { useLocale } from '../../hooks/useLocale';
-import ROUTES from '../../routes/routes';
+import { useLocale } from 'hooks/useLocale';
+import ROUTES from 'routes/routes';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import UserMessageAvatar from '../UserMessageAvatar/UserMessageAvatar';
-import momentWithLocale from '../../i18n/moment';
+import momentWithLocale from 'i18n/moment';
 
 interface Props {
   image?: boolean

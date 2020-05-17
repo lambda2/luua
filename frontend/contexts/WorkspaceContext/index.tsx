@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useMemo, useEffect, useContext } from 'react'
-import api, { getHeaders } from '../../utils/http'
+import api, { getHeaders } from 'utils/http'
 import { initialState, reducer } from './reducer'
 import UserContext from '../UserContext'
 import { useRouter } from 'next/router'

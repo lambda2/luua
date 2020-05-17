@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Tag, Button } from 'antd';
-import { useLocale } from '../../hooks/useLocale';
-import UserContext from '../../contexts/UserContext';
+import { useLocale } from 'hooks/useLocale';
+import UserContext from 'contexts/UserContext';
 import find from 'lodash/find';
 
 interface Props {

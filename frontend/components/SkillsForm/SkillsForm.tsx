@@ -2,16 +2,16 @@ import React, { useContext } from 'react';
 import { ErrorMessage, Formik, useFormikContext } from 'formik';
 import * as Yup from 'yup';
 import AsyncSelect from 'react-select/async';
-import UserContext from '../../contexts/UserContext';
-import api, { getHeaders } from '../../utils/http';
-import UserSkillsSelect from '../../elements/UserSkillsSelect/UserSkillsSelect';
+import UserContext from 'contexts/UserContext';
+import api, { getHeaders } from 'utils/http';
+import UserSkillsSelect from 'elements/UserSkillsSelect/UserSkillsSelect';
 import { Form } from 'formik-antd';
-import SubmitButton from '../../elements/SubmitButton/SubmitButton';
-import { useLocale } from '../../hooks/useLocale';
-import { errorsFromResponse } from '../../utils/forms/helpers';
+import SubmitButton from 'elements/SubmitButton/SubmitButton';
+import { useLocale } from 'hooks/useLocale';
+import { errorsFromResponse } from 'utils/forms/helpers';
 import Router from 'next/router';
 import debounce from 'lodash/debounce';
-import icons from '../../dictionaries/icons';
+import icons from 'dictionaries/icons';
 
 // Copied from https://github.com/jaredpalmer/formik/blob/e51f09a318cba216a1ba3932da0906202df0b979/examples/DebouncedAutoSave.js
 const AutoSave = ({ debounceMs }: { debounceMs: number }) => {

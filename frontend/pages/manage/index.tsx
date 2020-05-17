@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import WorkspaceContext from '../../contexts/WorkspaceContext'
-import NoWorkspace from '../../components/NoWorkspace/NoWorkspace'
+import WorkspaceContext from 'contexts/WorkspaceContext'
+import NoWorkspace from 'components/NoWorkspace/NoWorkspace'
 import Router from 'next/router'
-import { withAuthSync } from '../../utils/auth'
-import LeftMenu from '../../layouts/LeftMenu/LeftMenu'
-import ContentLayout from '../../layouts/ContentLayout/ContentLayout'
+import { withAuthSync } from 'utils/auth'
+import LeftMenu from 'layouts/LeftMenu/LeftMenu'
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
 
 
 const ManagePage = () => {

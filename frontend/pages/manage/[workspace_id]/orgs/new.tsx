@@ -1,6 +1,6 @@
 import React from 'react'
-import { withAuthSync } from '../../../../utils/auth'
-import OrgnForm from '../../../../components/OrgForm/OrgForm'
+import { withAuthSync } from 'utils/auth'
+import OrgnForm from 'components/OrgForm/OrgForm'
 
 const NewOrg = (props: any) => {
 

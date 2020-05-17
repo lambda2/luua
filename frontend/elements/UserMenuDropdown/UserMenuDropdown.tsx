@@ -1,6 +1,6 @@
 
 import Link from 'next/link';
-import routes from '../../routes/routes'
+import routes from 'routes/routes'
 import { useLocale } from "../../hooks/useLocale";
 import UserAvatar from '../UserAvatar/UserAvatar';
 import PrimaryLink from '../PrimaryLink/PrimaryLink';

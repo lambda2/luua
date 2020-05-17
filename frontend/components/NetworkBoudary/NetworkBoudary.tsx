@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
-import Loader from '../../elements/Loader/Loader'
-import { useLocale } from '../../hooks/useLocale'
+import Loader from 'elements/Loader/Loader'
+import { useLocale } from 'hooks/useLocale'
 
 interface Props<T> {
   children: React.ReactNode

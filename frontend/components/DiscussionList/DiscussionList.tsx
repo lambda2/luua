@@ -1,7 +1,7 @@
 import React from 'react';
 import DiscussionItem from '../DiscussionItem/DiscussionItem';
-import List from '../../elements/List/List';
-import { useLocale } from '../../hooks/useLocale';
+import List from 'elements/List/List';
+import { useLocale } from 'hooks/useLocale';
 
 interface Props {
   data: LightDiscussion[]

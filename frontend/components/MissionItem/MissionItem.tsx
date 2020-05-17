@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
-import routes from '../../routes/routes'
-import { useLocale } from '../../hooks/useLocale';
+import UserContext from 'contexts/UserContext';
+import routes from 'routes/routes'
+import { useLocale } from 'hooks/useLocale';
 import Link from 'next/link';
 import find from 'lodash/find';
 import MissionItemMeta from '../MissionItemMeta/MissionItemMeta';

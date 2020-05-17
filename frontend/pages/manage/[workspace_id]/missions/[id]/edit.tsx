@@ -1,17 +1,17 @@
 import { useRouter } from 'next/router'
 import { NextPageContext } from 'next'
 
-import { useCollection, fetchInitialData } from '../../../../../utils/http'
-import { withAuthSync } from '../../../../../utils/auth'
+import { useCollection, fetchInitialData } from 'utils/http'
+import { withAuthSync } from 'utils/auth'
 
-import NetworkBoundary from '../../../../../components/NetworkBoudary/NetworkBoudary'
-import MissionForm from '../../../../../components/MissionForm/MissionForm';
+import NetworkBoundary from 'components/NetworkBoudary/NetworkBoudary'
+import MissionForm from 'components/MissionForm/MissionForm';
 
-import ContentLayout from '../../../../../layouts/ContentLayout/ContentLayout'
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
 import { useContext } from 'react'
-import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
-import WorkspaceHeader from '../../../../../components/WorkspaceHeader/WorkspaceHeader'
-import MissionHeader from '../../../../../components/MissionHeader/MissionHeader'
+import WorkspaceContext from 'contexts/WorkspaceContext'
+import WorkspaceHeader from 'components/WorkspaceHeader/WorkspaceHeader'
+import MissionHeader from 'components/MissionHeader/MissionHeader'
 
 /**
  * Edit a mission

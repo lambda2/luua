@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
+import UserContext from 'contexts/UserContext';
 import { Button } from 'antd';
-import { useLocale } from '../../hooks/useLocale';
+import { useLocale } from 'hooks/useLocale';
 import Link from 'next/link';
-import momentWithLocale from '../../i18n/moment';
-import { linkForNotification } from '../../utils/notifications';
+import momentWithLocale from 'i18n/moment';
+import { linkForNotification } from 'utils/notifications';
 import classNames from 'classnames';
 
 interface Props {

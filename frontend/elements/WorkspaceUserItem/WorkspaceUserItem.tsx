@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
-import { cdnUrl } from '../../utils/http';
+import { cdnUrl } from 'utils/http';
 import { Tag } from 'antd';
-import { useLocale } from '../../hooks/useLocale';
-import momentWithLocale from '../../i18n/moment';
-import UserContext from '../../contexts/UserContext';
+import { useLocale } from 'hooks/useLocale';
+import momentWithLocale from 'i18n/moment';
+import UserContext from 'contexts/UserContext';
 import UserAvatar from '../UserAvatar/UserAvatar';
 
 const WorkspaceUserItem: React.FC<WorkspaceUser> = ({

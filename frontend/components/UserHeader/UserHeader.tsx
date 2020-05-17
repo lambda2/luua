@@ -1,12 +1,12 @@
 import React, { ReactElement, useContext } from 'react';
-import { useLocale } from '../../hooks/useLocale';
-import { ROUTES } from '../../routes/routes';
-import PageTitle from '../../elements/PageTitle/PageTitle';
-import UserAvatar from '../../elements/UserAvatar/UserAvatar';
+import { useLocale } from 'hooks/useLocale';
+import { ROUTES } from 'routes/routes';
+import PageTitle from 'elements/PageTitle/PageTitle';
+import UserAvatar from 'elements/UserAvatar/UserAvatar';
 import Link from 'next/link';
 import classNames from 'classnames';
-import UserContext from '../../contexts/UserContext';
-import { nameForUser } from '../../utils/user';
+import UserContext from 'contexts/UserContext';
+import { nameForUser } from 'utils/user';
 
 interface Props {
   user: User

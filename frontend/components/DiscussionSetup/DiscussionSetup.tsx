@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
+import UserContext from 'contexts/UserContext';
 import WorkspaceForm from '../WorkspaceForm/WorkspaceForm';
 import DiscussionForm from '../DiscussionForm/DiscussionForm';
 import { Typography } from 'antd';
-import { useLocale } from '../../hooks/useLocale';
-import WorkspaceContext from '../../contexts/WorkspaceContext';
+import { useLocale } from 'hooks/useLocale';
+import WorkspaceContext from 'contexts/WorkspaceContext';
 const { Title } = Typography;
 
 interface Props {

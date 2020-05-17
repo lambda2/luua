@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Switch } from 'formik-antd'
-import { useLocale } from '../../hooks/useLocale';
-import TextArea from '../../elements/TextArea/TextArea';
+import { useLocale } from 'hooks/useLocale';
+import TextArea from 'elements/TextArea/TextArea';
 
 
 interface Props {

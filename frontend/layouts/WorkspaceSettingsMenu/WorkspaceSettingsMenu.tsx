@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { useRouter } from 'next/router'
-import WorkspaceContext from '../../contexts/WorkspaceContext';
-import routes from '../../routes/routes'
-import { useLocale } from '../../hooks/useLocale';
+import WorkspaceContext from 'contexts/WorkspaceContext';
+import routes from 'routes/routes'
+import { useLocale } from 'hooks/useLocale';
 import Link from 'next/link';
 import classNames from 'classnames';
 

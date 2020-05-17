@@ -1,14 +1,14 @@
 import React, { ReactElement, useContext } from 'react';
-import { useLocale } from '../../hooks/useLocale';
-import manage, { ROUTES } from '../../routes/routes';
-import PrimaryLink from '../../elements/PrimaryLink/PrimaryLink';
-import PageTitle from '../../elements/PageTitle/PageTitle';
-import UserAvatar from '../../elements/UserAvatar/UserAvatar';
+import { useLocale } from 'hooks/useLocale';
+import manage, { ROUTES } from 'routes/routes';
+import PrimaryLink from 'elements/PrimaryLink/PrimaryLink';
+import PageTitle from 'elements/PageTitle/PageTitle';
+import UserAvatar from 'elements/UserAvatar/UserAvatar';
 import Link from 'next/link';
 import classNames from 'classnames';
-import UserContext from '../../contexts/UserContext';
+import UserContext from 'contexts/UserContext';
 import find from 'lodash/find';
-import can from '../../utils/can';
+import can from 'utils/can';
 
 type ResourceAction = 'show' | 'new' | 'edit' | 'destroy'
 

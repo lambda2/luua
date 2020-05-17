@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import { ErrorMessage, Formik } from 'formik';
-import UserContext from '../../contexts/UserContext';
-import { createOrUpdate } from '../../api/discussion';
-import { errorsFromResponse } from '../../utils/forms/helpers';
+import UserContext from 'contexts/UserContext';
+import { createOrUpdate } from 'api/discussion';
+import { errorsFromResponse } from 'utils/forms/helpers';
 import { Form, Input, Select } from 'formik-antd'
-import YupWithLocale from '../../utils/forms/yup';
-import SubmitButton from '../../elements/SubmitButton/SubmitButton';
-import icons from '../../dictionaries/icons';
+import YupWithLocale from 'utils/forms/yup';
+import SubmitButton from 'elements/SubmitButton/SubmitButton';
+import icons from 'dictionaries/icons';
 import { Tooltip } from 'antd';
-import { useLocale } from '../../hooks/useLocale';
+import { useLocale } from 'hooks/useLocale';
 import Router from 'next/router';
-import routes from '../../routes/routes'
-import TextArea from '../../elements/TextArea/TextArea';
+import routes from 'routes/routes'
+import TextArea from 'elements/TextArea/TextArea';
 import FormDiscussionCategorySelect from '../DiscussionCategorySelect/DiscussionCategorySelect';
 
 interface Props {

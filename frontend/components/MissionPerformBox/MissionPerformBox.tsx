@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Button } from 'antd';
 
-import { useLocale } from '../../hooks/useLocale';
+import { useLocale } from 'hooks/useLocale';
 
-import MessageBox from '../../elements/MessageBox/MessageBox';
-import momentWithLocale from '../../i18n/moment';
+import MessageBox from 'elements/MessageBox/MessageBox';
+import momentWithLocale from 'i18n/moment';
 
 interface Props {
   onComplete: () => Promise<void>

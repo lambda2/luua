@@ -1,6 +1,6 @@
 import React from 'react'
-import LoginForm from '../../components/LoginForm/LoginForm'
-import ContentLayout from '../../layouts/ContentLayout/ContentLayout'
+import LoginForm from 'components/LoginForm/LoginForm'
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
 
 interface UserLoginData {
   email: string

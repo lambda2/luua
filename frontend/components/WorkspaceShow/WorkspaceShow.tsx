@@ -1,11 +1,11 @@
 import React from 'react';
-import { useLocale } from '../../hooks/useLocale';
+import { useLocale } from 'hooks/useLocale';
 import WorkspaceHeader from '../WorkspaceHeader/WorkspaceHeader';
 import WorkspaceMissionList from '../WorkspaceMissionList/WorkspaceMissionList';
-import WorkspaceUserAvatar from '../../elements/WorkspaceUserAvatar/WorkspaceUserAvatar';
-import PageSection from '../../elements/PageSection/PageSection';
-import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
-import MessageBox from '../../elements/MessageBox/MessageBox';
+import WorkspaceUserAvatar from 'elements/WorkspaceUserAvatar/WorkspaceUserAvatar';
+import PageSection from 'elements/PageSection/PageSection';
+import MarkdownContent from 'elements/MarkdownContent/MarkdownContent';
+import MessageBox from 'elements/MessageBox/MessageBox';
 import MissionList from '../MissionList/MissionList';
 import DiscussionList from '../DiscussionList/DiscussionList';
 

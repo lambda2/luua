@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Slider, Radio } from 'formik-antd'
-import { useLocale } from '../../hooks/useLocale';
+import { useLocale } from 'hooks/useLocale';
 
 interface Props {
   mission?: Mission

@@ -1,7 +1,7 @@
 import React from 'react';
 import MissionUserItem from '../MissionUserItem/MissionUserItem';
-import { useLocale } from '../../hooks/useLocale';
-import List from '../../elements/List/List';
+import { useLocale } from 'hooks/useLocale';
+import List from 'elements/List/List';
 
 interface Props {
   data: MissionUser[]

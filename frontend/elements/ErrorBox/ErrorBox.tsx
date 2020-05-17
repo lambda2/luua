@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import { Typography } from 'antd';
-import { useLocale } from '../../hooks/useLocale';
+import { useLocale } from 'hooks/useLocale';
 
 const { Text } = Typography;
 

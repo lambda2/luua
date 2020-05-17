@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import { Avatar } from 'antd';
-import { cdnUrl } from '../../utils/http';
+import { cdnUrl } from 'utils/http';
 
 type AvatarSize = "xsmall" | "small" | "default" | "large" | "xlarge" | "xxlarge"
 interface Props {

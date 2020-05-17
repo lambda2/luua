@@ -1,18 +1,18 @@
 import React, { useContext } from 'react';
 import { Space } from 'antd';
-import { useLocale } from '../../hooks/useLocale';
-import PageSection from '../../elements/PageSection/PageSection';
-import PageTitle from '../../elements/PageTitle/PageTitle';
-import UserAvatar from '../../elements/UserAvatar/UserAvatar';
-import CandidateStatusStep from '../../elements/CandidateStatusStep/CandidateStatusStep';
+import { useLocale } from 'hooks/useLocale';
+import PageSection from 'elements/PageSection/PageSection';
+import PageTitle from 'elements/PageTitle/PageTitle';
+import UserAvatar from 'elements/UserAvatar/UserAvatar';
+import CandidateStatusStep from 'elements/CandidateStatusStep/CandidateStatusStep';
 import MissionSkillsForUser from '../MissionSkillsForUser/MissionSkillsForUser';
 import MissionUserRecommendation from '../MissionUserRecommendation/MissionUserRecommendation';
 import MissionUserNextStepButtons from '../MissionUserNextStepButtons/MissionUserNextStepButtons';
-import { nameForUser } from '../../utils/user';
-import UserContext from '../../contexts/UserContext';
-import { accept, reject, complete, review } from '../../api/mission_user';
+import { nameForUser } from 'utils/user';
+import UserContext from 'contexts/UserContext';
+import { accept, reject, complete, review } from 'api/mission_user';
 import { AxiosResponse } from 'axios';
-import WorkspaceContext from '../../contexts/WorkspaceContext';
+import WorkspaceContext from 'contexts/WorkspaceContext';
 
 interface Props {
   mission_user: MissionUser,

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Select } from 'antd';
-import UserContext from '../../contexts/UserContext';
-import { fetch, getHeaders } from '../../utils/http';
+import UserContext from 'contexts/UserContext';
+import { fetch, getHeaders } from 'utils/http';
 import { useQuery, AnyQueryKey } from 'react-query'
 import { useField } from 'formik';
 import find from 'lodash/find';

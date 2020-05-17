@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import { ErrorMessage, Formik } from 'formik';
 import { Form, Input } from 'formik-antd'
-import UserContext from '../../contexts/UserContext';
-import { cdnUrl } from '../../utils/http';
-import { errorsFromResponse } from '../../utils/forms/helpers';
-import icons from '../../dictionaries/icons';
-import SubmitButton from '../../elements/SubmitButton/SubmitButton';
-import YupWithLocale from '../../utils/forms/yup';
+import UserContext from 'contexts/UserContext';
+import { cdnUrl } from 'utils/http';
+import { errorsFromResponse } from 'utils/forms/helpers';
+import icons from 'dictionaries/icons';
+import SubmitButton from 'elements/SubmitButton/SubmitButton';
+import YupWithLocale from 'utils/forms/yup';
 import { Tooltip, Button } from 'antd';
-import UploadAvatar from '../../elements/UploadAvatar/UploadAvatar';
+import UploadAvatar from 'elements/UploadAvatar/UploadAvatar';
 import { FormCountrySelect } from '../CountrySelect/CountrySelect';
 import Router from 'next/router';
-import { useLocale } from '../../hooks/useLocale';
+import { useLocale } from 'hooks/useLocale';
 
 interface Props {
   onSave: () => void

@@ -1,21 +1,21 @@
 import React, { useContext } from 'react'
-import { useCollection, fetchInitialData } from '../../../../utils/http'
-import { withUserToken } from '../../../../utils/auth'
-import { useLocale } from '../../../../hooks/useLocale';
+import { useCollection, fetchInitialData } from 'utils/http'
+import { withUserToken } from 'utils/auth'
+import { useLocale } from 'hooks/useLocale';
 
-import NetworkBoundary from '../../../../components/NetworkBoudary/NetworkBoudary'
+import NetworkBoundary from 'components/NetworkBoudary/NetworkBoudary'
 import { useRouter } from 'next/router';
-import routes, { ROUTES } from '../../../../routes/routes'
+import routes, { ROUTES } from 'routes/routes'
 import Link from 'next/link'
-import ContentLayout from '../../../../layouts/ContentLayout/ContentLayout'
-import WorkspaceHeader from '../../../../components/WorkspaceHeader/WorkspaceHeader';
-import WorkspaceContext from '../../../../contexts/WorkspaceContext';
-import PageTitle from '../../../../elements/PageTitle/PageTitle';
-import can from '../../../../utils/can';
-import UserContext from '../../../../contexts/UserContext';
-import DiscussionList from '../../../../components/DiscussionList/DiscussionList';
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
+import WorkspaceHeader from 'components/WorkspaceHeader/WorkspaceHeader';
+import WorkspaceContext from 'contexts/WorkspaceContext';
+import PageTitle from 'elements/PageTitle/PageTitle';
+import can from 'utils/can';
+import UserContext from 'contexts/UserContext';
+import DiscussionList from 'components/DiscussionList/DiscussionList';
 import { Menu, Dropdown, Button } from 'antd';
-import icons from '../../../../dictionaries/icons';
+import icons from 'dictionaries/icons';
 const { manage } = routes
 
 /**

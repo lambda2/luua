@@ -1,9 +1,9 @@
 import React from 'react';
 import { Tag } from 'antd';
-import { useLocale } from '../../hooks/useLocale';
+import { useLocale } from 'hooks/useLocale';
 import fromPairs from 'lodash/fromPairs';
 import sumBy from 'lodash/sumBy';
-import SkillTag from '../../elements/SkillTag/SkillTag';
+import SkillTag from 'elements/SkillTag/SkillTag';
 
 
 /**

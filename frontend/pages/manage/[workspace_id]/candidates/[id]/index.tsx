@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
-import { useCollection, fetchInitialData } from '../../../../../utils/http'
-import { withAuthSync } from '../../../../../utils/auth'
+import { useCollection, fetchInitialData } from 'utils/http'
+import { withAuthSync } from 'utils/auth'
 import { useRouter } from 'next/router'
-import NetworkBoundary from '../../../../../components/NetworkBoudary/NetworkBoudary'
+import NetworkBoundary from 'components/NetworkBoudary/NetworkBoudary'
 import { NextPageContext } from 'next'
-import ContentLayout from '../../../../../layouts/ContentLayout/ContentLayout'
-import MissionUserShow from '../../../../../components/MissionUserShow/MissionUserShow'
-import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
-import MissionLeftMenu from '../../../../../layouts/MissionLeftMenu/MissionLeftMenu'
-import MissionHeader from '../../../../../components/MissionHeader/MissionHeader'
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
+import MissionUserShow from 'components/MissionUserShow/MissionUserShow'
+import WorkspaceContext from 'contexts/WorkspaceContext'
+import MissionLeftMenu from 'layouts/MissionLeftMenu/MissionLeftMenu'
+import MissionHeader from 'components/MissionHeader/MissionHeader'
 
 /**
  * Show the current mission status for a user

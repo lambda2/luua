@@ -2,17 +2,17 @@ import React, { useEffect } from 'react'
 
 import MainMenu from '../MainMenu/MainMenu'
 
-import { UserProvider } from '../../contexts/UserContext'
+import { UserProvider } from 'contexts/UserContext'
 
 import { Layout, ConfigProvider } from 'antd';
 
-import { WorkspaceProvider } from '../../contexts/WorkspaceContext'
+import { WorkspaceProvider } from 'contexts/WorkspaceContext'
 
 import fr from 'antd/lib/locale/fr_FR';
 import en from 'antd/lib/locale/en_US';
-import { LocaleProvider } from '../../contexts/LocaleContext'
+import { LocaleProvider } from 'contexts/LocaleContext'
 import Footer from '../Footer/Footer';
-import ahoy from '../../utils/analytics'
+import ahoy from 'utils/analytics'
 
 const locales = { fr, en }
 

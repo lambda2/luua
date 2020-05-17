@@ -1,9 +1,9 @@
 import React from 'react'
-import { withAuthSync } from '../../../../utils/auth'
-import { fetchInitialData, useCollection } from '../../../../utils/http'
+import { withAuthSync } from 'utils/auth'
+import { fetchInitialData, useCollection } from 'utils/http'
 import { useRouter } from 'next/router'
 import { NextPageContext } from 'next'
-import NetworkBoundary from '../../../../components/NetworkBoudary/NetworkBoudary'
+import NetworkBoundary from 'components/NetworkBoudary/NetworkBoudary'
 
 
 const ShowOrg = (

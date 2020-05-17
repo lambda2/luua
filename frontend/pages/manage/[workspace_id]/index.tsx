@@ -1,13 +1,13 @@
 import React from 'react'
-import { withUserToken } from '../../../utils/auth'
-import { useCollection, fetchInitialData } from '../../../utils/http'
+import { withUserToken } from 'utils/auth'
+import { useCollection, fetchInitialData } from 'utils/http'
 import { useRouter } from 'next/router'
-import NetworkBoundary from '../../../components/NetworkBoudary/NetworkBoudary'
+import NetworkBoundary from 'components/NetworkBoudary/NetworkBoudary'
 import { NextPageContext } from 'next'
-import WorkspaceShow from '../../../components/WorkspaceShow/WorkspaceShow'
-import ContentLayout from '../../../layouts/ContentLayout/ContentLayout'
-import WorkspaceHeader from '../../../components/WorkspaceHeader/WorkspaceHeader'
-import WorkspaceLeftMenu from '../../../layouts/WorkspaceLeftMenu/WorkspaceLeftMenu'
+import WorkspaceShow from 'components/WorkspaceShow/WorkspaceShow'
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
+import WorkspaceHeader from 'components/WorkspaceHeader/WorkspaceHeader'
+import WorkspaceLeftMenu from 'layouts/WorkspaceLeftMenu/WorkspaceLeftMenu'
 
 /**
  * Show the requested workspace, as a member of it

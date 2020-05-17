@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import UserContext from '../../contexts/UserContext';
-import MissionFullMeta from '../../components/MissionFullMeta/MissionFullMeta';
-import MissionUserStatusBadge from '../../components/MissionUserStatusBadge/MissionUserStatusBadge';
-import WorkspaceUserAvatar from '../../elements/WorkspaceUserAvatar/WorkspaceUserAvatar';
-import icons from '../../dictionaries/icons';
-import { useLocale } from '../../hooks/useLocale';
+import UserContext from 'contexts/UserContext';
+import MissionFullMeta from 'components/MissionFullMeta/MissionFullMeta';
+import MissionUserStatusBadge from 'components/MissionUserStatusBadge/MissionUserStatusBadge';
+import WorkspaceUserAvatar from 'elements/WorkspaceUserAvatar/WorkspaceUserAvatar';
+import icons from 'dictionaries/icons';
+import { useLocale } from 'hooks/useLocale';
 
 interface Props {
   workspace: Workspace

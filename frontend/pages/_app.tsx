@@ -1,5 +1,5 @@
 import App, { AppProps } from 'next/app'
-import Layout from '../layouts/Layout/Layout'
+import Layout from 'layouts/Layout/Layout'
 import * as Sentry from '@sentry/browser';
 import getConfig from 'next/config';
 
@@ -10,7 +10,7 @@ const { publicRuntimeConfig } = getConfig();
 import '@fortawesome/fontawesome-svg-core/styles.css' // Import the CSS
 import 'antd/dist/antd.less'
 import '../styles/app.less'
-import { propsFromContext } from '../utils/auth';
+import { propsFromContext } from 'utils/auth';
 
 config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 

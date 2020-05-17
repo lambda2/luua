@@ -1,12 +1,12 @@
 import React from 'react'
-import { useCollection, fetchInitialData } from '../../../utils/http'
+import { useCollection, fetchInitialData } from 'utils/http'
 
-import NetworkBoundary from '../../../components/NetworkBoudary/NetworkBoudary'
-import WorkspaceList from '../../../components/WorkspaceList/WorkspaceList'
+import NetworkBoundary from 'components/NetworkBoudary/NetworkBoudary'
+import WorkspaceList from 'components/WorkspaceList/WorkspaceList'
 import { NextPageContext } from 'next';
-import { useLocale } from '../../../hooks/useLocale';
-import ContentLayout from '../../../layouts/ContentLayout/ContentLayout';
-import ExploreHeader from '../../../components/ExploreHeader/ExploreHeader';
+import { useLocale } from 'hooks/useLocale';
+import ContentLayout from 'layouts/ContentLayout/ContentLayout';
+import ExploreHeader from 'components/ExploreHeader/ExploreHeader';
 
 interface Props {
   initialData: LightWorkspace[],

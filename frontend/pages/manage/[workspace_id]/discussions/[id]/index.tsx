@@ -1,16 +1,16 @@
 import { NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 
-import { useCollection, fetchInitialData } from '../../../../../utils/http'
-import { withUserToken } from '../../../../../utils/auth'
+import { useCollection, fetchInitialData } from 'utils/http'
+import { withUserToken } from 'utils/auth'
 
-import NetworkBoundary from '../../../../../components/NetworkBoudary/NetworkBoudary'
+import NetworkBoundary from 'components/NetworkBoudary/NetworkBoudary'
 
-import ContentLayout from '../../../../../layouts/ContentLayout/ContentLayout'
-import Discussion from '../../../../../components/Discussion/Discussion'
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
+import Discussion from 'components/Discussion/Discussion'
 import { useContext } from 'react'
-import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
-import WorkspaceHeader from '../../../../../components/WorkspaceHeader/WorkspaceHeader'
+import WorkspaceContext from 'contexts/WorkspaceContext'
+import WorkspaceHeader from 'components/WorkspaceHeader/WorkspaceHeader'
 
 /**
  * Show the requested discussion

@@ -2,22 +2,22 @@ import React, { useContext } from 'react'
 import { NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 
-import { useCollection, fetchInitialData } from '../../../../utils/http'
-import { withAuthSync } from '../../../../utils/auth'
+import { useCollection, fetchInitialData } from 'utils/http'
+import { withAuthSync } from 'utils/auth'
 
-import { useLocale } from '../../../../hooks/useLocale'
-import WorkspaceContext from '../../../../contexts/WorkspaceContext'
+import { useLocale } from 'hooks/useLocale'
+import WorkspaceContext from 'contexts/WorkspaceContext'
 
-import ContentLayout from '../../../../layouts/ContentLayout/ContentLayout'
-import WorkspaceSettingsMenu from '../../../../layouts/WorkspaceSettingsMenu/WorkspaceSettingsMenu'
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
+import WorkspaceSettingsMenu from 'layouts/WorkspaceSettingsMenu/WorkspaceSettingsMenu'
 
-import NetworkBoundary from '../../../../components/NetworkBoudary/NetworkBoudary'
-import WorkspaceHeader from '../../../../components/WorkspaceHeader/WorkspaceHeader'
+import NetworkBoundary from 'components/NetworkBoudary/NetworkBoudary'
+import WorkspaceHeader from 'components/WorkspaceHeader/WorkspaceHeader'
 
-import WorkspaceInvitationItem from '../../../../elements/WorkspaceInvitationItem/WorkspaceInvitationItem'
-import PageTitle from '../../../../elements/PageTitle/PageTitle'
-import List from '../../../../elements/List/List'
-import WorkspaceInvitationModal from '../../../../components/WorkspaceInvitationModal/WorkspaceInvitationModal'
+import WorkspaceInvitationItem from 'elements/WorkspaceInvitationItem/WorkspaceInvitationItem'
+import PageTitle from 'elements/PageTitle/PageTitle'
+import List from 'elements/List/List'
+import WorkspaceInvitationModal from 'components/WorkspaceInvitationModal/WorkspaceInvitationModal'
 
 
 /**

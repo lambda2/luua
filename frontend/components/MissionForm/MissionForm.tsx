@@ -1,21 +1,21 @@
 import React, { useContext, useState } from 'react';
 import { ErrorMessage, Formik, FormikErrors } from 'formik';
-import YupWithLocale from '../../utils/forms/yup';
-import UserContext from '../../contexts/UserContext';
-import { createOrUpdate } from '../../api/mission';
-import { errorsFromResponse } from '../../utils/forms/helpers';
+import YupWithLocale from 'utils/forms/yup';
+import UserContext from 'contexts/UserContext';
+import { createOrUpdate } from 'api/mission';
+import { errorsFromResponse } from 'utils/forms/helpers';
 import { Form } from 'formik-antd'
-import SubmitButton from '../../elements/SubmitButton/SubmitButton';
+import SubmitButton from 'elements/SubmitButton/SubmitButton';
 import { Steps, Button } from 'antd';
 import MissionInfoForm from './MissionInfoForm';
 import MissionSkillsForm from './MissionSkillsForm';
 import pick from 'lodash/pick';
-import routes from '../../routes/routes'
-import { useLocale } from '../../hooks/useLocale';
+import routes from 'routes/routes'
+import { useLocale } from 'hooks/useLocale';
 import Router from 'next/router';
 import MissionDurationForm from './MissionDurationForm';
 import MissionPeopleForm from './MissionPeopleForm';
-import PageTitle from '../../elements/PageTitle/PageTitle';
+import PageTitle from 'elements/PageTitle/PageTitle';
 const { manage } = routes
 const { workspace } = manage
 

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
-import UserContext from '../../contexts/UserContext';
-import List from '../../elements/List/List';
+import UserContext from 'contexts/UserContext';
+import List from 'elements/List/List';
 import WorkspaceItem from '../WorkspaceItem/WorkspaceItem';
-import { useLocale } from '../../hooks/useLocale';
+import { useLocale } from 'hooks/useLocale';
 
 interface Props {
   data?: LightWorkspace[]

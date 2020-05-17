@@ -2,23 +2,23 @@ import React, { useContext } from 'react'
 import { NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 
-import { useCollection, fetchInitialData } from '../../../utils/http'
-import { withAuthSync } from '../../../utils/auth'
+import { useCollection, fetchInitialData } from 'utils/http'
+import { withAuthSync } from 'utils/auth'
 
-import { useLocale } from '../../../hooks/useLocale'
-import WorkspaceContext from '../../../contexts/WorkspaceContext'
+import { useLocale } from 'hooks/useLocale'
+import WorkspaceContext from 'contexts/WorkspaceContext'
 
-import ContentLayout from '../../../layouts/ContentLayout/ContentLayout'
-import WorkspaceSettingsMenu from '../../../layouts/WorkspaceSettingsMenu/WorkspaceSettingsMenu'
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
+import WorkspaceSettingsMenu from 'layouts/WorkspaceSettingsMenu/WorkspaceSettingsMenu'
 
-import NetworkBoundary from '../../../components/NetworkBoudary/NetworkBoudary'
-import WorkspaceHeader from '../../../components/WorkspaceHeader/WorkspaceHeader'
+import NetworkBoundary from 'components/NetworkBoudary/NetworkBoudary'
+import WorkspaceHeader from 'components/WorkspaceHeader/WorkspaceHeader'
 
-import WorkspaceUserItem from '../../../elements/WorkspaceUserItem/WorkspaceUserItem'
-import PageTitle from '../../../elements/PageTitle/PageTitle'
-import List from '../../../elements/List/List'
-import WorkspaceUserActions from '../../../elements/WorkspaceUserActions/WorkspaceUserActions'
-import { remove, update } from '../../../api/workspace_user'
+import WorkspaceUserItem from 'elements/WorkspaceUserItem/WorkspaceUserItem'
+import PageTitle from 'elements/PageTitle/PageTitle'
+import List from 'elements/List/List'
+import WorkspaceUserActions from 'elements/WorkspaceUserActions/WorkspaceUserActions'
+import { remove, update } from 'api/workspace_user'
 
 
 /**

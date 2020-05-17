@@ -2,20 +2,20 @@ import { NextPageContext } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import routes from '../../../../../routes/routes'
+import routes from 'routes/routes'
 
-import { useCollection, fetchInitialData } from '../../../../../utils/http'
-import { withAuthSync, withUserToken } from '../../../../../utils/auth'
+import { useCollection, fetchInitialData } from 'utils/http'
+import { withAuthSync, withUserToken } from 'utils/auth'
 
-import NetworkBoundary from '../../../../../components/NetworkBoudary/NetworkBoudary'
+import NetworkBoundary from 'components/NetworkBoudary/NetworkBoudary'
 
-import ContentLayout from '../../../../../layouts/ContentLayout/ContentLayout'
-import WorkspaceMissionDetail from '../../../../../components/WorkspaceMissionDetail/WorkspaceMissionDetail'
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
+import WorkspaceMissionDetail from 'components/WorkspaceMissionDetail/WorkspaceMissionDetail'
 import { useContext } from 'react'
-import WorkspaceContext from '../../../../../contexts/WorkspaceContext'
-import MissionHeader from '../../../../../components/MissionHeader/MissionHeader'
-import MissionLeftMenu from '../../../../../layouts/MissionLeftMenu/MissionLeftMenu'
-import UserContext from '../../../../../contexts/UserContext'
+import WorkspaceContext from 'contexts/WorkspaceContext'
+import MissionHeader from 'components/MissionHeader/MissionHeader'
+import MissionLeftMenu from 'layouts/MissionLeftMenu/MissionLeftMenu'
+import UserContext from 'contexts/UserContext'
 import find from 'lodash/find'
 
 /**

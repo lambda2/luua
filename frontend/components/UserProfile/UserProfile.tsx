@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import { useLocale } from '../../hooks/useLocale';
-import { logout } from '../../utils/auth'
+import { useLocale } from 'hooks/useLocale';
+import { logout } from 'utils/auth'
 import { Button } from 'antd';
-import routes from '../../routes/routes'
-import PageSection from '../../elements/PageSection/PageSection';
-import List from '../../elements/List/List';
+import routes from 'routes/routes'
+import PageSection from 'elements/PageSection/PageSection';
+import List from 'elements/List/List';
 import WorkspaceItem from '../WorkspaceItem/WorkspaceItem';
 import MissionUserItem from '../MissionUserItem/MissionUserItem';
 import SkillsForm from '../SkillsForm/SkillsForm';

@@ -1,9 +1,9 @@
 import React from 'react';
-import { useLocale } from '../../hooks/useLocale';
+import { useLocale } from 'hooks/useLocale';
 import classNames from 'classnames';
-import icons from '../../dictionaries/icons';
+import icons from 'dictionaries/icons';
 import { Tooltip } from 'antd';
-import momentWithLocale from '../../i18n/moment';
+import momentWithLocale from 'i18n/moment';
 
 interface Props {
   mission: BaseMission

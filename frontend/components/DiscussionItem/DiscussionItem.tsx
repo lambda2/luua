@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
-import routes from '../../routes/routes'
-import { useLocale } from '../../hooks/useLocale';
+import UserContext from 'contexts/UserContext';
+import routes from 'routes/routes'
+import { useLocale } from 'hooks/useLocale';
 import Link from 'next/link';
-import momentWithLocale from '../../i18n/moment';
-import icons from '../../dictionaries/icons';
-import UserAvatarTooltip from '../../elements/UserAvatarTooltip/UserAvatarTooltip';
-import UserAvatar from '../../elements/UserAvatar/UserAvatar';
-import DiscussionCategoryBadge from '../../elements/DiscussionCategoryBadge/DiscussionCategoryBadge';
+import momentWithLocale from 'i18n/moment';
+import icons from 'dictionaries/icons';
+import UserAvatarTooltip from 'elements/UserAvatarTooltip/UserAvatarTooltip';
+import UserAvatar from 'elements/UserAvatar/UserAvatar';
+import DiscussionCategoryBadge from 'elements/DiscussionCategoryBadge/DiscussionCategoryBadge';
 
 const { manage } = routes
 

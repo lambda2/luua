@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
-import routes from '../../routes/routes'
+import UserContext from 'contexts/UserContext';
+import routes from 'routes/routes'
 
-import { useLocale } from '../../hooks/useLocale';
+import { useLocale } from 'hooks/useLocale';
 import Link from 'next/link';
-import MarkdownContent from '../../elements/MarkdownContent/MarkdownContent';
-import TitleWithAvatar from '../../elements/TitleWithAvatar/TitleWithAvatar';
-import UserAvatar from '../../elements/UserAvatar/UserAvatar';
+import MarkdownContent from 'elements/MarkdownContent/MarkdownContent';
+import TitleWithAvatar from 'elements/TitleWithAvatar/TitleWithAvatar';
+import UserAvatar from 'elements/UserAvatar/UserAvatar';
 
 const { manage } = routes
 

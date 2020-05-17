@@ -1,14 +1,14 @@
 import React from 'react'
-import { useCollection, fetchInitialData } from '../../../utils/http'
-import { withAuthSync } from '../../../utils/auth'
-import NetworkBoundary from '../../../components/NetworkBoudary/NetworkBoudary'
-import WorkspaceList from '../../../components/WorkspaceList/WorkspaceList'
+import { useCollection, fetchInitialData } from 'utils/http'
+import { withAuthSync } from 'utils/auth'
+import NetworkBoundary from 'components/NetworkBoudary/NetworkBoudary'
+import WorkspaceList from 'components/WorkspaceList/WorkspaceList'
 import { NextPageContext } from 'next'
 import Link from 'next/link'
-import ContentLayout from '../../../layouts/ContentLayout/ContentLayout'
-import PageTitle from '../../../elements/PageTitle/PageTitle'
-import { useLocale } from '../../../hooks/useLocale'
-import ROUTES from '../../../routes/routes'
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
+import PageTitle from 'elements/PageTitle/PageTitle'
+import { useLocale } from 'hooks/useLocale'
+import ROUTES from 'routes/routes'
 
 const Workspaces = (
   { initialData, token }:

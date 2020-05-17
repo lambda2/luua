@@ -1,9 +1,9 @@
 import React from 'react'
 import Router from 'next/router'
-import ContentLayout from '../../../layouts/ContentLayout/ContentLayout'
-import UserEditPopupForm from '../../../components/UserEditPopupForm/UserEditPopupForm'
-import PageSection from '../../../elements/PageSection/PageSection'
-import { useLocale } from '../../../hooks/useLocale'
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
+import UserEditPopupForm from 'components/UserEditPopupForm/UserEditPopupForm'
+import PageSection from 'elements/PageSection/PageSection'
+import { useLocale } from 'hooks/useLocale'
 
 
 /**

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { useRouter } from 'next/router'
-import { useLocale } from '../../hooks/useLocale';
+import { useLocale } from 'hooks/useLocale';
 import Link from 'next/link';
 import classNames from 'classnames';
 

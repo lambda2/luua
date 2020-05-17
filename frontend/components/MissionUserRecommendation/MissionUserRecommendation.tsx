@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocale } from '../../hooks/useLocale';
+import { useLocale } from 'hooks/useLocale';
 
 interface Props {
   mission_user: MissionUser

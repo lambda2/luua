@@ -1,7 +1,7 @@
 import React from 'react'
 import { Layout, Menu } from 'antd';
 import { useRouter } from 'next/router'
-import { useLocale } from '../../hooks/useLocale';
+import { useLocale } from 'hooks/useLocale';
 import Link from 'next/link';
 
 const { Sider } = Layout;

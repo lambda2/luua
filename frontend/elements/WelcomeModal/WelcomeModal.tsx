@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Modal } from 'antd';
-import { useLocale } from '../../hooks/useLocale';
-import UserContext from '../../contexts/UserContext';
+import { useLocale } from 'hooks/useLocale';
+import UserContext from 'contexts/UserContext';
 import getConfig from 'next/config'
 
 const { publicRuntimeConfig: { contact } } = getConfig()

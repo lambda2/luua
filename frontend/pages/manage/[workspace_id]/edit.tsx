@@ -2,17 +2,17 @@ import React from 'react'
 import { NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 
-import { useCollection, fetchInitialData } from '../../../utils/http'
-import { withAuthSync } from '../../../utils/auth'
+import { useCollection, fetchInitialData } from 'utils/http'
+import { withAuthSync } from 'utils/auth'
 
-import ContentLayout from '../../../layouts/ContentLayout/ContentLayout'
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
 
-import NetworkBoundary from '../../../components/NetworkBoudary/NetworkBoudary'
-import WorkspaceForm from '../../../components/WorkspaceForm/WorkspaceForm';
-import WorkspaceHeader from '../../../components/WorkspaceHeader/WorkspaceHeader'
-import WorkspaceSettingsMenu from '../../../layouts/WorkspaceSettingsMenu/WorkspaceSettingsMenu'
-import PageTitle from '../../../elements/PageTitle/PageTitle'
-import { useLocale } from '../../../hooks/useLocale'
+import NetworkBoundary from 'components/NetworkBoudary/NetworkBoudary'
+import WorkspaceForm from 'components/WorkspaceForm/WorkspaceForm';
+import WorkspaceHeader from 'components/WorkspaceHeader/WorkspaceHeader'
+import WorkspaceSettingsMenu from 'layouts/WorkspaceSettingsMenu/WorkspaceSettingsMenu'
+import PageTitle from 'elements/PageTitle/PageTitle'
+import { useLocale } from 'hooks/useLocale'
 
 
 /**

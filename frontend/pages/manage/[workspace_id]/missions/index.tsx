@@ -1,19 +1,19 @@
 import React, { useContext } from 'react'
-import { useCollection, fetchInitialData } from '../../../../utils/http'
-import { withUserToken } from '../../../../utils/auth'
-import { useLocale } from '../../../../hooks/useLocale';
+import { useCollection, fetchInitialData } from 'utils/http'
+import { withUserToken } from 'utils/auth'
+import { useLocale } from 'hooks/useLocale';
 
-import NetworkBoundary from '../../../../components/NetworkBoudary/NetworkBoudary'
-import MissionList from '../../../../components/MissionList/MissionList'
+import NetworkBoundary from 'components/NetworkBoudary/NetworkBoudary'
+import MissionList from 'components/MissionList/MissionList'
 import { useRouter } from 'next/router';
-import routes from '../../../../routes/routes'
+import routes from 'routes/routes'
 import Link from 'next/link'
-import ContentLayout from '../../../../layouts/ContentLayout/ContentLayout'
-import WorkspaceHeader from '../../../../components/WorkspaceHeader/WorkspaceHeader';
-import WorkspaceContext from '../../../../contexts/WorkspaceContext';
-import PageTitle from '../../../../elements/PageTitle/PageTitle';
-import can from '../../../../utils/can';
-import UserContext from '../../../../contexts/UserContext';
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
+import WorkspaceHeader from 'components/WorkspaceHeader/WorkspaceHeader';
+import WorkspaceContext from 'contexts/WorkspaceContext';
+import PageTitle from 'elements/PageTitle/PageTitle';
+import can from 'utils/can';
+import UserContext from 'contexts/UserContext';
 const { manage } = routes
 
 /**

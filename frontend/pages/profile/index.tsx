@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
 import Router, { useRouter } from 'next/router'
-import api, { getHeaders, useCollection} from '../../utils/http'
+import api, { getHeaders, useCollection} from 'utils/http'
 import nextCookie from 'next-cookies'
-import { withAuthSync } from '../../utils/auth'
-import NetworkBoundary from '../../components/NetworkBoudary/NetworkBoudary'
-import UserProfile from '../../components/UserProfile/UserProfile'
+import { withAuthSync } from 'utils/auth'
+import NetworkBoundary from 'components/NetworkBoudary/NetworkBoudary'
+import UserProfile from 'components/UserProfile/UserProfile'
 import { NextPageContext } from 'next'
-import ContentLayout from '../../layouts/ContentLayout/ContentLayout'
-import UserHeader from '../../components/UserHeader/UserHeader'
-import { welcomeToLuua } from '../../utils/welcome'
-import WelcomeModal from '../../elements/WelcomeModal/WelcomeModal'
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
+import UserHeader from 'components/UserHeader/UserHeader'
+import { welcomeToLuua } from 'utils/welcome'
+import WelcomeModal from 'elements/WelcomeModal/WelcomeModal'
 
 const Profile = (
   { initialData, token }:

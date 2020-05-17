@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import { ErrorMessage, Formik } from 'formik';
-import UserContext from '../../contexts/UserContext';
-import { createOrUpdate } from '../../api/discussion_category';
-import { errorsFromResponse } from '../../utils/forms/helpers';
+import UserContext from 'contexts/UserContext';
+import { createOrUpdate } from 'api/discussion_category';
+import { errorsFromResponse } from 'utils/forms/helpers';
 import { Form, Input } from 'formik-antd'
-import YupWithLocale from '../../utils/forms/yup';
-import SubmitButton from '../../elements/SubmitButton/SubmitButton';
-import { useLocale } from '../../hooks/useLocale';
+import YupWithLocale from 'utils/forms/yup';
+import SubmitButton from 'elements/SubmitButton/SubmitButton';
+import { useLocale } from 'hooks/useLocale';
 import Router, { useRouter } from 'next/router';
-import routes from '../../routes/routes'
-import MessageBox from '../../elements/MessageBox/MessageBox';
-import DiscussionCategoryBadge from '../../elements/DiscussionCategoryBadge/DiscussionCategoryBadge';
-import WorkspaceContext from '../../contexts/WorkspaceContext';
+import routes from 'routes/routes'
+import MessageBox from 'elements/MessageBox/MessageBox';
+import DiscussionCategoryBadge from 'elements/DiscussionCategoryBadge/DiscussionCategoryBadge';
+import WorkspaceContext from 'contexts/WorkspaceContext';
 
 interface Props {
   discussion_category?: DiscussionCategory

@@ -1,5 +1,5 @@
 import React from 'react'
-import icons, { isEmoji } from '../../dictionaries/icons';
+import icons, { isEmoji } from 'dictionaries/icons';
 import classNames from 'classnames';
 
 

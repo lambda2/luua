@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import Layout from '../layouts/Layout/Layout'
-import UserContext from '../contexts/UserContext'
+import Layout from 'layouts/Layout/Layout'
+import UserContext from 'contexts/UserContext'
 
 
 const IndexPage = () => {

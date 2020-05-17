@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
-import { withAuthSync } from '../../utils/auth'
-import SkillsForm from '../../components/SkillsForm/SkillsForm'
-import PageTitle from '../../elements/PageTitle/PageTitle'
-import ContentLayout from '../../layouts/ContentLayout/ContentLayout'
+import { withAuthSync } from 'utils/auth'
+import SkillsForm from 'components/SkillsForm/SkillsForm'
+import PageTitle from 'elements/PageTitle/PageTitle'
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
 import { useLocale } from "../../hooks/useLocale";
-import UserHeader from '../../components/UserHeader/UserHeader'
-import UserContext from '../../contexts/UserContext'
+import UserHeader from 'components/UserHeader/UserHeader'
+import UserContext from 'contexts/UserContext'
 
 /**
  * The user's skills page

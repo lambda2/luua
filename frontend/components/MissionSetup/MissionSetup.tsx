@@ -1,10 +1,8 @@
 import React, { useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
+import UserContext from 'contexts/UserContext';
 import WorkspaceForm from '../WorkspaceForm/WorkspaceForm';
 import MissionForm from '../MissionForm/MissionForm';
-import { Typography } from 'antd';
-import { useLocale } from '../../hooks/useLocale';
-const { Title } = Typography;
+import { useLocale } from 'hooks/useLocale';
 
 interface Props {
   mission?: Mission

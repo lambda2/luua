@@ -1,15 +1,15 @@
 import React, { useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
-import { useCollection, fetchInitialData} from '../../../../utils/http'
-import { withAuthSync } from '../../../../utils/auth'
-import NetworkBoundary from '../../../../components/NetworkBoudary/NetworkBoudary'
-import ContentLayout from '../../../../layouts/ContentLayout/ContentLayout'
-import { useLocale } from '../../../../hooks/useLocale';
-import MessageBox from '../../../../elements/MessageBox/MessageBox'
-import LoginForm from '../../../../components/LoginForm/LoginForm'
-import UserContext from '../../../../contexts/UserContext'
+import { useCollection, fetchInitialData} from 'utils/http'
+import { withAuthSync } from 'utils/auth'
+import NetworkBoundary from 'components/NetworkBoudary/NetworkBoudary'
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
+import { useLocale } from 'hooks/useLocale';
+import MessageBox from 'elements/MessageBox/MessageBox'
+import LoginForm from 'components/LoginForm/LoginForm'
+import UserContext from 'contexts/UserContext'
 import Link from 'next/link'
-import ROUTES from '../../../../routes/routes'
+import ROUTES from 'routes/routes'
 
 /**
  * This is the page used to confirm the email address

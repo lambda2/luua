@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react'
 import Router from 'next/router'
-import UserContext from '../../contexts/UserContext'
-import SignupForm from '../../components/SignupForm/SignupForm'
-import ContentLayout from '../../layouts/ContentLayout/ContentLayout'
+import UserContext from 'contexts/UserContext'
+import SignupForm from 'components/SignupForm/SignupForm'
+import ContentLayout from 'layouts/ContentLayout/ContentLayout'
 
 
 /**

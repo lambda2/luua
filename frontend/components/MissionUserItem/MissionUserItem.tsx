@@ -1,11 +1,11 @@
 import React from 'react';
-import routes from '../../routes/routes'
-import { useLocale } from '../../hooks/useLocale';
+import routes from 'routes/routes'
+import { useLocale } from 'hooks/useLocale';
 import Link from 'next/link';
-import UserAvatar from '../../elements/UserAvatar/UserAvatar';
+import UserAvatar from 'elements/UserAvatar/UserAvatar';
 import { useRouter } from 'next/router';
-import ComponentWithAvatar from '../../elements/ComponentWithAvatar/ComponentWithAvatar';
-import UserAvatarTooltip from '../../elements/UserAvatarTooltip/UserAvatarTooltip';
+import ComponentWithAvatar from 'elements/ComponentWithAvatar/ComponentWithAvatar';
+import UserAvatarTooltip from 'elements/UserAvatarTooltip/UserAvatarTooltip';
 import MissionUserStatusBadge from '../MissionUserStatusBadge/MissionUserStatusBadge';
 
 const { manage } = routes

@@ -1,10 +1,10 @@
 import React, { ReactElement, useContext } from 'react';
-import { useLocale } from '../../hooks/useLocale';
-import { ROUTES } from '../../routes/routes';
-import PageTitle from '../../elements/PageTitle/PageTitle';
+import { useLocale } from 'hooks/useLocale';
+import { ROUTES } from 'routes/routes';
+import PageTitle from 'elements/PageTitle/PageTitle';
 import Link from 'next/link';
 import classNames from 'classnames';
-import UserContext from '../../contexts/UserContext';
+import UserContext from 'contexts/UserContext';
 
 type ResourceAction = 'show' | 'new' | 'edit' | 'destroy'
 

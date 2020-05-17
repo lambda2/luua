@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, useMemo, useEffect } from 'react'
-import api, { getHeaders } from '../../utils/http'
+import api, { getHeaders } from 'utils/http'
 import { initialState, reducer } from './reducer'
-import { read, readAll } from '../../api/notification'
+import { read, readAll } from 'api/notification'
 
 const defaultValue: UserContextValue = {
   ...initialState,

@@ -1,6 +1,6 @@
 import React from 'react'
-import { useCollection, fetchInitialData } from '../../../../utils/http'
-import { withAuthSync } from '../../../../utils/auth'
+import { useCollection, fetchInitialData } from 'utils/http'
+import { withAuthSync } from 'utils/auth'
 import { NextPageContext } from 'next'
 import { Typography } from 'antd';
 import Link from 'next/link';
