@@ -2,6 +2,7 @@
 
 # Luua Frontend 
 
+[![Cypress.io](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg)](https://dashboard.cypress.io/projects/mc5btg/runs) 
 
 ## Setup
 
