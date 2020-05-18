@@ -56,6 +56,21 @@ class Api::PollsController < ApiController
     end
   end
 
+  # POST /api/polls/:id/vote
+  def vote
+    vote = Vote.call(
+      poll_option_id: vote_params[:poll_option_id],
+      user: current_user,
+      poll: @poll
+    )
+
+    if vote.success?
+      render json: UserVoteSerializer.new.serialize(vote.user_vote), status: :created
+    else
+      render_error(vote.messages, :unprocessable_entity)
+    end
+  end
+
   def poll_params
     params.require(:poll).permit(
       :id,
@@ -78,6 +93,12 @@ class Api::PollsController < ApiController
       :user_id,
       :workspace_id,
       poll_options_attributes: %i[id name icon description _destroy]
+    )
+  end
+
+  def vote_params
+    params.require(:user_vote).permit(
+      :poll_option_id
     )
   end
 

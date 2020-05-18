@@ -47,6 +47,18 @@ const can = (
         (resource.user_id === user.id) ||
         (find(user?.workspace_users, { workspace_id: resource.workspace_id, admin: true }))
       )
+    case 'poll.create':
+      return user && resource && find(user?.workspace_users, {workspace_id: resource.id})
+    case 'poll.edit':
+      return user && resource && (
+        (resource.user_id === user.id) ||
+        (find(user?.workspace_users, {workspace_id: resource.workspace_id, admin: true}))
+      )
+    case 'poll.destroy':
+      return user && resource && (
+        (resource.user_id === user.id) ||
+        (find(user?.workspace_users, { workspace_id: resource.workspace_id, admin: true }))
+      )
     case 'message.destroy':
       return user && resource && (
         (resource.user_id === user.id)

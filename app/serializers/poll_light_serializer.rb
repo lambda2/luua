@@ -6,5 +6,7 @@ class PollLightSerializer < Panko::Serializer
              :discussion_id, :user_id, :workspace_id
 
   has_one :workspace, serializer: WorkspaceLightSerializer
+  has_one :user, serializer: UserLightSerializer
+  has_one :discussion_category, serializer: DiscussionCategorySerializer
 
 end

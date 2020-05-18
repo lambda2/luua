@@ -320,6 +320,49 @@ declare interface Discussion extends LightDiscussion {
     messages: Message[]
 }
 
+type PollVisibility = 'draft' | 'hidden' | 'protected' | 'public'
+type PollAnonymity = 'open' | 'anonymous' | 'not_anonymous'
+type PollAuthentication = 'required' | 'not_required'
+type PollType = 'single_choice'
+
+declare interface LightPoll {
+    id: number
+    name: string
+    slug: string
+    category: number // @TODO
+    description: string | null
+    begin_at: string | null
+    end_at: string | null
+    locked_at: string | null
+    locked_by: number | null
+    anonymity: PollAnonymity
+    authentication: PollAuthentication
+    poll_type: PollType
+    visibility: PollVisibility
+    user_id: number
+    user: BaseUser
+    discussion_category_id: number | null
+    discussion_category: DiscussionCategory
+    workspace_id: number
+    discussion_id: number | null
+    created_at: string
+    updated_at: string
+}
+
+declare interface PollOption {
+    id: number
+    name: string
+    slug: string
+    description: string | null
+}
+
+declare interface Poll extends LightPoll {
+    workspace?: LightWorkspace
+    discussion?: LightDiscussion
+    discussion_category?: DiscussionCategory
+    poll_options: PollOption[]
+}
+
 
 
 declare module 'parse-link-header';

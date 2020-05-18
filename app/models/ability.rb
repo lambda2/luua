@@ -87,11 +87,13 @@ class Ability
     # ========= Polls ============
 
     # Workspace admins can see hidden polls
-    can :read, Poll, visibility: %i[hidden], workspace: { id: user.admin_workspace_ids }
+    can %i[vote read], Poll, visibility: %i[hidden], workspace: { id: user.admin_workspace_ids }
     can :read, Poll, visibility: %i[hidden draft], user_id: user.id
 
     # Workspace members can see protected
-    can :read, Poll, visibility: :protected, workspace: { id: user.workspace_ids }
+    can %i[vote read], Poll, visibility: :protected, workspace: { id: user.workspace_ids }
+    
+    can :vote, Poll, visibility: :public, authentication: :required
     
     can %i[create], Poll, workspace: { id: user.workspace_ids }
     can %i[create update destroy], Poll, workspace: { id: user.admin_workspace_ids }
@@ -118,6 +120,7 @@ class Ability
     can :read, Mission, visibility: :public
     can :read, Poll, visibility: :public
     can :read, PollOption, poll: { visibility: :public }
+    can :vote, Poll, visibility: :public, authentication: :not_required
 
     can :read, Workspace
   end
