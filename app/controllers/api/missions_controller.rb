@@ -56,6 +56,7 @@ class Api::MissionsController < ApiController
   def create
     @mission = Mission.new(mission_params)
     @mission.created_by = current_user&.id
+    @mission.workspace = @workspace if @workspace
 
     if @mission.save
       WorkspaceHistory.track!(@workspace, @mission, current_user)

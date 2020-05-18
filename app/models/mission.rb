@@ -57,8 +57,8 @@ class Mission < ApplicationRecord
   belongs_to :organization, optional: true
   belongs_to :workspace, counter_cache: true, touch: true
 
-  has_many :workspace_histories, as: :resource
-  has_many :notifications, as: :resource
+  has_many :workspace_histories, as: :resource, dependent: :destroy
+  has_many :notifications, as: :resource, dependent: :destroy
 
   # discussion in the mission
   has_many :discussions, as: :resource, dependent: :destroy

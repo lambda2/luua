@@ -127,6 +127,10 @@
       "4": {
         "title": "Possède la majorité des compétences",
         "color": "green"
+      },
+      "5": {
+        "title": "Possède toutes les compétences",
+        "color": "green"
       }
     },
     "on-the-mission": "sur la mission",

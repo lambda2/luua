@@ -29,4 +29,5 @@ class Message < ApplicationRecord
   belongs_to :discussion, counter_cache: :messages_count, touch: true
   has_many :message_votes, dependent: :destroy
   validates :content, presence: true
+  has_many :notifications, as: :resource, dependent: :destroy
 end
