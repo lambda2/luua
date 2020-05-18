@@ -2,7 +2,6 @@ import Cookie from 'js-cookie'
 import getConfig from 'next/config'
 const { publicRuntimeConfig } = getConfig()
 
-export const BACK_URL = publicRuntimeConfig.backendUrl
 export const API_URL = publicRuntimeConfig.apiUrl
 
 const isServer = (typeof window === 'undefined')

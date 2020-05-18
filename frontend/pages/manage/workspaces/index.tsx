@@ -9,6 +9,7 @@ import ContentLayout from 'layouts/ContentLayout/ContentLayout'
 import PageTitle from 'elements/PageTitle/PageTitle'
 import { useLocale } from 'hooks/useLocale'
 import ROUTES from 'routes/routes'
+import Head from 'components/Head/Head'
 
 const Workspaces = (
   { initialData, token }:
@@ -22,6 +23,9 @@ const Workspaces = (
 
   return (
     <>
+      <Head
+        title={t('meta.head.pages.workspaces.index.title')}
+      />
       <NetworkBoundary<LightWorkspace[]> {...response}>
         <ContentLayout>
           <PageTitle

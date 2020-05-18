@@ -743,7 +743,23 @@
     "report-bug": "Un bug ?",
     "contact": "Contact",
     "twitter": "Twitter",
-    "suggest-feature": "Une idée ?"
+    "suggest-feature": "Une idée ?",
+    "head": {
+      "description": "Luua permet aux membres d'une communauté d'échanger, de proposer des idées, de prendre des décisions, proposer des missions et travailler ensemble. Pour que chacun puisse porter des initiatives, gérer des projets et construire aux côtés d'autres contributeurs.",
+      "pages": {
+        "users": {
+          "index": { "title": "{{name}}" },
+          "login": { "title": "Se connecter" },
+          "signup": { "title": "Créer un compte" }
+        },
+        "workspaces": {
+          "index": { "title": "Espaces" },
+          "show": { "title": "{{ name }}" },
+          "new": { "title": "Nouvel espace" },
+          "signup": { "title": "Créer un compte" }
+        }
+      }
+    }
   },
   "network": {
     "loading": "Chargement..."

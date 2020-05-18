@@ -27,6 +27,7 @@ module.exports = withBundleAnalyzer(withCSS(withLess({
     backendUrl: process.env.BACKEND_URL || 'http://localhost:3232',
     apiUrl: process.env.API_URL || 'http://localhost:3232',
     cdnUrl: process.env.CDN_URL || 'http://localhost:3232',
+    appUrl: process.env.APP_URL || 'http://localhost:3000',
     sentryRelease: process.env.SENTRY_RELEASE || '',
     sentryDsn: process.env.SENTRY_DSN || '',
     releaseTag: process.env.RELEASE || '',

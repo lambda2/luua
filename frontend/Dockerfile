@@ -5,6 +5,7 @@ RUN apk --update add git build-base perl python
 WORKDIR /app
 ENV BACKEND_URL "http://luua"
 ENV API_URL "https://api.luua.io"
+ENV APP_URL "https://luua.io"
 ENV CDN_URL "https://luua.fra1.digitaloceanspaces.com"
 # COPY .npmrc .
 COPY package.json .

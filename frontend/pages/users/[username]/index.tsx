@@ -8,13 +8,12 @@ import UserShow from 'components/UserShow/UserShow'
 import ContentLayout from 'layouts/ContentLayout/ContentLayout'
 import UserHeader from 'components/UserHeader/UserHeader'
 import PageSection from 'elements/PageSection/PageSection'
-import Link from 'next/link'
-import ROUTES from 'routes/routes'
 import { useLocale } from 'hooks/useLocale'
 import List from 'elements/List/List'
-import MissionItem from 'components/MissionItem/MissionItem'
 import MissionUserItem from 'components/MissionUserItem/MissionUserItem'
 import WorkspaceItem from 'components/WorkspaceItem/WorkspaceItem'
+import Head from 'components/Head/Head'
+import { nameForUser } from 'utils/user'
 
 /**
  * Show the requested user, as a member of it
@@ -37,33 +36,39 @@ const ShowUser = (
   const { t } = useLocale()
   
   return (
-    <NetworkBoundary {...userResponse}>
-      <UserHeader
-        user={userResponse!.data as User}
-        active='summary'
+    <>
+      <Head
+        title={t('meta.head.pages.users.index.title', {name: nameForUser(initialData)})}
+        ogImage={initialData.image_url}
       />
-      <ContentLayout>
-        <UserShow user={userResponse!.data as User} />
-        <NetworkBoundary {...userWorkspacesResponse}>
-          {userWorkspacesResponse.data && <PageSection title={t('menu.workspaces')}>
-            <List
-              dataSource={userWorkspacesResponse!.data}
-              renderItem={(e: WorkspaceUser) => <WorkspaceItem {...e.workspace as Workspace} />}
-            />
-          </PageSection>}
-        </NetworkBoundary>
+      <NetworkBoundary {...userResponse}>
+        <UserHeader
+          user={userResponse!.data as User}
+          active='summary'
+        />
+        <ContentLayout>
+          <UserShow user={userResponse!.data as User} />
+          <NetworkBoundary {...userWorkspacesResponse}>
+            {userWorkspacesResponse.data && <PageSection title={t('menu.workspaces')}>
+              <List
+                dataSource={userWorkspacesResponse!.data}
+                renderItem={(e: WorkspaceUser) => <WorkspaceItem {...e.workspace as Workspace} />}
+              />
+            </PageSection>}
+          </NetworkBoundary>
 
-        <NetworkBoundary {...userMissionsResponse}>
-          {userMissionsResponse.data && <PageSection title={t('menu.missions')}>
-            <List
-              dataSource={userMissionsResponse!.data}
-              renderItem={(e: LightMissionUser) => <MissionUserItem {...e} user={userResponse!.data as User} mission={e.mission} />}
-            />
-          </PageSection>}
+          <NetworkBoundary {...userMissionsResponse}>
+            {userMissionsResponse.data && <PageSection title={t('menu.missions')}>
+              <List
+                dataSource={userMissionsResponse!.data}
+                renderItem={(e: LightMissionUser) => <MissionUserItem {...e} user={userResponse!.data as User} mission={e.mission} />}
+              />
+            </PageSection>}
 
-        </NetworkBoundary>
-      </ContentLayout>
-    </NetworkBoundary>
+          </NetworkBoundary>
+        </ContentLayout>
+      </NetworkBoundary>
+    </>
   )
 }
 

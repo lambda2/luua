@@ -8,6 +8,8 @@ import WorkspaceShow from 'components/WorkspaceShow/WorkspaceShow'
 import ContentLayout from 'layouts/ContentLayout/ContentLayout'
 import WorkspaceHeader from 'components/WorkspaceHeader/WorkspaceHeader'
 import WorkspaceLeftMenu from 'layouts/WorkspaceLeftMenu/WorkspaceLeftMenu'
+import Head from 'components/Head/Head'
+import { useLocale } from 'hooks/useLocale'
 
 /**
  * Show the requested workspace, as a member of it
@@ -17,6 +19,8 @@ const ShowWorkspace = (
     { initialData: Workspace, token?: string }
 ) => {
   const { query } = useRouter()
+  const { t } = useLocale()
+
   const workspaceResponse = useCollection<Workspace>(
     `/api/workspaces/${query.workspace_id}`, token, {}, { initialData }
   )
@@ -29,21 +33,26 @@ const ShowWorkspace = (
   )
 
   return (
-    <NetworkBoundary {...workspaceResponse}>
-      <WorkspaceHeader
-        workspace={workspaceResponse!.data as Workspace}
-        active='summary'
+    <>
+      <Head
+        title={t('meta.head.pages.workspaces.show.title', { name: initialData.name })}
       />
-      <ContentLayout sideMenu={<WorkspaceLeftMenu workspace={workspaceResponse!.data as Workspace}/>}>
-        <NetworkBoundary {...missionsResponse}>
-          <WorkspaceShow
-            missions={missionsResponse!.data as LightMission[]}
-            discussions={discussionsResponse!.data as LightDiscussion[]}
-            workspace={workspaceResponse!.data as Workspace}
-          />
-        </NetworkBoundary>
-      </ContentLayout>
-    </NetworkBoundary>
+      <NetworkBoundary {...workspaceResponse}>
+        <WorkspaceHeader
+          workspace={workspaceResponse!.data as Workspace}
+          active='summary'
+        />
+        <ContentLayout sideMenu={<WorkspaceLeftMenu workspace={workspaceResponse!.data as Workspace}/>}>
+          <NetworkBoundary {...missionsResponse}>
+            <WorkspaceShow
+              missions={missionsResponse!.data as LightMission[]}
+              discussions={discussionsResponse!.data as LightDiscussion[]}
+              workspace={workspaceResponse!.data as Workspace}
+            />
+          </NetworkBoundary>
+        </ContentLayout>
+      </NetworkBoundary>
+    </>
   )
 }
 
