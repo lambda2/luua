@@ -16,6 +16,8 @@ class Ability
     can :read, Skill, skill_type: :global
     can :read, Skill, skill_type: :organization, organization: { id: user.organization_ids }
 
+    # ========= Missions ============
+
     # Workspace admins can see everything
     can :read, Mission, visibility: %i[hidden draft], workspace: { id: user.admin_workspace_ids }
     can :read, Mission, visibility: %i[hidden draft], created_by: user.id
@@ -23,6 +25,7 @@ class Ability
     # Workspace members can see protected
     can :read, Mission, visibility: :protected, workspace: { id: user.workspace_ids }
 
+    can %i[create], Mission, workspace: { id: user.workspace_ids }
     can %i[create update destroy], Mission, workspace: { id: user.admin_workspace_ids }
     can %i[create update destroy], Mission, created_by: user.id
 
@@ -30,17 +33,19 @@ class Ability
     can %i[complete reject], MissionUser, user_id: user.id
     can %i[read], MissionUser, user_id: user.id
     can %i[read], MissionUser, mission: { workspace: { id: user.workspace_ids } }
-    
+
     can %i[apply], Mission
-    
+
     can %i[read read! me read_all], Notification, user_id: user.id
-    
+
+    # ========= Workspaces ============
+
     can [:read, :categories], Workspace
     can :me, Workspace, id: user.workspace_ids
     can :manage, Workspace, id: user.admin_workspace_ids
     can :create, Workspace
     can [:join], Workspace, membership: %i[open approval]
-    
+
     can :read, WorkspaceUser
     can :manage, WorkspaceUser, workspace_id: user.admin_workspace_ids
 
@@ -53,6 +58,8 @@ class Ability
     can :manage, WorkspaceRequest, workspace_id: user.admin_workspace_ids
 
     can :create, Organization
+
+    # ========= Discussions ============
 
     can :read, Discussion
     can :create, Discussion, resource_type: 'Workspace', resource_id: user.workspace_ids
@@ -69,14 +76,29 @@ class Ability
     can %i[update destroy], Message, user_id: user.id
     can [:destroy], Message, discussion: { resource_type: 'Mission', resource: { workspace_id: user.admin_workspace_ids } }
     can [:destroy], Message, discussion: { resource_type: 'Workspace', resource_id: user.admin_workspace_ids }
-    
+
     can [:mines], MessageVote
     can [:create], MessageVote # @TODO restrict this
     can %i[update destroy], MessageVote, user_id: user.id
 
     can %i[read], DiscussionCategory
     can %i[manage], DiscussionCategory, workspace: { id: user.admin_workspace_ids }
+
+    # ========= Polls ============
+
+    # Workspace admins can see hidden polls
+    can :read, Poll, visibility: %i[hidden], workspace: { id: user.admin_workspace_ids }
+    can :read, Poll, visibility: %i[hidden draft], user_id: user.id
+
+    # Workspace members can see protected
+    can :read, Poll, visibility: :protected, workspace: { id: user.workspace_ids }
     
+    can %i[create], Poll, workspace: { id: user.workspace_ids }
+    can %i[create update destroy], Poll, workspace: { id: user.admin_workspace_ids }
+    can %i[create update destroy], Poll, user_id: user.id
+    can :read, PollOption
+    can %i[create update destroy], PollOption, poll: {user_id: user.id}
+
   end
   # rubocop:enable Metrics/MethodLength
 
@@ -94,6 +116,9 @@ class Ability
 
     # Everybody can see public missions
     can :read, Mission, visibility: :public
+    can :read, Poll, visibility: :public
+    can :read, PollOption, poll: { visibility: :public }
+
     can :read, Workspace
   end
 

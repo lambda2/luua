@@ -26,4 +26,7 @@ class UserVote < ApplicationRecord
   belongs_to :user
   belongs_to :poll
   belongs_to :poll_option, optional: true
+
+  validates :poll, uniqueness: { scope: %i[user_id] }
+
 end

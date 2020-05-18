@@ -24,5 +24,9 @@
 class PollOption < ApplicationRecord
   belongs_to :poll
 
-  
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
+  validates :name, uniqueness: { scope: %i[poll_id] }
+
 end

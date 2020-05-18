@@ -32,6 +32,7 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
 
       resources :missions
       resources :discussions, shallow: true
+      resources :polls, shallow: true
       resources :discussion_categories, shallow: true
 
       resources :workspace_users, shallow: true
@@ -84,6 +85,10 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
       concerns :mission_users_actions
     end
 
+    resources :polls, shallow: true do
+
+    end
+    
     resources :discussions, shallow: true do
       resources :message_votes do
         get 'mines', on: :collection, action: :mines

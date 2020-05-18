@@ -36,6 +36,8 @@ module JsonRequestHelper
   RSpec::Matchers.define :have_item_count_in_json do |item_count|
     match do |actual|
       e = actual.is_a?(String) ? JSON.parse(actual) : actual
+      puts "Testing that #{e.count} == #{item_count}"
+
       e.count == item_count
     end
   end

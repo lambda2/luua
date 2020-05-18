@@ -55,10 +55,31 @@ class Poll < ApplicationRecord
   # - protected: Poll is only visible for workspace members
   # - public: Poll is visible to everyone
   enum visibility: %i[draft hidden protected public], _suffix: true
+  
+  # - open: The votes can be anonymous or not, it's up to the voter
+  # - anonymous: The vote is anonymous, and the voter identity is secret
+  # - not_anonymous: the voter identity is published
+  enum anonymity: %i[open anonymous not_anonymous], _suffix: true
+  
+  # - required: the voter must be authentified
+  # - not_required: the voter can be unauthenticated
+  enum authentication: %i[required not_required], _suffix: true
+  
+  enum poll_type: %i[single_choice], _suffix: true
 
   accepts_nested_attributes_for :poll_options,
                                 allow_destroy: true,
                                 reject_if: :all_blank
+  
+  validates :name, uniqueness: { scope: %i[workspace_id] }
+  
+  validate :validates_amount_of_polls
+
+  def validates_amount_of_polls
+    if poll_options.size < 2
+      errors.add(:poll_options, "must have at least 2 choices")
+    end
+  end
 
   def lock!
     update(locked_at: Time.zone.now, locked_by: Current.user&.id)

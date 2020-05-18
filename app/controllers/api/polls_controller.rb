@@ -15,7 +15,7 @@ class Api::PollsController < ApiController
     respond_to do |format|
       format.json do
         respond_with_cache(@polls) do
-          Panko::ArraySerializer.new(@polls, each_serializer: MissionLightSerializer).to_json
+          Panko::ArraySerializer.new(@polls, each_serializer: PollLightSerializer).to_json
         end
       end
     end
@@ -25,20 +25,9 @@ class Api::PollsController < ApiController
     respond_to do |format|
       format.json do
         respond_with_cache(@poll) do
-          MissionSerializer.new.serialize(@poll).to_json
+          PollSerializer.new.serialize(@poll).to_json
         end
       end
-    end
-  end
-
-  # Apply for the poll
-  # POST /api/polls/id/apply
-  def apply
-    application = ApplyToMission.call(poll: @poll, user: current_user)
-    if application.success?
-      render json: MissionUserSerializer.new.serialize(application.poll_user)
-    else
-      render_error(application.messages, :unprocessable_entity)
     end
   end
 
@@ -46,7 +35,7 @@ class Api::PollsController < ApiController
   def update
     if @poll.update(poll_params)
       WorkspaceHistory.track!(@workspace, @poll, current_user)
-      render json: MissionSerializer.new.serialize(@poll)
+      render json: PollSerializer.new.serialize(@poll)
     else
       render_error(@poll.errors.messages, :unprocessable_entity)
     end
@@ -54,14 +43,14 @@ class Api::PollsController < ApiController
 
   # POST /api/polls
   def create
-    @poll = Mission.new(poll_params)
-    @poll.created_by = current_user&.id
+    @poll = Poll.new(poll_params)
+    @poll.user_id = current_user&.id
     @poll.workspace = @workspace if @workspace
 
     if @poll.save
       WorkspaceHistory.track!(@workspace, @poll, current_user)
       Discussion.create(resource: @poll, name: @poll.name, user: current_user)
-      render json: MissionSerializer.new.serialize(@poll), status: :created
+      render json: PollSerializer.new.serialize(@poll), status: :created
     else
       render_error(@poll.errors.messages, :unprocessable_entity)
     end
@@ -69,23 +58,26 @@ class Api::PollsController < ApiController
 
   def poll_params
     params.require(:poll).permit(
-      :name,
-      :poll_category_id,
-      :physical,
-      :description,
+      :id,
+      :anonymity,
+      :authentication,
       :begin_at,
+      :category,
+      :description,
       :end_at,
-      :due_at,
-      :organization_id,
-      :workspace_id,
-      :image,
-      :banner_image,
-      :modified_at,
-      :modified_by,
-      :participant_count,
-      :hiring_validation,
+      :locked_at,
+      :locked_by,
+      :name,
+      :poll_type,
+      :slug,
       :visibility,
-      poll_skills_attributes: %i[id skill_id level name mandatory _destroy]
+      :created_at,
+      :updated_at,
+      :discussion_category_id,
+      :discussion_id,
+      :user_id,
+      :workspace_id,
+      poll_options_attributes: %i[id name icon description _destroy]
     )
   end
 
