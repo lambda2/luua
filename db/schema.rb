@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_110333) do
+ActiveRecord::Schema.define(version: 2020_05_18_182901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -225,6 +225,44 @@ ActiveRecord::Schema.define(version: 2020_05_15_110333) do
     t.index ["slug"], name: "index_organizations_on_slug", unique: true
   end
 
+  create_table "poll_options", force: :cascade do |t|
+    t.bigint "poll_id", null: false
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.string "icon"
+    t.text "description"
+    t.integer "vote_count", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["poll_id"], name: "index_poll_options_on_poll_id"
+    t.index ["slug", "poll_id"], name: "index_poll_options_on_slug_and_poll_id", unique: true
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.bigint "workspace_id", null: false
+    t.bigint "discussion_id"
+    t.bigint "discussion_category_id"
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.text "description", null: false
+    t.string "slug", null: false
+    t.integer "authentication", default: 0, null: false
+    t.integer "anonymity", default: 0, null: false
+    t.integer "visibility", default: 0, null: false
+    t.integer "category", default: 0, null: false
+    t.integer "poll_type", default: 0, null: false
+    t.datetime "begin_at"
+    t.datetime "end_at"
+    t.datetime "locked_at"
+    t.integer "locked_by"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["discussion_category_id"], name: "index_polls_on_discussion_category_id"
+    t.index ["discussion_id"], name: "index_polls_on_discussion_id"
+    t.index ["user_id"], name: "index_polls_on_user_id"
+    t.index ["workspace_id"], name: "index_polls_on_workspace_id"
+  end
+
   create_table "priorities", force: :cascade do |t|
     t.string "name"
     t.string "color"
@@ -348,6 +386,18 @@ ActiveRecord::Schema.define(version: 2020_05_15_110333) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["skill_id"], name: "index_user_skills_on_skill_id"
     t.index ["user_id"], name: "index_user_skills_on_user_id"
+  end
+
+  create_table "user_votes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "poll_id", null: false
+    t.bigint "poll_option_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["poll_id"], name: "index_user_votes_on_poll_id"
+    t.index ["poll_option_id"], name: "index_user_votes_on_poll_option_id"
+    t.index ["user_id", "poll_id"], name: "index_user_votes_on_user_id_and_poll_id", unique: true
+    t.index ["user_id"], name: "index_user_votes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -476,6 +526,11 @@ ActiveRecord::Schema.define(version: 2020_05_15_110333) do
   add_foreign_key "notifications", "users"
   add_foreign_key "organizations", "countries"
   add_foreign_key "organizations", "regions"
+  add_foreign_key "poll_options", "polls"
+  add_foreign_key "polls", "discussion_categories"
+  add_foreign_key "polls", "discussions"
+  add_foreign_key "polls", "users"
+  add_foreign_key "polls", "workspaces"
   add_foreign_key "priorities", "workspaces"
   add_foreign_key "projects", "workspaces"
   add_foreign_key "skills", "organizations"
@@ -488,6 +543,9 @@ ActiveRecord::Schema.define(version: 2020_05_15_110333) do
   add_foreign_key "tasks", "projects"
   add_foreign_key "user_skills", "skills"
   add_foreign_key "user_skills", "users"
+  add_foreign_key "user_votes", "poll_options"
+  add_foreign_key "user_votes", "polls"
+  add_foreign_key "user_votes", "users"
   add_foreign_key "users", "workspaces", column: "primary_workspace_id"
   add_foreign_key "workspace_histories", "users"
   add_foreign_key "workspace_histories", "workspaces"
