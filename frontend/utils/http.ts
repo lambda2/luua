@@ -280,9 +280,13 @@ export async function api<T>(endpoint: string, opts: AxiosRequestConfig): Promis
 export async function fetchInitialData<T>(ctx: NextPageContext, endpoint: string) {
   const { token } = nextCookie(ctx)
   const headers = getHeaders(token || '');
+  console.log("[Fetching fetchInitialData] ", { token, headers });
+  
   try {
     const { data } = await api<T>(endpoint, { headers })
     return { initialData: (data || []), token }
+    console.log("[Fetching fetchInitialData] OK ", { data });
+
   } catch (error) {
     console.error(error)
     return {}

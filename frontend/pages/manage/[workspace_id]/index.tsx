@@ -15,7 +15,7 @@ import { useLocale } from 'hooks/useLocale'
  * Show the requested workspace, as a member of it
  */
 const ShowWorkspace = (
-  { initialData, token }:
+  { initialData, token, ...props }:
     { initialData: Workspace, token?: string }
 ) => {
   const { query } = useRouter()
@@ -31,11 +31,11 @@ const ShowWorkspace = (
   const discussionsResponse = useCollection<LightDiscussion[]>(
     `/api/workspaces/${query.workspace_id}/discussions?per_page=5`, token, {}, {}
   )
-
+  
   return (
     <>
       <Head
-        title={t('meta.head.pages.workspaces.show.title', { name: initialData.name })}
+        title={t('meta.head.pages.workspaces.show.title', { name: initialData?.name })}
       />
       <NetworkBoundary {...workspaceResponse}>
         <WorkspaceHeader
@@ -55,9 +55,6 @@ const ShowWorkspace = (
     </>
   )
 }
-
-
-
 
 ShowWorkspace.getInitialProps = async(ctx: NextPageContext) => {
   return await fetchInitialData<Workspace>(ctx, `/api/workspaces/${ctx.query.workspace_id}`)

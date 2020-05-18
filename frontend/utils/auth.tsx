@@ -150,16 +150,16 @@ export const withUserToken = (WrappedComponent: any) => {
   }
 
   // @TODO 🕵🏻‍♀️
-  // Wrapper.getInitialProps = async (ctx: NextPageContext) => {
-  //   const { token } = nextCookie(ctx)
-  //   console.log("[Server] Fetched token: ", { token });
+  Wrapper.getInitialProps = async (ctx: NextPageContext) => {
+    const { token } = nextCookie(ctx)
+    console.log("[Server] Fetched token: ", { token });
     
-  //   const componentProps =
-  //     WrappedComponent.getInitialProps &&
-  //     (await WrappedComponent.getInitialProps(ctx))
+    const componentProps =
+      WrappedComponent.getInitialProps &&
+      (await WrappedComponent.getInitialProps(ctx))
 
-  //   return { ...componentProps, token }
-  // }
+    return { ...componentProps, token }
+  }
 
   return Wrapper
 }
