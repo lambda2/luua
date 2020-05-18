@@ -1,0 +1,2 @@
+class PollsController < ApplicationController
+end
