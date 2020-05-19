@@ -24,7 +24,7 @@ const MissionPeopleForm = ({ mission }: Props) => {
   };
 
   return (
-    <div className="MissionPeopleForm">
+    <div className="big-radio-group">
       <Form.Item label={t('form.mission.participant_count.label')} name='participant_count'>
         <span className="hint">{t('form.mission.participant_count.hint')}{' '}</span>
         <Slider

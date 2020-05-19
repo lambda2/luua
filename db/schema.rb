@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_18_182901) do
+ActiveRecord::Schema.define(version: 2020_05_19_113004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -253,10 +253,12 @@ ActiveRecord::Schema.define(version: 2020_05_18_182901) do
     t.integer "poll_type", default: 0, null: false
     t.datetime "begin_at"
     t.datetime "end_at"
-    t.datetime "locked_at"
-    t.integer "locked_by"
+    t.datetime "closed_at"
+    t.integer "closed_by"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "reveal", default: 0, null: false
+    t.integer "vote_count", default: 0, null: false
     t.index ["discussion_category_id"], name: "index_polls_on_discussion_category_id"
     t.index ["discussion_id"], name: "index_polls_on_discussion_id"
     t.index ["user_id"], name: "index_polls_on_user_id"
@@ -505,6 +507,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_182901) do
     t.text "description"
     t.integer "membership", default: 0, null: false
     t.integer "discussions_count", default: 0, null: false
+    t.integer "polls_count", default: 0, null: false
     t.index ["organization_id"], name: "index_workspaces_on_organization_id"
   end
 

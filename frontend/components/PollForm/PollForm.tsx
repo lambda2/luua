@@ -3,7 +3,7 @@ import { ErrorMessage, Formik } from 'formik';
 import UserContext from 'contexts/UserContext';
 import { createOrUpdate } from 'api/poll';
 import { errorsFromResponse } from 'utils/forms/helpers';
-import { Form, Input, Select } from 'formik-antd'
+import { Form, Input, Select, Radio, DatePicker } from 'formik-antd'
 import YupWithLocale from 'utils/forms/yup';
 import SubmitButton from 'elements/SubmitButton/SubmitButton';
 import icons from 'dictionaries/icons';
@@ -13,7 +13,9 @@ import Router from 'next/router';
 import routes from 'routes/routes'
 import TextArea from 'elements/TextArea/TextArea';
 import FormDiscussionCategorySelect from '../DiscussionCategorySelect/DiscussionCategorySelect';
-import PollOptionsSelect from 'elements/MissionSkillsSelect/PollOptionSelect';
+import PollOptionsSelect from 'components/PollOptionsSelect/PollOptionsSelect';
+import momentWithLocale from 'i18n/moment';
+import PageSection from 'elements/PageSection/PageSection';
 
 interface Props {
   poll?: Poll
@@ -29,7 +31,8 @@ const PollForm = ({
 }: Props) => {
 
   const { currentUser, check } = useContext(UserContext)
-  const { t } = useLocale()
+  const { t, language } = useLocale()
+  const moment = momentWithLocale(language as AvailableLocale)
   const Yup = YupWithLocale()
 
   if (!currentUser) {
@@ -42,6 +45,13 @@ const PollForm = ({
     name: poll?.name || '',
     discussion_category_id: poll?.discussion_category?.id?.toString(),
     description: poll?.description || '',
+    visibility: poll?.visibility || 'draft',
+    anonymity: poll?.anonymity || 'open',
+    authentication: poll?.authentication || 'required',
+    poll_type: poll?.poll_type,
+    reveal: poll?.reveal || 'on_close',
+    begin_at: poll?.begin_at,
+    end_at: poll?.end_at ,
     workspace_id: poll?.workspace_id || workspace?.id,
     poll_options_attributes: poll?.poll_options || [],
     globalErrors: undefined,
@@ -51,6 +61,16 @@ const PollForm = ({
     name: Yup.string().min(2).required(),
     description: Yup.string(),
   });
+
+  const disabledDate = (current: any) => {
+    // Can not select days before today and today
+    return current && current < moment()
+  }
+
+  const disabledEndDate = (current: any) => {
+    // Can not select days before today and today
+    return current && current < moment().endOf('day') && current < moment(poll?.begin_at || '');
+  }
 
   return (
   <div>
@@ -101,9 +121,57 @@ const PollForm = ({
                 <TextArea name="description" />
               </Form.Item>
 
-              <Form.Item label={t('form.poll.options.label')} name='options'>
+              <Form.Item label={t('form.poll.options.label')} name='poll_options'>
+                <ErrorMessage name="poll_options" />
                 <PollOptionsSelect name="poll_options_attributes" />
               </Form.Item>
+
+              <Form.Item label={t('form.mission.begin_at.label')} name='begin_at'>
+                <DatePicker
+                  format="YYYY-MM-DD HH:mm"
+                  name="begin_at"
+                  placeholder={t('form.mission.begin_at.placeholder')}
+                  disabledDate={disabledDate}
+                  // disabledTime={disabledDateTime}
+                  showTime={{ defaultValue: moment('00:00:00', 'HH:mm') }}
+                />
+              </Form.Item>
+              <Form.Item label={t('form.mission.end_at.label')} name='end_at'>
+                <DatePicker
+                  format="YYYY-MM-DD HH:mm"
+                  name="end_at"
+                  placeholder={t('form.mission.end_at.placeholder')}
+                  disabledDate={disabledEndDate}
+                  // disabledTime={disabledDateTime}
+                  showTime={{ defaultValue: moment('00:00:00', 'HH:mm') }}
+                />
+              </Form.Item>
+              
+              <div className="big-radio-group">
+                <Form.Item label={t('form.poll.visibility.label')} name='visibility'>
+                  <span className="hint">{t('form.poll.visibility.hint')}{' '}</span>
+                  <Radio.Group name={'visibility'}>
+                    <Radio name={'visibility'} value={'draft'}>
+                      <b>{t('form.poll.visibility.options.draft.title')}</b>
+                      <p>{t('form.poll.visibility.options.draft.description')}</p>
+                    </Radio>
+                    <Radio name={'visibility'} value={'private'}>
+                      <b>{t('form.poll.visibility.options.private.title')}</b>
+                      <p>{t('form.poll.visibility.options.private.description')}</p>
+                    </Radio>
+                    <Radio name={'visibility'} value={'protected'}>
+                      <b>{t('form.poll.visibility.options.protected.title')}</b>
+                      <p>{t('form.poll.visibility.options.protected.description')}</p>
+                    </Radio>
+                    <Radio name={'visibility'} value={'public'}>
+                      <b>{t('form.poll.visibility.options.public.title')}</b>
+                      <p>{t('form.poll.visibility.options.public.description')}</p>
+                    </Radio>
+                  </Radio.Group>
+
+                  </Form.Item>
+              </div>
+
 
               <Form.Item name="end">
                 <SubmitButton

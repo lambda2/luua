@@ -3,18 +3,20 @@
 # Table name: polls
 #
 #  id                     :bigint           not null, primary key
-#  anonymity              :integer          default(0), not null
-#  authentication         :integer          default(0), not null
+#  anonymity              :integer          default("open"), not null
+#  authentication         :integer          default("required"), not null
 #  begin_at               :datetime
 #  category               :integer          default(0), not null
+#  closed_at              :datetime
+#  closed_by              :integer
 #  description            :text             not null
 #  end_at                 :datetime
-#  locked_at              :datetime
-#  locked_by              :integer
 #  name                   :string           not null
-#  poll_type              :integer          default(0), not null
+#  poll_type              :integer          default("single_choice"), not null
+#  reveal                 :integer          default(0), not null
 #  slug                   :string           not null
 #  visibility             :integer          default("draft"), not null
+#  vote_count             :integer          default(0), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  discussion_category_id :bigint
@@ -40,13 +42,13 @@ class Poll < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  belongs_to :workspace
-  belongs_to :discussion, optional: true
+  belongs_to :workspace, counter_cache: true, touch: true
+  belongs_to :discussion, optional: true, touch: true
   belongs_to :discussion_category, optional: true
   belongs_to :user
 
-  has_many :poll_options, dependent: :destroy
   has_many :user_votes, dependent: :destroy
+  has_many :poll_options, dependent: :destroy
 
   has_many :notifications, as: :resource, dependent: :destroy
 
@@ -59,11 +61,16 @@ class Poll < ApplicationRecord
   # - open: The votes can be anonymous or not, it's up to the voter
   # - anonymous: The vote is anonymous, and the voter identity is secret
   # - not_anonymous: the voter identity is published
-  enum anonymity: %i[open anonymous not_anonymous], _suffix: true
+  enum anonymity: %i[anonymous not_anonymous open], _suffix: true
   
   # - required: the voter must be authentified
   # - not_required: the voter can be unauthenticated
   enum authentication: %i[required not_required], _suffix: true
+  
+  # - on_close: results are revealed when the poll is closed (final results)
+  # - on_vote: current results are revealed after each vote
+  # - always: results are always revealed, even if an user didn't voted
+  enum reveal: %i[on_close on_vote always], _suffix: true
   
   enum poll_type: %i[single_choice], _suffix: true
 
@@ -77,15 +84,22 @@ class Poll < ApplicationRecord
 
   def validates_amount_of_polls
     if poll_options.size < 2
-      errors.add(:poll_options, "must have at least 2 choices")
+      errors.add(:poll_options_attributes, "must have at least 2 choices")
     end
   end
 
-  def lock!
-    update(locked_at: Time.zone.now, locked_by: Current.user&.id)
+  def user_votes_results(user = nil)
+    return if anonymous_anonymity?
+    return user_votes if always_reveal?
+    return user_votes if on_close_reveal? && closed?
+    return user_votes if on_vote_reveal? && user_votes.where(user_id: user&.id).any?
   end
 
-  def locked?
-    !locked_at.nil?
+  def close!
+    update(closed_at: Time.zone.now, closed_by: Current.user&.id)
+  end
+
+  def closed?
+    !closed_at.nil?
   end
 end

@@ -92,14 +92,23 @@ class Ability
 
     # Workspace members can see protected
     can %i[vote read], Poll, visibility: :protected, workspace: { id: user.workspace_ids }
-    
+
     can :vote, Poll, visibility: :public, authentication: :required
-    
+
+    can :results, Poll, reveal: :always
+    can :results, Poll do |poll|
+      puts "Can result ? #{(poll.on_vote_reveal? && poll.user_votes.where(user_id: user&.id).any?)} || #{(poll.on_close_reveal? && poll.closed?)}"
+      (poll.on_vote_reveal? && poll.user_votes.where(user_id: user&.id).any?) ||
+        (poll.on_close_reveal? && poll.closed?)
+    end
+
     can %i[create], Poll, workspace: { id: user.workspace_ids }
     can %i[create update destroy], Poll, workspace: { id: user.admin_workspace_ids }
     can %i[create update destroy], Poll, user_id: user.id
     can :read, PollOption
     can %i[create update destroy], PollOption, poll: {user_id: user.id}
+
+    can [:mines], UserVote
 
   end
   # rubocop:enable Metrics/MethodLength

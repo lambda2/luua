@@ -91,6 +91,7 @@ declare interface LightWorkspace {
     users_count: number
     missions_count: number
     discussions_count: number
+    polls_count: number
     // workspace_type: 'main' | 'company' | 'personal'
     created_at: string
     updated_at: string
@@ -322,6 +323,7 @@ declare interface Discussion extends LightDiscussion {
 
 type PollVisibility = 'draft' | 'hidden' | 'protected' | 'public'
 type PollAnonymity = 'open' | 'anonymous' | 'not_anonymous'
+type PollReveal = 'on_close' | 'on_vote' | 'always'
 type PollAuthentication = 'required' | 'not_required'
 type PollType = 'single_choice'
 
@@ -333,18 +335,20 @@ declare interface LightPoll {
     description: string | null
     begin_at: string | null
     end_at: string | null
-    locked_at: string | null
-    locked_by: number | null
+    closed_at: string | null
+    closed_by: number | null
     anonymity: PollAnonymity
     authentication: PollAuthentication
     poll_type: PollType
     visibility: PollVisibility
+    reveal: PollReveal
     user_id: number
     user: BaseUser
     discussion_category_id: number | null
-    discussion_category: DiscussionCategory
+    discussion_category?: DiscussionCategory
     workspace_id: number
     discussion_id: number | null
+    vote_count: number
     created_at: string
     updated_at: string
 }
@@ -354,6 +358,13 @@ declare interface PollOption {
     name: string
     slug: string
     description: string | null
+}
+
+declare interface UserVote {
+    id: number
+    poll_option: PollOption
+    poll: LightPoll
+    user: BaseUser
 }
 
 declare interface Poll extends LightPoll {

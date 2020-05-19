@@ -1,8 +1,7 @@
 class WorkspaceLightSerializer < Panko::Serializer
   attributes :id, :name, :slug, :image_url, :thumb_url,
-             :users_count, :missions_count, :discussions_count,
-             :created_at, :updated_at,
-             :description, :membership
+             :users_count, :missions_count, :discussions_count, :polls_count,
+             :created_at, :updated_at, :description, :membership
 
   def image_url
     object.image_url

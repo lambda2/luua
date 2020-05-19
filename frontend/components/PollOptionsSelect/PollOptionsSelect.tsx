@@ -54,21 +54,17 @@ const PollOptionsSelect = ({
 
   return (
     <div className="PollOptionsSelect">
-      <div className="skills-wrapper">
-        <List
-          itemLayout="horizontal"
-          dataSource={value.filter(e => !e._destroy)}
-          key='name'
-          renderItem={item => (
-            <div key={item.name}>
-              <p>
-                {item.name}
-                <span key="delete" onClick={() => deleteOption(item)}>{icons.delete}</span>
-              </p>
-            </div>
-          )}
-        />
-        <hr />
+      <div className="poll-options-wrapper">
+        {value.filter(e => !e._destroy).map(item => (
+          <div key={item.name} className="poll-options-item">
+            <main>
+              <b>{item.name}</b>{' - '}{item.description}
+            </main>
+            <aside>
+              <span key="delete" onClick={() => deleteOption(item)}>{icons.delete}</span>
+            </aside>
+          </div>
+        ))}
         <PollOptionsModal
           onSubmit={handleOk}
           onCancel={handleCancel}

@@ -12,6 +12,8 @@ import { Dropdown, Menu, Button } from 'antd';
 import icons from 'dictionaries/icons';
 import Router from 'next/router';
 import PollVoteOption from 'components/PollVoteOption/PollVoteOption';
+import { useCollection } from 'utils/http';
+import MessageBox from 'elements/MessageBox/MessageBox';
 
 interface Props {
   poll?: Poll
@@ -22,12 +24,15 @@ interface Props {
 }
 
 const Poll = ({
-  poll}: Props) => {
+  poll,
+  token
+}: Props) => {
 
   const { currentUser } = useContext(UserContext)
   const { t } = useLocale()
 
   const onDestroyPoll = async (poll: LightPoll) => {
+    await destroy(poll, token || currentUser?.jwt || '')
     Router.push(
       ROUTES.manage.workspace.polls.index(poll.workspace_id).href,
       ROUTES.manage.workspace.polls.index(poll.workspace_id).as
@@ -35,11 +40,11 @@ const Poll = ({
   }
 
 
-  const onVote = async (voteOption: number) => {
+  const onVote = async (poll_option_id: number) => {
     if (!poll?.id) {
       return false
     }
-    await vote(poll?.id, voteOption, currentUser?.jwt || '')
+    await vote(poll?.id, poll_option_id, token || currentUser?.jwt || '')
     // await messagesResponse.refetch()
     // return await votesResponse?.refetch({ force: true })
   }
@@ -48,6 +53,16 @@ const Poll = ({
   if (!poll) {
     return <></>
   }
+
+  // @TODO this hits the browser cache each time the user is voting
+  const votesResponse = useCollection<UserVote[]>(
+    `/api/polls/${poll?.id}/user_votes/mines`, (token || currentUser?.jwt)
+  )
+
+  // @TODO this hits the browser cache each time the user is voting
+  const resultResponse = useCollection<UserVote[]>(
+    `/api/polls/${poll?.id}/results`, (token || currentUser?.jwt)
+  )
 
   const menu = (
     <Menu>
@@ -78,13 +93,21 @@ const Poll = ({
         </aside>
       </header>
 
-      <div>
+      {poll.visibility === 'draft' && <MessageBox>
+        {t('poll.draft-cant-vote')}
+      </MessageBox>}
+
+      {poll.visibility !== 'draft' && <div>
         {poll.poll_options.map(po => <PollVoteOption
           poll={poll}
+          userVote={votesResponse.data}
           voteOption={po}
+          key={po.id}
           onVote={onVote}
         />)}
-      </div>
+      </div>}
+
+      <pre>{JSON.stringify(resultResponse.data, null, 2)}</pre>
     </div>
   )
 

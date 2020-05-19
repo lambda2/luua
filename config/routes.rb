@@ -86,7 +86,11 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
     end
 
     resources :polls, shallow: true do
+      get 'results', on: :member, action: :results
       post 'vote', on: :member, action: :vote
+      resources :user_votes do
+        get 'mines', on: :collection, action: :mines
+      end
     end
     
     resources :discussions, shallow: true do

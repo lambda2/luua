@@ -83,11 +83,11 @@ const WorkspaceHeader = ({
       <li className={classNames({ active: active == 'summary' })} key="/">
         <Link {...ROUTES.manage.workspace.show(workspace.slug)}><a>{t('menu.summary')}</a></Link>
       </li>
+      <li className={classNames({ active: active == 'votes' })} key={`/manage/${workspace.id}/votes`}>
+        <Link {...ROUTES.manage.workspace.polls.index(workspace.id)}><a>{t('menu.votes')}{' '}{<Badge count={workspace.polls_count} />}</a></Link>
+      </li>
       <li className={classNames({ active: active == 'discussions' })} key={`/explore/${workspace.id}/discussions`}>
         <Link {...ROUTES.manage.workspace.discussions.index(workspace.slug)}><a>{t('menu.discussions')}{' '}<Badge count={workspace.discussions_count} /></a></Link>
-      </li>
-      <li className={classNames({ active: active == 'votes' })} key={`/manage/${workspace.id}/votes`}>
-        <Link {...ROUTES.manage.workspace.polls.index(workspace.id)}><a>{t('menu.votes')}{' '}{/* <Badge count={workspace.missions_count} /> */}</a></Link>
       </li>
 
       <li className={classNames({ active: active == 'missions' })} key={`/explore/${workspace.id}/missions`}>
@@ -109,13 +109,14 @@ const WorkspaceHeader = ({
         <Link {...ROUTES.manage.workspace.discussions.index(workspace.id)}><a>{t('menu.discussions')}{' '}<Badge count={workspace.discussions_count} /></a></Link>
       </li>
 
+      <li className={classNames({ active: active == 'votes' })} key={`/manage/${workspace.id}/votes`}>
+        <Link {...ROUTES.manage.workspace.polls.index(workspace.id)}><a>{t('menu.votes')}{' '}{<Badge count={workspace.polls_count} />}</a></Link>
+      </li>
+      
       <li className={classNames({ active: active == 'missions' })} key={`/manage/${workspace.id}/missions`}>
         <Link {...ROUTES.manage.workspace.missions.index(workspace.id)}><a>{t('menu.missions')}{' '}<Badge count={workspace.missions_count} /></a></Link>
       </li>
 
-      <li className={classNames({ active: active == 'votes' })} key={`/manage/${workspace.id}/votes`}>
-        <Link {...ROUTES.manage.workspace.polls.index(workspace.id)}><a>{t('menu.votes')}{' '}{/* <Badge count={workspace.missions_count} /> */}</a></Link>
-      </li>
 
       <li className={classNames({ active: active == 'candidates' })} key={`/manage/${workspace.id}/candidates`}>
         <Link {...ROUTES.manage.workspace.candidates.index(workspace.id)}>

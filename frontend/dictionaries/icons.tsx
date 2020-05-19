@@ -31,6 +31,7 @@ import {
   faPaperPlane,
   faLightbulb,
   faPlusSquare,
+  faEnvelopeOpen,
 } from '@fortawesome/free-regular-svg-icons'
 
 import {
@@ -50,6 +51,7 @@ import {
   faChevronDown,
   faPlus,
   faBug,
+  faLockOpen,
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -108,6 +110,20 @@ export default {
     "protected": <FontAwesomeIcon className="menu-icon" icon={faLock} />,
     "draft": <FontAwesomeIcon className="menu-icon" icon={faPencilAlt} />,
     "public": <FontAwesomeIcon className="menu-icon" icon={faGlobeEurope} />,
+  },
+  "anonymity": {
+    "open": <FontAwesomeIcon className="menu-icon" icon={faGlobeEurope} />,
+    "anonymous": <FontAwesomeIcon className="menu-icon" icon={faEyeSlash} />,
+    "not_anonymous": <FontAwesomeIcon className="menu-icon" icon={faEye} />
+  },
+  "authentication": {
+    "required": <FontAwesomeIcon className="menu-icon" icon={faLock} />,
+    "not_required": <FontAwesomeIcon className="menu-icon" icon={faLockOpen} />
+  },
+  "reveal": {
+    "always": <FontAwesomeIcon className="menu-icon" icon={faEnvelopeOpen} />,
+    "on_close": <FontAwesomeIcon className="menu-icon" icon={faEnvelopeOpen} />,
+    "on_vote": <FontAwesomeIcon className="menu-icon" icon={faEnvelope} />
   },
   "location": {
     "physical": <FontAwesomeIcon className="menu-icon" icon={faMapPin} />,

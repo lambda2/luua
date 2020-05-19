@@ -1,0 +1,61 @@
+
+.PollOptionsSelect {
+  // padding: @space-inset-m;
+  // border: 1px solid @border-color-base;
+  // border-radius: 3px;
+  margin: @space-m 0;
+  display: flex;
+  align-items: center;
+
+  .poll-options-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+     .poll-options-item {
+      padding: @space-inset-m;
+      border: none;
+      margin-bottom: @space-s;
+      border: 1px solid @border-color-base;
+      border-radius: 3px;
+
+      & + .poll-options-item,
+      & + .PollOptionsModal {
+        margin-left: @space-s;
+      }
+    }
+
+    .PollOptionsModal {
+      margin-bottom: @space-s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-self: center;
+      justify-self: center;
+    }
+  }
+
+  .poll-options-item {
+    display: flex;
+
+    main {
+      flex: auto;
+    }
+
+    aside {
+
+    }
+  }
+
+  p {
+    margin: @space-m 0 0;
+  }
+
+  main {
+    flex: auto;
+  }
+
+  aside {
+    margin-left: @space-m;
+    // flex: auto;
+  }
+}

@@ -5,11 +5,15 @@ class Vote
     poll_option_id = context.poll_option_id
     user = context.user
     poll = context.poll
+    context.user_vote = nil
 
-    context.user_vote = UserVote.create!(
-      poll_option_id: poll_option_id,
-      poll: poll,
-      user: user
-    )
+    UserVote.transaction do
+      context.user_vote = UserVote.create!(
+        poll_option_id: poll_option_id,
+        poll: poll,
+        user: user
+      )
+      PollOption.increment_counter :vote_count, poll_option_id
+    end
   end
 end

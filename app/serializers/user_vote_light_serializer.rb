@@ -22,11 +22,9 @@
 #  fk_rails_...  (poll_option_id => poll_options.id)
 #  fk_rails_...  (user_id => users.id)
 #
-class UserVoteSerializer < Panko::Serializer
-  attributes :id
+class UserVoteLightSerializer < Panko::Serializer
+  attributes :id, :poll_id, :poll_option_id
 
-  has_one :poll, serializer: PollLightSerializer
   has_one :user, serializer: UserLightSerializer
-  has_one :poll_option, serializer: PollOptionSerializer
 
 end

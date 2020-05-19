@@ -8,7 +8,7 @@ interface Props<T> {
   size?: string
   className?: string
   dataSource?: T[]
-  key?: string
+  keyName?: string
   renderItem: (element: T) => ReactElement | string
   renderEmpty?: () => ReactElement | string
   emptyText?: ReactElement | string
@@ -33,7 +33,7 @@ const List = <T extends unknown>(
     itemLayout = 'vertical',
     size = 'default',
     dataSource = [],
-    key = 'id',
+    keyName = 'id',
     renderItem,
     className = 'List',
     renderEmpty = defaultRenderEmpty
@@ -42,7 +42,7 @@ const List = <T extends unknown>(
   return (
     <ul className={classNames(className, `list-layout-${itemLayout} list-size-${size}`, { 'list-empty': !dataSource || dataSource.length === 0 })}>
       {(!dataSource || dataSource.length === 0) && renderEmpty()}
-      {dataSource?.map((item: T) => <li key={(item as any)[key]}>
+      {dataSource?.map((item: T) => <li key={(item as any)[keyName]}>
         {renderItem(item)}
       </li>)}
     </ul>

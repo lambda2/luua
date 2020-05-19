@@ -49,7 +49,6 @@ class Api::PollsController < ApiController
 
     if @poll.save
       WorkspaceHistory.track!(@workspace, @poll, current_user)
-      Discussion.create(resource: @poll, name: @poll.name, user: current_user)
       render json: PollSerializer.new.serialize(@poll), status: :created
     else
       render_error(@poll.errors.messages, :unprocessable_entity)
@@ -69,6 +68,24 @@ class Api::PollsController < ApiController
     else
       render_error(vote.messages, :unprocessable_entity)
     end
+  end
+
+  # GET /api/polls/:id/results
+  def results
+    authorize! :show, @poll
+
+    uv = @poll.user_votes_results(current_user)
+    render json: Panko::Response.new(
+      poll_options: Panko::ArraySerializer.new(@poll.poll_options, each_serializer: PollOptionResultSerializer),
+      user_votes: Panko::ArraySerializer.new(uv, each_serializer: UserVoteLightSerializer)
+    )
+  end
+
+  # DELETE /api/polls/id
+  def destroy
+    @poll.destroy!
+    WorkspaceHistory.track!(@workspace, @poll, current_user)
+    render_destroyed
   end
 
   def poll_params

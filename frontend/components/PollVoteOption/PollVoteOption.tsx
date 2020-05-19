@@ -8,8 +8,8 @@ import { Button } from 'antd';
 interface Props {
   poll?: Poll
   voteOption: PollOption
-  onVote: (id: number) => void
-  userVote?: any
+  onVote: (poll_option_id: number) => void
+  userVote?: UserVote[]
 }
 
 const PollVoteOption = ({
@@ -19,6 +19,8 @@ const PollVoteOption = ({
 }: Props) => {
 
   const { t } = useLocale()
+  const voted = userVote?.length && userVote?.length > 0 || false
+  const vote = userVote?.find(e => e.poll_option.id === voteOption.id)
 
   return (
     <div className="PollVoteOption" key={voteOption.id}>
@@ -29,8 +31,9 @@ const PollVoteOption = ({
       {voteOption.description && <p>{voteOption.description}</p>}
       </main>
       <aside>
-        {!userVote && <Button onClick={() => onVote(voteOption.id)}>{t('polls.actions.vote')}</Button>}
-        {userVote && <Button disabled>{t('polls.actions.already-voted')}</Button>}
+        {!userVote && <Button loading>{t('network.loading')}</Button>}
+        {userVote && !voted && <Button onClick={() => onVote(voteOption.id)}>{t('poll.actions.vote-name', {name: voteOption.name})}</Button>}
+        {voted && <Button disabled>{t('poll.actions.already-voted')}</Button>}
       </aside>
     </div>
   )

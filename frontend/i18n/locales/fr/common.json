@@ -2,7 +2,6 @@
   "generics": {
     "or": "ou",
     "write": "Composer",
-    "preview": "Apercu",
     "saved": "Enregistré",
     "for": "pour",
     "preview": "Aperçu",
@@ -14,29 +13,30 @@
     }
   },
   "menu": {
-    "explore": "Explorer",
-    "manage": "Espaces",
-    "no-workspace": "Mes espaces",
-    "summary": "Résumé",
-    "workspaces": "Espaces",
-    "missions": "Missions",
-    "discussions": "Discussions",
-    "votes": "Votes",
-    "skills": "Compétences",
-    "notifications": "Notifications",
     "candidates": "Candidats",
     "contributors": "Contributeurs",
-    "organizations": "Organisations",
-    "sign-in": "Connexion",
-    "logout": "Déconnexion",
-    "sign-up": "S'enregistrer",
-    "edit": "Éditer",
-    "settings": "Paramètres",
-    "profile": "Retour à mon profil",
-    "show": "Voir",
-    "new": "Nouveau",
+    "delete": "Supprimer",
     "destroy": "Supprimer",
-    "delete": "Supprimer"
+    "discussions": "Discussions",
+    "edit": "Éditer",
+    "explore": "Explorer",
+    "logout": "Déconnexion",
+    "manage": "Espaces",
+    "missions": "Missions",
+    "new": "Nouveau",
+    "no-workspace": "Mes espaces",
+    "notifications": "Notifications",
+    "organizations": "Organisations",
+    "profile": "Retour à mon profil",
+    "settings": "Paramètres",
+    "show": "Voir",
+    "sign-in": "Connexion",
+    "sign-up": "S'enregistrer",
+    "skills": "Compétences",
+    "summary": "Résumé",
+    "votes": "Votes",
+    "polls": "Votes",
+    "workspaces": "Espaces"
   },
   "location": {
     "online": "En ligne",
@@ -165,6 +165,28 @@
     "created_by": "Par",
     "messages_count": "{{count}} messages",
     "empty": "Aucune discussion"
+  },
+  "poll": {
+    "create": {
+      "title": "Créer un vote"
+    },
+    "actions": {
+      "vote": "Voter",
+      "vote-name": "Voter {{name}}",
+      "already-voted": "À déja voté"
+    },
+    "created-by": "Créee par",
+    "summary": "Résumé",
+    "cant-post-auth": "Vous devez être connecté pour poster un message",
+    "no-discussion": "Aucune discussion",
+    "created_at": "Commencée",
+    "created_by": "Par",
+    "draft-cant-vote": "Ce sondage est un brouillon",
+    "votes_count": "{{count}} votes",
+    "empty": "Aucun vote",
+    "participants": "Participants",
+    "starts": "Commence",
+    "ends": "Termine"
   },
   "discussion_category": {
     "create": {
@@ -476,6 +498,118 @@
         "label": "Description",
         "hint": "Une courte description pour introduire le sujet",
         "placeholder": ""
+      }
+    },
+    "poll": {
+      "update": "Mettre à jour le vote",
+      "submit": "Créer un vote",
+      "edit": "Éditer",
+      "delete": "Supprimer",
+      "name": {
+        "label": "Nom",
+        "hint": "Le sujet du vote",
+        "placeholder": "Ex: Quelle farine utiliser ?"
+      },
+      "discussion_category_id": {
+        "label": "Catégorie",
+        "hint": "",
+        "placeholder": ""
+      },
+      "description": {
+        "label": "Description",
+        "hint": "Une courte description pour introduire le vote",
+        "placeholder": ""
+      },
+      "authentication": {
+        "not_required": {
+          "title": "Authentification facultative",
+          "description": "Les personnes non connectées peuvent voter"
+        },
+        "required": {
+          "title": "Authentification obligatoire",
+          "description": "Il faut être connecté pour voter"
+        }
+      },
+      "anonymity": {
+        "anonymous": {
+          "title": "Bulletin secret",
+          "description": "Personne ne connait le choix du votant"
+        },
+        "not_anonymous": {
+          "title": "Bulletin nominal",
+          "description": "Les choix sont exprimés publiquement"
+        },
+        "open": {
+          "title": "Bulletin libre",
+          "description": "Le votant décide si son vote est anonyme ou public"
+        }
+      },
+      "reveal": {
+        "always": {
+          "title": "Résultats ouverts",
+          "description": "Tout le monde peut voir les résultats du scrutin"
+        },
+        "on_close": {
+          "title": "Résultats post-vote",
+          "description": "Les résultats sont disponibles après avoir voté"
+        },
+        "on_vote": {
+          "title": "Résultats à la fin du scrutin",
+          "description": "Les résultats sont disponibles un fois le scrutin fermé"
+        }
+      },
+      "visibilities": {
+        "draft": {
+          "title": "Brouillon",
+          "description": "Visible seulement par vous"
+        },
+        "protected": {
+          "title": "Protégé",
+          "description": "Visible uniquement par les membres de l'espace"
+        },
+        "hidden": {
+          "title": "Masqué",
+          "description": "Visible seulement par vous"
+        },
+        "public": {
+          "title": "Public",
+          "description": "Ouvert à tout le monde"
+        }
+      },
+      "visibility": {
+        "label": "Visiblité du sondage",
+        "hint": "Qui peut voir ce sondage ?",
+        "options": {
+          "draft": {
+            "title": "Brouillon",
+            "description": "Le sondage n'est pas encore publié et n'est visible que par vous."
+          },
+          "private": {
+            "title": "Privé",
+            "description": "Le sondage n'est visible que par vous et les administrateurs de l'espace."
+          },
+          "protected": {
+            "title": "Protégé",
+            "description": "Le sondage n'est visible que par vous et les membres de l'espace."
+          },
+          "public": {
+            "title": "Public",
+            "description": "Tout le monde peut voir ce sondage."
+          }
+        }
+      },
+      "options": {
+        "label": "Choix",
+        "title": "Ajouter un choix",
+        "button": "Ajouter un choix",
+        "name": {
+          "label": "Nom",
+          "placeholder": "Option de vote (ex: Farine complète)"
+        },
+        "description": {
+          "label": "Description",
+          "placeholder": "Description"
+        }
       }
     },
     "skill": {

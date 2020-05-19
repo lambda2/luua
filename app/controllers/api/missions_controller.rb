@@ -67,6 +67,13 @@ class Api::MissionsController < ApiController
     end
   end
 
+  # DELETE /api/missions/id
+  def destroy
+    @mission.destroy!
+    WorkspaceHistory.track!(@workspace, @mission, current_user)
+    render_destroyed
+  end
+
   def mission_params
     params.require(:mission).permit(
       :name,

@@ -1,0 +1,47 @@
+.PollLeftMenu {
+
+  list-style-type: none;
+  align-self: self-start;
+
+  margin: 0;
+  padding: 0;
+
+  margin-top: @space-l;
+  padding-right: @space-m;
+  margin-right: @space-m;
+
+  flex: 0 0 250px;
+  min-width: 250px;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: block;
+    padding: @space-stack-m;
+
+    & > svg {
+      min-width: 20px;
+      text-align: center;
+    }
+
+    a {
+      display: block;
+      color: @text-color-light;
+      padding: @space-inset-l;
+    }
+    
+    &.active {
+      background-color: #fff;
+
+      a {
+        color: @nord1;
+        font-weight: bold;
+      }
+    }
+
+  }
+}

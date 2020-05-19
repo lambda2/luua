@@ -51,7 +51,7 @@ const PollItem = ({ poll }: Props) => {
             <UserAvatarTooltip text image {...user} />
           </li>
           <li key="created-at" className="created-at">{icons.date} {moment(updated_at).calendar()}</li>
-          <li key="messages-count" className="messages-count">{icons.comments} {t('poll.messages_count', {count: poll.messages_count})}</li>
+          <li key="votes-count" className="votes-count">{icons.send} {t('poll.votes_count', {count: poll.vote_count})}</li>
           {/* <li key="participants" className="participants">
             {participants.slice(0, 5).map(u => <UserAvatarTooltip key={u.id} text={false} image {...u} />)}
           </li> */}

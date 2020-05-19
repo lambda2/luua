@@ -23,6 +23,6 @@
 #
 class PollOptionSerializer < Panko::Serializer
   attributes :id, :description, :icon,
-             :name, :vote_count, :created_at, :updated_at
+             :name, :created_at, :updated_at
 
 end

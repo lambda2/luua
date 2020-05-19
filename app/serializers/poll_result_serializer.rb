@@ -37,9 +37,23 @@
 #  fk_rails_...  (discussion_id => discussions.id)
 #  fk_rails_...  (user_id => users.id)
 #  fk_rails_...  (workspace_id => workspaces.id)
-#
-require 'rails_helper'
 
-RSpec.describe Poll, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+class PollResultSerializer < Panko::Serializer
+  attributes :id, :anonymity, :authentication,
+             :begin_at, :category, :description, :end_at,
+             :closed_at, :closed_by, :name, :poll_type, :slug,
+             :visibility, :created_at, :updated_at, :discussion_category_id,
+             :discussion_id, :user_id, :workspace_id, :reveal, :vote_count
+
+  has_one :workspace, serializer: WorkspaceLightSerializer
+  has_one :discussion, serializer: DiscussionLightSerializer
+  has_one :discussion_category, serializer: DiscussionCategorySerializer
+
+  has_many :user_votes, serializer: UserVoteSerializer
+  has_many :poll_options, serializer: PollOptionResultSerializer
+
+  # def user_votes
+  #   uv = object.user_votes_results()
+
+  # end
 end

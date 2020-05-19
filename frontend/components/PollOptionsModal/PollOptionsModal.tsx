@@ -10,11 +10,13 @@ interface Props {
   onSubmit: (poll_option: PollOptionUpdateValues) => void
   onCancel: () => void
   poll_option?: PollOption
+  buttonClassName?: string
 }
 
 const PollOptionsModal = ({
   onSubmit,
   onCancel,
+  buttonClassName,
   poll_option
 }: Props) => {
 
@@ -51,7 +53,7 @@ const PollOptionsModal = ({
 
   return (
     <div className="PollOptionsModal">
-      <Button type="primary" onClick={showModal}>
+      <Button type="primary" className={buttonClassName} onClick={showModal}>
         {t('form.poll.options.button') }
       </Button>
       <Modal

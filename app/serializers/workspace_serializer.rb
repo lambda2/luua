@@ -9,6 +9,7 @@
 #  membership        :integer          default("closed"), not null
 #  missions_count    :integer          default(0), not null
 #  name              :string           not null
+#  polls_count       :integer          default(0), not null
 #  slug              :string           not null
 #  users_count       :integer          default(0), not null
 #  created_at        :datetime         not null
@@ -26,9 +27,8 @@
 
 class WorkspaceSerializer < Panko::Serializer
   attributes :id, :name, :slug, :image_url, :thumb_url,
-             :users_count, :missions_count, :discussions_count,
-             :created_at, :updated_at,
-             :description, :membership
+             :users_count, :missions_count, :discussions_count, :polls_count,
+             :created_at, :updated_at, :description, :membership
 
   has_one :organization, serializer: OrganizationLightSerializer
 

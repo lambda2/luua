@@ -11,6 +11,7 @@ import Poll from 'components/Poll/Poll'
 import { useContext } from 'react'
 import WorkspaceContext from 'contexts/WorkspaceContext'
 import WorkspaceHeader from 'components/WorkspaceHeader/WorkspaceHeader'
+import PollLeftMenu from 'layouts/PollLeftMenu/PollLeftMenu'
 
 /**
  * Show the requested poll
@@ -31,7 +32,7 @@ const ShowPoll = (
         workspace={currentWorkspace}
         active='votes'
       />}
-      <ContentLayout>
+      <ContentLayout sideMenu={<PollLeftMenu poll={data as Poll} />}>
         {/* Paginated poll @TODO */}
         <Poll
           poll={data as Poll}

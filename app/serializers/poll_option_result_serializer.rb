@@ -21,14 +21,8 @@
 #
 #  fk_rails_...  (poll_id => polls.id)
 #
-class PollOption < ApplicationRecord
-  belongs_to :poll, touch: true
-
-  extend FriendlyId
-  friendly_id :name, use: :slugged
-
-  validates :name, uniqueness: { scope: %i[poll_id] }
-
-  counter_culture :poll, column_name: 'vote_count', delta_column: 'vote_count'
+class PollOptionResultSerializer < Panko::Serializer
+  attributes :id, :description, :icon,
+             :name, :vote_count, :created_at, :updated_at
 
 end
