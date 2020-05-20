@@ -12,18 +12,16 @@ import usePaginatedCollection from 'hooks/usePaginatedCollection';
 import can from 'utils/can';
 import MessageBox from 'elements/MessageBox/MessageBox';
 import { useLocale } from 'hooks/useLocale';
-import PageTitle from 'elements/PageTitle/PageTitle';
-import PageSection from 'elements/PageSection/PageSection';
 import { vote } from 'api/message';
 import { useCollection } from 'utils/http';
-import NetworkBoundary from '../NetworkBoudary/NetworkBoudary';
 import Title from 'elements/Title/Title';
 import DiscussionCategoryBadge from 'elements/DiscussionCategoryBadge/DiscussionCategoryBadge';
 import ROUTES from 'routes/routes';
 import Link from 'next/link';
-import { Dropdown, Menu, Button, Popconfirm } from 'antd';
+import { Dropdown, Menu, Button } from 'antd';
 import icons from 'dictionaries/icons';
 import Router from 'next/router';
+import PollFromDiscussionModal from 'components/WorkspaceInvitationModal/PollFromDiscussionModal';
 
 interface Props {
   discussion?: LightDiscussion
@@ -54,7 +52,6 @@ const Discussion = ({
   )
 
   const onDestroyDiscussion = async (discussion: LightDiscussion) => {
-    const deleted = await destroyDiscussion(discussion, currentUser?.jwt || '')
     Router.push(
       ROUTES.manage.workspace.discussions.index(discussion.workspace_id).href,
       ROUTES.manage.workspace.discussions.index(discussion.workspace_id).as
@@ -145,9 +142,17 @@ const Discussion = ({
         <Link {...ROUTES.manage.workspace.discussions.edit(discussion?.workspace_id, discussion?.slug)}><a>{t(('form.discussion.edit'))}</a></Link>
       </Menu.Item>}
 
+      {can(currentUser, 'discussion.create-poll', discussion) && <Menu.Item key="poll-from-discussion">
+        <PollFromDiscussionModal
+          discussion={discussion}
+          buttonElt={(onClick) => <a href="#" onClick={onClick}>{t('form.discussion.create-poll')}</a>}
+        />
+      </Menu.Item>}
+
       {can(currentUser, 'discussion.destroy', discussion) && <Menu.Item key="destroy-discussion">
         <a href="#" className="text-danger" onClick={() => onDestroyDiscussion(discussion)}>{t(('form.discussion.delete'))}</a>
       </Menu.Item>}
+
     </Menu>
   );
 

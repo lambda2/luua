@@ -15,6 +15,11 @@ import PollVoteOption from 'components/PollVoteOption/PollVoteOption';
 import { useCollection } from 'utils/http';
 import MessageBox from 'elements/MessageBox/MessageBox';
 import PollVoteResult from 'components/PollVoteResult/PollVoteResult';
+import PageSection from 'elements/PageSection/PageSection';
+import DiscussionItem from 'components/DiscussionItem/DiscussionItem';
+import MarkdownContent from 'elements/MarkdownContent/MarkdownContent';
+import discussion from 'pages/manage/[workspace_id]/missions/[id]/discussion';
+import MessageList from 'components/MessageList/MessageList';
 
 interface Props {
   poll?: Poll
@@ -109,12 +114,16 @@ const Poll = ({
         </aside>
       </header>
 
+      {poll.description && <MarkdownContent content={poll.description} /> || <p className="text-light">{t('generics.no-description')}</p>}
+
       {isDraft && <MessageBox>
         {t('poll.draft-cant-vote')}
       </MessageBox>}
 
+
+
       {/* Show the vote options */}
-      {!isDraft && !isClosed && <div>
+        {!isDraft && !isClosed && <PageSection title={t('poll.options')}>
         {poll.poll_options.map(po => <PollVoteOption
           poll={poll}
           userVote={votesResponse.data}
@@ -122,17 +131,24 @@ const Poll = ({
           key={po.id}
           onVote={onVote}
         />)}
-      </div>}
+        </PageSection>}
 
-      {/* Show the vote options */}
-      {isClosed && <div>
+      {/* Show the vote results */}
+      {isClosed && <PageSection title={t('poll.results')}>
         <PollVoteResult poll={poll} {...resultResponse!.data as VoteResults} />
-      </div>}
+      </PageSection>}
+
+      {poll.discussion && <PageSection title={t('poll.linked-to-discussion')}>
+        <DiscussionItem discussion={poll.discussion} />
+
+      </PageSection>}
 
       {/* Buttons to close the poll if available */}
-      {can(currentUser, 'poll.close', poll) && poll.closed_at === null && <div>
-        <Button onClick={onClose}>{t('poll.actions.close')}</Button>
-      </div>}
+      {can(currentUser, 'poll.close', poll) && poll.closed_at === null && <PageSection>
+        <Button className="text-danger" onClick={onClose}>{t('poll.actions.close')}</Button>
+      </PageSection>}
+
+      
     </div>
   )
 

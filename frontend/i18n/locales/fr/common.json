@@ -7,6 +7,7 @@
     "preview": "Aperçu",
     "yourself": "C'est vous",
     "since": "depuis",
+    "no-description": "Aucune description",
     "optional": "optionel",
     "collection": {
       "empty": "Aucun élément"
@@ -196,7 +197,10 @@
       }
     },
     "created-by": "Créee par",
+    "linked-to-discussion": "Issu de la discussion",
     "summary": "Résumé",
+    "options": "Options",
+    "results": "Résultats",
     "cant-post-auth": "Vous devez être connecté pour poster un message",
     "no-discussion": "Aucune discussion",
     "created_at": "Commencée",
@@ -505,6 +509,7 @@
       "submit": "Créer une discussion",
       "edit": "Éditer",
       "delete": "Supprimer",
+      "create-poll": "Créer un sondage",
       "name": {
         "label": "Nom",
         "hint": "Le sujet de la discussion",
@@ -524,6 +529,7 @@
     "poll": {
       "update": "Mettre à jour le vote",
       "submit": "Créer un vote",
+      "from-discussion": "Créer un vote depuis une discussion",
       "edit": "Éditer",
       "delete": "Supprimer",
       "name": {

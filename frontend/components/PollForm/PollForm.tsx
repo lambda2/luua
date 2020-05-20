@@ -16,10 +16,14 @@ import FormDiscussionCategorySelect from '../DiscussionCategorySelect/Discussion
 import PollOptionsSelect from 'components/PollOptionsSelect/PollOptionsSelect';
 import momentWithLocale from 'i18n/moment';
 import PageSection from 'elements/PageSection/PageSection';
+import discussion from 'pages/manage/[workspace_id]/missions/[id]/discussion';
+import Discussion from 'components/Discussion/Discussion';
+import DiscussionItem from 'components/DiscussionItem/DiscussionItem';
+import MessageBox from 'elements/MessageBox/MessageBox';
 
 interface Props {
   poll?: Poll
-  workspace?: LightWorkspace
+  workspace_id?: number
   discussion?: LightDiscussion
   redirectOnSave?: string
 }
@@ -27,7 +31,8 @@ interface Props {
 const PollForm = ({
   poll,
   redirectOnSave,
-  workspace
+  discussion,
+  workspace_id
 }: Props) => {
 
   const { currentUser, check } = useContext(UserContext)
@@ -42,9 +47,10 @@ const PollForm = ({
 
   const initialValues = {
     id: poll?.id,
-    name: poll?.name || '',
-    discussion_category_id: poll?.discussion_category?.id?.toString(),
+    name: poll?.name || discussion?.name || '',
+    discussion_category_id: poll?.discussion_category?.id?.toString() || discussion?.discussion_category?.id.toString(),
     description: poll?.description || '',
+    discussion_id: poll?.discussion_id || discussion?.id || '',
     visibility: poll?.visibility || 'draft',
     anonymity: poll?.anonymity || 'open',
     authentication: poll?.authentication || 'required',
@@ -52,7 +58,7 @@ const PollForm = ({
     reveal: poll?.reveal || 'on_close',
     begin_at: poll?.begin_at,
     end_at: poll?.end_at ,
-    workspace_id: poll?.workspace_id || workspace?.id,
+    workspace_id: poll?.workspace_id || workspace_id,
     poll_options_attributes: poll?.poll_options || [],
     globalErrors: undefined,
   }
@@ -103,11 +109,18 @@ const PollForm = ({
             <Form layout="vertical" scrollToFirstError>
               <ErrorMessage name="globalErrors" />
               
+              {discussion && <div className="">
+                <MessageBox>
+                  <DiscussionItem discussion={discussion} />
+                </MessageBox>
+                <br />
+              </div>}
+
               <div className="form-group">
                 <Form.Item className="form-group-constraint" label={t('form.poll.discussion_category_id.label')} name='discussion_category_id'>
                   <FormDiscussionCategorySelect
                     name="discussion_category_id"
-                    workspace_id={workspace?.id || poll?.workspace_id || 0}
+                    workspace_id={workspace_id || poll?.workspace_id || 0}
                   />
                 </Form.Item>
                 <Form.Item className="form-group-expanded"  label={t('form.poll.name.label')} name='name'>
