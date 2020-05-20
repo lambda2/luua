@@ -8,6 +8,7 @@ import icons from 'dictionaries/icons';
 import UserAvatarTooltip from 'elements/UserAvatarTooltip/UserAvatarTooltip';
 import UserAvatar from 'elements/UserAvatar/UserAvatar';
 import DiscussionCategoryBadge from 'elements/DiscussionCategoryBadge/DiscussionCategoryBadge';
+import { statusForPoll } from 'utils/poll';
 
 const { manage } = routes
 
@@ -32,6 +33,7 @@ const PollItem = ({ poll }: Props) => {
   const { currentUser } = useContext(UserContext)
   const { t, language } = useLocale()
   const moment = momentWithLocale(language as AvailableLocale)
+  const pollStatus = statusForPoll(poll)
 
   return (
     <div className="PollItem">
@@ -52,6 +54,7 @@ const PollItem = ({ poll }: Props) => {
           </li>
           <li key="created-at" className="created-at">{icons.date} {moment(updated_at).calendar()}</li>
           <li key="votes-count" className="votes-count">{icons.send} {t('poll.votes_count', {count: poll.vote_count})}</li>
+          <li key="poll-status" className="poll-status">{(icons.poll as any)[pollStatus as any]} {t(`poll.status.${pollStatus}.title`)}</li>
           {/* <li key="participants" className="participants">
             {participants.slice(0, 5).map(u => <UserAvatarTooltip key={u.id} text={false} image {...u} />)}
           </li> */}

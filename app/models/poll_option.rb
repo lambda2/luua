@@ -28,7 +28,4 @@ class PollOption < ApplicationRecord
   friendly_id :name, use: :slugged
 
   validates :name, uniqueness: { scope: %i[poll_id] }
-
-  counter_culture :poll, column_name: 'vote_count', delta_column: 'vote_count'
-
 end

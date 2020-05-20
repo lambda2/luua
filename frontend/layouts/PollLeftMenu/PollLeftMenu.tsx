@@ -6,6 +6,7 @@ import { Tooltip } from 'antd';
 import icons from 'dictionaries/icons';
 import { useLocale } from 'hooks/useLocale';
 import momentWithLocale from 'i18n/moment';
+import PollStatusBadge from 'components/PollStatusBadge/PollStatusBadge';
 
 interface Props {
   poll: LightPoll
@@ -34,6 +35,7 @@ const PollLeftMenu = ({
     reveal,
     begin_at,
     end_at,
+    closed_at,
     vote_count
   } = poll
 
@@ -109,11 +111,11 @@ const PollLeftMenu = ({
   }
 
   return (<aside className="PollLeftMenu">
-    {/* {application && <ul className="text-light">
+    <ul className="text-light">
       <li>
-        <MissionUserStatusBadge poll={poll} status={application.status} />
+        <PollStatusBadge poll={poll} />
       </li>
-    </ul>} */}
+    </ul>
     <ul className="text-light">
       {renderVisibility()}
       {renderAnonymity()}
@@ -125,7 +127,8 @@ const PollLeftMenu = ({
       {/* <li className="physical">{icons.location.physical} {physical ? t('location.physical') : t('location.online')}</li> */}
       {/* {currentUser && <li className="visibility">{visibility}</li>} */}
       {begin_at && <li className="begin-at">{icons.date} {t('poll.starts')} <b>{moment(begin_at).calendar().toLowerCase()}</b></li>}
-      {end_at && <li className="end-at">{icons.date} {t('poll.ends')} <b>{moment(end_at).calendar().toLowerCase()}</b></li>}
+      {!closed_at && end_at && <li className="end-at">{icons.date} {t('poll.ends')} <b>{moment(end_at).calendar().toLowerCase()}</b></li>}
+      {closed_at && <li className="end-at">{icons.date} {t('poll.ended')} <b>{moment(closed_at).calendar().toLowerCase()}</b></li>}
     </ul>
   </aside>)
 }

@@ -137,5 +137,11 @@ export default {
     "accepted": <FontAwesomeIcon icon={faSpinner} spin />,
     "completed": <FontAwesomeIcon icon={faInbox} />,
     "reviewed": <FontAwesomeIcon icon={faCheckCircle} />
+  },
+  "poll": {
+    "draft": <FontAwesomeIcon icon={faPencilAlt} />,
+    "closed": <FontAwesomeIcon icon={faCheckCircle} />,
+    "ended": <FontAwesomeIcon icon={faCheckCircle} />,
+    "started": <FontAwesomeIcon icon={faSpinner} spin />,
   }
 }

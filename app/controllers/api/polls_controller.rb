@@ -10,6 +10,7 @@ class Api::PollsController < ApiController
   def index
     # @polls = @polls.search(params[:q]) if params[:q]
     # @polls = @polls.available_for(current_user&.id) if params[:for_user]
+    @polls = @polls.order(order_params)
     @polls = @polls.page(params[:page])
 
     respond_to do |format|
@@ -70,6 +71,16 @@ class Api::PollsController < ApiController
     end
   end
 
+  # PATCH /api/polls/:id/vote
+  def close
+    if @poll.close!
+      WorkspaceHistory.track!(@workspace, @poll, current_user)
+      render json: PollSerializer.new.serialize(@poll)
+    else
+      render_error(@poll.errors.messages, :unprocessable_entity)
+    end
+  end
+
   # GET /api/polls/:id/results
   def results
     authorize! :show, @poll
@@ -123,5 +134,13 @@ class Api::PollsController < ApiController
 
   def set_workspace
     @workspace ||= @poll&.workspace # rubocop:todo Naming/MemoizedInstanceVariableName
+  end
+  
+  def order_params
+    return { updated_at: :desc } unless params[:order]
+
+    params[:order].split(',').reject(&:blank?).map do |o|
+      [o.gsub('-', '').to_sym, o.first == '-' ? :desc : :asc]
+    end.to_h
   end
 end

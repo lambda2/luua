@@ -357,6 +357,7 @@ declare interface PollOption {
     id: number
     name: string
     slug: string
+    vote_count?: number
     description: string | null
 }
 
@@ -365,6 +366,18 @@ declare interface UserVote {
     poll_option: PollOption
     poll: LightPoll
     user: BaseUser
+}
+
+declare interface LightUserVote {
+    id: number
+    poll_option_id: number
+    poll_id: number
+    user: BaseUser
+}
+
+declare interface VoteResults {
+    poll_options: PollOption[]
+    user_votes: LightUserVote[]
 }
 
 declare interface Poll extends LightPoll {

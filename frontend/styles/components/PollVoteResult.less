@@ -1,0 +1,30 @@
+
+.PollVoteResult {
+  padding: @space-inset-m;
+  border: 1px solid @border-color-base;
+  border-radius: 3px;
+  margin: @space-m 0;
+  display: flex;
+  align-items: center;
+
+  &.majority {
+    border: 1px solid @status-accepted-color;
+
+    main {
+      font-weight: bold;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  main {
+    flex: auto;
+    font-weight: normal;
+  }
+
+  aside {
+    // flex: auto;
+  }
+}

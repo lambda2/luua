@@ -50,12 +50,23 @@ export const create = async (attributes: PollUpdateValues, token: string): Promi
 
 /**
  * Create a new poll
- * @param attributes
+ * @param poll_id
+ * @param poll_option_id
  * @param token 
  */
 export const vote = async (poll_id: number, poll_option_id: number, token: string): Promise<AxiosResponse<Poll>> => {
   const headers = getHeaders(token)
   return await api<Poll>(`/api/polls/${poll_id}/vote`, { headers, data: { user_vote: { poll_option_id } }, method: 'POST' })
+}
+
+/**
+ * Close the given poll
+ * @param poll_id
+ * @param token 
+ */
+export const close = async (poll_id: number, token: string): Promise<AxiosResponse<Poll>> => {
+  const headers = getHeaders(token)
+  return await api<Poll>(`/api/polls/${poll_id}/close`, { headers, data: { }, method: 'PATCH' })
 }
 
 /**

@@ -103,8 +103,8 @@ class Ability
     end
 
     can %i[create], Poll, workspace: { id: user.workspace_ids }
-    can %i[create update destroy], Poll, workspace: { id: user.admin_workspace_ids }
-    can %i[create update destroy], Poll, user_id: user.id
+    can %i[create update destroy close], Poll, workspace: { id: user.admin_workspace_ids }
+    can %i[create update destroy close], Poll, user_id: user.id
     can :read, PollOption
     can %i[create update destroy], PollOption, poll: {user_id: user.id}
 

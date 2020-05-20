@@ -44,4 +44,39 @@
     }
 
   }
+
+
+    .PollStatusBadge {
+      padding: @space-s;
+      margin: @space-s;
+      margin-left: -@space-s;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+
+      & > svg {
+        min-width: 20px;
+        text-align: center;
+      }
+
+      &.status-draft {
+        color: @status-rejected-color;
+        border-color: @status-rejected-color;
+      }
+      
+      &.status-closed {
+        color: @status-reviewed-color;
+        border-color: @status-reviewed-color;
+      }
+
+      &.status-ended {
+        color: @status-reviewed-color;
+        border-color: @status-reviewed-color;
+      }
+
+      &.status-started {
+        color: @status-completed-color;
+        border-color: @status-completed-color;
+      }
+
+    }
 }

@@ -172,8 +172,28 @@
     },
     "actions": {
       "vote": "Voter",
+      "close": "Fermer le vote",
+      "close-and-results": "Fermer et dépouiller le vote",
       "vote-name": "Voter {{name}}",
       "already-voted": "À déja voté"
+    },
+    "status": {
+      "draft": {
+        "title": "Brouillon",
+        "description": "N'est pas encore publié"
+      },
+      "closed": {
+        "title": "Terminé",
+        "description": "Le scrutin est terminé"
+      },
+      "ended": {
+        "title": "Terminé",
+        "description": "Le scrutin est terminé et en attente des résultats"
+      },
+      "started": {
+        "title": "En cours",
+        "description": "Le scrutin est en cours"
+      }
     },
     "created-by": "Créee par",
     "summary": "Résumé",
@@ -186,7 +206,8 @@
     "empty": "Aucun vote",
     "participants": "Participants",
     "starts": "Commence",
-    "ends": "Termine"
+    "ends": "Termine",
+    "ended": "Fermé"
   },
   "discussion_category": {
     "create": {

@@ -1,5 +1,6 @@
 import workspaces from "../pages/manage/workspaces"
 import find from "lodash/find"
+import moment from "moment"
 
 // @TODO do a switch/case typing here
 const can = (
@@ -17,6 +18,10 @@ const can = (
     case 'workspace.destroy':
       return true
   
+
+
+
+
     case 'mission.show':
       // @TODO check membership & cie
       return user && resource &&
@@ -33,6 +38,9 @@ const can = (
     case 'mission_user.index':
       // Resource is a mission
       return user && resource && find(user?.workspace_users, { workspace_id: resource.workspace_id, admin: true })  
+
+
+
     case 'discussion.post':
       return user
     case 'discussion.create':
@@ -47,6 +55,10 @@ const can = (
         (resource.user_id === user.id) ||
         (find(user?.workspace_users, { workspace_id: resource.workspace_id, admin: true }))
       )
+
+
+
+
     case 'poll.create':
       return user && resource && find(user?.workspace_users, {workspace_id: resource.id})
     case 'poll.edit':
@@ -59,6 +71,22 @@ const can = (
         (resource.user_id === user.id) ||
         (find(user?.workspace_users, { workspace_id: resource.workspace_id, admin: true }))
       )
+    case 'poll.results':
+      const poll = resource as LightPoll
+      return user && poll && (
+        (poll.reveal === 'always') ||
+        (poll.reveal === 'on_vote') ||
+        (poll.reveal === 'on_close' && (
+          poll.closed_at !== null || moment(poll.end_at).isBefore(moment())
+        ))
+      )
+    case 'poll.close':
+      const pollclose = resource as LightPoll
+      return user && pollclose.user_id === user.id
+
+
+
+
     case 'message.destroy':
       return user && resource && (
         (resource.user_id === user.id)

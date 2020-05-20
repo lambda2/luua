@@ -14,6 +14,7 @@ class Vote
         user: user
       )
       PollOption.increment_counter :vote_count, poll_option_id
+      Poll.increment_counter :vote_count, context.poll.id
     end
   end
 end
