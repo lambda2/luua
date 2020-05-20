@@ -1,0 +1,9 @@
+---
+:concurrency: 5
+production:
+  :concurrency: 5
+:queues:
+  - critical
+  - default
+  - polls
+  - low

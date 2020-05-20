@@ -82,6 +82,8 @@ class Poll < ApplicationRecord
   
   validate :validates_amount_of_polls
 
+  after_save :schedule_closing
+
   def validates_amount_of_polls
     if poll_options.size < 2
       errors.add(:poll_options_attributes, "must have at least 2 choices")
@@ -101,5 +103,16 @@ class Poll < ApplicationRecord
 
   def closed?
     !closed_at.nil?
+  end
+
+  # Will schedule the closing of the poll at the "end_at" date
+  def schedule_closing
+    return unless end_at_previously_changed?
+    
+    CloseVoteWorker.delete_all(id)
+    
+    return unless end_at
+
+    CloseVoteWorker.perform_at(end_at, id)
   end
 end
