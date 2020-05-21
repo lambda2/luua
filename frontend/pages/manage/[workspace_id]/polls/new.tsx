@@ -18,7 +18,7 @@ const NewPoll = (props: any) => {
       active='votes'
     />}
     <ContentLayout>
-      <PollForm workspace={currentWorkspace || undefined} />
+      <PollForm workspace_id={currentWorkspace?.id || undefined} />
     </ContentLayout>
   </>)
 }

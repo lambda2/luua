@@ -43,7 +43,7 @@ const MissionDiscussion = (
       <ContentLayout sideMenu={<DiscussionLeftMenu discussions={data?.discussions} />}>
         {!discussion?.id && <p className="text-light text-centered">{t('discussion.no-discussion')}</p>}
         <Discussion
-          discussion={discussion}
+          discussion={discussion as Discussion}
           messagesEndpoint={discussion?.id && `/api/discussions/${discussion?.id}/messages`}
           votesEndpoint={discussion?.id && `/api/discussions/${discussion?.id}/message_votes/mines`}
           page={`${query.page}`}
