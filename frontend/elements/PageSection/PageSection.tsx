@@ -8,6 +8,7 @@ interface Props {
   className?: string
   level?: '1' | '2' | '3' | '4' | '5' | '6'
   title?: string | ReactNode
+  type?: 'default' | 'boxed'
 }
 
 /**
@@ -17,6 +18,7 @@ const PageSection: React.FC<Props> = ({
   className,
   title,
   level = '3',
+  type = 'default',
   children
 }) => {
 
@@ -33,7 +35,7 @@ const PageSection: React.FC<Props> = ({
   }
 
   return (
-    <section className={classNames("page-section", className)}>
+    <section className={classNames("page-section", `page-section-${type}`, className)}>
       {title && renderTitle()}
       {children}
     </section>

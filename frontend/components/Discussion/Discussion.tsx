@@ -22,9 +22,11 @@ import { Dropdown, Menu, Button } from 'antd';
 import icons from 'dictionaries/icons';
 import Router from 'next/router';
 import PollFromDiscussionModal from 'components/WorkspaceInvitationModal/PollFromDiscussionModal';
+import PollItem from 'components/PollItem/PollItem';
+import PageSection from 'elements/PageSection/PageSection';
 
 interface Props {
-  discussion?: LightDiscussion
+  discussion?: Discussion
   messagesEndpoint: string | false | 0 | undefined
   votesEndpoint: string | false | 0 | undefined
   page?: number | string,
@@ -159,7 +161,7 @@ const Discussion = ({
   return (
     <div className="Discussion">
 
-      <header className="PageTitle DiscussionTitle">
+      <header className="PageTitle discussion-margin">
         <Title level={"3"}>
           {discussion?.discussion_category && <DiscussionCategoryBadge size="large" text category={discussion?.discussion_category} />}
           {discussion?.name}
@@ -172,6 +174,10 @@ const Discussion = ({
           </Dropdown>
         </aside>
       </header>
+
+      {discussion.polls.length > 0 && <PageSection title="Votes" type='boxed' className="discussion-margin">
+        {discussion.polls.map(p => <PollItem poll={p} key={p.id} />)}
+      </PageSection>}
 
       {/* <NetworkBoundary {...votesResponse}> */}
         <Paginated

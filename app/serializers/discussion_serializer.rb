@@ -39,5 +39,6 @@ class DiscussionSerializer < Panko::Serializer
   has_many :messages, serializer: MessageSerializer
   has_many :participants, serializer: UserLightSerializer
   has_one :discussion_category, serializer: DiscussionCategorySerializer
+  has_many :polls, serializer: PollLightSerializer
 
 end

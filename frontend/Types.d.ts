@@ -319,6 +319,7 @@ declare interface LightDiscussion {
 declare interface Discussion extends LightDiscussion {
     workspace?: LightWorkspace
     messages: Message[]
+    polls: LightPoll[]
 }
 
 type PollVisibility = 'draft' | 'hidden' | 'protected' | 'public'
