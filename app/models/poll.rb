@@ -57,37 +57,35 @@ class Poll < ApplicationRecord
   # - protected: Poll is only visible for workspace members
   # - public: Poll is visible to everyone
   enum visibility: %i[draft hidden protected public], _suffix: true
-  
+
   # - open: The votes can be anonymous or not, it's up to the voter
   # - anonymous: The vote is anonymous, and the voter identity is secret
   # - not_anonymous: the voter identity is published
   enum anonymity: %i[anonymous not_anonymous open], _suffix: true
-  
+
   # - required: the voter must be authentified
   # - not_required: the voter can be unauthenticated
   enum authentication: %i[required not_required], _suffix: true
-  
+
   # - on_close: results are revealed when the poll is closed (final results)
   # - on_vote: current results are revealed after each vote
   # - always: results are always revealed, even if an user didn't voted
   enum reveal: %i[on_close on_vote always], _suffix: true
-  
+
   enum poll_type: %i[single_choice], _suffix: true
 
   accepts_nested_attributes_for :poll_options,
                                 allow_destroy: true,
                                 reject_if: :all_blank
-  
+
   validates :name, uniqueness: { scope: %i[workspace_id] }
-  
+
   validate :validates_amount_of_polls
 
   after_save :schedule_closing
 
   def validates_amount_of_polls
-    if poll_options.size < 2
-      errors.add(:poll_options_attributes, "must have at least 2 choices")
-    end
+    errors.add(:poll_options_attributes, 'must have at least 2 choices') if poll_options.size < 2 # rubocop:todo Style/GuardClause
   end
 
   def user_votes_results(user = nil)
@@ -108,9 +106,9 @@ class Poll < ApplicationRecord
   # Will schedule the closing of the poll at the "end_at" date
   def schedule_closing
     return unless end_at_previously_changed?
-    
+
     CloseVoteWorker.delete_all(id)
-    
+
     return unless end_at
 
     CloseVoteWorker.perform_at(end_at, id)

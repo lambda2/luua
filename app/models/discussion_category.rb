@@ -38,28 +38,25 @@ class DiscussionCategory < ApplicationRecord
     question: 3
   }, _suffix: true
 
-
-  
-
   def self.defaults!(workspace_id)
     [
       {
-        name: "Idée",
-        icon: "🧙🏼‍♂️ ",
-        color: "#008d46",
-        category: "idea"
+        name: 'Idée',
+        icon: '🧙🏼‍♂️ ',
+        color: '#008d46',
+        category: 'idea'
       },
       {
-        name: "Problème",
-        icon: "🚧 ",
-        color: "#ae5051",
-        category: "other"
+        name: 'Problème',
+        icon: '🚧 ',
+        color: '#ae5051',
+        category: 'other'
       },
       {
-        name: "Question",
-        icon: "🤔 ",
-        color: "#8d8d8d",
-        category: "question"
+        name: 'Question',
+        icon: '🤔 ',
+        color: '#8d8d8d',
+        category: 'question'
       }
     ].each do |params|
       DiscussionCategory.where(

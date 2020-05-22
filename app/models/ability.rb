@@ -40,7 +40,7 @@ class Ability
 
     # ========= Workspaces ============
 
-    can [:read, :categories], Workspace
+    can %i[read categories], Workspace
     can :me, Workspace, id: user.workspace_ids
     can :manage, Workspace, id: user.admin_workspace_ids
     can :create, Workspace
@@ -106,10 +106,9 @@ class Ability
     can %i[create update destroy close], Poll, workspace: { id: user.admin_workspace_ids }
     can %i[create update destroy close], Poll, user_id: user.id
     can :read, PollOption
-    can %i[create update destroy], PollOption, poll: {user_id: user.id}
+    can %i[create update destroy], PollOption, poll: { user_id: user.id }
 
     can [:mines], UserVote
-
   end
   # rubocop:enable Metrics/MethodLength
 

@@ -41,7 +41,7 @@ class Discussion < ApplicationRecord
   has_many :message_votes, through: :messages
 
   has_many :notifications, as: :resource, dependent: :destroy
-  
+
   has_many :polls, dependent: :nullify
 
   after_create :create_root_message!

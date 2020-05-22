@@ -56,11 +56,11 @@ class Workspace < ApplicationRecord
   has_many :mission_users, through: :missions
 
   has_many :projects, dependent: :destroy
-  
+
   has_many :priorities, dependent: :destroy
-  
+
   has_many :discussion_categories, dependent: :destroy
-  
+
   has_many :polls, dependent: :destroy
 
   validates :name, uniqueness: true
