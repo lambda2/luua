@@ -57,8 +57,6 @@ class Api::OrganizationsController < ApiController
   #   )
   # end
 
-  # private # rubocop:todo Lint/UselessAccessModifier
-
   # # Use callbacks to share common setup or constraints between actions.
   # # def set_organization
   # #   @organization = Organization.friendly.find(params[:id])

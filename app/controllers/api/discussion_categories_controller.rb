@@ -66,7 +66,7 @@ class Api::DiscussionCategoriesController < ApiController
       :name,
       :icon,
       :color,
-      :category,
+      :category
     )
   end
 

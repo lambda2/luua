@@ -135,7 +135,7 @@ class Api::PollsController < ApiController
   def set_workspace
     @workspace ||= @poll&.workspace # rubocop:todo Naming/MemoizedInstanceVariableName
   end
-  
+
   def order_params
     return { updated_at: :desc } unless params[:order]
 
