@@ -85,7 +85,7 @@ class Poll < ApplicationRecord
   after_save :schedule_closing
 
   def validates_amount_of_polls
-    errors.add(:poll_options_attributes, 'must have at least 2 choices') if poll_options.size < 2 # rubocop:todo Style/GuardClause
+    errors.add(:poll_options_attributes, 'must have at least 2 choices') if poll_options.size < 2
   end
 
   def user_votes_results(user = nil)
