@@ -22,8 +22,9 @@ import { Dropdown, Menu, Button } from 'antd';
 import icons from 'dictionaries/icons';
 import Router from 'next/router';
 import PollFromDiscussionModal from 'components/WorkspaceInvitationModal/PollFromDiscussionModal';
-import PollItem from 'components/PollItem/PollItem';
+// import PollItem from 'components/PollItem/PollItem';
 import PageSection from 'elements/PageSection/PageSection';
+import LinkedItem from 'components/LinkedItem/LinkedItem';
 
 interface Props {
   discussion?: Discussion
@@ -176,7 +177,7 @@ const Discussion = ({
       </header>
 
       {discussion.polls && discussion.polls.length > 0 && <PageSection title="Votes" type='boxed' className="discussion-margin">
-        {discussion.polls.map(p => <PollItem poll={p} key={p.id} />)}
+        {discussion.polls.map(p => <LinkedItem type='poll' linked={p} key={p.id} />)}
       </PageSection>}
 
       {/* <NetworkBoundary {...votesResponse}> */}
