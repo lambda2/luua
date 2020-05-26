@@ -6,7 +6,7 @@ import PageTitle from 'elements/PageTitle/PageTitle';
 import UserAvatar from 'elements/UserAvatar/UserAvatar';
 import Link from 'next/link';
 import classNames from 'classnames';
-import { Button, Menu, Dropdown } from 'antd';
+import { Button, Menu, Dropdown, Tag } from 'antd';
 import UserContext from 'contexts/UserContext';
 import find from 'lodash/find';
 import can from 'utils/can';
@@ -66,14 +66,17 @@ const WorkspaceHeader = ({
         <Menu.Item key="add-discussion">
           <Link {...manage.manage.workspace.discussions.new(`${workspace.id}`)}><a>{t('discussion.create.title')}</a></Link>
         </Menu.Item>
+        <Menu.Item key="add-poll">
+          <Link {...manage.manage.workspace.polls.new(`${workspace.id}`)}><a>{t('poll.create.title')}</a></Link>
+        </Menu.Item>
       </Menu>
     );
 
     return (<Dropdown key="dropdown" overlay={menu}>
-      <Button type="link">
-        {/* {icons.plus}
-        {' '} */}
-        <span className="text-light">{' '}{icons.plussquare}</span>
+      <Button type="ghost">
+        {/* <span className="text-light">{' '}{icons.plussquare}</span> */}
+        {/* {' '} */}
+        {t('menu.create')}
       </Button>
     </Dropdown>)
   }
@@ -140,7 +143,7 @@ const WorkspaceHeader = ({
   }
 
   const leftActions = [
-    <WorkspaceJoinButton key="workspace-join" workspace={workspace} user={currentUser}/>,
+    !isMember && <WorkspaceJoinButton key="workspace-join" workspace={workspace} user={currentUser}/>,
     (isMember) && addActions(),
     ...actions
       .filter((act) => can(currentUser, `workspace.${act}`, workspace))
@@ -155,6 +158,8 @@ const WorkspaceHeader = ({
             <UserAvatar name={workspace.name} size="default" src={workspace.image_url} />
             {' '}
             {tree.length > 0 ? <Link {...ROUTES.manage.workspace.show(workspace.slug)}>{workspace.name}</Link> : workspace.name }
+            {' '}
+            {isMember && <Tag>{isAdmin ? 'admin' : 'member'}</Tag>}
             {tree.map(renderTree)}
           </>}
           extra={leftActions}

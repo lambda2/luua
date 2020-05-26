@@ -23,3 +23,4 @@ export const statusForPoll = (poll: LightPoll) => {
     return 'started'
   }
 }
+
