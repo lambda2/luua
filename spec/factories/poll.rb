@@ -1,4 +1,3 @@
-
 FactoryBot.define do
 
   factory :poll, class: Poll do

@@ -95,7 +95,6 @@ describe Api::PollsController do # rubocop:todo Metrics/BlockLength
     let(:poll) { build(:poll, workspace: workspace) }
     let(:poll_other_workspace) { build(:poll, workspace: other_workspace) }
 
-
     it 'Can create a poll without options' do
       json_post '/api/polls', user: user, params: { poll: poll.as_json }.to_json
       expect(response.status).to eq(422)
@@ -104,15 +103,15 @@ describe Api::PollsController do # rubocop:todo Metrics/BlockLength
     it 'Create a poll' do
 
       poll_with_options = poll.as_json.merge({
-        poll_options_attributes: 3.times.map{ attributes_for(:poll_option, poll: nil) }
+        poll_options_attributes: 3.times.map { attributes_for(:poll_option, poll: nil) }
       })
       json_post '/api/polls', user: user, params: { poll: poll_with_options }.to_json
       expect(response.status).to eq(201)
       expect(response.body).to match_attributes_in_json(poll.as_json.without('locale').select {|_k, e| e })
       expect(
-        JSON.parse(response.body)['poll_options'].map{|e| e['name']}
+        JSON.parse(response.body)['poll_options'].map {|e| e['name'] }
       ).to match_array(
-        poll_with_options[:poll_options_attributes].map{|e| e[:name]}
+        poll_with_options[:poll_options_attributes].map {|e| e[:name] }
       )
     end
 

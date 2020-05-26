@@ -68,7 +68,7 @@ describe Api::NotificationsController do # rubocop:todo Metrics/BlockLength
 
     it 'on an user\'s notification' do
       FactoryBot.create_list(:notification, 3, user: user)
-      json_patch "/api/notifications/read_all", user: user
+      json_patch '/api/notifications/read_all', user: user
       expect(response.status).to eq(200)
       expect(response.body).to have_item_count_in_json(0)
     end

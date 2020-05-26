@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'devise/jwt/test_helpers'
 
-describe Api::SkillsController do # rubocop:todo Metrics/BlockLength
+describe Api::SkillsController do
 
   let(:category) { create(:skill_category) }
   let(:user) { create(:user, :confirmed) }

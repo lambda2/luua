@@ -72,8 +72,8 @@ describe Api::DiscussionsController do # rubocop:todo Metrics/BlockLength
       json_post '/api/discussions', user: user, params: { discussion: discussion }.to_json
       expect(response.status).to eq(201)
       pp JSON.parse(response.body)
-      puts "~~~~~~~~~~~"
-      pp (discussion.as_json)
+      puts '~~~~~~~~~~~'
+      pp discussion.as_json
       expect(response.body).to match_attributes_in_json(discussion.as_json.without('locale').select {|_k, e| e })
     end
 

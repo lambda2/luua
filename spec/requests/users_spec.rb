@@ -13,12 +13,12 @@ describe Api::UsersController do # rubocop:todo Metrics/BlockLength
     let(:user) { create(:user, :confirmed) }
 
     it 'anonymous cant me' do
-      json_get "/api/me"
+      json_get '/api/me'
       expect(response.status).to eq(401)
     end
 
     it 'user can me' do
-      json_get "/api/me", user: user
+      json_get '/api/me', user: user
       expect(response.status).to eq(200)
       expect(response.body).to match_item_in_json(user)
     end
@@ -45,7 +45,7 @@ describe Api::UsersController do # rubocop:todo Metrics/BlockLength
 
     it 'on a non-existing user' do
       expect do
-        json_get "/api/users/0"
+        json_get '/api/users/0'
       end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end

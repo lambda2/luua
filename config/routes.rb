@@ -93,7 +93,7 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
         get 'mines', on: :collection, action: :mines
       end
     end
-    
+
     resources :discussions, shallow: true do
       resources :message_votes do
         get 'mines', on: :collection, action: :mines
@@ -109,17 +109,19 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
     require 'sidekiq/web'
     require 'sidekiq/cron/web'
 
-    Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-      # Protect against timing attacks:
-      # - See https://codahale.com/a-lesson-in-timing-attacks/
-      # - See https://thisdata.com/blog/timing-attacks-against-string-comparison/
-      # - Use & (do not use &&) so that it doesn't short circuit.
-      # - Use digests to stop length information leaking (see also ActiveSupport::SecurityUtils.variable_size_secure_compare)
-      ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV["SIDEKIQ_USERNAME"])) &
-        ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV["SIDEKIQ_PASSWORD"]))
-    end if Rails.env.production?
+    if Rails.env.production?
+      Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+        # Protect against timing attacks:
+        # - See https://codahale.com/a-lesson-in-timing-attacks/
+        # - See https://thisdata.com/blog/timing-attacks-against-string-comparison/
+        # - Use & (do not use &&) so that it doesn't short circuit.
+        # - Use digests to stop length information leaking (see also ActiveSupport::SecurityUtils.variable_size_secure_compare)
+        ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username), ::Digest::SHA256.hexdigest(ENV['SIDEKIQ_USERNAME'])) &
+          ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV['SIDEKIQ_PASSWORD']))
+      end
+    end
 
-    mount PgHero::Engine, at: "pghero"
+    mount PgHero::Engine, at: 'pghero'
 
     mount Sidekiq::Web => '/sidekiq'
   end
