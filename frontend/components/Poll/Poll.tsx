@@ -20,6 +20,7 @@ import DiscussionItem from 'components/DiscussionItem/DiscussionItem';
 import MarkdownContent from 'elements/MarkdownContent/MarkdownContent';
 import discussion from 'pages/manage/[workspace_id]/missions/[id]/discussion';
 import MessageList from 'components/MessageList/MessageList';
+import LinkedItem from 'components/LinkedItem/LinkedItem';
 
 interface Props {
   poll?: Poll
@@ -116,6 +117,10 @@ const Poll = ({
 
       {poll.description && <MarkdownContent content={poll.description} /> || <p className="text-light">{t('generics.no-description')}</p>}
 
+      {poll.discussion && <PageSection type='boxed' className="discussion-margin">
+        <LinkedItem type='discussion' linked={poll.discussion} key={poll.discussion.id} />
+      </PageSection>}
+
       {isDraft && <MessageBox>
         {t('poll.draft-cant-vote')}
       </MessageBox>}
@@ -138,10 +143,10 @@ const Poll = ({
         <PollVoteResult poll={poll} {...resultResponse!.data as VoteResults} />
       </PageSection>}
 
-      {poll.discussion && <PageSection title={t('poll.linked-to-discussion')}>
+      {/* {poll.discussion && <PageSection title={t('poll.linked-to-discussion')}>
         <DiscussionItem discussion={poll.discussion} />
 
-      </PageSection>}
+      </PageSection>} */}
 
       {/* Buttons to close the poll if available */}
       {can(currentUser, 'poll.close', poll) && poll.closed_at === null && <PageSection>

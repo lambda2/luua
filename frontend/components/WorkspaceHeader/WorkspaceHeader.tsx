@@ -6,13 +6,14 @@ import PageTitle from 'elements/PageTitle/PageTitle';
 import UserAvatar from 'elements/UserAvatar/UserAvatar';
 import Link from 'next/link';
 import classNames from 'classnames';
-import { Button, Menu, Dropdown, Tag } from 'antd';
+import { Button, Menu, Dropdown } from 'antd';
 import UserContext from 'contexts/UserContext';
 import find from 'lodash/find';
 import can from 'utils/can';
 import WorkspaceJoinButton from '../WorkspaceJoinButton/WorkspaceJoinButton';
 import icons from 'dictionaries/icons';
 import Badge from 'elements/Badge/Badge';
+import Tag from 'elements/Tag/Tag';
 
 type ResourceAction = 'show' | 'new' | 'edit' | 'destroy'
 
@@ -159,7 +160,7 @@ const WorkspaceHeader = ({
             {' '}
             {tree.length > 0 ? <Link {...ROUTES.manage.workspace.show(workspace.slug)}>{workspace.name}</Link> : workspace.name }
             {' '}
-            {isMember && <Tag>{isAdmin ? 'admin' : 'member'}</Tag>}
+            {isMember && <Tag className={`tag-${isAdmin ? 'admin' : 'member'}`}>{isAdmin ? 'admin' : 'member'}</Tag>}
             {tree.map(renderTree)}
           </>}
           extra={leftActions}

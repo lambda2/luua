@@ -176,7 +176,7 @@ const Discussion = ({
         </aside>
       </header>
 
-      {discussion.polls && discussion.polls.length > 0 && <PageSection title="Votes" type='boxed' className="discussion-margin">
+      {discussion.polls && discussion.polls.length > 0 && <PageSection type='boxed' className="discussion-margin">
         {discussion.polls.map(p => <LinkedItem type='poll' linked={p} key={p.id} />)}
       </PageSection>}
 

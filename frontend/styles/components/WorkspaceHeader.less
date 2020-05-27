@@ -2,6 +2,22 @@
   background-color: @layout-body-background;
   border-bottom: 1px solid @border-color-base;
 
+  .Title .Tag {
+    font-size: @font-size-base;
+    margin-left: @space-m;
+    margin-top: @space-s;
+
+    &.tag-admin {
+      background-color: @magenta-base;
+      color: #fff;
+    }
+
+    &.tag-member {
+      background-color: @blue-base;
+      color: #fff;
+    }
+  }
+
   .WorkspaceHeaderContent {
     max-width: @content-width;
     margin: auto;

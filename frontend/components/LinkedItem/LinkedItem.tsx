@@ -5,6 +5,7 @@ import Link from 'next/link';
 import icons from 'dictionaries/icons';
 import { statusForPoll } from 'utils/poll';
 import Tag from 'elements/Tag/Tag';
+import Badge from 'elements/Badge/Badge';
 
 const { manage } = routes
 
@@ -37,9 +38,9 @@ const LinkedItem = (props: LinkedObject) => {
       <div className="LinkedItem">
           <Link key={linked.id} {...manage.workspace.polls.show(linked.workspace_id, linked.slug)}>
             <a>
-              <Tag>{t('menu.vote')}</Tag>
+              <Tag><b>{t('menu.vote')}</b></Tag>
               {' '}
-              <Tag>{(icons.poll as any)[pollStatus as any]} {t(`poll.status.${pollStatus}.title`)}</Tag>
+              <Badge>{(icons.poll as any)[pollStatus as any]} {t(`poll.status.${pollStatus}.title`)}</Badge>
               {' '}
               <span>{linked.name}</span>
             </a>
