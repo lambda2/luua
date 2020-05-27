@@ -50,9 +50,27 @@ const LinkedItem = (props: LinkedObject) => {
 
   }
 
+  const renderDiscussion = (linked: LightDiscussion) => {
+
+    return (
+      <div className="LinkedItem">
+          <Link key={linked.id} {...manage.workspace.discussions.show(linked.workspace_id, linked.slug)}>
+            <a>
+              <Tag><b>{t('menu.discussion')}</b></Tag>
+              {' '}
+              <span>{linked.name}</span>
+            </a>
+          </Link>
+      </div>
+    )
+
+  }
+
   switch (props.type) {
     case 'poll':
       return renderPoll(props.linked)
+    case 'discussion':
+      return renderDiscussion(props.linked)
     default:
       console.error("Unable to find type ", props.type, { props });
       return <span></span>
