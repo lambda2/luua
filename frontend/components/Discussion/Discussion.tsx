@@ -5,7 +5,7 @@ import UserContext from 'contexts/UserContext';
 import DiscussionInput from 'elements/DiscussionInput/DiscussionInput';
 import { create, update, destroy } from 'api/message';
 import { destroy as destroyDiscussion } from 'api/discussion';
-import { useMutation } from 'react-query';
+import { useMutation, queryCache } from 'react-query';
 import MessageList from '../MessageList/MessageList';
 import Paginated from '../Paginated/Paginated';
 import usePaginatedCollection from 'hooks/usePaginatedCollection';
@@ -85,20 +85,32 @@ const Discussion = ({
   }
 
   const [onCreate] = useMutation(createMessage, {
-    onSuccess: (data) => {
-      console.log("[Message Creation MUTATE] ! onSuccess => ", data);
+    // Optimistically update the cache value on mutate, but store
+    // the old value and return it so that it's accessible in case of
+    // an error
+    onMutate: newMessage => {
+      queryCache.cancelQueries(messagesEndpoint || '')
+
+      const previousValue = queryCache.getQueryData(messagesEndpoint || '')
+
+      console.log("Updating qdata: ", messagesEndpoint || '', { previousValue });
       
-      messagesResponse.refetch()
+      queryCache.setQueryData(messagesEndpoint || '', (old?: Message[]) => ({
+        ...(old || []),
+        newMessage,
+      }))
+
+      return previousValue
     },
-    onMutate: (data) => {
-      console.log("[Message Creation MUTATE] ! onMutate => ", data);
+    // On failure, roll back to the previous messages list
+    onError: (err, variables, previousValue) =>
+      queryCache.setQueryData(messagesEndpoint || '', previousValue),
+    onSuccess: () => {
+      console.log("Message created");
+      
     },
-    onError: (data) => {
-      console.log("[Message Creation MUTATE] ! onError => ", data);
-    },
-    onSettled: (data) => {
-      console.log("[Message Creation MUTATE] ! onSettled => ", data);
-    }
+    // After success or failure, refetch the messages
+    onSettled: () => queryCache.refetchQueries(messagesEndpoint || ''),
   })
 
   const [onEdit] = useMutation(editMessage, {
