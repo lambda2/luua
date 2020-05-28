@@ -23,8 +23,16 @@ type WorkspaceMembership = 'closed' | 'approval' | 'open'
 type DiscussionResourceType = 'Workspace' | 'Mission'
 type MessageVoteOption = 'positive' | 'negative'
 
-declare interface BaseUser {
+declare interface DbEntry {
     id: number
+}
+
+declare interface DbEntryWithTimestamps extends DbEntry {
+    created_at: string
+    updated_at: string
+}
+
+declare interface BaseUser extends DbEntryWithTimestamps {
     country: string
     email: string
     first_name: string
@@ -33,8 +41,6 @@ declare interface BaseUser {
     last_name: string
     timezone: string
     username: string
-    created_at: string
-    updated_at: string
 }
 
 
@@ -67,20 +73,16 @@ declare interface TicketWithMessages extends Ticket {
     messages: Message[]
 }
 
-declare interface Message {
-    id: number
+declare interface Message extends DbEntryWithTimestamps {
     ticket_id: number
     content: text
     user_id: number | null
     author: GenericUser | null
     user_info_id: number | null
     message_type: string
-    created_at: string
-    updated_at: string
 }
 
-declare interface LightWorkspace {
-    id: number
+declare interface LightWorkspace extends DbEntryWithTimestamps {
     name: string
     slug: string
     image_url: string
@@ -93,12 +95,9 @@ declare interface LightWorkspace {
     discussions_count: number
     polls_count: number
     // workspace_type: 'main' | 'company' | 'personal'
-    created_at: string
-    updated_at: string
 }
 
-declare interface WorkspaceUser {
-    id: number
+declare interface WorkspaceUser extends DbEntryWithTimestamps {
     workspace_id: number
     user_id: number
     admin: boolean
@@ -112,27 +111,21 @@ declare interface WorkspaceUser {
     workspace?: LightWorkspace
 }
 
-declare interface WorkspaceInvitation {
-    id: number
+declare interface WorkspaceInvitation extends DbEntryWithTimestamps {
     email: string
     send_email: boolean
     status: WorkspaceInvitationStatus
     inviter_id: number
     user_id: number
     workspace_id: number
-    created_at: string
-    updated_at: string
     inviter: BaseUser
     user: BaseUser
 }
 
-declare interface WorkspaceRequest {
-    id: number
+declare interface WorkspaceRequest extends DbEntryWithTimestamps {
     status: WorkspaceRequestStatus
     user_id: number
     workspace_id: number
-    created_at: string
-    updated_at: string
     user: BaseUser
 }
 
@@ -144,20 +137,16 @@ declare interface Workspace extends LightWorkspace {
     discussion_categories: DiscussionCategory[]
 }
 
-declare interface DiscussionCategory {
-    id: number
+declare interface DiscussionCategory extends DbEntryWithTimestamps {
     workspace_id: number
     name: string
     slug: string
     icon?: string
     color?: string
     category: string
-    created_at: string
-    updated_at: string
 }
 
-declare interface UserSkill {
-    id: number
+declare interface UserSkill extends DbEntryWithTimestamps {
     skill_id: number
     name: string
     slug: string
@@ -165,38 +154,31 @@ declare interface UserSkill {
     type: SkillType
 }
 
-declare interface UserNotification {
-    id: number
+declare interface UserNotification extends DbEntryWithTimestamps {
     title: string
     content: string
     link: string
     resource: any
     code: NotificationCode
     viewed_at: string
-    created_at: string
-    updated_at: string
 }
 
-declare interface Region {
-    id: number
+declare interface Region extends DbEntryWithTimestamps {
     name: string
     slug: string
 }
-declare interface Country {
-    id: number
+declare interface Country extends DbEntryWithTimestamps {
     name: string
     slug: string
 }
 
-declare interface Skill {
-    id: number
+declare interface Skill extends DbEntryWithTimestamps {
     name: string
     slug: string
     skill_type: SkillType
 }
 
-declare interface LightOrganization {
-    id: number
+declare interface LightOrganization extends DbEntryWithTimestamps {
     name: string
     slug: string
     description: string
@@ -206,15 +188,12 @@ declare interface LightOrganization {
     image: string
     color: string
     modified_at: string
-    created_at: string
-    updated_at: string
 }
 
 declare interface Organization extends LightOrganization {
 }
 
-declare interface LightMissionUser {
-    id: number
+declare interface LightMissionUser extends DbEntryWithTimestamps {
     mission_id: number
     workspace_id: number
     user_id: number
@@ -236,8 +215,7 @@ declare interface MissionUser extends LightMissionUser {
     user_skills: UserSkill[]
 }
 
-declare interface BaseMission {
-    id: number
+declare interface BaseMission extends DbEntryWithTimestamps {
     name: string
     slug: string
     description: string
@@ -255,8 +233,6 @@ declare interface BaseMission {
     physical: boolean
     banner_image: string
     modified_at: string
-    created_at: string
-    updated_at: string
 }
 
 declare interface LightMission extends BaseMission {
@@ -269,8 +245,7 @@ declare interface Mission extends BaseMission {
     discussions: LightDiscussion[]
 }
 
-declare interface MissionSkill {
-    id: number
+declare interface MissionSkill extends DbEntryWithTimestamps {
     mission_id: number
     skill_id: number
     mandatory: boolean
@@ -283,11 +258,9 @@ declare interface MessageVote {
     user_id: number
     message_id: number
     vote: MessageVoteOption
-    id: number
 }
 
-declare interface Message {
-    id: number
+declare interface Message extends DbEntryWithTimestamps {
     content: string
     user: BaseUser
     user_id: number
@@ -296,12 +269,9 @@ declare interface Message {
     discussion_id: number
     positive_vote_count: number
     negative_vote_count: number
-    created_at: string
-    updated_at: string
 }
 
-declare interface LightDiscussion {
-    id: number
+declare interface LightDiscussion extends DbEntryWithTimestamps {
     name: string
     slug: string
     // description: string
@@ -312,8 +282,6 @@ declare interface LightDiscussion {
     workspace_id: number
     discussion_category: DiscussionCategory
     messages_count: number
-    created_at: string
-    updated_at: string
 }
 
 declare interface Discussion extends LightDiscussion {
@@ -328,8 +296,7 @@ type PollReveal = 'on_close' | 'on_vote' | 'always'
 type PollAuthentication = 'required' | 'not_required'
 type PollType = 'single_choice'
 
-declare interface LightPoll {
-    id: number
+declare interface LightPoll extends DbEntryWithTimestamps {
     name: string
     slug: string
     category: number // @TODO
@@ -350,27 +317,22 @@ declare interface LightPoll {
     workspace_id: number
     discussion_id: number | null
     vote_count: number
-    created_at: string
-    updated_at: string
 }
 
-declare interface PollOption {
-    id: number
+declare interface PollOption extends DbEntryWithTimestamps {
     name: string
     slug: string
     vote_count?: number
     description: string | null
 }
 
-declare interface UserVote {
-    id: number
+declare interface UserVote extends DbEntryWithTimestamps {
     poll_option: PollOption
     poll: LightPoll
     user: BaseUser
 }
 
-declare interface LightUserVote {
-    id: number
+declare interface LightUserVote extends DbEntryWithTimestamps {
     poll_option_id: number
     poll_id: number
     user: BaseUser
