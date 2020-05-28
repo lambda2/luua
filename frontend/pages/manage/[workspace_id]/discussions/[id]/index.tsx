@@ -37,7 +37,7 @@ const ShowDiscussion = (
           discussion={data as Discussion}
           messagesEndpoint={data?.id && `/api/discussions/${data?.id}/messages`}
           votesEndpoint={data?.id && `/api/discussions/${data?.id}/message_votes/mines`}
-          page={`${query.page}`}
+          initialPage={query.page && parseInt(query.page as string) || undefined}
         />
       </ContentLayout>
     </NetworkBoundary>

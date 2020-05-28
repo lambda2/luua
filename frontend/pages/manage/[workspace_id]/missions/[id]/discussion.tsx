@@ -50,7 +50,7 @@ const MissionDiscussion = (
           discussion={discussion as Discussion}
           messagesEndpoint={discussion?.id && `/api/discussions/${discussion?.id}/messages`}
           votesEndpoint={discussion?.id && `/api/discussions/${discussion?.id}/message_votes/mines`}
-          page={`${query.page}`}
+          initialPage={query.page && parseInt(query.page as string) || undefined}
           token={token}
         />
       </ContentLayout>
