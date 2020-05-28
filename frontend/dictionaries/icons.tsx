@@ -59,6 +59,7 @@ import {
   faTwitter,
   faInstagram,
   faDiscord,
+  faGithub,
 } from '@fortawesome/free-brands-svg-icons'
 
 library.add(
@@ -143,5 +144,10 @@ export default {
     "closed": <FontAwesomeIcon icon={faCheckCircle} />,
     "ended": <FontAwesomeIcon icon={faCheckCircle} />,
     "started": <FontAwesomeIcon icon={faSpinner} spin />,
+  },
+  "brands": {
+    "twitter": <FontAwesomeIcon icon={faTwitter} />,
+    "github": <FontAwesomeIcon icon={faGithub} />,
+    "discord": <FontAwesomeIcon icon={faDiscord} />
   }
 }
