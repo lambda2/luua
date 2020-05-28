@@ -20,6 +20,7 @@ import List from 'elements/List/List'
 import DiscussionCategoryModal from 'components/DiscussionCategoryModal/DiscussionCategoryModal'
 import { destroy } from 'api/discussion_category'
 import { queryCache } from 'react-query'
+import UserContext from 'contexts/UserContext'
 
 
 /**
@@ -36,6 +37,7 @@ const WorkspaceCategories = (
     `/api/workspaces/${query.workspace_id}/discussion_categories`, token, {}, { initialData }
   )
   const { currentWorkspace } = useContext(WorkspaceContext)
+  const { currentUser } = useContext(UserContext)
 
   const itemStyle = {
     display: 'flex',
@@ -50,7 +52,7 @@ const WorkspaceCategories = (
 
   const onDelete = async (id: number) => {
     console.log("Update !");
-    await destroy({ id }, token || '')
+    await destroy({ id }, token || currentUser?.jwt || '')
     queryCache.refetchQueries(`/api/workspaces/${query.workspace_id}/discussion_categories`)
   }
 

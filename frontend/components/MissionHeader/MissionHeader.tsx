@@ -95,11 +95,10 @@ const MissionHeader = ({
               <span className="separator">/</span>
               <Link key="missions" {...ROUTES.manage.workspace.missions.index(workspace.slug)}><a>{t('menu.missions')}</a></Link>
             </div>
-
             { mission.name }
           </>}
           extra={[
-            <aside>
+            <aside key="options">
               <Dropdown key="dropdown" overlay={menu}>
                 <Button type="link">
                   <span className="text-light">{' '}{icons.down}</span>

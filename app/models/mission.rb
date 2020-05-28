@@ -47,11 +47,11 @@ class Mission < ApplicationRecord
   belongs_to :mission_category, optional: true
 
   # Skills required/optional for the mission
-  has_many :mission_skills
+  has_many :mission_skills, dependent: :destroy
   has_many :skills, through: :mission_skills
 
   # USers applying for this mission
-  has_many :mission_users
+  has_many :mission_users, dependent: :destroy
   has_many :users, through: :mission_users
 
   belongs_to :organization, optional: true

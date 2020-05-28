@@ -15,6 +15,7 @@ import { useLocale } from 'hooks/useLocale'
 import DiscussionLeftMenu from 'layouts/DiscussionLeftMenu/DiscussionLeftMenu'
 import MessageBox from 'elements/MessageBox/MessageBox'
 import { onDestroy } from 'utils/mission'
+import UserContext from 'contexts/UserContext'
 
 
 /**
@@ -26,6 +27,7 @@ const MissionDiscussion = (
 ) => {
   const { query } = useRouter()
   const { currentWorkspace } = useContext(WorkspaceContext)
+  const { currentUser } = useContext(UserContext)
   const { t } = useLocale()
 
   const { status, data, error } = useCollection<Mission>(
@@ -39,7 +41,7 @@ const MissionDiscussion = (
       {currentWorkspace && <MissionHeader
         workspace={currentWorkspace}
         mission={data as Mission}
-        onDestroy={(m) => onDestroy(m, token || '')}
+        onDestroy={(m) => onDestroy(m, token || currentUser?.jwt || '')}
         active='discussion'
       />}
       <ContentLayout sideMenu={<DiscussionLeftMenu discussions={data?.discussions} />}>

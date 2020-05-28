@@ -10,6 +10,7 @@ import WorkspaceContext from 'contexts/WorkspaceContext'
 import MissionLeftMenu from 'layouts/MissionLeftMenu/MissionLeftMenu'
 import MissionHeader from 'components/MissionHeader/MissionHeader'
 import { onDestroy } from 'utils/mission'
+import UserContext from 'contexts/UserContext'
 
 /**
  * Show the current mission status for a user
@@ -20,6 +21,7 @@ const Candidate = (
 ) => {
   const { query } = useRouter()
   const { currentWorkspace } = useContext(WorkspaceContext)
+  const { currentUser } = useContext(UserContext)
 
   const response = useCollection<MissionUser>(
     `/api/mission_users/${query.id}`, token, {}, { initialData }
@@ -29,7 +31,7 @@ const Candidate = (
     <NetworkBoundary {...response}>
       {currentWorkspace && <MissionHeader
         workspace={currentWorkspace}
-        onDestroy={(m) => onDestroy(m, token || '')}
+        onDestroy={(m) => onDestroy(m, token || currentUser?.jwt || '')}
         mission={response!.data?.mission as LightMission}
         active='summary'
       />}

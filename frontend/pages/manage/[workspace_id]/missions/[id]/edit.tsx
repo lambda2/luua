@@ -13,6 +13,7 @@ import WorkspaceContext from 'contexts/WorkspaceContext'
 import WorkspaceHeader from 'components/WorkspaceHeader/WorkspaceHeader'
 import MissionHeader from 'components/MissionHeader/MissionHeader'
 import { onDestroy } from 'utils/mission'
+import UserContext from 'contexts/UserContext'
 
 /**
  * Edit a mission
@@ -23,6 +24,7 @@ const Mission = (
 ) => {
   const { query } = useRouter()
   const { currentWorkspace } = useContext(WorkspaceContext)
+  const { currentUser } = useContext(UserContext)
 
   const { status, data, error } = useCollection<Mission>(
     `/api/missions/${query.id}`, token, {}, { initialData }
@@ -33,7 +35,7 @@ const Mission = (
       {currentWorkspace && <MissionHeader
         workspace={currentWorkspace}
         mission={data as Mission}
-        onDestroy={(m) => onDestroy(m, token || '')}
+        onDestroy={(m) => onDestroy(m, token || currentUser?.jwt || '')}
         active='settings'
       />}
       <ContentLayout>
