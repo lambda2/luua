@@ -17,6 +17,8 @@ import MissionHeader from 'components/MissionHeader/MissionHeader'
 import MissionLeftMenu from 'layouts/MissionLeftMenu/MissionLeftMenu'
 import UserContext from 'contexts/UserContext'
 import find from 'lodash/find'
+import { destroy } from 'api/mission'
+import { onDestroy } from 'utils/mission'
 
 /**
  * Show the requested workspace mission
@@ -33,10 +35,6 @@ const Mission = (
     `/api/missions/${query.id}`, token, {}, { initialData }
   )
 
-  const onDestroy = (nission: BaseMission) => {
-
-  }
-
   const application = currentUser && data && find(currentUser?.mission_users, { mission_id: data.id }) || undefined
 
   return (
@@ -44,7 +42,7 @@ const Mission = (
       {currentWorkspace && <MissionHeader
         workspace={currentWorkspace}
         mission={data as Mission}
-        onDestroy={onDestroy}
+        onDestroy={(m) => onDestroy(m, token || currentUser?.jwt || '')}
         active='summary'
       />}
       <ContentLayout sideMenu={<MissionLeftMenu application={application} mission={data as Mission} />}>

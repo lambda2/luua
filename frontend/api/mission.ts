@@ -59,6 +59,16 @@ export const update = async (attributes: MissionUpdateValues, token: string): Pr
 }
 
 /**
+ * Destroy an existing mission
+ * @param attributes
+ * @param token 
+ */
+export const destroy = async (attributes: MissionUpdateValues, token: string): Promise<AxiosResponse<Mission>> => {
+  const headers = getHeaders(token)
+  return await api<Mission>(`/api/missions/${attributes.id}`, { headers, method: 'DELETE' })
+}
+
+/**
  * Apply for a mission
  * @param attributes 
  * @param token

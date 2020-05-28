@@ -9,6 +9,7 @@ import MissionUserShow from 'components/MissionUserShow/MissionUserShow'
 import WorkspaceContext from 'contexts/WorkspaceContext'
 import MissionLeftMenu from 'layouts/MissionLeftMenu/MissionLeftMenu'
 import MissionHeader from 'components/MissionHeader/MissionHeader'
+import { onDestroy } from 'utils/mission'
 
 /**
  * Show the current mission status for a user
@@ -28,6 +29,7 @@ const Candidate = (
     <NetworkBoundary {...response}>
       {currentWorkspace && <MissionHeader
         workspace={currentWorkspace}
+        onDestroy={(m) => onDestroy(m, token || '')}
         mission={response!.data?.mission as LightMission}
         active='summary'
       />}

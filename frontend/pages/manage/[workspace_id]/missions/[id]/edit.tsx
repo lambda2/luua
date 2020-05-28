@@ -12,6 +12,7 @@ import { useContext } from 'react'
 import WorkspaceContext from 'contexts/WorkspaceContext'
 import WorkspaceHeader from 'components/WorkspaceHeader/WorkspaceHeader'
 import MissionHeader from 'components/MissionHeader/MissionHeader'
+import { onDestroy } from 'utils/mission'
 
 /**
  * Edit a mission
@@ -32,6 +33,7 @@ const Mission = (
       {currentWorkspace && <MissionHeader
         workspace={currentWorkspace}
         mission={data as Mission}
+        onDestroy={(m) => onDestroy(m, token || '')}
         active='settings'
       />}
       <ContentLayout>

@@ -14,6 +14,7 @@ import MissionHeader from 'components/MissionHeader/MissionHeader'
 import { useLocale } from 'hooks/useLocale'
 import DiscussionLeftMenu from 'layouts/DiscussionLeftMenu/DiscussionLeftMenu'
 import MessageBox from 'elements/MessageBox/MessageBox'
+import { onDestroy } from 'utils/mission'
 
 
 /**
@@ -38,6 +39,7 @@ const MissionDiscussion = (
       {currentWorkspace && <MissionHeader
         workspace={currentWorkspace}
         mission={data as Mission}
+        onDestroy={(m) => onDestroy(m, token || '')}
         active='discussion'
       />}
       <ContentLayout sideMenu={<DiscussionLeftMenu discussions={data?.discussions} />}>
