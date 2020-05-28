@@ -35,7 +35,10 @@ const MessageListItem = ({
   const moment = momentWithLocale(language as AvailableLocale)
 
   const onFormEdit = async (content: string) => {
-    await onEdit({ ...message, content })
+    setEditing(false)
+    const response = await onEdit({ ...message, content })
+    console.log({ response });
+     
     setEditing(false)
   }
 

@@ -4,9 +4,8 @@ import { Button } from 'antd'
 interface Props<T> {
   renderList: (data: T) => React.ReactNode
   data?: T
-  next: () => Promise<void>
-  prev: () => Promise<void>
-  refetch: () => Promise<void>
+  next: () => void
+  prev: () => void
   page: number | undefined
   nextPage: number | undefined
   prevPage: number | undefined
@@ -27,7 +26,6 @@ const Paginated = <T extends unknown>(
     next,
     prev,
     data,
-    refetch,
     page,
     nextPage,
     prevPage,

@@ -39,10 +39,12 @@ const List = <T extends unknown>(
     renderEmpty = defaultRenderEmpty
   } = props
 
+  console.log({ dataSource });
+  
   return (
     <ul className={classNames(className, `list-layout-${itemLayout} list-size-${size}`, { 'list-empty': !dataSource || dataSource.length === 0 })}>
       {(!dataSource || dataSource.length === 0) && renderEmpty()}
-      {dataSource?.map((item: T) => <li key={(item as any)[keyName]}>
+      {dataSource && dataSource?.map((item: T) => <li key={(item as any)[keyName]}>
         {renderItem(item)}
       </li>)}
     </ul>

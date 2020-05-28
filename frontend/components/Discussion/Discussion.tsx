@@ -1,19 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useCallback } from 'react';
 
 import UserContext from 'contexts/UserContext';
+import plh from 'parse-link-header';
 
 import DiscussionInput from 'elements/DiscussionInput/DiscussionInput';
 import { create, update, destroy } from 'api/message';
-import { destroy as destroyDiscussion } from 'api/discussion';
-import { useMutation, queryCache } from 'react-query';
+import { useMutation, usePaginatedQuery } from 'react-query';
 import MessageList from '../MessageList/MessageList';
 import Paginated from '../Paginated/Paginated';
-import usePaginatedCollection from 'hooks/usePaginatedCollection';
 import can from 'utils/can';
 import MessageBox from 'elements/MessageBox/MessageBox';
 import { useLocale } from 'hooks/useLocale';
 import { vote } from 'api/message';
-import { useCollection } from 'utils/http';
+import api, { useCollection, getHeaders } from 'utils/http';
 import Title from 'elements/Title/Title';
 import DiscussionCategoryBadge from 'elements/DiscussionCategoryBadge/DiscussionCategoryBadge';
 import ROUTES from 'routes/routes';
@@ -22,15 +21,18 @@ import { Dropdown, Menu, Button } from 'antd';
 import icons from 'dictionaries/icons';
 import Router from 'next/router';
 import PollFromDiscussionModal from 'components/WorkspaceInvitationModal/PollFromDiscussionModal';
-// import PollItem from 'components/PollItem/PollItem';
 import PageSection from 'elements/PageSection/PageSection';
 import LinkedItem from 'components/LinkedItem/LinkedItem';
+import { AxiosResponse } from 'axios';
+import { curryRight } from 'lodash';
+import omit from 'lodash/omit';
+import { createItemMutation, updateItemMutation, destroyItemMutation } from 'utils/collectionMutations';
 
 interface Props {
   discussion?: Discussion
   messagesEndpoint: string | false | 0 | undefined
   votesEndpoint: string | false | 0 | undefined
-  page?: number | string,
+  initialPage?: number,
   token?: string
 }
 
@@ -38,16 +40,47 @@ const Discussion = ({
   discussion,
   votesEndpoint,
   messagesEndpoint,
-  page = 1,
+  initialPage = 1,
   token
 }: Props) => {
 
   const { currentUser } = useContext(UserContext)
-  const { t } = useLocale()
+  const { t, language } = useLocale()
 
-  const messagesResponse = usePaginatedCollection<Message[]>(
-    messagesEndpoint, page, (token || currentUser?.jwt)
-  )
+  const authHeaders = getHeaders(token || '');
+  const headers = {
+    'Accept-Language': language,
+    'cache-control': 'no-cache',
+    'pragma': 'no-cache',
+    ...authHeaders
+  }
+
+  const [page, setPage] = useState<number>(initialPage);
+  const [nextPage, setNextPage] = useState<number | undefined>(undefined)
+  const [prevPage, setPrevPage] = useState<number | undefined>(undefined)
+  const [lastPage, setLastPage] = useState<number | undefined>(undefined)
+
+  const stateFromHeaders = (lastPage: AxiosResponse<Message[]>) => {
+    const parsed = plh(lastPage.headers.link)
+    setNextPage(parsed?.next?.page)
+    setPrevPage(parsed?.prev?.page)
+    setLastPage(parsed?.last?.page)
+  }
+
+  const fetchMessages = useCallback(async (key, page = 1) => {
+    const res = await api<Message[]>(`${messagesEndpoint}?page=${page}`, { headers })
+    stateFromHeaders(res)
+    return res.data;
+  }, []);
+
+  const queryKey = `messages`
+
+  const {
+    resolvedData,
+    latestData,
+    refetch
+  } = usePaginatedQuery<Message[], [any, any]>([queryKey, { discussion_id: discussion?.id, page }], fetchMessages, {});
+
 
   // @TODO this hits the browser cache each time the user is voting
   const votesResponse = useCollection<MessageVote[]>(
@@ -70,82 +103,42 @@ const Discussion = ({
     return await create({ content, discussion_id: discussion.id }, currentUser?.jwt || '')
   }
 
-  const editMessage = async (message: Message) => {
-    return await update(message, currentUser?.jwt || '')
-  }
-
-  const destroyMessage = async (message: Message) => {
-    return await destroy(message, currentUser?.jwt || '')
-  }
+  const editMessage = async (message: Message) => update(message, currentUser?.jwt || '')
+  const destroyMessage = async (message: Message) => destroy(message, currentUser?.jwt || '')
 
   const voteMessage = async (message: Message, selectedVote: MessageVoteOption) => {
     await vote(message.id, selectedVote, currentUser?.jwt || '')
-    await messagesResponse.refetch()
+    await refetch()
     return await votesResponse?.refetch({ force: true })
   }
 
-  const [onCreate] = useMutation(createMessage, {
-    // Optimistically update the cache value on mutate, but store
-    // the old value and return it so that it's accessible in case of
-    // an error
-    onMutate: newMessage => {
-      queryCache.cancelQueries(messagesEndpoint || '')
-
-      const previousValue = queryCache.getQueryData(messagesEndpoint || '')
-
-      console.log("Updating qdata: ", messagesEndpoint || '', { previousValue });
-      
-      queryCache.setQueryData(messagesEndpoint || '', (old?: Message[]) => ({
-        ...(old || []),
-        newMessage,
-      }))
-
-      return previousValue
-    },
-    // On failure, roll back to the previous messages list
-    onError: (err, variables, previousValue) =>
-      queryCache.setQueryData(messagesEndpoint || '', previousValue),
-    onSuccess: () => {
-      console.log("Message created");
-      
-    },
-    // After success or failure, refetch the messages
-    onSettled: () => queryCache.refetchQueries(messagesEndpoint || ''),
-  })
-
-  const [onEdit] = useMutation(editMessage, {
-    onSuccess: (data) => {
-      console.log("[Message Edit MUTATE] ! onSuccess => ", data);
-      
-      messagesResponse.refetch()
-    },
-    onMutate: (data) => {
-      console.log("[Message Edit MUTATE] ! onMutate => ", data);
-    },
-    onError: (data) => {
-      console.log("[Message Edit MUTATE] ! onError => ", data);
-    },
-    onSettled: (data) => {
-      console.log("[Message Edit MUTATE] ! onSettled => ", data);
+  const formatMessage = (content: string) => {
+    return {
+      content,
+      user_id: currentUser?.id,
+      user: omit(currentUser, ['image']),
+      negative_vote_count: 0,
+      positive_vote_count: 0,
+      workspace_id: discussion?.workspace_id,
+      discussion_id: discussion?.workspace_id
     }
-  })
+  }
 
-  const [onDestroy] = useMutation(destroyMessage, {
-    onSuccess: (data) => {
-      console.log("[Message Destroy MUTATE] ! onSuccess => ", data);
-      
-      messagesResponse.refetch()
-    },
-    onMutate: (data) => {
-      console.log("[Message Destroy MUTATE] ! onMutate => ", data);
-    },
-    onError: (data) => {
-      console.log("[Message Destroy MUTATE] ! onError => ", data);
-    },
-    onSettled: (data) => {
-      console.log("[Message Destroy MUTATE] ! onSettled => ", data);
-    }
-  })
+  const [onCreate] = useMutation(createMessage, createItemMutation<any, string>(
+    queryKey,
+    [queryKey, { discussion_id: discussion?.id, page }],
+    formatMessage
+  ))
+
+  const [onEdit] = useMutation(editMessage, updateItemMutation<Message>(
+    queryKey,
+    [queryKey, { discussion_id: discussion?.id, page }]
+  ))
+
+  const [onDestroy] = useMutation(destroyMessage, destroyItemMutation<Message>({
+    queryKey,
+    fullQueryKey: [queryKey, { discussion_id: discussion?.id, page }]
+  }))
 
   if (!discussion) {
     return <></>
@@ -194,7 +187,13 @@ const Discussion = ({
 
       {/* <NetworkBoundary {...votesResponse}> */}
         <Paginated
-          {...messagesResponse}
+          data={resolvedData}
+          nextPage={nextPage}
+          prevPage={prevPage}
+          lastPage={lastPage}
+          prev={() => setPage(old => Math.max(old - 1, 0))}
+          next={() => setPage(old => (!latestData || !nextPage ? old : old + 1))}
+          page={page && parseInt(page.toString()) || undefined}
           renderList={(messages) => <MessageList
             userVotes={votesResponse?.data}
             onVote={voteMessage}
