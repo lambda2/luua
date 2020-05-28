@@ -4,9 +4,9 @@ import { ROUTES } from 'routes/routes';
 import PageTitle from 'elements/PageTitle/PageTitle';
 import UserAvatar from 'elements/UserAvatar/UserAvatar';
 import Link from 'next/link';
-import classNames from 'classnames';
 import UserContext from 'contexts/UserContext';
 import { nameForUser } from 'utils/user';
+import { Tabs, Tab, TabSpacer } from 'elements/TabMenu/TabMenu';
 
 interface Props {
   user: User
@@ -22,47 +22,21 @@ const UserHeader = ({
   const { t } = useLocale()
   const { currentUser } = useContext(UserContext)
 
-  const renderTree = (elt: string | ReactElement) => {
-    return <>
-      <span style={{padding: '0 5px', color: '#ccc'}}>{' / '}</span>
-      {elt}
-    </>
-  }
-
-
   const isMyself = currentUser?.id === user.id
 
   const renderGuestTabs = () => {
-    return (<ul className="UserHeaderMenu">
-      <li className={classNames({ active: active == 'summary' })} key="/">
-        <Link {...ROUTES.users.show(user.username)}><a>{t('menu.summary')}</a></Link>
-      </li>
-      {/* <li className={classNames({ active: active == 'missions' })} key={`/explore/${workspace.id}/missions`}>
-        <Link {...ROUTES.manage.workspace.missions.index(workspace.slug)}><a>{t('menu.missions')}</a></Link>
-      </li> */}
-    </ul>)
+    return <Tabs>
+      <Tab active={active} name="summary"><Link {...ROUTES.users.profile()}><a>{t('menu.summary')}</a></Link></Tab>
+    </Tabs>
   }
 
   const renderMyselfTabs = () => {
-
-    return (<ul className="UserHeaderMenu">
-      <li className={classNames({ active: active == 'summary' })} key="/profile">
-        <Link {...ROUTES.users.profile()}><a>{t('menu.summary')}</a></Link>
-      </li>
-      {/* <li className={classNames({ active: active == 'skills' })} key="/profile/skills">
-        <Link {...ROUTES.users.skills()}><a>{t('menu.skills')}</a></Link>
-      </li> */}
-      <li className={classNames({ active: active == 'notifications' })} key="/profile/notifications">
-        <Link {...ROUTES.users.notifications()}><a>{t('menu.notifications')}</a></Link>
-      </li>
-      <li className="pusher"></li>
-
-      <li className={classNames({ active: active == 'edit' })} key="/profile/edit">
-        <Link {...ROUTES.users.edit()}><a>{t('menu.settings')}</a></Link>
-      </li>
-
-    </ul>
-    )
+    return <Tabs>
+      <Tab active={active} name="summary"><Link {...ROUTES.users.profile()}><a>{t('menu.summary')}</a></Link></Tab>
+      <Tab active={active} name="notifications"><Link {...ROUTES.users.notifications()}><a>{t('menu.notifications')}</a></Link></Tab>
+      <TabSpacer />
+      <Tab active={active} name="edit"><Link {...ROUTES.users.edit()}><a>{t('menu.settings')}</a></Link></Tab>
+    </Tabs>
   }
 
   return (

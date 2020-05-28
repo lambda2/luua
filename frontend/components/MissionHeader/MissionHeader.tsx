@@ -9,6 +9,9 @@ import classNames from 'classnames';
 import UserContext from 'contexts/UserContext';
 import find from 'lodash/find';
 import can from 'utils/can';
+import { Menu, Dropdown, Button } from 'antd';
+import icons from 'dictionaries/icons';
+import { Tabs, Tab, TabSpacer } from 'elements/TabMenu/TabMenu';
 
 type ResourceAction = 'show' | 'new' | 'edit' | 'destroy'
 
@@ -19,79 +22,66 @@ type ResourceButtons = {
 interface Props {
   workspace: Workspace
   mission: BaseMission
-  tree?: (string | ReactElement)[]
   active?: string
+  onDestroy: (mission: BaseMission) => void
   actions?: ResourceAction[]
 }
 
 const MissionHeader = ({
   workspace,
   mission,
-  tree = [],
   active,
+  onDestroy,
   actions = ['edit']
 }: Props) => {
   const { t } = useLocale()
   const { currentUser } = useContext(UserContext)
 
-  const renderTree = (elt: string | ReactElement) => {
-    return <>
-      <span style={{padding: '0 5px', color: '#ccc'}}>{' / '}</span>
-      {elt}
-    </>
-  }
 
-  const buttons: ResourceButtons = {
-    new: <PrimaryLink key="new" {...manage.manage.workspace.missions.new(workspace.slug)}>{t('menu.new')}</PrimaryLink>,
-    show: <PrimaryLink key="show" {...manage.manage.workspace.missions.show(workspace.slug, mission.slug)}>{t('menu.show')}</PrimaryLink>,
-    edit: <PrimaryLink key="edit" {...manage.manage.workspace.missions.edit(workspace.slug, mission.slug)}>{t('menu.edit')}</PrimaryLink>,
-    destroy: <PrimaryLink key="destroy" href="?">{t('menu.destroy')}</PrimaryLink>,
-  }
+  const menu = (
+    <Menu>
+      {can(currentUser, 'mission.edit', mission) && <Menu.Item key="edit-mission">
+        <Link {...ROUTES.manage.workspace.missions.edit(mission?.workspace_id, mission?.slug)}><a>{t(('form.mission.edit'))}</a></Link>
+      </Menu.Item>}
+
+      {can(currentUser, 'mission.destroy', mission) && <Menu.Item key="destroy-mission">
+        <a href="#" className="text-danger" onClick={() => onDestroy(mission)}>{t('form.mission.delete')}</a>
+      </Menu.Item>}
+
+    </Menu>
+  );
 
   const isAdmin = find(workspace.workspace_users, {admin: true, user_id: currentUser?.id})
   const isMember = isAdmin || find(workspace.workspace_users, {user_id: currentUser?.id})
 
   const renderGuestTabs = () => {
-    return (<ul className="MissionHeaderMenu">
-      <li className={classNames({ active: active == 'summary' })} key="/summary">
+    return <Tabs>
+      <Tab active={active} name="summary">
         <Link {...ROUTES.manage.workspace.missions.show(workspace.slug, mission.slug)}><a>{t('mission.summary')}</a></Link>
-      </li>
-
-      <li className={classNames({ active: active == 'discussion' })} key="/chat">
+      </Tab>
+      <Tab active={active} name="discussion">
         <Link {...ROUTES.manage.workspace.missions.discussion(workspace.slug, mission.slug)}><a>{t('mission.chat')}</a></Link>
-      </li>
-    </ul>)
+      </Tab>
+    </Tabs>
   }
 
   const renderMemberTabs = () => {
-    const pendingCandidates = (workspace?.mission_users || []).filter(mu => mu.status === 'applied')
-    const activeContributors = (workspace?.mission_users || []).filter(mu => ['accepted', 'completed'].includes(mu.status))
-
-    return (<ul className="MissionHeaderMenu">
-
-      <li className={classNames({ active: active == 'summary' })} key="/summary">
+    return <Tabs>
+      <Tab active={active} name="summary">
         <Link {...ROUTES.manage.workspace.missions.show(workspace.slug, mission.slug)}><a>{t('mission.summary')}</a></Link>
-      </li>
-
-      <li className={classNames({ active: active == 'discussion' })} key="/chat">
+      </Tab>
+      <Tab active={active} name="discussion">
         <Link {...ROUTES.manage.workspace.missions.discussion(workspace.slug, mission.slug)}><a>{t('mission.chat')}</a></Link>
-      </li>
-
-      {isAdmin && <li className={classNames({ active: active == 'settings' })} key={`/manage/${workspace.id}/edit`}>
+      </Tab>
+      <TabSpacer />
+      {isAdmin && <Tab active={active} name="settings">
         <Link {...ROUTES.manage.workspace.missions.edit(workspace.slug, mission.slug)}>
           <a>{t('menu.settings')}</a>
         </Link>
-      </li>}
-    </ul>
-    )
+      </Tab> || <></>}
+    </Tabs>
   }
 
-  const leftActions = [
-    // <WorkspaceJoinButton key="workspace-join" workspace={workspace} user={currentUser}/>,
-    ...actions
-      .filter((act) => can(currentUser, `workspace.${act}`, workspace))
-      .map(a => buttons[a])
-  ]
   return (
     <div className="MissionHeader">
       <header className="MissionHeaderContent">
@@ -106,10 +96,17 @@ const MissionHeader = ({
               <Link key="missions" {...ROUTES.manage.workspace.missions.index(workspace.slug)}><a>{t('menu.missions')}</a></Link>
             </div>
 
-            {tree.length > 0 ? <Link {...ROUTES.manage.workspace.missions.show(workspace.slug, mission.slug)}><a>{mission.name}</a></Link> : mission.name }
-            {tree.map(renderTree)}
+            { mission.name }
           </>}
-          extra={leftActions}
+          extra={[
+            <aside>
+              <Dropdown key="dropdown" overlay={menu}>
+                <Button type="link">
+                  <span className="text-light">{' '}{icons.down}</span>
+                </Button>
+              </Dropdown>
+            </aside>
+          ]}
         >
         </PageTitle>
         {isMember && renderMemberTabs() || renderGuestTabs()}

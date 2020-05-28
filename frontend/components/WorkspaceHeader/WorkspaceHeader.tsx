@@ -5,15 +5,14 @@ import PrimaryLink from 'elements/PrimaryLink/PrimaryLink';
 import PageTitle from 'elements/PageTitle/PageTitle';
 import UserAvatar from 'elements/UserAvatar/UserAvatar';
 import Link from 'next/link';
-import classNames from 'classnames';
 import { Button, Menu, Dropdown } from 'antd';
 import UserContext from 'contexts/UserContext';
 import find from 'lodash/find';
 import can from 'utils/can';
 import WorkspaceJoinButton from '../WorkspaceJoinButton/WorkspaceJoinButton';
-import icons from 'dictionaries/icons';
 import Badge from 'elements/Badge/Badge';
 import Tag from 'elements/Tag/Tag';
+import { Tabs, Tab, TabSpacer } from 'elements/TabMenu/TabMenu';
 
 type ResourceAction = 'show' | 'new' | 'edit' | 'destroy'
 
@@ -83,64 +82,56 @@ const WorkspaceHeader = ({
   }
 
   const renderGuestTabs = () => {
-    return (<ul className="WorkspaceHeaderMenu">
-      <li className={classNames({ active: active == 'summary' })} key="/">
-        <Link {...ROUTES.manage.workspace.show(workspace.slug)}><a>{t('menu.summary')}</a></Link>
-      </li>
-      <li className={classNames({ active: active == 'votes' })} key={`/manage/${workspace.id}/votes`}>
+    return <Tabs>
+      <Tab active={active} name="summary">
+        <Link {...ROUTES.manage.workspace.show(workspace.id)}><a>{t('menu.summary')}</a></Link>
+      </Tab>
+      <Tab active={active} name="discussions">
+        <Link {...ROUTES.manage.workspace.discussions.index(workspace.id)}><a>{t('menu.discussions')}{' '}<Badge count={workspace.discussions_count} /></a></Link>
+      </Tab>
+      <Tab active={active} name="votes">
         <Link {...ROUTES.manage.workspace.polls.index(workspace.id)}><a>{t('menu.votes')}{' '}{<Badge count={workspace.polls_count} />}</a></Link>
-      </li>
-      <li className={classNames({ active: active == 'discussions' })} key={`/explore/${workspace.id}/discussions`}>
-        <Link {...ROUTES.manage.workspace.discussions.index(workspace.slug)}><a>{t('menu.discussions')}{' '}<Badge count={workspace.discussions_count} /></a></Link>
-      </li>
-
-      <li className={classNames({ active: active == 'missions' })} key={`/explore/${workspace.id}/missions`}>
-        <Link {...ROUTES.manage.workspace.missions.index(workspace.slug)}><a>{t('menu.missions')}{' '}<Badge count={workspace.missions_count} /></a></Link>
-      </li>
-    </ul>)
+      </Tab>
+      <Tab active={active} name="missions">
+        <Link {...ROUTES.manage.workspace.missions.index(workspace.id)}><a>{t('menu.missions')}{' '}<Badge count={workspace.missions_count} /></a></Link>
+      </Tab>
+    </Tabs>
   }
 
   const renderMemberTabs = () => {
     const pendingCandidates = (workspace?.mission_users || []).filter(mu => mu.status === 'applied')
     const activeContributors = (workspace?.mission_users || []).filter(mu => ['accepted', 'completed'].includes(mu.status))
 
-    return (<ul className="WorkspaceHeaderMenu">
-      <li className={classNames({ active: active == 'summary' })} key="/">
+    return <Tabs>
+      <Tab active={active} name="summary">
         <Link {...ROUTES.manage.workspace.show(workspace.id)}><a>{t('menu.summary')}</a></Link>
-      </li>
-
-      <li className={classNames({ active: active == 'discussions' })} key={`/manage/${workspace.id}/discussions`}>
+      </Tab>
+      <Tab active={active} name="discussions">
         <Link {...ROUTES.manage.workspace.discussions.index(workspace.id)}><a>{t('menu.discussions')}{' '}<Badge count={workspace.discussions_count} /></a></Link>
-      </li>
-
-      <li className={classNames({ active: active == 'votes' })} key={`/manage/${workspace.id}/votes`}>
+      </Tab>
+      <Tab active={active} name="votes">
         <Link {...ROUTES.manage.workspace.polls.index(workspace.id)}><a>{t('menu.votes')}{' '}{<Badge count={workspace.polls_count} />}</a></Link>
-      </li>
-      
-      <li className={classNames({ active: active == 'missions' })} key={`/manage/${workspace.id}/missions`}>
+      </Tab>
+      <Tab active={active} name="missions">
         <Link {...ROUTES.manage.workspace.missions.index(workspace.id)}><a>{t('menu.missions')}{' '}<Badge count={workspace.missions_count} /></a></Link>
-      </li>
-
-
-      <li className={classNames({ active: active == 'candidates' })} key={`/manage/${workspace.id}/candidates`}>
+      </Tab>
+      <Tab active={active} name="candidates">
         <Link {...ROUTES.manage.workspace.candidates.index(workspace.id)}>
           <a>{t('menu.candidates')}{' '}<Badge count={pendingCandidates.length} /></a>
         </Link>
-      </li>
-
-      <li className={classNames({ active: active == 'contributors' })} key={`/manage/${workspace.id}/contributors`}>
+      </Tab>
+      <Tab active={active} name="contributors">
         <Link {...ROUTES.manage.workspace.contributors.index(workspace.id)}>
           <a>{t('menu.contributors')}{' '}<Badge count={activeContributors.length} /></a>
         </Link>
-      </li>
-
-      {isAdmin && <li className={classNames({ active: active == 'settings' })} key={`/manage/${workspace.id}/edit`}>
+      </Tab>
+      <TabSpacer />
+      {isAdmin && <Tab active={active} name="settings">
         <Link {...ROUTES.manage.workspace.edit(workspace.slug)}>
           <a>{t('menu.settings')}</a>
         </Link>
-      </li>}
-    </ul>
-    )
+      </Tab> || <></>}
+    </Tabs>
   }
 
   const leftActions = [

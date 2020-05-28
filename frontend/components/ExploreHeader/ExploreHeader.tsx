@@ -3,14 +3,7 @@ import { useLocale } from 'hooks/useLocale';
 import { ROUTES } from 'routes/routes';
 import PageTitle from 'elements/PageTitle/PageTitle';
 import Link from 'next/link';
-import classNames from 'classnames';
-import UserContext from 'contexts/UserContext';
-
-type ResourceAction = 'show' | 'new' | 'edit' | 'destroy'
-
-type ResourceButtons = {
-  [key in ResourceAction]: ReactElement;
-};
+import { Tabs, Tab } from 'elements/TabMenu/TabMenu';
 
 interface Props {
   extra?: (string | ReactElement)[]
@@ -24,17 +17,16 @@ const ExploreHeader = ({
   title
 }: Props) => {
   const { t } = useLocale()
-  const { currentUser } = useContext(UserContext)
 
   const renderTabs = () => {
-    return (<ul className="ExploreHeaderMenu">
-      <li className={classNames({ active: active == 'missions' })} key="/missions">
+    return <Tabs>
+      <Tab active={active} name="missions">
         <Link {...ROUTES.explore.missions.index()}><a>{t('menu.missions')}</a></Link>
-      </li>
-      <li className={classNames({ active: active == 'workspaces' })} key="/workspaces">
+      </Tab>
+      <Tab active={active} name="workspaces">
         <Link {...ROUTES.explore.workspace.index()}><a>{t('menu.workspaces')}</a></Link>
-      </li>
-    </ul>)
+      </Tab>
+    </Tabs>
   }
 
   return (

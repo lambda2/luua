@@ -1,9 +1,5 @@
 import React, { useContext } from 'react';
 import find from 'lodash/find';
-import { Typography } from 'antd';
-
-import momentWithLocale from 'i18n/moment';
-import routes from 'routes/routes'
 import { useLocale } from 'hooks/useLocale';
 import UserContext from 'contexts/UserContext';
 
@@ -12,15 +8,12 @@ import MissionCandidateBox from '../MissionCandidateBox/MissionCandidateBox';
 import MissionSkillsForUser from '../MissionSkillsForUser/MissionSkillsForUser';
 
 import PageSection from 'elements/PageSection/PageSection';
-import PageTitle from 'elements/PageTitle/PageTitle';
 import can from 'utils/can';
 import List from 'elements/List/List';
 import MissionUserItem from '../MissionUserItem/MissionUserItem';
 import MarkdownContent from 'elements/MarkdownContent/MarkdownContent';
 
-const { Text } = Typography;
 
-const { explore, manage } = routes
 
 interface Props extends Mission {}
 
@@ -28,32 +21,16 @@ const WorkspaceMissionDetail = (mission: Props) => {
 
   const {
     id,
-    name,
-    // mission_category_id,
-    physical,
     description,
-    begin_at,
-    end_at,
-    due_at,
-    organization_id,
     workspace_id,
-    workspace,
-    image,
     mission_users,
     mission_skills,
-    banner_image,
-    modified_at,
-    created_at,
-    // modified_by,
-    slug,
   } = mission
 
   const { currentUser } = useContext(UserContext)
-  const { t, language } = useLocale()
-  const moment = momentWithLocale(language as AvailableLocale)
+  const { t } = useLocale()
 
   const application = currentUser && find(currentUser?.mission_users, { mission_id: id }) || null
-  const missionOwner = find(currentUser?.workspace_users, { workspace_id: workspace_id, admin: true }) !== undefined
 
   const mandatorySkills = mission_skills.filter(ms => ms.mandatory === true)
   const recommendedSkills = mission_skills.filter(ms => ms.mandatory === false)

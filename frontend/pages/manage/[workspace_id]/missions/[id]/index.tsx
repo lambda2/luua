@@ -33,6 +33,10 @@ const Mission = (
     `/api/missions/${query.id}`, token, {}, { initialData }
   )
 
+  const onDestroy = (nission: BaseMission) => {
+
+  }
+
   const application = currentUser && data && find(currentUser?.mission_users, { mission_id: data.id }) || undefined
 
   return (
@@ -40,6 +44,7 @@ const Mission = (
       {currentWorkspace && <MissionHeader
         workspace={currentWorkspace}
         mission={data as Mission}
+        onDestroy={onDestroy}
         active='summary'
       />}
       <ContentLayout sideMenu={<MissionLeftMenu application={application} mission={data as Mission} />}>
