@@ -9,6 +9,8 @@
     "since": "depuis",
     "no-description": "Aucune description",
     "optional": "optionel",
+    "admin": "Admin",
+    "member": "Membre",
     "collection": {
       "empty": "Aucun élément"
     }
@@ -345,8 +347,9 @@
       }
     },
     "no-workspace-yet": {
-      "title": "Il semblerait que tu n'aies pas encore d'espace",
-      "create-now": "Créer un espace"
+      "title": "Tu ne fait pas encore partie d'un espace",
+      "create-now": "Créer un espace",
+      "browse": "Parcourir les espaces existants"
     },
     "switching-workspace": "Changement d'espace...",
     "members": "Membre(s)",

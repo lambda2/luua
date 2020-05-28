@@ -48,7 +48,7 @@ const UserEditPopupForm = ({
   return (
     <div>
       <Formik
-        initialValues={{ remove_image: false, ...currentUser, country_id: `${currentUser?.country_id}` }}
+        initialValues={{ remove_image: false, ...currentUser, country_id: currentUser?.country_id ? `${currentUser?.country_id}` : null }}
         onSubmit={async (values, { setErrors }) => {
           try {
             const data = await update(values)

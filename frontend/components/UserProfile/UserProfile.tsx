@@ -25,18 +25,27 @@ const UserProfile = (user: AuthedUser) => {
   } = user
   const { t } = useLocale()
 
+
+  const emptyWorkspaces = () => {
+    return <div className="text-centered text-light">
+      <p>
+        {t('workspace.no-workspace-yet.title')}.{' '}
+        <Link {...routes.manage.workspace.new()}><a>{t('workspace.no-workspace-yet.create-now')}</a></Link>
+        {' '}{t('generics.or')}{' '}
+        <Link {...routes.explore.workspace.index()}><a>{t('workspace.no-workspace-yet.browse')}</a></Link>
+        </p>
+    </div>
+  }
+
   return (
   <>
-
-    <PageSection title={t('menu.skills')}>
-      {/* {user_skills.length === 0 && <p>
-          {t('skill.no-skills-yet.title')}
-      </p>} */}
-      <SkillsForm />
-      {/* {user_skills.length > 0 && <div>
-        <ul>{user_skills.map((s: UserSkill) => <li key={s.id}>{s.name}</li>)}</ul>
-          <Link {...routes.users.skills()}><a>{t('form.skill.edit-skill')}</a></Link>
-      </div>} */}
+    <PageSection title={t('menu.workspaces')}>
+      <List
+        renderEmpty={emptyWorkspaces}
+        dataSource={workspaces}
+        renderItem={(e: LightWorkspace) => <WorkspaceItem {...e} />}
+      />
+      {workspaces?.length > 0 && <Link {...routes.manage.workspace.new()}><a>{t('workspace.no-workspace-yet.create-now')}</a></Link>}
     </PageSection>
 
     <PageSection title={t('menu.missions')}>
@@ -46,16 +55,17 @@ const UserProfile = (user: AuthedUser) => {
         renderItem={(e: LightMissionUser) => <MissionUserItem {...e} user={user} mission={e.mission} />}
       />
     </PageSection>
-    
-    <PageSection title={t('menu.workspaces')}>
-        <List
-          emptyText={t('workspace.empty')}
-          dataSource={workspaces}
-          renderItem={(e: LightWorkspace) => <WorkspaceItem {...e} />}
-        />
-        <Link {...routes.manage.workspace.new()}><a>{t('workspace.no-workspace-yet.create-now')}</a></Link>
-    </PageSection>
 
+    <PageSection title={t('menu.skills')}>
+      {/* {user_skills.length === 0 && <p>
+        {t('skill.no-skills-yet.title')}
+    </p>} */}
+      <SkillsForm />
+      {/* {user_skills.length > 0 && <div>
+      <ul>{user_skills.map((s: UserSkill) => <li key={s.id}>{s.name}</li>)}</ul>
+        <Link {...routes.users.skills()}><a>{t('form.skill.edit-skill')}</a></Link>
+    </div>} */}
+    </PageSection>
 
     <hr />
     <div>

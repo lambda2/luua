@@ -151,7 +151,7 @@ const WorkspaceHeader = ({
             {' '}
             {tree.length > 0 ? <Link {...ROUTES.manage.workspace.show(workspace.slug)}>{workspace.name}</Link> : workspace.name }
             {' '}
-            {isMember && <Tag className={`tag-${isAdmin ? 'admin' : 'member'}`}>{isAdmin ? 'admin' : 'member'}</Tag>}
+            {isMember && <Tag className={`tag-${isAdmin ? 'admin' : 'member'}`}>{isAdmin ? t('generics.admin') : t('generics.member')}</Tag>}
             {tree.map(renderTree)}
           </>}
           extra={leftActions}

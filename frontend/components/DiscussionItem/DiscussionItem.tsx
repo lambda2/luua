@@ -48,9 +48,9 @@ const DiscussionItem = ({ discussion }: Props) => {
 
       <footer>
         <ul className="text-light">
-          <li key="created-by" className="created-by">
+          {/* <li key="created-by" className="created-by">
             <UserAvatarTooltip text image {...user} />
-          </li>
+          </li> */}
           <li key="created-at" className="created-at">{icons.date} {moment(updated_at).calendar()}</li>
           <li key="messages-count" className="messages-count">{icons.comments} {t('discussion.messages_count', {count: discussion.messages_count})}</li>
           <li key="participants" className="participants">

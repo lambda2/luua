@@ -34,7 +34,7 @@ module.exports = withBundleAnalyzer(withCSS(withLess({
     contact: {
       email: process.env.CONTACT_EMAIL || 'hello@luua.io',
       twitter: process.env.CONTACT_TWITTER || 'lambda_2',
-      space: process.env.CONTACT_SPACE || 'https://alpha.luua.io/luua',
+      space: process.env.CONTACT_SPACE || 'https://alpha.luua.io/manage/luua',
     },
     staticFolder: '/static',
   },
