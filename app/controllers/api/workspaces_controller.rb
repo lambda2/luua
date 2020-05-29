@@ -3,7 +3,12 @@ class Api::WorkspacesController < ApiController
   # before_action :set_workspace, only: %i[show update]
   skip_before_action :authenticate_user!
 
+  has_scope :open_membership, type: :boolean
+  has_scope :approval_membership, type: :boolean
+  has_scope :closed_membership, type: :boolean
+
   def index
+    @workspaces = apply_scopes(@workspaces)
     @workspaces = @workspaces.search(params[:q]) if params[:q]
     @workspaces = @workspaces.page(params[:page])
 

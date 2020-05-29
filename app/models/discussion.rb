@@ -50,11 +50,9 @@ class Discussion < ApplicationRecord
 
   # @TODO discussion visibilities
   #
-  # - draft: Discussion is not published yet, and only visible for the editor
-  # - hidden: Discussion is only visible for editor and workspace admin
   # - protected: Discussion is only visible for workspace members
   # - public: Discussion is visible to everyone
-  enum visibility: %i[draft hidden protected public], _suffix: true
+  enum visibility: %i[public protected], _suffix: true
 
   def self.visible_for(user_id)
     return where(visibility: :public) unless user_id

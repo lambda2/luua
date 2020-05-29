@@ -21,7 +21,7 @@ const ExploreHome = (
   { initialData, token }: Props
 ) => {
   const workspacesResponse = useCollection<LightWorkspace[]>(
-    `/api/workspaces?for_user=true`, token, {}, { initialData }
+    `/api/workspaces?open_membership=true`, token, {}, { initialData }
   )
   const discussionsResponse = useCollection<LightDiscussion[]>(
     `/api/discussions?per_page=10`, token, {}, {}
