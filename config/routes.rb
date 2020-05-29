@@ -21,6 +21,8 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
   devise_for :users, defaults: { format: :json }
 
   namespace :api do # rubocop:todo Metrics/BlockLength
+    get 'stats', action: :index, controller: 'stats'
+    
     get 'me', action: :me, controller: 'users'
     get 'me/notifications', action: :me, controller: 'notifications'
     get 'me/workspaces', action: :me, controller: 'workspaces'

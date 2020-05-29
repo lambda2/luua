@@ -1,0 +1,51 @@
+
+.StatsPanelsTitle {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, .5);
+}
+
+.StatsPanels {
+
+  & + .StatsPanelsTitle {
+    margin-top: @space-m;
+  }
+  
+  display: flex;
+  flex-wrap: wrap;
+
+  .Panel {
+    flex: auto;
+    padding: @space-s;
+    margin-right: @space-s;
+    margin-top: @space-s;
+    margin-bottom: @space-s;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+
+    & > div {
+      height: 300px;
+    }
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      padding: @space-s;
+      margin-top: @space-s;
+      margin-right: @space-s;
+      margin-bottom: @space-s;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+
+      footer {
+        font-size: .8em;
+        color: rgba(0, 0, 0, .3);
+      }
+    }
+  }
+}
