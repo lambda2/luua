@@ -20,11 +20,14 @@ const ExploreHeader = ({
 
   const renderTabs = () => {
     return <Tabs>
-      <Tab active={active} name="missions">
-        <Link {...ROUTES.explore.missions.index()}><a>{t('menu.missions')}</a></Link>
+      <Tab active={active} name="discover">
+        <Link {...ROUTES.explore.index()}><a>{t('menu.discover')}</a></Link>
       </Tab>
       <Tab active={active} name="workspaces">
         <Link {...ROUTES.explore.workspace.index()}><a>{t('menu.workspaces')}</a></Link>
+      </Tab>
+      <Tab active={active} name="missions">
+        <Link {...ROUTES.explore.missions.index()}><a>{t('menu.missions')}</a></Link>
       </Tab>
     </Tabs>
   }

@@ -1,0 +1,30 @@
+
+.Grid {
+
+  list-style-type: none;
+  align-self: self-start;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  margin: 0;
+  padding: 0;
+
+  & > li {
+    flex: auto;
+    display: block;
+    padding: @space-inset-m;
+    margin: @space-s;
+    
+    border: 1px solid @nord4;
+  }
+
+  .List-title {
+    display: flex;
+    align-items: center;
+    span + span {
+      margin-left: @space-m;
+    }
+  }
+
+}

@@ -17,6 +17,7 @@
   },
   "menu": {
     "candidates": "Candidats",
+    "discover": "Découvrir",
     "contributors": "Contributeurs",
     "delete": "Supprimer",
     "destroy": "Supprimer",
@@ -932,6 +933,10 @@
   },
   "network": {
     "loading": "Chargement..."
+  },
+  "homepage": {
+    "popular-spaces": "Espaces populaires",
+    "popular-discussions": "Discussions populaires"
   },
   "popups": {
     "welcome": {
