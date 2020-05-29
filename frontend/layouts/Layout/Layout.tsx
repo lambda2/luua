@@ -42,6 +42,8 @@ const LuuaLayout = ({ token, locale, children, className }: Props) => {
           </ConfigProvider>
         </WorkspaceProvider>
       </UserProvider>
+      <script async defer src="https://stats.alpha.luua.io/latest.js"></script>
+      <noscript><img src="https://stats.alpha.luua.io/noscript.gif" alt="" /></noscript>
     </LocaleProvider>
   )
 }
