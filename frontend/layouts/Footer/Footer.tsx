@@ -10,10 +10,15 @@ interface Props {
 const Footer: React.FC<Props> = () => {
 
   const { t } = useLocale()
+  const release: string = publicRuntimeConfig.releaseTag || publicRuntimeConfig.sentryRelease
 
   return (<footer className="Footer">
     <ul>
-      <li>{t('meta.release')} {publicRuntimeConfig.releaseTag || publicRuntimeConfig.sentryRelease || '🏡 '}</li>
+      <li>
+        <a rel="noopener" target="_blank" href={release ? `https://github.com/lambda2/luua/commit/${release}` : '#'} >
+          {t('meta.release')} {release ? release.slice(0, 5) : '🏡 '}
+        </a>
+      </li>
       <li className="pushed"></li>
       <li>
         <a rel="noopener" target="_blank" href="https://github.com/lambda2/luua/issues/new/choose">{t('meta.report-bug')}</a>
