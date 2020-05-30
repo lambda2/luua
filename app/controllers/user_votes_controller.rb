@@ -1,2 +1,0 @@
-class UserVotesController < ApplicationController
-end

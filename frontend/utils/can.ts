@@ -42,7 +42,7 @@ const can = (
 
 
     case 'discussion.post':
-      return user
+      return user && !resource.locked_at
     case 'discussion.create':
       return user && resource && find(user?.workspace_users, {workspace_id: resource.id})
     case 'discussion.edit':
@@ -55,6 +55,12 @@ const can = (
         (resource.user_id === user.id) ||
         (find(user?.workspace_users, {workspace_id: resource.workspace_id, admin: true}))
       )
+    case 'discussion.lock':
+      return user && resource && (
+        (resource.user_id === user.id) ||
+        (find(user?.workspace_users, { workspace_id: resource.workspace_id, admin: true }))
+      )
+
     case 'discussion.destroy':
       return user && resource && (
         (resource.user_id === user.id) ||

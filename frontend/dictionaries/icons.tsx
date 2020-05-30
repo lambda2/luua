@@ -103,6 +103,7 @@ export default {
   "send": <FontAwesomeIcon className="menu-icon" icon={faPaperPlane} />,
   "bug": <FontAwesomeIcon className="menu-icon" icon={faBug} />,
   "idea": <FontAwesomeIcon className="menu-icon" icon={faLightbulb} />,
+  "locked": <FontAwesomeIcon className="menu-icon" icon={faLock} />,
   "glass": <FontAwesomeIcon className="menu-icon" icon={faGlassCheers} />,
   "loading": < FontAwesomeIcon icon ={faSpinner} spin />,
   "comments": <FontAwesomeIcon className="menu-icon" icon={faComments} />,

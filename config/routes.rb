@@ -101,7 +101,8 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
 
     resources :discussions, shallow: true do
       patch 'read', on: :member, action: :update_reading
-      
+      patch 'lock', on: :member, action: :lock
+
       resources :message_votes do
         get 'mines', on: :collection, action: :mines
       end
@@ -111,7 +112,6 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
       end
 
       resources :discussion_readings, shallow: true, only: :index
-
     end
   end
 

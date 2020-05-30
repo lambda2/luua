@@ -113,11 +113,13 @@ export function useCollection<T>(
   }
 
   const endpoint = isArray(endpointKey) ? first(endpointKey) : endpointKey
-  const fullKey = isArray(endpointKey) ? [...endpointKey, token] : [endpointKey, token]
+  const fullKey = isArray(endpointKey) ? endpointKey : [endpointKey]
   const getCollection = (opts: any): Promise<T> => fetch<T>(endpoint, { headers, ...requestOpts, ...opts })
 
+  console.log(`useQuery(${endpointKey})`);
+  
   return useQuery<T, AnyQueryKey>(
-    fullKey as any,
+    endpointKey as any,
     getCollection,
     hookOpts
   )

@@ -280,7 +280,9 @@ declare interface LightDiscussion extends DbEntryWithTimestamps {
     resource_type: DiscussionResourceType
     resource_id: number
     workspace_id: number
-    modified_at: datetime
+    modified_at: string
+    locked_at: string | null
+    locked_by: number | null
     discussion_category: DiscussionCategory
     polls: LightPoll[]
     messages_count: number

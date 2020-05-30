@@ -171,6 +171,9 @@
     "no-discussion": "Aucune discussion",
     "created_at": "Commencée",
     "created_by": "Par",
+    "locked": "Cette discussion est fermée",
+    "lock": "Fermer la discussion",
+    "locked-short": "Fermée",
     "messages_count": "{{count}} messages",
     "empty": "Aucune discussion"
   },

@@ -1,5 +1,13 @@
 .DiscussionItem {
   // margin: @space-stack-m;
+  position: relative;
+
+  &.locked {
+    h5 a {
+      // text-decoration: line-through;
+      color: @text-color-light;
+    }
+  }
 
   &.unread-messages {
 
@@ -7,18 +15,14 @@
       position: relative;
       font-weight: 600;
     }
-    
   }
 
-  header {
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-
-    .org-title {
-      padding-left: 5px;
-
-    }
+  aside {
+    position: absolute;
+    left: -20px;
+    top: 2px;
+    width: 20px;
+    color: @text-color-light;
   }
 
   h5 {
@@ -26,14 +30,24 @@
     align-items: center;
     align-content: space-between;
     // margin-bottom: 0;
+
+    > *:not(:first-child) {
+      margin-left: @space-s;
+    }
   }
 
   h5 a {
-    flex: auto;
+    // flex: auto;
     display: flex;
     align-items: center;
     color: @text-color;
     // font-weight: bold;
+  }
+
+  .discussion-category {
+    color: @text-color-light;
+    font-size: 14px;
+    font-weight: normal;
   }
 
   footer {

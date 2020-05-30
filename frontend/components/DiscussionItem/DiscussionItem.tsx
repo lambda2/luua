@@ -11,6 +11,8 @@ import DiscussionCategoryBadge from 'elements/DiscussionCategoryBadge/Discussion
 import classNames from 'classnames';
 import PageSection from 'elements/PageSection/PageSection';
 import LinkedItem from 'components/LinkedItem/LinkedItem';
+import Tag from 'elements/Tag/Tag';
+import { Tooltip } from 'antd';
 
 const { manage } = routes
 
@@ -27,6 +29,7 @@ const DiscussionItem = ({ discussion, reading }: Props) => {
     created_at,
     updated_at,
     modified_at,
+    locked_at,
     user,
     slug,
     polls,
@@ -45,14 +48,20 @@ const DiscussionItem = ({ discussion, reading }: Props) => {
   )
 
   return (
-    <div className={classNames("DiscussionItem", { 'unread-messages': unread, 'read-messages': reading !== false && !unread })}>
+    <div className={classNames("DiscussionItem", { 'locked': locked_at, 'unread-messages': unread, 'read-messages': reading !== false && !unread })}>
+      <aside>
+       {locked_at && <Tooltip title={t('discussion.locked')}>
+          <span>{icons.locked}</span>
+        </Tooltip>}
+      </aside>
       <h5>
-        {discussion_category && <li><DiscussionCategoryBadge size="small" text category={discussion_category} /></li>}
+        {/* {discussion_category && <li><DiscussionCategoryBadge size="small" text category={discussion_category} /></li>} */}
         <Link key={id} {...manage.workspace.discussions.show(workspace_id, slug)}>
           <a>
             {name}
           </a>
         </Link>
+        {discussion_category && <li className="discussion-category" style={{color: discussion_category.color}}>#{discussion_category.name}</li>}
       </h5>
 
       {discussion.polls && discussion.polls.length > 0 && <PageSection type='default' className="discussion-margin">

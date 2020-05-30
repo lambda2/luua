@@ -1,2 +1,0 @@
-class DiscussionCategoriesController < ApplicationController
-end

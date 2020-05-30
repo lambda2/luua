@@ -5,7 +5,7 @@ import plh from 'parse-link-header';
 
 import DiscussionInput from 'elements/DiscussionInput/DiscussionInput';
 import { create, update, destroy } from 'api/message';
-import { useMutation, usePaginatedQuery } from 'react-query';
+import { useMutation, usePaginatedQuery, queryCache } from 'react-query';
 import MessageList from '../MessageList/MessageList';
 import Paginated from '../Paginated/Paginated';
 import can from 'utils/can';
@@ -27,7 +27,7 @@ import { AxiosResponse } from 'axios';
 import { curryRight } from 'lodash';
 import omit from 'lodash/omit';
 import { createItemMutation, updateItemMutation, destroyItemMutation } from 'utils/collectionMutations';
-import { read } from 'api/discussion';
+import { read, lock } from 'api/discussion';
 
 interface Props {
   discussion?: Discussion
@@ -95,6 +95,7 @@ const Discussion = ({
     )
   }
 
+  // Mark the discussion as read
   useEffect(() => {
     if (discussion && currentUser) {
       read(discussion?.id, token || currentUser?.jwt)
@@ -108,6 +109,19 @@ const Discussion = ({
     }
 
     return await create({ content, discussion_id: discussion.id }, currentUser?.jwt || '')
+  }
+
+  const lockDiscussion = async () => {
+    if (!discussion) {
+      console.error("No discussion to lock !")
+      return
+    }
+
+    const lockedDiscussion = await lock(discussion.id, currentUser?.jwt || '')
+
+    if (lockedDiscussion.data) {
+      queryCache.setQueryData(`/api/discussions/${discussion.slug}`, lockedDiscussion.data)
+    }
   }
 
   const editMessage = async (message: Message) => update(message, currentUser?.jwt || '')
@@ -164,6 +178,10 @@ const Discussion = ({
         />
       </Menu.Item>}
 
+      {can(currentUser, 'discussion.lock', discussion) && !discussion.locked_at && <Menu.Item key="lock-discussion">
+        <a href="#" className="text-danger" onClick={lockDiscussion}>{t(('discussion.lock'))}</a>
+      </Menu.Item>}
+
       {can(currentUser, 'discussion.destroy', discussion) && <Menu.Item key="destroy-discussion">
         <a href="#" className="text-danger" onClick={() => onDestroyDiscussion(discussion)}>{t(('form.discussion.delete'))}</a>
       </Menu.Item>}
@@ -208,10 +226,11 @@ const Discussion = ({
           messages={messages} />}
       />
 
-      { can(currentUser, 'discussion.post', discussion) &&
+      {discussion.locked_at && <MessageBox>{t('discussion.locked')}</MessageBox>}
+      {!discussion.locked_at && (can(currentUser, 'discussion.post', discussion) &&
         <DiscussionInput onSubmit={onCreate}/> ||
         <MessageBox>{t('discussion.cant-post-auth')}</MessageBox>  
-      }
+      )}
     </div>
   )
 

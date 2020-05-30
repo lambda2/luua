@@ -99,8 +99,8 @@ class Discussion < ApplicationRecord
     joins('LEFT JOIN discussion_readings ON discussion_readings.discussion_id = discussions.id').where(disc)
   end
 
-  def lock!
-    update(locked_at: Time.zone.now, locked_by: Current.user&.id)
+  def lock!(user = nil)
+    update(locked_at: Time.zone.now, locked_by: user&.id || Current.user&.id)
   end
 
   def locked?

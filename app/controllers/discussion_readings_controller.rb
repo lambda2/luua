@@ -1,2 +1,0 @@
-class DiscussionReadingsController < ApplicationController
-end

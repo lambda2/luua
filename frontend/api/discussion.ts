@@ -70,6 +70,15 @@ export const read = async (discussion_id: number | string, token: string, ts?: s
   const headers = getHeaders(token)
   return await api<DiscussionReading>(`/api/discussions/${discussion_id}/read`, { headers, data: { ts }, method: 'PATCH' })
 }
+/**
+ * lock a discussion
+ * @param discussion_id
+ * @param token 
+ */
+export const lock = async (discussion_id: number | string, token: string): Promise<AxiosResponse<DiscussionReading>> => {
+  const headers = getHeaders(token)
+  return await api<DiscussionReading>(`/api/discussions/${discussion_id}/lock`, { headers, method: 'PATCH' })
+}
 
 
 export const createOrUpdate = async (attributes: DiscussionUpdateValues, token: string): Promise<AxiosResponse<Discussion>> => {

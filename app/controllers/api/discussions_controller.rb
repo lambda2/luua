@@ -63,6 +63,12 @@ class Api::DiscussionsController < ApiController
     render_destroyed
   end
 
+  # PATCH /api/discussions/id/lock
+  def lock
+    @discussion.lock!(current_user)
+    render json: DiscussionSerializer.new.serialize(@discussion)
+  end
+
   def update_reading
     @discussion_reading = DiscussionReading.where(
       discussion: @discussion, user: current_user
