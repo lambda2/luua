@@ -117,7 +117,7 @@ const Poll = ({
 
       {poll.description && <MarkdownContent content={poll.description} /> || <p className="text-light">{t('generics.no-description')}</p>}
 
-      {poll.discussion && <PageSection type='boxed' className="discussion-margin">
+      {poll.discussion && <PageSection type='default' className="discussion-margin">
         <LinkedItem type='discussion' linked={poll.discussion} key={poll.discussion.id} />
       </PageSection>}
 

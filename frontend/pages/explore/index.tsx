@@ -24,8 +24,9 @@ const ExploreHome = (
     `/api/workspaces?open_membership=true`, token, {}, { initialData }
   )
   const discussionsResponse = useCollection<LightDiscussion[]>(
-    `/api/discussions?per_page=10`, token, {}, {}
+    `/api/discussions?per_page=10&unread=true`, token, {}, {}
   )
+  
   const { t } = useLocale()
 
   return (

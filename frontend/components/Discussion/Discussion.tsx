@@ -188,27 +188,25 @@ const Discussion = ({
         </aside>
       </header>
 
-      {discussion.polls && discussion.polls.length > 0 && <PageSection type='boxed' className="discussion-margin">
+      {discussion.polls && discussion.polls.length > 0 && <PageSection type='default' className="discussion-margin">
         {discussion.polls.map(p => <LinkedItem type='poll' linked={p} key={p.id} />)}
       </PageSection>}
 
-      {/* <NetworkBoundary {...votesResponse}> */}
-        <Paginated
-          data={resolvedData}
-          nextPage={nextPage}
-          prevPage={prevPage}
-          lastPage={lastPage}
-          prev={() => setPage(old => Math.max(old - 1, 0))}
-          next={() => setPage(old => (!latestData || !nextPage ? old : old + 1))}
-          page={page && parseInt(page.toString()) || undefined}
-          renderList={(messages) => <MessageList
-            userVotes={votesResponse?.data}
-            onVote={voteMessage}
-            onEdit={onEdit}
-            onDestroy={onDestroy}
-            messages={messages} />}
-        />
-      {/* </NetworkBoundary> */}
+      <Paginated
+        data={resolvedData}
+        nextPage={nextPage}
+        prevPage={prevPage}
+        lastPage={lastPage}
+        prev={() => setPage(old => Math.max(old - 1, 0))}
+        next={() => setPage(old => (!latestData || !nextPage ? old : old + 1))}
+        page={page && parseInt(page.toString()) || undefined}
+        renderList={(messages) => <MessageList
+          userVotes={votesResponse?.data}
+          onVote={voteMessage}
+          onEdit={onEdit}
+          onDestroy={onDestroy}
+          messages={messages} />}
+      />
 
       { can(currentUser, 'discussion.post', discussion) &&
         <DiscussionInput onSubmit={onCreate}/> ||

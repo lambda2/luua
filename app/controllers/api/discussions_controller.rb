@@ -11,6 +11,7 @@ class Api::DiscussionsController < ApiController
   def index
     @discussions = @discussions.search(params[:q]) if params[:q]
     @discussions = @discussions.available_for(current_user&.id) if params[:for_user]
+    @discussions = @discussions.unread(current_user&.id) if params[:unread]
     @discussions = @discussions.order(order_params)
     # @discussions = @discussions.page(params[:page])
     @discussions = paginate(@discussions)
@@ -93,7 +94,7 @@ class Api::DiscussionsController < ApiController
   end
 
   def order_params
-    return { updated_at: :desc } unless params[:order]
+    return { modified_at: :desc, updated_at: :desc } unless params[:order]
 
     params[:order].split(',').reject(&:blank?).map do |o|
       [o.gsub('-', '').to_sym, o.first == '-' ? :desc : :asc]

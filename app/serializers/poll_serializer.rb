@@ -48,7 +48,7 @@ class PollSerializer < Panko::Serializer
 
   has_one :workspace, serializer: WorkspaceLightSerializer
   has_one :discussion, serializer: DiscussionLightSerializer
-  has_one :discussion_category, serializer: DiscussionCategorySerializer
+  # has_one :discussion_category, serializer: DiscussionCategorySerializer
 
   has_many :poll_options, serializer: PollOptionSerializer
 

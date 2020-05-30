@@ -51,6 +51,7 @@ class Discussion < ApplicationRecord
   after_create :create_root_message!
 
   scope :available_for, ->(user_id) { visible_for(user_id).distinct }
+  scope :unread, ->(user_id) { unread_for(user_id).distinct }
 
   # @TODO discussion visibilities
   #
@@ -71,10 +72,7 @@ class Discussion < ApplicationRecord
         ("workspace_users"."user_id" = #{user_id} AND "workspace_users"."admin" = true AND visibility = #{Discussion.visibilities[:hidden]})
     SQL
 
-    where(resource_type: 'workspace')
-    .joins('INNER JOIN workspace_users ON workspace_users.workspace_id = discussions.resource_id').where(disc)
-    # joins(resource: :workspace_users).where(disc) if (resource_type == 'workspace')
-    
+    where(resource_type: 'workspace').joins('INNER JOIN workspace_users ON workspace_users.workspace_id = discussions.resource_id').where(disc)
   end
 
   # @TODO risky, as this can fail in many ways...
@@ -87,6 +85,17 @@ class Discussion < ApplicationRecord
       user: user,
       discussion_id: id
     )
+  end
+
+  def self.unread_for(user_id)
+    return all unless user_id
+
+    disc = <<-SQL
+        discussions.modified_at > discussion_readings.updated_at OR
+        discussion_readings.id IS NULL
+    SQL
+
+    joins('LEFT JOIN discussion_readings ON discussion_readings.discussion_id = discussions.id').where(disc)
   end
 
   def lock!
