@@ -17,6 +17,7 @@ import DiscussionList from 'components/DiscussionList/DiscussionList';
 import { Menu, Dropdown, Button } from 'antd';
 import icons from 'dictionaries/icons';
 import DiscussionsLeftMenu from 'layouts/DiscussionsLeftMenu/DiscussionsLeftMenu';
+import { Head } from 'components/Head/Head';
 const { manage } = routes
 
 /**
@@ -50,7 +51,12 @@ const Discussions = (
     </Menu>
   );
 
-  return (
+  const wname = initialData && initialData[0].workspace.name
+
+  return (<>
+    <Head
+      title={t('meta.head.pages.discussions.index.title', { workspace: { name: wname } })}
+    />
     <NetworkBoundary<LightDiscussion[]> {...response}>
       {currentWorkspace && <WorkspaceHeader
         workspace={currentWorkspace}
@@ -71,7 +77,7 @@ const Discussions = (
         />
       </ContentLayout>
     </NetworkBoundary>
-  )
+  </>)
 }
 Discussions.getInitialProps = async (ctx: any) => {
   return await fetchInitialData<LightDiscussion[]>(

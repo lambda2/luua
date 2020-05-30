@@ -11,6 +11,8 @@ import Discussion from 'components/Discussion/Discussion'
 import { useContext } from 'react'
 import WorkspaceContext from 'contexts/WorkspaceContext'
 import WorkspaceHeader from 'components/WorkspaceHeader/WorkspaceHeader'
+import { Head } from 'components/Head/Head'
+import { useLocale } from 'hooks/useLocale'
 
 /**
  * Show the requested discussion
@@ -20,12 +22,16 @@ const ShowDiscussion = (
     { initialData: Discussion, token?: string }
 ) => {
   const { query } = useRouter()
+  const { t } = useLocale()
   const { currentWorkspace } = useContext(WorkspaceContext)
   const { status, data, error } = useCollection<Discussion>(
     `/api/discussions/${query.id}`, token, {}, { initialData }
   )
 
-  return (
+  return (<>
+    <Head
+      title={t('meta.head.pages.discussions.show.title', initialData)}
+    />
     <NetworkBoundary status={status} data={data} error={error}>
       {currentWorkspace && <WorkspaceHeader
         workspace={currentWorkspace}
@@ -42,7 +48,7 @@ const ShowDiscussion = (
         />
       </ContentLayout>
     </NetworkBoundary>
-  )
+  </>)
 }
 
 ShowDiscussion.getInitialProps = async (ctx: NextPageContext) => {

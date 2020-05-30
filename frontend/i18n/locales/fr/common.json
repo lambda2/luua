@@ -947,6 +947,20 @@
           "show": { "title": "{{ name }}" },
           "new": { "title": "Nouvel espace" },
           "signup": { "title": "Créer un compte" }
+        },
+        "discussions": {
+          "index": {
+            "title": "{{ workspace.name }} - Discussions"
+          },
+          "categories": {
+            "title": "{{ workspace.name }} - {{ category }}"
+          },
+          "show": {
+            "title": "{{ name }} - {{ workspace.name }}"
+          },
+          "new": {
+            "title": "Nouvelle discussion - {{ workspace.name }}"
+          }
         }
       }
     }

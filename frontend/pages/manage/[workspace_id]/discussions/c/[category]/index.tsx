@@ -17,6 +17,7 @@ import DiscussionList from 'components/DiscussionList/DiscussionList';
 import { Menu, Dropdown, Button } from 'antd';
 import icons from 'dictionaries/icons';
 import DiscussionsLeftMenu from 'layouts/DiscussionsLeftMenu/DiscussionsLeftMenu';
+import { Head } from 'components/Head/Head';
 const { manage } = routes
 
 /**
@@ -51,8 +52,12 @@ const Discussions = (
   );
 
   const category = currentWorkspace && currentWorkspace?.discussion_categories.find(c => c.slug == query.category)
+  const wname = initialData && initialData[0].workspace.name
 
-  return (
+  return (<>
+    <Head
+      title={t('meta.head.pages.discussions.index.title', { workspace: { name: wname }, category })}
+    />
     <NetworkBoundary<LightDiscussion[]> {...response}>
       {currentWorkspace && <WorkspaceHeader
         workspace={currentWorkspace}
@@ -73,7 +78,7 @@ const Discussions = (
         />
       </ContentLayout>
     </NetworkBoundary>
-  )
+  </>)
 }
 Discussions.getInitialProps = async (ctx: any) => {
   return await fetchInitialData<LightDiscussion[]>(
