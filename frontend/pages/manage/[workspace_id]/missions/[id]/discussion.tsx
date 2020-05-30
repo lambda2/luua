@@ -12,7 +12,7 @@ import { useContext } from 'react'
 import WorkspaceContext from 'contexts/WorkspaceContext'
 import MissionHeader from 'components/MissionHeader/MissionHeader'
 import { useLocale } from 'hooks/useLocale'
-import DiscussionLeftMenu from 'layouts/DiscussionLeftMenu/DiscussionLeftMenu'
+// import DiscussionLeftMenu from 'layouts/DiscussionsLeftMenu/DiscussionLeftMenu'
 import MessageBox from 'elements/MessageBox/MessageBox'
 import { onDestroy } from 'utils/mission'
 import UserContext from 'contexts/UserContext'
@@ -44,7 +44,7 @@ const MissionDiscussion = (
         onDestroy={(m) => onDestroy(m, token || currentUser?.jwt || '')}
         active='discussion'
       />}
-      <ContentLayout sideMenu={<DiscussionLeftMenu discussions={data?.discussions} />}>
+      <ContentLayout>
         {!discussion?.id && <p className="text-light text-centered">{t('discussion.no-discussion')}</p>}
         <Discussion
           discussion={discussion as Discussion}

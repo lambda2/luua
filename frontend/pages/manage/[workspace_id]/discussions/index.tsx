@@ -16,7 +16,7 @@ import UserContext from 'contexts/UserContext';
 import DiscussionList from 'components/DiscussionList/DiscussionList';
 import { Menu, Dropdown, Button } from 'antd';
 import icons from 'dictionaries/icons';
-import WorkspaceLeftMenu from 'layouts/WorkspaceLeftMenu/WorkspaceLeftMenu';
+import DiscussionsLeftMenu from 'layouts/DiscussionsLeftMenu/DiscussionsLeftMenu';
 const { manage } = routes
 
 /**
@@ -56,7 +56,7 @@ const Discussions = (
         workspace={currentWorkspace}
         active='discussions'
       />}
-      <ContentLayout sideMenu={currentWorkspace && <WorkspaceLeftMenu workspace={currentWorkspace} />}>
+      <ContentLayout sideMenu={currentWorkspace && <DiscussionsLeftMenu workspace={currentWorkspace} />}>
         <PageTitle level='2' title={t('menu.discussions')}>
           <Dropdown key="dropdown" overlay={menu}>
             <Button type="link">
