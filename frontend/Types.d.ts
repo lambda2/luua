@@ -295,7 +295,7 @@ declare interface DiscussionReading extends DbEntryWithTimestamps {
 }
 
 declare interface Discussion extends LightDiscussion {
-    workspace?: LightWorkspace
+    workspace: LightWorkspace
     messages: Message[]
 }
 

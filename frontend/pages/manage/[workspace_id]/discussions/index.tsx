@@ -51,7 +51,7 @@ const Discussions = (
     </Menu>
   );
 
-  const wname = initialData && initialData[0].workspace.name
+  const wname = initialData && initialData[0]?.workspace?.name
 
   return (<>
     <Head
