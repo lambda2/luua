@@ -38,6 +38,7 @@ const ShowDiscussion = (
           messagesEndpoint={data?.id && `/api/discussions/${data?.id}/messages`}
           votesEndpoint={data?.id && `/api/discussions/${data?.id}/message_votes/mines`}
           initialPage={query.page && parseInt(query.page as string) || undefined}
+          token={token}
         />
       </ContentLayout>
     </NetworkBoundary>

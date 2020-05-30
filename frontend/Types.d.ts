@@ -285,6 +285,7 @@ declare interface LightDiscussion extends DbEntryWithTimestamps {
     locked_by: number | null
     discussion_category: DiscussionCategory
     polls: LightPoll[]
+    workspace: LightWorkspace
     messages_count: number
 }
 

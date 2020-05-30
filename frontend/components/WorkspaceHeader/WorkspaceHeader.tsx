@@ -1,4 +1,4 @@
-import React, { ReactElement, useContext } from 'react';
+import React, { ReactElement, useContext, memo } from 'react';
 import { useLocale } from 'hooks/useLocale';
 import manage, { ROUTES } from 'routes/routes';
 import PrimaryLink from 'elements/PrimaryLink/PrimaryLink';
@@ -28,22 +28,131 @@ interface Props {
   actions?: ResourceAction[]
 }
 
-const WorkspaceHeader = ({
-  workspace,
+interface TabsProps {
+  slug: string
+  isAdmin?: boolean
+  isMember?: boolean
+  active?: string
+  discussions_count?: number
+  polls_count?: number
+  missions_count?: number
+}
+interface TitleProps {
+  name: string
+  image_url?: string
+  isAdmin?: boolean
+  isMember?: boolean
+  slug: string
+  tree?: (string | ReactElement)[]
+}
+
+const WorkspaceTitle = memo(({
+  name,
+  image_url,
+  isAdmin,
+  slug,
   tree = [],
-  back = false,
-  active,
-  actions = []
-}: Props) => {
+  isMember,
+}: TitleProps) => {
+
   const { t } = useLocale()
-  const { currentUser } = useContext(UserContext)
 
   const renderTree = (elt: string | ReactElement) => {
     return <>
-      <span style={{padding: '0 5px', color: '#ccc'}}>{' / '}</span>
+      <span style={{ padding: '0 5px', color: '#ccc' }}>{' / '}</span>
       {elt}
     </>
   }
+  return (<>
+    <UserAvatar name={name} size="default" src={image_url} />
+    {' '}
+    {tree.length > 0 ? <Link {...ROUTES.manage.workspace.show(slug)}>{name}</Link> : name}
+    {' '}
+    {isMember && <Tag className={`tag-${isAdmin ? 'admin' : 'member'}`}>{isAdmin ? t('generics.admin') : t('generics.member')}</Tag>}
+    {tree.map(renderTree)}
+  </>)
+
+})
+
+const WorkspaceTabs = memo(({
+  slug,
+  active,
+  isAdmin,
+  isMember,
+  discussions_count = 0,
+  polls_count = 0,
+  missions_count = 0,
+}: TabsProps) => {
+
+  const { t } = useLocale()
+
+  const renderGuestTabs = () => {
+    return <Tabs>
+      <Tab active={active} name="summary">
+        <Link {...ROUTES.manage.workspace.show(slug)}><a>{t('menu.summary')}</a></Link>
+      </Tab>
+      <Tab active={active} name="discussions">
+        <Link {...ROUTES.manage.workspace.discussions.index(slug)}><a>{t('menu.discussions')}{' '}<Badge count={discussions_count} /></a></Link>
+      </Tab>
+      <Tab active={active} name="votes">
+        <Link {...ROUTES.manage.workspace.polls.index(slug)}><a>{t('menu.votes')}{' '}{<Badge count={polls_count} />}</a></Link>
+      </Tab>
+      <Tab active={active} name="missions">
+        <Link {...ROUTES.manage.workspace.missions.index(slug)}><a>{t('menu.missions')}{' '}<Badge count={missions_count} /></a></Link>
+      </Tab>
+    </Tabs>
+  }
+
+  const renderMemberTabs = () => {
+    return <Tabs>
+      <Tab active={active} name="summary">
+        <Link {...ROUTES.manage.workspace.show(slug)}><a>{t('menu.summary')}</a></Link>
+      </Tab>
+      <Tab active={active} name="discussions">
+        <Link {...ROUTES.manage.workspace.discussions.index(slug)}><a>{t('menu.discussions')}{' '}<Badge count={discussions_count} /></a></Link>
+      </Tab>
+      <Tab active={active} name="votes">
+        <Link {...ROUTES.manage.workspace.polls.index(slug)}><a>{t('menu.votes')}{' '}{<Badge count={polls_count} />}</a></Link>
+      </Tab>
+      <Tab active={active} name="missions">
+        <Link {...ROUTES.manage.workspace.missions.index(slug)}><a>{t('menu.missions')}{' '}<Badge count={missions_count} /></a></Link>
+      </Tab>
+      {/* <Tab active={active} name="candidates">
+        <Link {...ROUTES.manage.workspace.candidates.index(workspace.slug)}>
+          <a>{t('menu.candidates')}{' '}<Badge count={pendingCandidates.length} /></a>
+        </Link>
+      </Tab>
+      <Tab active={active} name="contributors">
+        <Link {...ROUTES.manage.workspace.contributors.index(workspace.slug)}>
+          <a>{t('menu.contributors')}{' '}<Badge count={activeContributors.length} /></a>
+        </Link>
+      </Tab> */}
+      <TabSpacer />
+      {isAdmin && <Tab active={active} name="settings">
+        <Link {...ROUTES.manage.workspace.edit(slug)}>
+          <a>{t('menu.settings')}</a>
+        </Link>
+      </Tab> || <></>}
+    </Tabs>
+  }
+
+  return isMember ? renderMemberTabs() : renderGuestTabs()
+})
+
+const WorkspaceHeader = memo((props: Props) => {
+  const { t } = useLocale()
+  const {
+    workspace,
+    tree = [],
+    back = false,
+    active,
+    actions = []
+  } = props
+
+  const { currentUser } = useContext(UserContext)
+
+  console.log("WorkspaceHeader re-rendered", { props });
+  
 
   const buttons: ResourceButtons = {
     new: <PrimaryLink key="new" {...manage.manage.workspace.new()}>{t('menu.new')}</PrimaryLink>,
@@ -61,13 +170,13 @@ const WorkspaceHeader = ({
     const menu = (
       <Menu>
         <Menu.Item key="add-discussion">
-          <Link {...manage.manage.workspace.discussions.new(`${workspace.id}`)}><a>{t('discussion.create.title')}</a></Link>
+          <Link {...manage.manage.workspace.discussions.new(`${workspace.slug}`)}><a>{t('discussion.create.title')}</a></Link>
         </Menu.Item>
         <Menu.Item key="add-poll">
-          <Link {...manage.manage.workspace.polls.new(`${workspace.id}`)}><a>{t('poll.create.title')}</a></Link>
+          <Link {...manage.manage.workspace.polls.new(`${workspace.slug}`)}><a>{t('poll.create.title')}</a></Link>
         </Menu.Item>
         <Menu.Item key="add-mission">
-          <Link {...manage.manage.workspace.missions.new(`${workspace.id}`)}><a>{t('mission.create.title')}</a></Link>
+          <Link {...manage.manage.workspace.missions.new(`${workspace.slug}`)}><a>{t('mission.create.title')}</a></Link>
         </Menu.Item>
       </Menu>
     );
@@ -81,58 +190,6 @@ const WorkspaceHeader = ({
     </Dropdown>)
   }
 
-  const renderGuestTabs = () => {
-    return <Tabs>
-      <Tab active={active} name="summary">
-        <Link {...ROUTES.manage.workspace.show(workspace.id)}><a>{t('menu.summary')}</a></Link>
-      </Tab>
-      <Tab active={active} name="discussions">
-        <Link {...ROUTES.manage.workspace.discussions.index(workspace.id)}><a>{t('menu.discussions')}{' '}<Badge count={workspace.discussions_count} /></a></Link>
-      </Tab>
-      <Tab active={active} name="votes">
-        <Link {...ROUTES.manage.workspace.polls.index(workspace.id)}><a>{t('menu.votes')}{' '}{<Badge count={workspace.polls_count} />}</a></Link>
-      </Tab>
-      <Tab active={active} name="missions">
-        <Link {...ROUTES.manage.workspace.missions.index(workspace.id)}><a>{t('menu.missions')}{' '}<Badge count={workspace.missions_count} /></a></Link>
-      </Tab>
-    </Tabs>
-  }
-
-  const renderMemberTabs = () => {
-    const pendingCandidates = (workspace?.mission_users || []).filter(mu => mu.status === 'applied')
-    const activeContributors = (workspace?.mission_users || []).filter(mu => ['accepted', 'completed'].includes(mu.status))
-
-    return <Tabs>
-      <Tab active={active} name="summary">
-        <Link {...ROUTES.manage.workspace.show(workspace.id)}><a>{t('menu.summary')}</a></Link>
-      </Tab>
-      <Tab active={active} name="discussions">
-        <Link {...ROUTES.manage.workspace.discussions.index(workspace.id)}><a>{t('menu.discussions')}{' '}<Badge count={workspace.discussions_count} /></a></Link>
-      </Tab>
-      <Tab active={active} name="votes">
-        <Link {...ROUTES.manage.workspace.polls.index(workspace.id)}><a>{t('menu.votes')}{' '}{<Badge count={workspace.polls_count} />}</a></Link>
-      </Tab>
-      <Tab active={active} name="missions">
-        <Link {...ROUTES.manage.workspace.missions.index(workspace.id)}><a>{t('menu.missions')}{' '}<Badge count={workspace.missions_count} /></a></Link>
-      </Tab>
-      {/* <Tab active={active} name="candidates">
-        <Link {...ROUTES.manage.workspace.candidates.index(workspace.id)}>
-          <a>{t('menu.candidates')}{' '}<Badge count={pendingCandidates.length} /></a>
-        </Link>
-      </Tab>
-      <Tab active={active} name="contributors">
-        <Link {...ROUTES.manage.workspace.contributors.index(workspace.id)}>
-          <a>{t('menu.contributors')}{' '}<Badge count={activeContributors.length} /></a>
-        </Link>
-      </Tab> */}
-      <TabSpacer />
-      {isAdmin && <Tab active={active} name="settings">
-        <Link {...ROUTES.manage.workspace.edit(workspace.slug)}>
-          <a>{t('menu.settings')}</a>
-        </Link>
-      </Tab> || <></>}
-    </Tabs>
-  }
 
   const leftActions = [
     !isMember && <WorkspaceJoinButton key="workspace-join" workspace={workspace} user={currentUser}/>,
@@ -146,21 +203,30 @@ const WorkspaceHeader = ({
       <header className="WorkspaceHeaderContent">
         <PageTitle
           level='1'
-          title={<>
-            <UserAvatar name={workspace.name} size="default" src={workspace.image_url} />
-            {' '}
-            {tree.length > 0 ? <Link {...ROUTES.manage.workspace.show(workspace.slug)}>{workspace.name}</Link> : workspace.name }
-            {' '}
-            {isMember && <Tag className={`tag-${isAdmin ? 'admin' : 'member'}`}>{isAdmin ? t('generics.admin') : t('generics.member')}</Tag>}
-            {tree.map(renderTree)}
-          </>}
+          title={<WorkspaceTitle
+            name={workspace.name}
+            image_url={workspace.image_url}
+            isAdmin={isAdmin !== undefined}
+            slug={workspace.slug}
+            tree={tree}
+            isMember={isMember !== undefined} />
+          }
           extra={leftActions}
           {...onBack}
         >
         </PageTitle>
-        {isMember && renderMemberTabs() || renderGuestTabs()}
+
+        <WorkspaceTabs
+          active={active}
+          isAdmin={isAdmin !== undefined}
+          isMember={isMember !== undefined}
+          slug={workspace.slug}
+          discussions_count={workspace.discussions_count}
+          polls_count={workspace.polls_count}
+          missions_count={workspace.missions_count}
+        />
       </header>
     </div>)
-}
+})
 
 export default WorkspaceHeader

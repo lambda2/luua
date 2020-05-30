@@ -32,7 +32,7 @@ const Contributor = (
     <NetworkBoundary {...response}>
       {currentWorkspace && <WorkspaceHeader
         workspace={currentWorkspace}
-        tree={[<Link {...workspace.contributors.index(currentWorkspace.id)}><a>{t('menu.contributors')}</a></Link>]}
+        tree={[<Link {...workspace.contributors.index(currentWorkspace.slug)}><a>{t('menu.contributors')}</a></Link>]}
       />}
       <ContentLayout>
         <MissionUserShow mission_user={response!.data as MissionUser} />

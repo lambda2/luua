@@ -48,7 +48,7 @@ const ExploreHome = (
           <List
             dataSource={discussionsResponse.data}
             emptyText={t('discussion.empty')}
-            renderItem={(e) => <DiscussionItem discussion={e} />}
+            renderItem={(e) => <DiscussionItem showWorkspace={true} discussion={e} />}
           />
         </ContentLayout>
       </NetworkBoundary>

@@ -126,6 +126,7 @@ class Ability
     can :read, SkillCategory
     can :read, User
     can :read, Discussion
+    can :read, DiscussionCategory
     can :read, Message
     can %i[read], MissionUser, mission: { visibility: :public }
     can %i[read], WorkspaceUser

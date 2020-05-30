@@ -35,7 +35,10 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
       resources :missions
       resources :discussions, shallow: true
       resources :polls, shallow: true
-      resources :discussion_categories, shallow: true
+      resources :discussion_categories, shallow: true do
+        resources :discussions, shallow: true
+      end
+
       resources :discussion_readings, shallow: true, only: :index do
         get 'mines', on: :collection, action: :mines
       end

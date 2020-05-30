@@ -19,9 +19,14 @@ const { manage } = routes
 interface Props {
   discussion: LightDiscussion
   reading?: DiscussionReading | false
+  showWorkspace?: boolean
 }
 
-const DiscussionItem = ({ discussion, reading }: Props) => {
+const DiscussionItem = ({
+  discussion,
+  reading,
+  showWorkspace = false
+}: Props) => {
 
   const {
     id,
@@ -34,6 +39,7 @@ const DiscussionItem = ({ discussion, reading }: Props) => {
     slug,
     polls,
     workspace_id,
+    workspace,
     participants,
     discussion_category,
     // mission_category,
@@ -56,12 +62,26 @@ const DiscussionItem = ({ discussion, reading }: Props) => {
       </aside>
       <h5>
         {/* {discussion_category && <li><DiscussionCategoryBadge size="small" text category={discussion_category} /></li>} */}
-        <Link key={id} {...manage.workspace.discussions.show(workspace_id, slug)}>
+        {/* {showWorkspace && <div className="text-light workspace">
+          <Link key={id} {...manage.workspace.show(workspace?.slug || workspace_id)}>
+            <a className="text-light">
+              <header>
+                <UserAvatar size="small" name={workspace?.name || ''} src={workspace?.thumb_url} />
+                <span className="org-title">{workspace?.name}</span>
+                <span className="text-light">{' '}</span>
+              </header>
+            </a>
+          </Link>
+        </div>} */}
+
+        <Link key={id} {...manage.workspace.discussions.show(workspace.slug || workspace_id, slug)}>
           <a>
             {name}
           </a>
         </Link>
-        {discussion_category && <li className="discussion-category" style={{color: discussion_category.color}}>#{discussion_category.name}</li>}
+        {discussion_category && <li className="discussion-category" style={{color: discussion_category.color}}>
+          <Link {...manage.workspace.discussions.category.index(workspace.slug || workspace_id, discussion_category.slug)}><a>#{discussion_category.name}</a></Link>
+        </li>}
       </h5>
 
       {discussion.polls && discussion.polls.length > 0 && <PageSection type='default' className="discussion-margin">
@@ -73,6 +93,15 @@ const DiscussionItem = ({ discussion, reading }: Props) => {
           {/* <li key="created-by" className="created-by">
             <UserAvatarTooltip text image {...user} />
           </li> */}
+          {showWorkspace && <li className="workspace">
+            <Link key={id} {...manage.workspace.show(discussion.workspace?.slug || discussion.workspace_id)}>
+              <a>
+                <UserAvatar size="small" name={discussion.workspace?.name || ''} src={discussion.workspace?.thumb_url} />
+                <span className="org-title">{discussion.workspace?.name}</span>
+              </a>
+            </Link>
+          </li>}
+
           <li key="created-at" className="created-at">{t('generics.published')} {moment(created_at).calendar()}</li>
           {modified_at && <li key="modified-at" className="modified-at">{icons.date} {moment(modified_at).calendar()}</li>}
           <li key="messages-count" className="messages-count">{icons.comments} {discussion.messages_count}</li>

@@ -33,7 +33,7 @@ const Discussions = (
   const { currentUser } = useContext(UserContext)
 
   const response = useCollection<LightDiscussion[]>(
-    `/api/workspaces/${query.workspace_id}/discussions`, token, {}, { initialData }
+    `/api/discussion_categories/${query.category}/discussions`, token, {}, { initialData }
   )
 
   const discussionsReadingsResponse = useCollection<DiscussionReading[]>(
@@ -50,6 +50,8 @@ const Discussions = (
     </Menu>
   );
 
+  const category = currentWorkspace && currentWorkspace?.discussion_categories.find(c => c.slug == query.category)
+
   return (
     <NetworkBoundary<LightDiscussion[]> {...response}>
       {currentWorkspace && <WorkspaceHeader
@@ -57,13 +59,13 @@ const Discussions = (
         active='discussions'
       />}
       <ContentLayout sideMenu={currentWorkspace && <DiscussionsLeftMenu workspace={currentWorkspace} />}>
-        {/* <PageTitle level='2' title={t('menu.discussions')}>
-          <Dropdown key="dropdown" overlay={menu}>
+        <PageTitle level='2' title={category?.name}>
+          {/* <Dropdown key="dropdown" overlay={menu}>
             <Button type="link">
               <span className="text-light">{' '}{icons.plussquare}</span>
             </Button>
-          </Dropdown>
-        </PageTitle> */}
+          </Dropdown> */}
+        </PageTitle>
         
         <DiscussionList
           readings={discussionsReadingsResponse.data}
@@ -75,7 +77,7 @@ const Discussions = (
 }
 Discussions.getInitialProps = async (ctx: any) => {
   return await fetchInitialData<LightDiscussion[]>(
-    ctx, `/api/workspaces/${ctx.query.workspace_id}/discussions`
+    ctx, `/api/discussion_categories/${ctx.query.category}/discussions`
   )
 }
 

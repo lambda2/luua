@@ -39,8 +39,6 @@ interface Props {
 
 const Discussion = ({
   discussion,
-  votesEndpoint,
-  messagesEndpoint,
   initialPage = 1,
   token
 }: Props) => {
@@ -69,7 +67,7 @@ const Discussion = ({
   }
 
   const fetchMessages = useCallback(async (key, page = 1) => {
-    const res = await api<Message[]>(`${messagesEndpoint}?page=${page?.page || page}`, { headers })
+    const res = await api<Message[]>(`/api/discussions/${discussion?.id}/messages?page=${page?.page || page}`, { headers })
     stateFromHeaders(res)
     return res.data;
   }, []);
@@ -85,7 +83,7 @@ const Discussion = ({
 
   // @TODO this hits the browser cache each time the user is voting
   const votesResponse = useCollection<MessageVote[]>(
-    votesEndpoint, (token || currentUser?.jwt)
+    `/api/discussions/${discussion?.id}/message_votes/mines`, (token || currentUser?.jwt)
   )
 
   const onDestroyDiscussion = async (discussion: LightDiscussion) => {

@@ -1,7 +1,8 @@
 class Api::DiscussionsController < ApiController
   load_and_authorize_resource :workspace
   load_and_authorize_resource :mission
-  load_and_authorize_resource :discussion, through: %I[mission workspace], shallow: true
+  load_resource :discussion_category
+  load_and_authorize_resource :discussion, through: %I[discussion_category mission workspace], shallow: true
 
   before_action :set_workspace
 
@@ -9,6 +10,7 @@ class Api::DiscussionsController < ApiController
   skip_before_action :authenticate_user!
 
   def index
+    puts "CAT => #{@discussion_category}"
     @discussions = @discussions.search(params[:q]) if params[:q]
     @discussions = @discussions.available_for(current_user&.id) if params[:for_user]
     @discussions = @discussions.unread(current_user&.id) if params[:unread]
@@ -101,7 +103,7 @@ class Api::DiscussionsController < ApiController
   end
 
   def order_params
-    return { modified_at: :desc, updated_at: :desc } unless params[:order]
+    return { locked_at: :desc, modified_at: :desc, updated_at: :desc } unless params[:order]
 
     params[:order].split(',').reject(&:blank?).map do |o|
       [o.gsub('-', '').to_sym, o.first == '-' ? :desc : :asc]
