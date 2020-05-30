@@ -63,6 +63,7 @@ class Ability
 
     can :read, Discussion
     can :create, Discussion, resource_type: 'Workspace', resource_id: user.workspace_ids
+    can :update_reading, Discussion, visibility: :public
     can :update_reading, Discussion, resource_type: 'Workspace', resource_id: user.workspace_ids
     can :manage, Discussion, user_id: user.id
     can :manage, Discussion, resource_type: 'Mission', resource: { workspace_id: user.admin_workspace_ids }

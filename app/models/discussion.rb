@@ -65,11 +65,10 @@ class Discussion < ApplicationRecord
     disc = <<-SQL
         discussions.visibility = #{Discussion.visibilities[:public]} OR
         (
-          discussions.visibility IN (#{Discussion.visibilities[:draft]}, #{Discussion.visibilities[:hidden]}, #{Discussion.visibilities[:protected]}) AND
+          discussions.visibility IN (#{Discussion.visibilities[:protected]}) AND
           discussions.user_id = #{user_id}
         ) OR
-        ("workspace_users"."user_id" = #{user_id} AND visibility = #{Discussion.visibilities[:protected]}) OR
-        ("workspace_users"."user_id" = #{user_id} AND "workspace_users"."admin" = true AND visibility = #{Discussion.visibilities[:hidden]})
+        ("workspace_users"."user_id" = #{user_id} AND visibility = #{Discussion.visibilities[:protected]})
     SQL
 
     where(resource_type: 'workspace').joins('INNER JOIN workspace_users ON workspace_users.workspace_id = discussions.resource_id').where(disc)

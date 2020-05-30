@@ -49,10 +49,10 @@ const WorkspaceShow = ({
         <WorkspaceMissionList data={missions || workspace.missions} />
       </PageSection> */}
 
-      {missions && missions?.length > 0 && <PageSection title={t('workspace.missions')}>
+      {/* {missions && missions?.length > 0 && <PageSection title={t('workspace.missions')}>
         <MissionList activeWorkspace={workspace?.id} data={missions as LightMission[]} />
 
-      </PageSection>}
+      </PageSection>} */}
 
       {/* <PageSection title={t('workspace.applicants')}>
 

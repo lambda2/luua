@@ -69,7 +69,7 @@ const Discussion = ({
   }
 
   const fetchMessages = useCallback(async (key, page = 1) => {
-    const res = await api<Message[]>(`${messagesEndpoint}?page=${page}`, { headers })
+    const res = await api<Message[]>(`${messagesEndpoint}?page=${page?.page || page}`, { headers })
     stateFromHeaders(res)
     return res.data;
   }, []);

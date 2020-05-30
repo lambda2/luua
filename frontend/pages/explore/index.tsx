@@ -24,9 +24,9 @@ const ExploreHome = (
     `/api/workspaces?open_membership=true`, token, {}, { initialData }
   )
   const discussionsResponse = useCollection<LightDiscussion[]>(
-    `/api/discussions?per_page=10&unread=true`, token, {}, {}
+    `/api/discussions?per_page=10&for_user=true&unread=true`, token, {}, {}
   )
-  
+
   const { t } = useLocale()
 
   return (
@@ -57,7 +57,7 @@ const ExploreHome = (
 }
 
 ExploreHome.getInitialProps = async (ctx: NextPageContext) => {
-  const data = await fetchInitialData<LightWorkspace[]>(ctx, '/api/workspaces?for_user=true')
+  const data = await fetchInitialData<LightWorkspace[]>(ctx, '/api/workspaces?open_membership=true')
   return data
 }
 

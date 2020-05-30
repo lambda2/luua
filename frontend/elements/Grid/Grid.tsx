@@ -41,8 +41,6 @@ const Grid = <T extends unknown>(
     renderEmpty = defaultRenderEmpty
   } = props
 
-  console.log({ dataSource });
-
   const gridStyles = {
     flex: itemWidth === 'auto' ? 'auto' : `1 1 ${itemWidth}`
   }
