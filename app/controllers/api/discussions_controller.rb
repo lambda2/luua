@@ -12,6 +12,7 @@ class Api::DiscussionsController < ApiController
     @discussions = @discussions.search(params[:q]) if params[:q]
     @discussions = @discussions.available_for(current_user&.id) if params[:for_user]
     @discussions = @discussions.unread(current_user&.id) if params[:unread]
+    @discussions = @discussions.regular
     @discussions = @discussions.order(order_params)
     # @discussions = @discussions.page(params[:page])
     @discussions = paginate(@discussions)

@@ -52,6 +52,8 @@ class Discussion < ApplicationRecord
 
   scope :available_for, ->(user_id) { visible_for(user_id).distinct }
   scope :unread, ->(user_id) { unread_for(user_id).distinct }
+  scope :regular, -> { where(resource_type: 'Workspace') }
+  scope :missions, -> { where(resource_type: 'Mission') }
 
   # @TODO discussion visibilities
   #
@@ -65,13 +67,13 @@ class Discussion < ApplicationRecord
     disc = <<-SQL
         discussions.visibility = #{Discussion.visibilities[:public]} OR
         (
-          discussions.visibility IN (#{Discussion.visibilities[:protected]}) AND
+          discussions.visibility = #{Discussion.visibilities[:protected]} AND
           discussions.user_id = #{user_id}
         ) OR
         ("workspace_users"."user_id" = #{user_id} AND visibility = #{Discussion.visibilities[:protected]})
     SQL
 
-    where(resource_type: 'workspace').joins('INNER JOIN workspace_users ON workspace_users.workspace_id = discussions.resource_id').where(disc)
+    where(resource_type: 'Workspace').joins('INNER JOIN workspace_users ON workspace_users.workspace_id = discussions.resource_id').where(disc)
   end
 
   # @TODO risky, as this can fail in many ways...
@@ -90,8 +92,8 @@ class Discussion < ApplicationRecord
     return all unless user_id
 
     disc = <<-SQL
-        discussions.modified_at > discussion_readings.updated_at OR
-        discussion_readings.id IS NULL
+      (discussion_readings.user_id = #{user_id} AND discussions.modified_at > discussion_readings.updated_at)
+      OR discussion_readings.id IS NULL
     SQL
 
     joins('LEFT JOIN discussion_readings ON discussion_readings.discussion_id = discussions.id').where(disc)
