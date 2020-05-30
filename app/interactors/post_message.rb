@@ -15,6 +15,10 @@ class PostMessage
       #   message.user
       # )
 
+      DiscussionReading.where(
+        discussion: message.discussion, user: context.user
+      ).first_or_create.update_columns(updated_at: Time.zone.now)
+
       # And we notify the discussion participants
       to_notify = message.discussion.subscriber_ids - [message.user_id]
       puts "Notifying #{to_notify.inspect}"

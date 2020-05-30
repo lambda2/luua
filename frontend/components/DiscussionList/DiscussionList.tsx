@@ -19,7 +19,7 @@ const DiscussionList = ({
     itemLayout="vertical"
     size="default"
     dataSource={data}
-    border={false}
+    // border={false}
     emptyText={t('discussion.empty')}
     renderItem={(item: LightDiscussion) => <DiscussionItem 
       discussion={item}

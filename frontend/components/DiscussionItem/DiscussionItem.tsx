@@ -44,8 +44,7 @@ const DiscussionItem = ({ discussion, reading }: Props) => {
   return (
     <div className={classNames("DiscussionItem", { 'unread-messages': unread, 'read-messages': reading !== false && !unread })}>
       <h5>
-        {discussion_category && <DiscussionCategoryBadge size="small" text category={discussion_category} />}
-
+        {discussion_category && <li><DiscussionCategoryBadge size="small" text category={discussion_category} /></li>}
         <Link key={id} {...manage.workspace.discussions.show(workspace_id, slug)}>
           <a>
             {name}
