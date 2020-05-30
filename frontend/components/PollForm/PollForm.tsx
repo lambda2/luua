@@ -55,11 +55,14 @@ const PollForm = ({
     anonymity: poll?.anonymity || 'open',
     authentication: poll?.authentication || 'required',
     poll_type: poll?.poll_type,
-    reveal: poll?.reveal || 'on_close',
+    reveal: poll?.reveal || 'always',
     begin_at: poll?.begin_at,
     end_at: poll?.end_at ,
     workspace_id: poll?.workspace_id || workspace_id,
-    poll_options_attributes: poll?.poll_options || [],
+    poll_options_attributes: poll?.poll_options || [
+      {name: t('form.poll.options.yes')},
+      {name: t('form.poll.options.no')}
+    ],
     globalErrors: undefined,
   }
 
@@ -139,6 +142,7 @@ const PollForm = ({
                 <PollOptionsSelect name="poll_options_attributes" />
               </Form.Item>
 
+              <div className="form-group">
               <Form.Item label={t('form.poll.begin_at.label')} name='begin_at'>
                 <DatePicker
                   format="YYYY-MM-DD HH:mm"
@@ -159,6 +163,7 @@ const PollForm = ({
                   showTime={{ defaultValue: moment('00:00:00', 'HH:mm') }}
                 />
               </Form.Item>
+              </div>
 {/*               
               <div className="big-radio-group">
                 <Form.Item label={t('form.poll.visibility.label')} name='visibility'>

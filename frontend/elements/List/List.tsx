@@ -40,8 +40,6 @@ const List = <T extends unknown>(
     className = 'List',
     renderEmpty = defaultRenderEmpty
   } = props
-
-  console.log({ dataSource });
   
   return (
     <ul className={classNames(className, `list-layout-${itemLayout} list-size-${size}`, { 'list-bordered': border, 'list-empty': !dataSource || dataSource.length === 0 })}>

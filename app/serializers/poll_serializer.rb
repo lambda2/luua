@@ -51,5 +51,6 @@ class PollSerializer < Panko::Serializer
   # has_one :discussion_category, serializer: DiscussionCategorySerializer
 
   has_many :poll_options, serializer: PollOptionSerializer
+  has_many :user_votes, serializer: UserVoteLightSerializer
 
 end

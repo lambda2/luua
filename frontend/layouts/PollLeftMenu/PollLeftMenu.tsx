@@ -118,7 +118,7 @@ const PollLeftMenu = ({
     </ul>
     <ul className="text-light">
       {renderVisibility()}
-      {renderAnonymity()}
+      {/* {renderAnonymity()} */}
       {renderAuthentication()}
       {renderReveal()}
       <li>

@@ -21,6 +21,7 @@ import MarkdownContent from 'elements/MarkdownContent/MarkdownContent';
 import discussion from 'pages/manage/[workspace_id]/missions/[id]/discussion';
 import MessageList from 'components/MessageList/MessageList';
 import LinkedItem from 'components/LinkedItem/LinkedItem';
+import PollVoteResultInline from 'components/PollVoteResult/PollVoteResultInline';
 
 interface Props {
   poll?: Poll
@@ -81,7 +82,7 @@ const Poll = ({
     return await resultResponse?.refetch({ force: true })
   }
 
-
+  
   const menu = (
     <Menu>
       {can(currentUser, 'poll.edit', poll) &&<Menu.Item key="edit-poll">
@@ -93,10 +94,13 @@ const Poll = ({
       </Menu.Item>}
     </Menu>
   );
-
+  
+  const userDidVote = votesResponse.data && votesResponse.data.length > 0
   const isClosed = poll.closed_at !== null && resultResponse?.data ? true : false
   const isDraft = poll.visibility === 'draft'
-  const isVotable = poll.visibility === 'draft'
+  const areResultsVisible = poll.reveal == 'always' ||
+                            (poll.reveal == 'on_vote' && userDidVote) ||
+                            (poll.reveal == 'on_close' && isClosed)
 
   return (
     <div className="Poll">
@@ -115,20 +119,18 @@ const Poll = ({
         </aside>
       </header>
 
-      {poll.description && <MarkdownContent content={poll.description} /> || <p className="text-light">{t('generics.no-description')}</p>}
-
       {poll.discussion && <PageSection type='default' className="discussion-margin">
         <LinkedItem type='discussion' linked={poll.discussion} key={poll.discussion.id} />
       </PageSection>}
+
+      {poll.description && <MarkdownContent content={poll.description} /> || <p className="text-light">{t('generics.no-description')}</p>}
 
       {isDraft && <MessageBox>
         {t('poll.draft-cant-vote')}
       </MessageBox>}
 
-
-
       {/* Show the vote options */}
-        {!isDraft && !isClosed && <PageSection title={t('poll.options')}>
+      {!userDidVote && !isDraft && !isClosed && <PageSection title={t('poll.options')}>
         {poll.poll_options.map(po => <PollVoteOption
           poll={poll}
           userVote={votesResponse.data}
@@ -139,8 +141,8 @@ const Poll = ({
         </PageSection>}
 
       {/* Show the vote results */}
-      {isClosed && <PageSection title={t('poll.results')}>
-        <PollVoteResult poll={poll} {...resultResponse!.data as VoteResults} />
+      {areResultsVisible && resultResponse.data && <PageSection title={t('poll.results')}>
+        <PollVoteResultInline poll={poll} {...resultResponse!.data as VoteResults} />
       </PageSection>}
 
       {/* {poll.discussion && <PageSection title={t('poll.linked-to-discussion')}>

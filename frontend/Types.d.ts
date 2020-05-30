@@ -282,6 +282,7 @@ declare interface LightDiscussion extends DbEntryWithTimestamps {
     workspace_id: number
     modified_at: datetime
     discussion_category: DiscussionCategory
+    polls: LightPoll[]
     messages_count: number
 }
 
@@ -293,7 +294,6 @@ declare interface DiscussionReading extends DbEntryWithTimestamps {
 declare interface Discussion extends LightDiscussion {
     workspace?: LightWorkspace
     messages: Message[]
-    polls: LightPoll[]
 }
 
 type PollVisibility = 'draft' | 'hidden' | 'protected' | 'public'

@@ -58,7 +58,8 @@ const PollOptionsSelect = ({
         {value.filter(e => !e._destroy).map(item => (
           <div key={item.name} className="poll-options-item">
             <main>
-              <b>{item.name}</b>{' - '}{item.description}
+              <b>{item.name}</b>
+              {item.description && <span className="text-light">{' - '}{item.description}</span>}
             </main>
             <aside>
               <span key="delete" onClick={() => deleteOption(item)}>{icons.delete}</span>

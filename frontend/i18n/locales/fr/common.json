@@ -656,7 +656,9 @@
         "description": {
           "label": "Description",
           "placeholder": "Description"
-        }
+        },
+        "yes": "Oui",
+        "no": "Non"
       }
     },
     "skill": {

@@ -111,6 +111,7 @@ class Api::PollsController < ApiController
       :locked_at,
       :locked_by,
       :name,
+      :reveal,
       :poll_type,
       :slug,
       :visibility,

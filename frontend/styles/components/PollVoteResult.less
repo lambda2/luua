@@ -32,3 +32,102 @@
     // flex: auto;
   }
 }
+
+.PollVoteResultInline {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+
+
+  .PollVoteResultInlineElement {
+    // padding: @space-inset-m;
+    // margin: @space-m 0;
+
+    border: 1px solid currentColor;
+    border-radius: 3px;
+
+    &:first-child {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      border-right: none;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      // border-left: none;
+    }
+
+    height: 24px;
+    display: flex;
+    align-items: center;
+    min-width: 1px;
+    position: relative;
+    justify-content: center;
+    color: @text-color;
+
+    & + .PollVoteResultInlineElement {
+      border-left: 1px solid currentColor;
+    }
+
+    &.majority {
+      // border: 1px solid @status-accepted-color;
+
+      aside {
+        font-weight: bold;
+      }
+      color: @status-accepted-color;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    main {
+      flex: auto;
+      text-align: center;
+      font-weight: normal;
+
+      h4 {
+        margin: 0;
+      }
+    }
+
+    aside {
+      position: absolute;
+      text-align: center;
+      padding: @space-inset-m;
+      top: 25px;
+      color: currentColor;
+      background: #fff;
+      // border: 1px solid currentColor;
+    }
+    // aside:after, aside:before {
+    //   bottom: 100%;
+    //   left: 50%;
+    //   border: solid transparent;
+    //   content: " ";
+    //   height: 0;
+    //   width: 0;
+    //   position: absolute;
+    //   pointer-events: none;
+    // }
+
+    // aside:after {
+    //   border-color: rgba(136, 183, 213, 0);
+    //   border-bottom-color: #fff;
+    //   border-width: 5px;
+    //   margin-left: -5px;
+    // }
+    // aside:before {
+    //   border-color: rgba(194, 225, 245, 0);
+    //   border-bottom-color: currentColor;
+    //   color: currentColor;
+    //   border-width: 6px;
+    //   margin-left: -6px;
+    // }
+
+  }
+}

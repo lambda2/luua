@@ -9,6 +9,8 @@ import UserAvatarTooltip from 'elements/UserAvatarTooltip/UserAvatarTooltip';
 import UserAvatar from 'elements/UserAvatar/UserAvatar';
 import DiscussionCategoryBadge from 'elements/DiscussionCategoryBadge/DiscussionCategoryBadge';
 import classNames from 'classnames';
+import PageSection from 'elements/PageSection/PageSection';
+import LinkedItem from 'components/LinkedItem/LinkedItem';
 
 const { manage } = routes
 
@@ -27,6 +29,7 @@ const DiscussionItem = ({ discussion, reading }: Props) => {
     modified_at,
     user,
     slug,
+    polls,
     workspace_id,
     participants,
     discussion_category,
@@ -51,6 +54,10 @@ const DiscussionItem = ({ discussion, reading }: Props) => {
           </a>
         </Link>
       </h5>
+
+      {discussion.polls && discussion.polls.length > 0 && <PageSection type='default' className="discussion-margin">
+        {discussion.polls.map(p => <LinkedItem type='poll' linked={p} key={p.id} />)}
+      </PageSection>}
 
       <footer>
         <ul className="text-light">
