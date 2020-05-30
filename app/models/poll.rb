@@ -43,8 +43,8 @@ class Poll < ApplicationRecord
   friendly_id :name, use: :slugged
 
   belongs_to :workspace, counter_cache: true, touch: true
-  belongs_to :discussion, optional: true, touch: true
-  belongs_to :discussion_category, optional: true
+  belongs_to :discussion, touch: true
+  # belongs_to :discussion_category, through: :discussion
   belongs_to :user
 
   has_many :user_votes, dependent: :destroy

@@ -51,7 +51,7 @@ const PollForm = ({
     discussion_category_id: poll?.discussion_category?.id?.toString() || discussion?.discussion_category?.id.toString(),
     description: poll?.description || '',
     discussion_id: poll?.discussion_id || discussion?.id || '',
-    visibility: poll?.visibility || 'draft',
+    visibility: poll?.visibility || 'public',
     anonymity: poll?.anonymity || 'open',
     authentication: poll?.authentication || 'required',
     poll_type: poll?.poll_type,
@@ -139,27 +139,27 @@ const PollForm = ({
                 <PollOptionsSelect name="poll_options_attributes" />
               </Form.Item>
 
-              <Form.Item label={t('form.mission.begin_at.label')} name='begin_at'>
+              <Form.Item label={t('form.poll.begin_at.label')} name='begin_at'>
                 <DatePicker
                   format="YYYY-MM-DD HH:mm"
                   name="begin_at"
-                  placeholder={t('form.mission.begin_at.placeholder')}
+                  placeholder={t('form.poll.begin_at.placeholder')}
                   disabledDate={disabledDate}
                   // disabledTime={disabledDateTime}
                   showTime={{ defaultValue: moment('00:00:00', 'HH:mm') }}
                 />
               </Form.Item>
-              <Form.Item label={t('form.mission.end_at.label')} name='end_at'>
+              <Form.Item label={t('form.poll.end_at.label')} name='end_at'>
                 <DatePicker
                   format="YYYY-MM-DD HH:mm"
                   name="end_at"
-                  placeholder={t('form.mission.end_at.placeholder')}
+                  placeholder={t('form.poll.end_at.placeholder')}
                   disabledDate={disabledEndDate}
                   // disabledTime={disabledDateTime}
                   showTime={{ defaultValue: moment('00:00:00', 'HH:mm') }}
                 />
               </Form.Item>
-              
+{/*               
               <div className="big-radio-group">
                 <Form.Item label={t('form.poll.visibility.label')} name='visibility'>
                   <span className="hint">{t('form.poll.visibility.hint')}{' '}</span>
@@ -183,7 +183,7 @@ const PollForm = ({
                   </Radio.Group>
 
                   </Form.Item>
-              </div>
+              </div> */}
 
 
               <Form.Item name="end">

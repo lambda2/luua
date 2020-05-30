@@ -60,14 +60,14 @@ const WorkspaceHeader = ({
 
     const menu = (
       <Menu>
-        <Menu.Item key="add-mission">
-          <Link {...manage.manage.workspace.missions.new(`${workspace.id}`)}><a>{t('mission.create.title')}</a></Link>
-        </Menu.Item>
         <Menu.Item key="add-discussion">
           <Link {...manage.manage.workspace.discussions.new(`${workspace.id}`)}><a>{t('discussion.create.title')}</a></Link>
         </Menu.Item>
         <Menu.Item key="add-poll">
           <Link {...manage.manage.workspace.polls.new(`${workspace.id}`)}><a>{t('poll.create.title')}</a></Link>
+        </Menu.Item>
+        <Menu.Item key="add-mission">
+          <Link {...manage.manage.workspace.missions.new(`${workspace.id}`)}><a>{t('mission.create.title')}</a></Link>
         </Menu.Item>
       </Menu>
     );

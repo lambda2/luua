@@ -519,8 +519,9 @@
       "delete": "Supprimer",
       "create-poll": "Créer un sondage",
       "name": {
-        "label": "Nom",
+        "label": "Titre",
         "hint": "Le sujet de la discussion",
+        "limit": "{{count}} caractères restants",
         "placeholder": "Ex: Les avantages d'une farine complète"
       },
       "discussion_category_id": {
@@ -592,6 +593,17 @@
           "title": "Résultats à la fin du scrutin",
           "description": "Les résultats sont disponibles un fois le scrutin fermé"
         }
+      },
+      "begin_at": {
+        "label": "Débute le",
+        "asap": "Dès que possible",
+        "hint": "",
+        "placeholder": "Dès que possible"
+      },
+      "end_at": {
+        "label": "Est cloturé le",
+        "hint": "",
+        "placeholder": "Manuellement"
       },
       "visibilities": {
         "draft": {

@@ -6,6 +6,7 @@ import ROUTES from 'routes/routes';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import UserMessageAvatar from '../UserMessageAvatar/UserMessageAvatar';
 import momentWithLocale from 'i18n/moment';
+import { nameForUser } from 'utils/user';
 
 interface Props {
   image?: boolean
@@ -21,17 +22,19 @@ interface Props {
 /**
  * Show a tooltip with additional user infos
  */
-const UserAvatarTooltip: React.FC<Props> = ({
-  image,
-  text = false,
-  thumb_url,
-  admin,
-  role,
-  created_at,
-  first_name,
-  last_name,
-  username
-}) => {
+const UserAvatarTooltip = (user: Props) => {
+
+  const {
+    image,
+    text = false,
+    thumb_url,
+    admin,
+    role,
+    created_at,
+    first_name,
+    last_name,
+    username
+  } = user
 
   const { t, language } = useLocale()
   const moment = momentWithLocale(language as AvailableLocale)
@@ -66,7 +69,7 @@ const UserAvatarTooltip: React.FC<Props> = ({
     <Popover className="UserAvatarTooltip" content={PopupContent} title={PopupTitle}>
       <span>
         {image && <UserMessageAvatar inline size="small" name={username} src={thumb_url} />}
-        {text && ((first_name && last_name) ? `${first_name} ${last_name}` : username)}
+        {text && nameForUser(user)}
       </span>
     </Popover>
 

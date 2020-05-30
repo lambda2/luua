@@ -42,7 +42,7 @@ const DiscussionForm = ({ discussion, redirectOnSave, workspace }: Props) => {
   }
 
   const EditSchema = Yup.object().shape({
-    name: Yup.string().min(2).required(),
+    name: Yup.string().min(2).max(60).required(),
     description: Yup.string(),
   });
 
@@ -79,14 +79,25 @@ const DiscussionForm = ({ discussion, redirectOnSave, workspace }: Props) => {
               <ErrorMessage name="globalErrors" />
               
               <div className="form-group">
-                <Form.Item className="form-group-constraint" label={t('form.discussion.discussion_category_id.label')} name='discussion_category_id'>
+                <Form.Item
+                  className="form-group-constraint"
+                  label={t('form.discussion.discussion_category_id.label')}
+                  name='discussion_category_id'
+                >
                   <FormDiscussionCategorySelect
                     name="discussion_category_id"
                     workspace_id={workspace?.id || discussion?.resource_id || 0}
                   />
                 </Form.Item>
-                <Form.Item className="form-group-expanded"  label={t('form.discussion.name.label')} name='name'>
-                  <Input prefix={<Tooltip title={t('form.discussion.name.hint')}>
+                <Form.Item
+                  className="form-group-expanded"
+                  label={<span>
+                    {t('form.discussion.name.label')}
+                    {' '}<span className="text-size-m text-light">({t('form.discussion.name.limit', { count: 60 - values.name.length})})</span>
+                  </span>}
+                  name='name'
+                >
+                   <Input prefix={<Tooltip title={t('form.discussion.name.hint')}>
                     {icons.question}
                   </Tooltip>} name="name" placeholder={t('form.discussion.name.placeholder')} />
                 </Form.Item>
