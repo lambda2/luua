@@ -1,4 +1,13 @@
 
+0.2.0 / 2020-05-30
+==================
+
+  * Embedding votes into discussions
+  * Adding a basic reading status for discussions
+  * Adding a better homepage (than a blank screen)
+  * Adding basic stats page
+  * Adding simple analytics
+
 0.1.0 / 2020-05-14
 ==================
 
