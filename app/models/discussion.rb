@@ -3,11 +3,14 @@
 # Table name: discussions
 #
 #  id                     :bigint           not null, primary key
+#  locked_at              :datetime
+#  locked_by              :integer
 #  messages_count         :integer          default(0), not null
+#  modified_at            :datetime
 #  name                   :string           not null
 #  resource_type          :string           not null
 #  slug                   :string           not null
-#  visibility             :integer          default(0), not null
+#  visibility             :integer          default("public"), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  discussion_category_id :bigint
@@ -37,6 +40,7 @@ class Discussion < ApplicationRecord
   belongs_to :resource, polymorphic: true, optional: true, touch: true
 
   has_many :messages, dependent: :destroy
+  has_many :discussion_readings, dependent: :destroy
   has_many :participants, -> { distinct }, through: :messages, source: :user
   has_many :message_votes, through: :messages
 

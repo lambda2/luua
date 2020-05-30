@@ -280,8 +280,14 @@ declare interface LightDiscussion extends DbEntryWithTimestamps {
     resource_type: DiscussionResourceType
     resource_id: number
     workspace_id: number
+    modified_at: datetime
     discussion_category: DiscussionCategory
     messages_count: number
+}
+
+declare interface DiscussionReading extends DbEntryWithTimestamps {
+    user_id: number
+    discussion_id: number
 }
 
 declare interface Discussion extends LightDiscussion {

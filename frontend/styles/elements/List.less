@@ -9,10 +9,16 @@
 
   & > li {
     display: block;
-    padding: @space-m 0;
-    
-    & + li {
-      border-top: 1px solid @nord4;
+  }
+
+  &.list-bordered {
+    & > li {
+      display: block;
+      padding: @space-m 0;
+      
+      & + li {
+        border-top: 1px solid @nord4;
+      }
     }
   }
 

@@ -60,6 +60,17 @@ export const votes = async (discussion_id: number | string, token: string): Prom
   return await api<MessageVote[]>(`/api/discussions/${discussion_id}/message_votes/mines`, { headers })
 }
 
+/**
+ * mark a discussion as read
+ * @param discussion_id
+ * @param token 
+ * @param ts
+ */
+export const read = async (discussion_id: number | string, token: string, ts?: string): Promise<AxiosResponse<DiscussionReading>> => {
+  const headers = getHeaders(token)
+  return await api<DiscussionReading>(`/api/discussions/${discussion_id}/read`, { headers, data: { ts }, method: 'PATCH' })
+}
+
 
 export const createOrUpdate = async (attributes: DiscussionUpdateValues, token: string): Promise<AxiosResponse<Discussion>> => {
   if (attributes.id) {

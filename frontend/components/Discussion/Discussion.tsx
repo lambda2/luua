@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback } from 'react';
+import React, { useContext, useState, useCallback, useEffect } from 'react';
 
 import UserContext from 'contexts/UserContext';
 import plh from 'parse-link-header';
@@ -27,6 +27,7 @@ import { AxiosResponse } from 'axios';
 import { curryRight } from 'lodash';
 import omit from 'lodash/omit';
 import { createItemMutation, updateItemMutation, destroyItemMutation } from 'utils/collectionMutations';
+import { read } from 'api/discussion';
 
 interface Props {
   discussion?: Discussion
@@ -93,6 +94,12 @@ const Discussion = ({
       ROUTES.manage.workspace.discussions.index(discussion.workspace_id).as
     )
   }
+
+  useEffect(() => {
+    if (discussion && currentUser) {
+      read(discussion?.id, token || currentUser?.jwt)
+    }
+  }, [discussion?.id, currentUser?.id])
 
   const createMessage = async (content: string) => {
     if (!discussion) {

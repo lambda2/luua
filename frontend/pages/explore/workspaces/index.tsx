@@ -17,7 +17,7 @@ const ExploreWorkspaces = (
   { initialData, token }: Props
 ) => {
   const response = useCollection<LightWorkspace[]>(
-    `/api/workspaces?for_user=true`, token, {}, { initialData }
+    `/api/workspaces?open_membership=true`, token, {}, { initialData }
   )
 
   return (
@@ -35,7 +35,7 @@ const ExploreWorkspaces = (
 }
 
 ExploreWorkspaces.getInitialProps = async (ctx: NextPageContext) => {
-  const data = await fetchInitialData<LightWorkspace[]>(ctx, '/api/workspaces?for_user=true')
+  const data = await fetchInitialData<LightWorkspace[]>(ctx, '/api/workspaces?open_membership=true')
   return data
 }
 

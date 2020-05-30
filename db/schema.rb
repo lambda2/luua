@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_19_113004) do
+ActiveRecord::Schema.define(version: 2020_05_29_230347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,15 @@ ActiveRecord::Schema.define(version: 2020_05_19_113004) do
     t.index ["workspace_id"], name: "index_discussion_categories_on_workspace_id"
   end
 
+  create_table "discussion_readings", force: :cascade do |t|
+    t.bigint "discussion_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["discussion_id"], name: "index_discussion_readings_on_discussion_id"
+    t.index ["user_id"], name: "index_discussion_readings_on_user_id"
+  end
+
   create_table "discussions", force: :cascade do |t|
     t.string "name", null: false
     t.string "slug", null: false
@@ -95,6 +104,9 @@ ActiveRecord::Schema.define(version: 2020_05_19_113004) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "messages_count", default: 0, null: false
     t.bigint "discussion_category_id"
+    t.datetime "modified_at"
+    t.datetime "locked_at"
+    t.integer "locked_by"
     t.index ["discussion_category_id"], name: "index_discussions_on_discussion_category_id"
     t.index ["resource_type", "resource_id"], name: "index_discussions_on_resource_type_and_resource_id"
     t.index ["user_id"], name: "index_discussions_on_user_id"
@@ -513,6 +525,8 @@ ActiveRecord::Schema.define(version: 2020_05_19_113004) do
 
   add_foreign_key "countries", "regions"
   add_foreign_key "discussion_categories", "workspaces"
+  add_foreign_key "discussion_readings", "discussions"
+  add_foreign_key "discussion_readings", "users"
   add_foreign_key "discussions", "discussion_categories"
   add_foreign_key "discussions", "users"
   add_foreign_key "message_votes", "messages"

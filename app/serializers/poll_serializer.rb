@@ -3,7 +3,7 @@
 # Table name: polls
 #
 #  id                     :bigint           not null, primary key
-#  anonymity              :integer          default("open"), not null
+#  anonymity              :integer          default("anonymous"), not null
 #  authentication         :integer          default("required"), not null
 #  begin_at               :datetime
 #  category               :integer          default(0), not null
@@ -13,7 +13,7 @@
 #  end_at                 :datetime
 #  name                   :string           not null
 #  poll_type              :integer          default("single_choice"), not null
-#  reveal                 :integer          default(0), not null
+#  reveal                 :integer          default("on_close"), not null
 #  slug                   :string           not null
 #  visibility             :integer          default("draft"), not null
 #  vote_count             :integer          default(0), not null
@@ -37,6 +37,7 @@
 #  fk_rails_...  (discussion_id => discussions.id)
 #  fk_rails_...  (user_id => users.id)
 #  fk_rails_...  (workspace_id => workspaces.id)
+#
 
 class PollSerializer < Panko::Serializer
   attributes :id, :anonymity, :authentication,

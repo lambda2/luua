@@ -35,6 +35,10 @@ const Discussions = (
     `/api/workspaces/${query.workspace_id}/discussions`, token, {}, { initialData }
   )
 
+  const discussionsReadingsResponse = useCollection<DiscussionReading[]>(
+    `/api/workspaces/${query.workspace_id}/discussion_readings/mines`, token, {}, {}
+  )
+
   const menu = (
     <Menu>
       {can(currentUser, 'discussion.create', currentWorkspace) && <Menu.Item key="create-discussion">
@@ -60,7 +64,10 @@ const Discussions = (
           </Dropdown>
         </PageTitle>
         
-        <DiscussionList data={response.data as LightDiscussion[]} />
+        <DiscussionList
+          readings={discussionsReadingsResponse.data}
+          data={response.data as LightDiscussion[]}
+        />
       </ContentLayout>
     </NetworkBoundary>
   )

@@ -1,6 +1,37 @@
 .DiscussionItem {
   // padding-top: 15px;
 
+  // border-left: 2px solid #efefef;
+  padding: @space-inset-m;
+  margin: @space-stack-s;
+
+  &.unread-messages {
+    // border-left: 2px solid @discussion-unread-border-color;
+    background-color: @discussion-unread-background-color;
+
+    // h5 {
+    //   position: relative;
+    // }
+    // h5:before {
+    //   display: inline-block;
+    //   position: absolute;
+    //   left: -20px;
+    //   height: 6px;
+    //   width: 6px;
+    //   background-color: red;
+    //   border-radius: 6px;
+    //   content: " ";
+    //   // margin: @space-inset-s;
+    // }
+  }
+
+  // &.read-messages {
+  //   h5 a {
+  //     color: @text-color-light;
+  //     font-weight: normal;
+  //   }
+  // }
+
   header {
     margin-bottom: 5px;
     display: flex;
@@ -22,6 +53,8 @@
     flex: auto;
     display: flex;
     align-items: center;
+    color: @text-color;
+    // font-weight: bold;
   }
 
   footer {

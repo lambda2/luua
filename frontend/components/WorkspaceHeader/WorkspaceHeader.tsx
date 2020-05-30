@@ -115,7 +115,7 @@ const WorkspaceHeader = ({
       <Tab active={active} name="missions">
         <Link {...ROUTES.manage.workspace.missions.index(workspace.id)}><a>{t('menu.missions')}{' '}<Badge count={workspace.missions_count} /></a></Link>
       </Tab>
-      <Tab active={active} name="candidates">
+      {/* <Tab active={active} name="candidates">
         <Link {...ROUTES.manage.workspace.candidates.index(workspace.id)}>
           <a>{t('menu.candidates')}{' '}<Badge count={pendingCandidates.length} /></a>
         </Link>
@@ -124,7 +124,7 @@ const WorkspaceHeader = ({
         <Link {...ROUTES.manage.workspace.contributors.index(workspace.id)}>
           <a>{t('menu.contributors')}{' '}<Badge count={activeContributors.length} /></a>
         </Link>
-      </Tab>
+      </Tab> */}
       <TabSpacer />
       {isAdmin && <Tab active={active} name="settings">
         <Link {...ROUTES.manage.workspace.edit(workspace.slug)}>

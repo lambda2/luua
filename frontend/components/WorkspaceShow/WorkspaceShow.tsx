@@ -13,9 +13,15 @@ interface Props {
   workspace: Workspace,
   missions?: LightMission[]
   discussions?: LightDiscussion[]
+  readings?: DiscussionReading[]
 }
 
-const WorkspaceShow = ({ workspace, missions, discussions }: Props) => {
+const WorkspaceShow = ({
+  workspace,
+  missions,
+  discussions,
+  readings
+}: Props) => {
 
   const { t } = useLocale()
 
@@ -27,7 +33,7 @@ const WorkspaceShow = ({ workspace, missions, discussions }: Props) => {
       </PageSection>
 
       <PageSection title={t('workspace.latest-discussions')}>
-        <DiscussionList data={discussions as LightDiscussion[]} />
+        <DiscussionList readings={readings} data={discussions as LightDiscussion[]} />
       </PageSection>
       {/* <div>
         Membership: <b>{workspace.membership}</b>
@@ -45,6 +51,7 @@ const WorkspaceShow = ({ workspace, missions, discussions }: Props) => {
 
       {missions && missions?.length > 0 && <PageSection title={t('workspace.missions')}>
         <MissionList activeWorkspace={workspace?.id} data={missions as LightMission[]} />
+
       </PageSection>}
 
       {/* <PageSection title={t('workspace.applicants')}>

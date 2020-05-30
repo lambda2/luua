@@ -5,9 +5,13 @@ import { useLocale } from 'hooks/useLocale';
 
 interface Props {
   data: LightDiscussion[]
+  readings?: DiscussionReading[]
 }
 
-const DiscussionList = ({ data }: Props) => {
+const DiscussionList = ({
+  data,
+  readings
+}: Props) => {
 
   const { t } = useLocale()
   
@@ -15,8 +19,12 @@ const DiscussionList = ({ data }: Props) => {
     itemLayout="vertical"
     size="default"
     dataSource={data}
+    border={false}
     emptyText={t('discussion.empty')}
-    renderItem={(item: LightDiscussion) => <DiscussionItem discussion={item} />}
+    renderItem={(item: LightDiscussion) => <DiscussionItem 
+      discussion={item}
+      reading={readings ? readings.find(r => r.discussion_id === item.id) : false}
+    />}
   />)
 }
 

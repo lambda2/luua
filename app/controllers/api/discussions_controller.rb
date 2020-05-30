@@ -61,6 +61,15 @@ class Api::DiscussionsController < ApiController
     render_destroyed
   end
 
+  def update_reading
+    @discussion_reading = DiscussionReading.where(
+      discussion: @discussion, user: current_user
+    ).first_or_create
+    @discussion_reading.update_columns(updated_at: params[:ts] || Time.zone.now)
+
+    render json: DiscussionReadingSerializer.new.serialize(@discussion_reading)
+  end
+
   def discussion_params
     params.require(:discussion).permit(
       :id,

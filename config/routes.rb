@@ -36,6 +36,9 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
       resources :discussions, shallow: true
       resources :polls, shallow: true
       resources :discussion_categories, shallow: true
+      resources :discussion_readings, shallow: true, only: :index do
+        get 'mines', on: :collection, action: :mines
+      end
 
       resources :workspace_users, shallow: true
       resources :workspace_invitations, shallow: true do
@@ -97,6 +100,8 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
     end
 
     resources :discussions, shallow: true do
+      patch 'read', on: :member, action: :update_reading
+      
       resources :message_votes do
         get 'mines', on: :collection, action: :mines
       end
@@ -104,6 +109,9 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
       resources :messages, shallow: true do
         post 'vote', on: :member, action: :vote
       end
+
+      resources :discussion_readings, shallow: true, only: :index
+
     end
   end
 
