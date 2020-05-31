@@ -61,52 +61,34 @@ class MissionUser < ApplicationRecord
     self.match_score = compute_match_score
   end
 
+  after_save :recompute_status_from_changes!
+
   aasm column: :status, enum: true, logger: Rails.logger do # rubocop:todo Metrics/BlockLength
     state :applied, initial: true
     state :rejected, :canceled, :accepted, :completed, :reviewed
 
     event :accept do
-
-      before do
-        self.accepted_at = Time.zone.now
-      end
-
+      before { self.accepted_at = Time.zone.now }
       transitions from: :applied, to: :accepted
     end
 
     event :reject do
-
-      before do
-        self.rejected_at = Time.zone.now
-      end
-
+      before { self.rejected_at = Time.zone.now }
       transitions from: %i[applied accepted completed], to: :rejected
     end
 
     event :cancel do
-
-      before do
-        self.canceled_at = Time.zone.now
-      end
-
+      before { self.canceled_at = Time.zone.now }
       transitions from: %i[applied accepted completed], to: :canceled
     end
 
     event :complete do
-
-      before do
-        self.completed_at = Time.zone.now
-      end
-
+      before { self.completed_at = Time.zone.now }
       transitions from: %i[accepted], to: :completed
     end
 
     event :review do
-
-      before do
-        self.reviewed_at = Time.zone.now
-      end
-
+      before { self.reviewed_at = Time.zone.now }
       transitions from: %i[completed], to: :reviewed
     end
 
@@ -115,6 +97,12 @@ class MissionUser < ApplicationRecord
 
   def log_status_change
     puts "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
+  end
+
+  # when something changes (ex: an user applied to the mission)
+  # check if we have something to do on the mission
+  def recompute_status_from_changes!
+    mission.recompute_status_from_changes!
   end
 
   def compute_match_score

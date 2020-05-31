@@ -3,7 +3,8 @@ class MissionLightSerializer < Panko::Serializer
              :begin_at, :end_at, :due_at, :organization_id, :discussion_id,
              :workspace_id,
              :image, :banner_image, :modified_at, :modified_by, :slug,
-             :visibility, :skills, :participant_count, :accepted_count
+             :visibility, :skills, :participant_count, :accepted_count,
+             :status, :started_at, :completed_at, :canceled_at
 
   has_one :mission_category, serializer: MissionCategoryLightSerializer
   has_one :workspace, serializer: WorkspaceLightSerializer

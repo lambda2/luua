@@ -248,12 +248,33 @@ describe Api::MissionsController, type: :request do # rubocop:todo Metrics/Block
     let(:user) { create(:user, :confirmed) }
     let(:workspace) { create(:workspace, user_ids: [user.id]) }
     let(:mission) { build(:mission, workspace_id: workspace.id) }
+    let(:mission_start) { build(:mission, workspace_id: workspace.id, begin_at: 2.days.from_now) }
     let(:mission_without_workspace) { build(:mission) }
 
-    it 'Create a mission' do
+    it 'Create a mission without start' do
       json_post '/api/missions', user: user, params: { mission: mission }.to_json
       expect(response.status).to eq(201)
-      expect(response.body).to match_attributes_in_json(mission.as_json.select {|_k, e| e })
+      expect(response.body).to match_attributes_in_json({
+        name: mission[:name],
+        description: mission[:description],
+        workspace_id: mission[:workspace_id],
+        visibility: mission[:visibility],
+        hiring_validation: mission[:hiring_validation],
+        status: "started",
+      })
+    end
+
+    it 'Create a mission with a start' do
+      json_post '/api/missions', user: user, params: { mission: mission_start }.to_json
+      expect(response.status).to eq(201)
+      expect(response.body).to match_attributes_in_json({
+        name: mission_start[:name],
+        description: mission_start[:description],
+        workspace_id: mission_start[:workspace_id],
+        visibility: mission_start[:visibility],
+        hiring_validation: mission_start[:hiring_validation],
+        status: "open",
+      })
     end
 
     it 'Create a mission without a workspace' do

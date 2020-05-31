@@ -6,4 +6,5 @@ production:
   - critical
   - default
   - polls
+  - missions
   - low

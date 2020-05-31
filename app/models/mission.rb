@@ -88,16 +88,16 @@ class Mission < ApplicationRecord
   # - accept_all: All candidates are automatically approved
   enum hiring_validation: %i[review trusted requirements accept_all], _suffix: true
 
-  # - pending: The mission is pending, and is not ready to have any participants yet
   # - open: The mission is open to participants
+  # - pending: The mission is pending, and is not ready to have any participants yet
   # - canceled: The mission has been canceled
-  # - running: The mission has all the required participants, and is running
+  # - started: The mission has all the required participants, and is started
   # - completed: The mission has been completed, and is done
   enum status: {
-    pending: 0,
-    open: 1,
+    open: 0,
+    pending: 1,
     canceled: 2,
-    running: 3,
+    started: 3,
     completed: 4
   }, _suffix: true
 
@@ -109,8 +109,12 @@ class Mission < ApplicationRecord
   scope :search, ->(q) { joins(:workspace).where('LOWER(unaccent(missions.name)) ILIKE LOWER(unaccent(?)) OR LOWER(unaccent(workspaces.name)) ILIKE LOWER(unaccent(?))', "%#{q}%", "%#{q}%") }
 
   aasm column: :status, enum: true, logger: Rails.logger do # rubocop:todo Metrics/BlockLength
-    state :pending, initial: true
-    state :open, :canceled, :running, :completed
+    state :open, initial: true
+    state :pending, :canceled, :started, :completed
+
+    event :pause do
+      transitions from: %i[open started canceled], to: :pending
+    end
 
     event :open do
       transitions from: %i[pending canceled], to: :open
@@ -118,22 +122,41 @@ class Mission < ApplicationRecord
 
     event :start do
       before { self.started_at = Time.zone.now }
-      transitions from: %i[pending open], to: :running
+      transitions from: %i[pending open], to: :started
     end
 
     event :cancel do
       before { self.canceled_at = Time.zone.now }
-      transitions from: %i[pending open running], to: :canceled
+      transitions from: %i[pending open started], to: :canceled
     end
 
     event :complete do
       before { self.completed_at = Time.zone.now }
-      transitions from: %i[pending open running], to: :completed
+      transitions from: %i[pending open started], to: :completed
     end
 
     after_all_transitions :log_status_change
   end
 
+
+  before_create :set_proper_status
+  after_save :schedule_events
+
+  def set_proper_status
+    self.status = :started unless begin_at&.future?
+  end
+
+  # Schedule async events for the mission
+  def schedule_events
+    return unless end_at_previously_changed? || begin_at_previously_changed?
+
+    EndMissionWorker.delete_all(id)
+    StartMissionWorker.delete_all(id)
+
+    # We shedule the start and the end of the mission
+    EndMissionWorker.perform_at(end_at, id) if end_at
+    StartMissionWorker.perform_at(begin_at, id) if begin_at
+  end
 
   def self.visible_for(user_id)
     return where(visibility: :public) unless user_id
@@ -149,6 +172,31 @@ class Mission < ApplicationRecord
     SQL
 
     joins(workspace: :workspace_users).where(miss)
+  end
+
+  # when something changes (ex: an user applied to the mission)
+  # check if we have something to do
+  def recompute_status_from_changes!
+    recompute_status_changes_for_open!
+    recompute_status_changes_for_started!
+  end
+  
+  # Start the mission if it's open,
+  # and the minimum amount of participants have been accepted the mission
+  def recompute_status_changes_for_open!
+    return unless open?
+
+    accepted = mission_users.accepted
+    start! if !begin_at && participant_count && accepted.count >= participant_count
+  end
+
+  # Complete the mission if it's started,
+  # and the minimum amount of participants completed the mission
+  def recompute_status_changes_for_started!
+    return unless started?
+
+    completed = mission_users.completed
+    complete! if participant_count && completed.count >= participant_count
   end
 
   def log_status_change

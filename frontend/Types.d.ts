@@ -1,10 +1,15 @@
 type AvailableLocale = 'fr' | 'en'
+
 type MissionVisibility = 'draft' | 'public' | 'protected' | 'hidden'
 type MissionReview = 'review' | 'trusted' | 'requirements' | 'accept_all'
+type MissionUserStatus = 'applied' | 'rejected' | 'accepted' | 'completed' | 'reviewed' | 'canceled'
+type MissionStatus = 'open' | 'pending' | 'canceled' | 'started' | 'completed'
+
 type SkillType = 'global' | 'organization'
 type SkillCategory = 'language' | 'technical' | 'mobility'
 type OrgType = 'company' | 'individual' | 'association' | 'ngo'
-type MissionUserStatus = 'applied' | 'rejected' | 'accepted' | 'completed' | 'reviewed' | 'canceled'
+
+
 type NotificationCode =
     'mission.candidate.applied'     | // A candidate applied
     'mission.candidate.rejected'    | // A candidate has been rejected on a mission
@@ -20,6 +25,7 @@ type NotificationCode =
 type WorkspaceInvitationStatus = 'pending' | 'accepted' | 'rejected'
 type WorkspaceRequestStatus = 'pending' | 'accepted' | 'rejected'
 type WorkspaceMembership = 'closed' | 'approval' | 'open'
+
 type DiscussionResourceType = 'Workspace' | 'Mission'
 type MessageVoteOption = 'positive' | 'negative'
 
@@ -232,6 +238,10 @@ declare interface BaseMission extends DbEntryWithTimestamps {
     begin_at: string
     end_at: string
     due_at: string
+    status: MissionStatus
+    started_at: string
+    completed_at: string
+    canceled_at: string
     physical: boolean
     banner_image: string
     modified_at: string
