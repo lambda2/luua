@@ -5,6 +5,8 @@
 #  id                  :bigint           not null, primary key
 #  banner_image        :string
 #  begin_at            :datetime
+#  canceled_at         :datetime
+#  completed_at        :datetime
 #  created_by          :integer
 #  description         :text
 #  due_at              :datetime
@@ -17,6 +19,8 @@
 #  participant_count   :integer
 #  physical            :boolean          default(FALSE), not null
 #  slug                :string           not null
+#  started_at          :datetime
+#  status              :integer          default("pending"), not null
 #  visibility          :integer          default("draft"), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null

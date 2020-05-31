@@ -5,6 +5,8 @@
 #  id                  :bigint           not null, primary key
 #  banner_image        :string
 #  begin_at            :datetime
+#  canceled_at         :datetime
+#  completed_at        :datetime
 #  created_by          :integer
 #  description         :text
 #  due_at              :datetime
@@ -17,6 +19,8 @@
 #  participant_count   :integer
 #  physical            :boolean          default(FALSE), not null
 #  slug                :string           not null
+#  started_at          :datetime
+#  status              :integer          default("pending"), not null
 #  visibility          :integer          default("draft"), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
@@ -46,6 +50,8 @@ class Mission < ApplicationRecord
 
   include Trackable
   track!
+
+  include AASM
 
   belongs_to :mission_category, optional: true
 
@@ -82,12 +88,52 @@ class Mission < ApplicationRecord
   # - accept_all: All candidates are automatically approved
   enum hiring_validation: %i[review trusted requirements accept_all], _suffix: true
 
+  # - pending: The mission is pending, and is not ready to have any participants yet
+  # - open: The mission is open to participants
+  # - canceled: The mission has been canceled
+  # - running: The mission has all the required participants, and is running
+  # - completed: The mission has been completed, and is done
+  enum status: {
+    pending: 0,
+    open: 1,
+    canceled: 2,
+    running: 3,
+    completed: 4
+  }, _suffix: true
+
   accepts_nested_attributes_for :mission_skills,
                                 allow_destroy: true,
                                 reject_if: :all_blank
 
   scope :available_for, ->(user_id) { visible_for(user_id).distinct }
   scope :search, ->(q) { joins(:workspace).where('LOWER(unaccent(missions.name)) ILIKE LOWER(unaccent(?)) OR LOWER(unaccent(workspaces.name)) ILIKE LOWER(unaccent(?))', "%#{q}%", "%#{q}%") }
+
+  aasm column: :status, enum: true, logger: Rails.logger do # rubocop:todo Metrics/BlockLength
+    state :pending, initial: true
+    state :open, :canceled, :running, :completed
+
+    event :open do
+      transitions from: %i[pending canceled], to: :open
+    end
+
+    event :start do
+      before { self.started_at = Time.zone.now }
+      transitions from: %i[pending open], to: :running
+    end
+
+    event :cancel do
+      before { self.canceled_at = Time.zone.now }
+      transitions from: %i[pending open running], to: :canceled
+    end
+
+    event :complete do
+      before { self.completed_at = Time.zone.now }
+      transitions from: %i[pending open running], to: :completed
+    end
+
+    after_all_transitions :log_status_change
+  end
+
 
   def self.visible_for(user_id)
     return where(visibility: :public) unless user_id
@@ -103,5 +149,9 @@ class Mission < ApplicationRecord
     SQL
 
     joins(workspace: :workspace_users).where(miss)
+  end
+
+  def log_status_change
+    puts "changing from #{aasm.from_state} to #{aasm.to_state} (event: #{aasm.current_event})"
   end
 end

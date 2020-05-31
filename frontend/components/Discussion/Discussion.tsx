@@ -215,6 +215,10 @@ const Discussion = ({
         {discussion.polls.map(p => <LinkedItem type='poll' linked={p} key={p.id} />)}
       </PageSection>}
 
+      {discussion.missions && discussion.missions.length > 0 && <PageSection type='default' className="discussion-margin">
+        {discussion.missions.map(p => <LinkedItem type='mission' linked={p} key={p.id} />)}
+      </PageSection>}
+
       <Paginated
         data={resolvedData}
         nextPage={nextPage}

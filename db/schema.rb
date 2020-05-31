@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_31_144741) do
+ActiveRecord::Schema.define(version: 2020_05_31_151848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -199,6 +199,10 @@ ActiveRecord::Schema.define(version: 2020_05_31_144741) do
     t.integer "hiring_validation", default: 0, null: false
     t.integer "participant_count"
     t.bigint "discussion_id"
+    t.integer "status", default: 0, null: false
+    t.datetime "started_at"
+    t.datetime "completed_at"
+    t.datetime "canceled_at"
     t.index ["discussion_id"], name: "index_missions_on_discussion_id"
     t.index ["mission_category_id"], name: "index_missions_on_mission_category_id"
     t.index ["organization_id"], name: "index_missions_on_organization_id"
