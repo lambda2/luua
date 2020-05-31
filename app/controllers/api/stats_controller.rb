@@ -3,9 +3,9 @@ class Api::StatsController < ApiController
   skip_authorization_check
 
   def index
-    users = User.all.group_by_day(:created_at).count.map{|k, v| {x: k, y: v}}
-    discussions = Discussion.all.group_by_day(:created_at).count.map{|k, v| {x: k, y: v}}
-    
+    users = User.all.group_by_day(:created_at).count.map {|k, v| { x: k, y: v } }
+    discussions = Discussion.all.group_by_day(:created_at).count.map {|k, v| { x: k, y: v } }
+
     counters = {
       users: User.count,
       workspaces: Workspace.count,
@@ -17,11 +17,11 @@ class Api::StatsController < ApiController
 
     latest = {
       users: User.order(id: :desc).first(10).map do |u|
-        {username: u.username, created_at: u.created_at}
+        { username: u.username, created_at: u.created_at }
       end,
       workspaces: Workspace.order(id: :desc).first(10).map do |u|
-        {name: u.name, created_at: u.created_at}
-      end,
+        { name: u.name, created_at: u.created_at }
+      end
     }
 
     stats = {

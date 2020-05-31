@@ -108,7 +108,7 @@ class Mission < ApplicationRecord
   scope :available_for, ->(user_id) { visible_for(user_id).distinct }
   scope :search, ->(q) { joins(:workspace).where('LOWER(unaccent(missions.name)) ILIKE LOWER(unaccent(?)) OR LOWER(unaccent(workspaces.name)) ILIKE LOWER(unaccent(?))', "%#{q}%", "%#{q}%") }
 
-  aasm column: :status, enum: true, logger: Rails.logger do # rubocop:todo Metrics/BlockLength
+  aasm column: :status, enum: true, logger: Rails.logger do
     state :open, initial: true
     state :pending, :canceled, :started, :completed
 
@@ -137,7 +137,6 @@ class Mission < ApplicationRecord
 
     after_all_transitions :log_status_change
   end
-
 
   before_create :set_proper_status
   after_save :schedule_events
@@ -180,7 +179,7 @@ class Mission < ApplicationRecord
     recompute_status_changes_for_open!
     recompute_status_changes_for_started!
   end
-  
+
   # Start the mission if it's open,
   # and the minimum amount of participants have been accepted the mission
   def recompute_status_changes_for_open!

@@ -63,7 +63,7 @@ class MissionUser < ApplicationRecord
 
   after_save :recompute_status_from_changes!
 
-  aasm column: :status, enum: true, logger: Rails.logger do # rubocop:todo Metrics/BlockLength
+  aasm column: :status, enum: true, logger: Rails.logger do
     state :applied, initial: true
     state :rejected, :canceled, :accepted, :completed, :reviewed
 

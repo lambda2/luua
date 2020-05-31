@@ -243,7 +243,7 @@ describe Api::MissionsController, type: :request do # rubocop:todo Metrics/Block
     end
   end
 
-  describe '#create' do
+  describe '#create' do # rubocop:todo Metrics/BlockLength
 
     let(:user) { create(:user, :confirmed) }
     let(:workspace) { create(:workspace, user_ids: [user.id]) }
@@ -260,7 +260,7 @@ describe Api::MissionsController, type: :request do # rubocop:todo Metrics/Block
         workspace_id: mission[:workspace_id],
         visibility: mission[:visibility],
         hiring_validation: mission[:hiring_validation],
-        status: "started",
+        status: 'started'
       })
     end
 
@@ -273,7 +273,7 @@ describe Api::MissionsController, type: :request do # rubocop:todo Metrics/Block
         workspace_id: mission_start[:workspace_id],
         visibility: mission_start[:visibility],
         hiring_validation: mission_start[:hiring_validation],
-        status: "open",
+        status: 'open'
       })
     end
 
