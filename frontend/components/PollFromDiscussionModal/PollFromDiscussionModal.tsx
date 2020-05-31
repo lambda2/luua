@@ -2,10 +2,8 @@ import React, { useContext, useState, ReactElement } from 'react';
 import UserContext from 'contexts/UserContext';
 import { useLocale } from 'hooks/useLocale';
 import { useRouter } from 'next/router';
-import { Button, Modal } from 'antd';
-import WorkspaceInvitationForm from '../WorkspaceInvitationForm/WorkspaceInvitationForm';
+import { Modal } from 'antd';
 import PollForm from 'components/PollForm/PollForm';
-import discussion from 'pages/manage/[workspace_id]/missions/[id]/discussion';
 
 interface Props {
   discussion: LightDiscussion
@@ -17,9 +15,8 @@ const PollFromDiscussionModal = ({
   buttonElt
 }: Props) => {
 
-  const { currentUser, check } = useContext(UserContext)
+  const { currentUser } = useContext(UserContext)
   const { t } = useLocale()
-  const { query } = useRouter()
   const [visible, setVisible] = useState(false)
 
   if (!currentUser) {

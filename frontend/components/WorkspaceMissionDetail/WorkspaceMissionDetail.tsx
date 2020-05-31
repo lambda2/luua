@@ -12,6 +12,7 @@ import can from 'utils/can';
 import List from 'elements/List/List';
 import MissionUserItem from '../MissionUserItem/MissionUserItem';
 import MarkdownContent from 'elements/MarkdownContent/MarkdownContent';
+import LinkedItem from 'components/LinkedItem/LinkedItem';
 
 
 
@@ -23,6 +24,7 @@ const WorkspaceMissionDetail = (mission: Props) => {
     id,
     description,
     workspace_id,
+    discussion,
     mission_users,
     mission_skills,
   } = mission
@@ -37,7 +39,11 @@ const WorkspaceMissionDetail = (mission: Props) => {
 
   return (
     <div className="WorkspaceMissionDetail">
-    
+
+      {discussion && <PageSection type='default' className="discussion-margin">
+        <LinkedItem type='discussion' linked={discussion} key={discussion.id} />
+      </PageSection>}
+
       <PageSection title={t('mission.summary')}>
         <MarkdownContent content={description} />
       </PageSection>

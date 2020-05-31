@@ -83,6 +83,7 @@ class Api::MissionsController < ApiController
       :begin_at,
       :end_at,
       :due_at,
+      :discussion_id,
       :organization_id,
       :workspace_id,
       :image,

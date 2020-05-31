@@ -221,11 +221,13 @@ declare interface BaseMission extends DbEntryWithTimestamps {
     description: string
     visibility: MissionVisibility
     hiring_validation: MissionReview
-    organization_id: number
+    discussion_id: number | null
+    organization_id: number | null
     workspace_id: number
     participant_count: number
     accepted_count: number
     workspace?: LightWorkspace
+    discussion: LightDiscussion | null
     image: string
     begin_at: string
     end_at: string
@@ -285,6 +287,7 @@ declare interface LightDiscussion extends DbEntryWithTimestamps {
     locked_by: number | null
     discussion_category: DiscussionCategory
     polls: LightPoll[]
+    missions: LightMission[]
     workspace: LightWorkspace
     messages_count: number
 }

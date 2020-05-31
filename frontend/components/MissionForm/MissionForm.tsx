@@ -16,6 +16,8 @@ import Router from 'next/router';
 import MissionDurationForm from './MissionDurationForm';
 import MissionPeopleForm from './MissionPeopleForm';
 import PageTitle from 'elements/PageTitle/PageTitle';
+import MessageBox from 'elements/MessageBox/MessageBox';
+import DiscussionItem from 'components/DiscussionItem/DiscussionItem';
 const { manage } = routes
 const { workspace } = manage
 
@@ -23,10 +25,11 @@ const { Step } = Steps;
 
 interface Props {
   mission?: Mission
+  discussion?: LightDiscussion
   workspace_id?: number
 }
 
-const MissionForm = ({ mission, workspace_id }: Props) => {
+const MissionForm = ({ mission, discussion, workspace_id }: Props) => {
 
   const { currentUser } = useContext(UserContext)
   const { t } = useLocale()
@@ -43,18 +46,19 @@ const MissionForm = ({ mission, workspace_id }: Props) => {
   const missionToValues = (mission?: Mission) => {
     return {
       id: mission?.id,
-      name: mission?.name || '',
+      name: mission?.name || discussion?.name || '',
       physical: mission?.physical || false,
       mission_skills_attributes: mission?.mission_skills || [],
       description: mission?.description || '',
       begin_at: mission?.begin_at || '',
       end_at: mission?.end_at || '',
       due_at: mission?.due_at || '',
-      workspace_id: workspace_id,
+      workspace_id: mission?.workspace_id || discussion?.workspace_id || workspace_id,
+      discussion_id: mission?.discussion_id || discussion?.id || '',
       image: mission?.image || '',
       banner_image: mission?.banner_image || '',
-      visibility: mission?.visibility || 'draft',
-      hiring_validation: mission?.hiring_validation || 'review',
+      visibility: mission?.visibility || 'protected',
+      hiring_validation: mission?.hiring_validation || 'accept_all',
       participant_count: mission?.participant_count || 1,
       globalErrors: undefined,
     }
@@ -166,6 +170,13 @@ const MissionForm = ({ mission, workspace_id }: Props) => {
                 <PageTitle title={mission?.id ? `${values.name || t('form.mission.edit')}` : t('form.mission.new')} />
 
                 <ErrorMessage name="globalErrors" />
+                {discussion && <div className="">
+                  <MessageBox>
+                    <DiscussionItem discussion={discussion} />
+                  </MessageBox>
+                  <br />
+                </div>}
+
 
                 <Steps
                   onChange={(s) => setStep(s)}

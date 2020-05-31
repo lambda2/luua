@@ -20,14 +20,14 @@ import Link from 'next/link';
 import { Dropdown, Menu, Button } from 'antd';
 import icons from 'dictionaries/icons';
 import Router from 'next/router';
-import PollFromDiscussionModal from 'components/WorkspaceInvitationModal/PollFromDiscussionModal';
+import PollFromDiscussionModal from 'components/PollFromDiscussionModal/PollFromDiscussionModal';
 import PageSection from 'elements/PageSection/PageSection';
 import LinkedItem from 'components/LinkedItem/LinkedItem';
 import { AxiosResponse } from 'axios';
-import { curryRight } from 'lodash';
 import omit from 'lodash/omit';
 import { createItemMutation, updateItemMutation, destroyItemMutation } from 'utils/collectionMutations';
 import { read, lock } from 'api/discussion';
+import MissionFromDiscussionModal from 'components/MissionFromDiscussionModal/MissionFromDiscussionModal';
 
 interface Props {
   discussion?: Discussion
@@ -173,6 +173,13 @@ const Discussion = ({
         <PollFromDiscussionModal
           discussion={discussion}
           buttonElt={(onClick) => <a href="#" onClick={onClick}>{t('form.discussion.create-poll')}</a>}
+        />
+      </Menu.Item>}
+
+      {can(currentUser, 'discussion.create-mission', discussion) && <Menu.Item key="poll-from-mission">
+        <MissionFromDiscussionModal
+          discussion={discussion}
+          buttonElt={(onClick) => <a href="#" onClick={onClick}>{t('form.discussion.create-mission')}</a>}
         />
       </Menu.Item>}
 

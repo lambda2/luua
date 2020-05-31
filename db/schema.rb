@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_29_230347) do
+ActiveRecord::Schema.define(version: 2020_05_31_144741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -198,6 +198,8 @@ ActiveRecord::Schema.define(version: 2020_05_29_230347) do
     t.integer "created_by"
     t.integer "hiring_validation", default: 0, null: false
     t.integer "participant_count"
+    t.bigint "discussion_id"
+    t.index ["discussion_id"], name: "index_missions_on_discussion_id"
     t.index ["mission_category_id"], name: "index_missions_on_mission_category_id"
     t.index ["organization_id"], name: "index_missions_on_organization_id"
     t.index ["workspace_id"], name: "index_missions_on_workspace_id"
@@ -537,6 +539,7 @@ ActiveRecord::Schema.define(version: 2020_05_29_230347) do
   add_foreign_key "mission_skills", "skills"
   add_foreign_key "mission_users", "missions"
   add_foreign_key "mission_users", "users"
+  add_foreign_key "missions", "discussions"
   add_foreign_key "missions", "mission_categories"
   add_foreign_key "missions", "organizations"
   add_foreign_key "missions", "workspaces"

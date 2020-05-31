@@ -31,6 +31,23 @@ const LinkedItem = (props: LinkedObject) => {
 
   const { t } = useLocale()
 
+  const renderMission = (linked: LightMission) => {
+    // const pollStatus = statusForPoll(linked)
+
+    return (
+      <div className="LinkedItem">
+          <Link key={linked.id} {...manage.workspace.missions.show(linked.workspace_id, linked.slug)}>
+            <a>
+              <Tag><b>{t('menu.mission')}</b></Tag>
+              {' '}
+              <span>{linked.name}</span>
+            </a>
+          </Link>
+      </div>
+    )
+
+  }
+
   const renderPoll = (linked: LightPoll) => {
     const pollStatus = statusForPoll(linked)
 
@@ -71,8 +88,10 @@ const LinkedItem = (props: LinkedObject) => {
       return renderPoll(props.linked)
     case 'discussion':
       return renderDiscussion(props.linked)
+    case 'mission':
+      return renderMission(props.linked)
     default:
-      console.error("Unable to find type ", props.type, { props });
+      // console.error("Unable to find type ", props.type, { props });
       return <span></span>
   }
 }

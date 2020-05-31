@@ -55,6 +55,11 @@ const can = (
         (resource.user_id === user.id) ||
         (find(user?.workspace_users, {workspace_id: resource.workspace_id, admin: true}))
       )
+    case 'discussion.create-mission':
+      return user && resource && (
+        (resource.user_id === user.id) ||
+        (find(user?.workspace_users, {workspace_id: resource.workspace_id, admin: true}))
+      )
     case 'discussion.lock':
       return user && resource && (
         (resource.user_id === user.id) ||
