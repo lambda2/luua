@@ -9,8 +9,9 @@ import momentWithLocale from 'i18n/moment';
 import { nameForUser } from 'utils/user';
 
 interface Props {
-  image?: boolean
   text?: boolean
+  withUsername?: boolean
+  image?: boolean
   thumb_url?: string
   admin?: string
   role?: string
@@ -25,8 +26,9 @@ interface Props {
 const UserAvatarTooltip = (user: Props) => {
 
   const {
-    image,
     text = false,
+    withUsername = false,
+    image,
     thumb_url,
     admin,
     role,
@@ -69,7 +71,8 @@ const UserAvatarTooltip = (user: Props) => {
     <Popover className="UserAvatarTooltip" content={PopupContent} title={PopupTitle}>
       <span>
         {image && <UserMessageAvatar inline size="small" name={username} src={thumb_url} />}
-        {text && nameForUser(user)}
+        <b>{text && nameForUser(user)}</b>
+        {withUsername && nameForUser(user) !== username && <span className="text-light">{' '}{`@${username}`}</span>}
       </span>
     </Popover>
 
