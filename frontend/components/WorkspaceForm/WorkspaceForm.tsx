@@ -37,7 +37,7 @@ const WorkspaceForm = ({ workspace, redirectOnSave }: Props) => {
     name: workspace?.name || '',
     image: workspace?.image || '',
     description: workspace?.description || '',
-    membership: workspace?.membership || 'closed',
+    membership: workspace?.membership || 'open',
     remove_image: false,
     website: workspace?.website || null,
     country_id: workspace?.country_id ? `${workspace?.country_id}` : null,
@@ -119,17 +119,17 @@ const WorkspaceForm = ({ workspace, redirectOnSave }: Props) => {
               <Form.Item className="big-radio-group" label={t('form.workspace.membership.label')} name='membership'>
                 <span className="hint">{t('form.workspace.membership.hint')}{' '}</span>
                 <Radio.Group name={'membership'}>
-                  <Radio name={'membership'} value={'closed'}>
-                    <div><b>{t('form.workspace.membership.options.closed.title')}</b></div>
-                    <p>{t('form.workspace.membership.options.closed.description')}</p>
+                  <Radio name={'membership'} value={'open'}>
+                    <div><b>{t('form.workspace.membership.options.open.title')}</b></div>
+                    <p>{t('form.workspace.membership.options.open.description')}</p>
                   </Radio>
                   <Radio name={'membership'} value={'approval'}>
                     <div><b>{t('form.workspace.membership.options.approval.title')}</b></div>
                     <p>{t('form.workspace.membership.options.approval.description')}</p>
                   </Radio>
-                  <Radio name={'membership'} value={'open'}>
-                    <div><b>{t('form.workspace.membership.options.open.title')}</b></div>
-                    <p>{t('form.workspace.membership.options.open.description')}</p>
+                  <Radio name={'membership'} value={'closed'}>
+                    <div><b>{t('form.workspace.membership.options.closed.title')}</b></div>
+                    <p>{t('form.workspace.membership.options.closed.description')}</p>
                   </Radio>
                 </Radio.Group>
               </Form.Item>

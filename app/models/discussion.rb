@@ -15,17 +15,20 @@
 #  updated_at             :datetime         not null
 #  discussion_category_id :bigint
 #  resource_id            :bigint           not null
+#  root_message_id        :bigint
 #  user_id                :bigint           not null
 #
 # Indexes
 #
 #  index_discussions_on_discussion_category_id         (discussion_category_id)
 #  index_discussions_on_resource_type_and_resource_id  (resource_type,resource_id)
+#  index_discussions_on_root_message_id                (root_message_id)
 #  index_discussions_on_user_id                        (user_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (discussion_category_id => discussion_categories.id)
+#  fk_rails_...  (root_message_id => messages.id)
 #  fk_rails_...  (user_id => users.id)
 #
 class Discussion < ApplicationRecord
@@ -38,6 +41,9 @@ class Discussion < ApplicationRecord
   belongs_to :user
   belongs_to :discussion_category, optional: true
   belongs_to :resource, polymorphic: true, optional: true, touch: true
+
+  belongs_to :message, optional: true
+  belongs_to :root_message, class_name: 'Message', foreign_key: 'root_message_id'
 
   has_many :messages, dependent: :destroy
   has_many :discussion_readings, dependent: :destroy

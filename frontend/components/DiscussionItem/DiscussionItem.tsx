@@ -13,6 +13,8 @@ import PageSection from 'elements/PageSection/PageSection';
 import LinkedItem from 'components/LinkedItem/LinkedItem';
 import Tag from 'elements/Tag/Tag';
 import { Tooltip } from 'antd';
+import MarkdownContent from 'elements/MarkdownContent/MarkdownContent';
+import MarkdownExcerpt from 'elements/MarkdownContent/MarkdownExcerpt';
 
 const { manage } = routes
 
@@ -83,6 +85,10 @@ const DiscussionItem = ({
           <Link {...manage.workspace.discussions.category.index(workspace.slug || workspace_id, discussion_category.slug)}><a>#{discussion_category.name}</a></Link>
         </li>}
       </h5>
+
+      {discussion.root_message && <div>
+        <MarkdownExcerpt content={discussion.root_message.content} />
+      </div>}
 
       {discussion.polls && discussion.polls.length > 0 && <PageSection type='default' className="discussion-margin">
         {discussion.polls.map(p => <LinkedItem type='poll' linked={p} key={p.id} />)}

@@ -303,6 +303,7 @@ declare interface LightDiscussion extends DbEntryWithTimestamps {
     polls: LightPoll[]
     missions: LightMission[]
     workspace: LightWorkspace
+    root_message: Message | null
     messages_count: number
 }
 

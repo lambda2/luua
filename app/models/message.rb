@@ -4,6 +4,7 @@
 #
 #  id                  :bigint           not null, primary key
 #  content             :text
+#  message_type        :integer          default("user"), not null
 #  negative_vote_count :integer          default(0), not null
 #  positive_vote_count :integer          default(0), not null
 #  root                :boolean          default(FALSE), not null
@@ -32,6 +33,10 @@ class Message < ApplicationRecord
   has_many :notifications, as: :resource, dependent: :destroy
 
   after_create :update_discussion_timestamps
+
+  # - user: Message is posted by user
+  # - system: Message is a contextual information
+  enum message_type: %i[user system], _suffix: true
 
   def update_discussion_timestamps
     discussion.update_columns(updated_at: Time.zone.now, modified_at: Time.zone.now)

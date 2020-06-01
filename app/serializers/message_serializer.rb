@@ -4,6 +4,7 @@
 #
 #  id                  :bigint           not null, primary key
 #  content             :text
+#  message_type        :integer          default("user"), not null
 #  negative_vote_count :integer          default(0), not null
 #  positive_vote_count :integer          default(0), not null
 #  root                :boolean          default(FALSE), not null

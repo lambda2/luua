@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_164540) do
+ActiveRecord::Schema.define(version: 2020_06_01_173616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,8 +107,10 @@ ActiveRecord::Schema.define(version: 2020_06_01_164540) do
     t.datetime "modified_at"
     t.datetime "locked_at"
     t.integer "locked_by"
+    t.bigint "root_message_id"
     t.index ["discussion_category_id"], name: "index_discussions_on_discussion_category_id"
     t.index ["resource_type", "resource_id"], name: "index_discussions_on_resource_type_and_resource_id"
+    t.index ["root_message_id"], name: "index_discussions_on_root_message_id"
     t.index ["user_id"], name: "index_discussions_on_user_id"
   end
 
@@ -133,6 +135,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_164540) do
     t.boolean "root", default: false, null: false
     t.integer "positive_vote_count", default: 0, null: false
     t.integer "negative_vote_count", default: 0, null: false
+    t.integer "message_type", default: 0, null: false
     t.index ["discussion_id"], name: "index_messages_on_discussion_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
@@ -539,6 +542,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_164540) do
   add_foreign_key "discussion_readings", "discussions"
   add_foreign_key "discussion_readings", "users"
   add_foreign_key "discussions", "discussion_categories"
+  add_foreign_key "discussions", "messages", column: "root_message_id"
   add_foreign_key "discussions", "users"
   add_foreign_key "message_votes", "messages"
   add_foreign_key "message_votes", "users"
