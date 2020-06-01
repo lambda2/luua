@@ -398,6 +398,7 @@
   },
   "help": {
     "workspace": {
+      "what-is-it": "Les espaces sont des groupes pour construire et échanger autour d'une idée, d'un projet ou d'une passion commune.",
       "what": "Un espace te permet de créer des missions pour ton association, ton projet, ton groupe etc..."
     }
   },

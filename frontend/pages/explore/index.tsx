@@ -11,6 +11,7 @@ import WorkspaceGridItem from 'components/WorkspaceGridItem/WorkspaceGridItem';
 import Title from 'elements/Title/Title';
 import DiscussionItem from 'components/DiscussionItem/DiscussionItem';
 import List from 'elements/List/List';
+import icons from 'dictionaries/icons';
 
 interface Props {
   initialData: LightWorkspace[],
@@ -24,7 +25,7 @@ const ExploreHome = (
     `/api/workspaces?open_membership=true`, token, {}, { initialData }
   )
   const discussionsResponse = useCollection<LightDiscussion[]>(
-    `/api/discussions?per_page=10&for_user=true&unread=true`, token, {}, {}
+    `/api/discussions?per_page=10&for_user=true`, token, {}, {}
   )
 
   const { t } = useLocale()
@@ -36,7 +37,11 @@ const ExploreHome = (
       />
       <NetworkBoundary<LightWorkspace[]> {...workspacesResponse}>
         <ContentLayout>
-          <Title level={'4'}>{t('homepage.popular-spaces')}</Title>
+          <Title level={'4'}>
+            {t('homepage.popular-spaces')}
+            <div className="sub-title text-light">{icons.question} {t('help.workspace.what-is-it')}</div>
+          </Title>
+          
           <Grid
             dataSource={workspacesResponse.data}
             itemWidth="400px"
