@@ -1,4 +1,3 @@
-import workspaces from "../pages/manage/workspaces"
 import find from "lodash/find"
 import moment from "moment"
 
@@ -18,8 +17,6 @@ const can = (
     case 'workspace.destroy':
       return true
   
-
-
 
 
     case 'mission.show':

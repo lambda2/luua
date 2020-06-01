@@ -57,6 +57,7 @@ import {
   faThumbsUp as faThumbsUpFill,
   faLocationArrow,
   faUsers,
+  faAsterisk,
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -111,6 +112,7 @@ export default {
   "send": <FontAwesomeIcon className="menu-icon" icon={faPaperPlane} />,
   "bug": <FontAwesomeIcon className="menu-icon" icon={faBug} />,
   "idea": <FontAwesomeIcon className="menu-icon" icon={faLightbulb} />,
+  "asterisk": <FontAwesomeIcon className="menu-icon" icon={faAsterisk} />,
   "locked": <FontAwesomeIcon className="menu-icon" icon={faLock} />,
   "glass": <FontAwesomeIcon className="menu-icon" icon={faGlassCheers} />,
   "link": <FontAwesomeIcon className="menu-icon" icon={faLink} />,

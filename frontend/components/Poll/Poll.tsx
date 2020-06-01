@@ -14,12 +14,8 @@ import Router from 'next/router';
 import PollVoteOption from 'components/PollVoteOption/PollVoteOption';
 import { useCollection } from 'utils/http';
 import MessageBox from 'elements/MessageBox/MessageBox';
-import PollVoteResult from 'components/PollVoteResult/PollVoteResult';
 import PageSection from 'elements/PageSection/PageSection';
-import DiscussionItem from 'components/DiscussionItem/DiscussionItem';
 import MarkdownContent from 'elements/MarkdownContent/MarkdownContent';
-import discussion from 'pages/manage/[workspace_id]/missions/[id]/discussion';
-import MessageList from 'components/MessageList/MessageList';
 import LinkedItem from 'components/LinkedItem/LinkedItem';
 import PollVoteResultInline from 'components/PollVoteResult/PollVoteResultInline';
 

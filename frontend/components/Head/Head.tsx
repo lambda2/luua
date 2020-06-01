@@ -29,7 +29,7 @@ export const Head = ({
   return (
     <NextHead>
       <meta charSet="UTF-8" />
-      <title>{title ? `Luua · ${title}` : 'Luua'}</title>
+      <title>{title ? `${title} · 💃` : 'Luua'}</title>
       <meta
         name="description"
         content={description || defaultDescription}

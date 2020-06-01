@@ -52,7 +52,7 @@ const Discussions = (
   );
 
   const category = currentWorkspace && currentWorkspace?.discussion_categories.find(c => c.slug == query.category)
-  const wname = initialData && initialData[0].workspace.name
+  const wname = currentWorkspace?.name
 
   return (<>
     <Head
@@ -64,13 +64,7 @@ const Discussions = (
         active='discussions'
       />}
       <ContentLayout sideMenu={currentWorkspace && <DiscussionsLeftMenu workspace={currentWorkspace} />}>
-        <PageTitle level='2' title={category?.name}>
-          {/* <Dropdown key="dropdown" overlay={menu}>
-            <Button type="link">
-              <span className="text-light">{' '}{icons.plussquare}</span>
-            </Button>
-          </Dropdown> */}
-        </PageTitle>
+        <PageTitle level='2' title={category?.name}></PageTitle>
         
         <DiscussionList
           readings={discussionsReadingsResponse.data}

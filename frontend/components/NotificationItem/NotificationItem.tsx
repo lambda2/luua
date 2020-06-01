@@ -10,7 +10,7 @@ import classNames from 'classnames';
 interface Props {
   notification: UserNotification,
   onRead: (id: string | number) => Promise<void>
-  onClick?: (id: string | number) => void
+  onClick?: (id: number) => void
 }
 
 const NotificationItem = ({ notification, onRead, onClick}: Props) => {

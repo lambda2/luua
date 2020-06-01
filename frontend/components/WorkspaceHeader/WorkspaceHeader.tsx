@@ -180,7 +180,7 @@ const WorkspaceHeader = memo((props: Props) => {
     );
 
     return (<Dropdown key="dropdown" overlay={menu}>
-      <Button type="ghost">
+      <Button type="primary">
         {/* <span className="text-light">{' '}{icons.plussquare}</span> */}
         {/* {' '} */}
         {t('menu.create')}
@@ -191,6 +191,9 @@ const WorkspaceHeader = memo((props: Props) => {
 
   const leftActions = [
     !isMember && <WorkspaceJoinButton key="workspace-join" workspace={workspace} user={currentUser}/>,
+    (isAdmin) && <Button type="ghost"><Link {...ROUTES.manage.workspace.edit(workspace.slug)}>
+      <a>{t('menu.edit')}</a>
+    </Link></Button>,
     (isMember) && addActions(),
     ...actions
       .filter((act) => can(currentUser, `workspace.${act}`, workspace))

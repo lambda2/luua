@@ -7,6 +7,8 @@ import ROUTES from 'routes/routes';
 import Link from 'next/link';
 import classNames from 'classnames';
 import { useRouter } from 'next/router'
+import can from 'utils/can';
+import icons from 'dictionaries/icons';
 
 interface Props {
   workspace: Workspace
@@ -27,17 +29,30 @@ const DiscussionsLeftMenu = ({
 
   return (<aside className="DiscussionsLeftMenu">
     <Affix offsetTop={60}>
-      <MenuTitle>{t('menu.categories')}</MenuTitle>
+      <MenuTitle>
+        <span>{t('menu.categories')}</span>{' '}
+        {can(currentUser, 'workspace.edit', workspace) && <span>
+          {' '}
+          <Link {...ROUTES.manage.workspace.categories(workspace.slug)}>
+          <a>{t('menu.edit')}</a>
+        </Link>
+      </span>}
+      </MenuTitle>
       <ul className="text-light">
         <li className={classNames({ active: active === 'all' })} key={'all'}>
           <Link {...ROUTES.manage.workspace.discussions.index(workspace.slug)}>
-            <a>{t('menu.all-discussions')}</a>
+            <a>
+              <span className="menu-icon">{icons.asterisk}</span>
+              {' '}{t('menu.all-discussions')}</a>
           </Link>
         </li>
         {workspace.discussion_categories.map(dc => {
           return <li className={classNames({ active: active === dc.slug })} key={dc.id}>
             <Link {...ROUTES.manage.workspace.discussions.category.index(workspace.slug, dc.slug)}>
-              <a>{dc.icon}{' '}{dc.name}</a>
+              <a>
+                <span className="menu-icon">{dc.icon}</span>
+                {' '}{dc.name}
+              </a>
             </Link>
           </li>
         })}

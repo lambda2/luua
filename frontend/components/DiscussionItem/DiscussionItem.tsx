@@ -120,12 +120,12 @@ const DiscussionItem = ({
             </Link>
           </li>}
 
-          <li key="upvote-count" className="upvote-count">
-            {root_message && onVote && <div className={classNames('vote', 'vote-up', { "vote-zero": root_message.positive_vote_count === 0, active })} key="vote-up">
+          {root_message && onVote && <li key="upvote-count" className="upvote-count">
+            <div className={classNames('vote', 'vote-up', { "vote-zero": root_message.positive_vote_count === 0, active })} key="vote-up">
               <span>{root_message.positive_vote_count}</span>
               <button onClick={onVotePositive}>{active ? icons.plusthumbfill : icons.plusthumb}</button>
-            </div>}
-          </li>
+            </div>
+          </li>}
           <li key="messages-count" className="messages-count">{icons.comments} {discussion.messages_count}</li>
 
           <li key="created-at" className="created-at">{t('generics.published')} {moment(created_at).calendar()}</li>

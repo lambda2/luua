@@ -43,7 +43,7 @@ const UserMenuDropdown = ({ user, notifications }: Props) => {
 
   const { username, thumb_url } = user
   const { currentUser, readAllNotifications, readNotification } = useContext(UserContext)
-  const onClick = (nid) => {
+  const onClick = (nid: string | number) => {
     readNotification(nid)
     setVisible(false)
   }

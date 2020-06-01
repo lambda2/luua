@@ -16,9 +16,7 @@ const MarkdownExcerpt = ({
 
   const splitted = content.split("\n")
   const excerpt = splitted && splitted[0]
-  const hasMore = splitted && splitted.length > 1
-
-  console.log({ splitted, excerpt, hasMore});
+  // const hasMore = splitted && splitted.length > 1
   
   return (
     <div className="MarkdownContent">

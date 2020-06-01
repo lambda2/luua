@@ -15,9 +15,6 @@ import TextArea from 'elements/TextArea/TextArea';
 import FormDiscussionCategorySelect from '../DiscussionCategorySelect/DiscussionCategorySelect';
 import PollOptionsSelect from 'components/PollOptionsSelect/PollOptionsSelect';
 import momentWithLocale from 'i18n/moment';
-import PageSection from 'elements/PageSection/PageSection';
-import discussion from 'pages/manage/[workspace_id]/missions/[id]/discussion';
-import Discussion from 'components/Discussion/Discussion';
 import DiscussionItem from 'components/DiscussionItem/DiscussionItem';
 import MessageBox from 'elements/MessageBox/MessageBox';
 
