@@ -387,7 +387,7 @@
       "browse": "Parcourir les espaces existants"
     },
     "switching-workspace": "Changement d'espace...",
-    "members": "Membre(s)",
+    "members": "membres",
     "missions": "Missions",
     "latest-discussions": "Activité récente",
     "admin": "Admin",
@@ -524,6 +524,14 @@
         "label": "Image",
         "hint": "Une image pour votre espace",
         "placeholder": "Télécharger une image"
+      },
+      "country": {
+        "label": "Pays",
+        "hint": ""
+      },
+      "website": {
+        "label": "Site internet",
+        "placeholder": "Ex: https://boulangers.poitou.org"
       },
       "membership": {
         "short": "Adhésion",

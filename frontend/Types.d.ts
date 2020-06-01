@@ -100,7 +100,19 @@ declare interface LightWorkspace extends DbEntryWithTimestamps {
     missions_count: number
     discussions_count: number
     polls_count: number
-    // workspace_type: 'main' | 'company' | 'personal'
+    website: string
+    region_id: number
+    country_id: number
+}
+
+declare interface Workspace extends LightWorkspace {
+    missions: LightMission[]
+    workspace_users: WorkspaceUser[]
+    organization: LightOrganization
+    mission_users: LightMissionUser[]
+    discussion_categories: DiscussionCategory[]
+    region: Region | null
+    country: Country | null
 }
 
 declare interface WorkspaceUser extends DbEntryWithTimestamps {
@@ -133,14 +145,6 @@ declare interface WorkspaceRequest extends DbEntryWithTimestamps {
     user_id: number
     workspace_id: number
     user: BaseUser
-}
-
-declare interface Workspace extends LightWorkspace {
-    missions: LightMission[]
-    workspace_users: WorkspaceUser[]
-    organization: LightOrganization
-    mission_users: LightMissionUser[]
-    discussion_categories: DiscussionCategory[]
 }
 
 declare interface DiscussionCategory extends DbEntryWithTimestamps {

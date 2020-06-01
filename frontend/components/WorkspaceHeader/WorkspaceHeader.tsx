@@ -13,6 +13,7 @@ import WorkspaceJoinButton from '../WorkspaceJoinButton/WorkspaceJoinButton';
 import Badge from 'elements/Badge/Badge';
 import Tag from 'elements/Tag/Tag';
 import { Tabs, Tab, TabSpacer } from 'elements/TabMenu/TabMenu';
+import icons from 'dictionaries/icons';
 
 type ResourceAction = 'show' | 'new' | 'edit' | 'destroy'
 
@@ -212,6 +213,18 @@ const WorkspaceHeader = memo((props: Props) => {
           {...onBack}
         >
         </PageTitle>
+
+        <ul className="header-line">
+          {workspace.website && <li>
+            {icons.link}{' '}<a href={workspace.website} target="_blank" rel="noopener">{workspace.website.replace(/https?:\/\//, '')}</a>
+          </li>}
+          {workspace.country && <li>
+            {icons.country}{' '}{workspace.country.name}
+          </li>}
+          {workspace.users_count && <li>
+            {icons.users}{' '}{workspace.users_count} {t('workspace.members')}
+          </li>}
+        </ul>
 
         <WorkspaceTabs
           active={active}

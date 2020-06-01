@@ -52,6 +52,9 @@ import {
   faPlus,
   faBug,
   faLockOpen,
+  faLink,
+  faLocationArrow,
+  faUsers,
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -95,6 +98,7 @@ export default {
   "skills": <FontAwesomeIcon className="menu-icon" icon={faWrench} />,
   "date": <FontAwesomeIcon className="menu-icon" icon={faClock} />,
   "user": <FontAwesomeIcon className="menu-icon" icon={faUser} />,
+  "users": <FontAwesomeIcon className="menu-icon" icon={faUsers} />,
   "dot": <FontAwesomeIcon className="menu-icon" icon={faDotCircle} />,
   "up": <FontAwesomeIcon className="menu-icon" icon={faChevronUp} />,
   "down": <FontAwesomeIcon className="menu-icon" icon={faChevronDown} />,
@@ -105,6 +109,8 @@ export default {
   "idea": <FontAwesomeIcon className="menu-icon" icon={faLightbulb} />,
   "locked": <FontAwesomeIcon className="menu-icon" icon={faLock} />,
   "glass": <FontAwesomeIcon className="menu-icon" icon={faGlassCheers} />,
+  "link": <FontAwesomeIcon className="menu-icon" icon={faLink} />,
+  "country": <FontAwesomeIcon className="menu-icon" icon={faMapMarkerAlt} />,
   "loading": < FontAwesomeIcon icon ={faSpinner} spin />,
   "comments": <FontAwesomeIcon className="menu-icon" icon={faComments} />,
   "visibility": {

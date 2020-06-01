@@ -30,7 +30,7 @@ const WorkspaceLeftMenu = ({
         {icons.mission_status.applied}{' '}{workspace.missions_count} {t('workspace.missions')}
       </li>
       <li>
-        {icons.user}{' '}{workspace.users_count} {t('workspace.members')}
+        {icons.users}{' '}{workspace.users_count} {t('workspace.members')}
       </li>
       <li>
         {workspace.workspace_users.map((u: WorkspaceUser) =>

@@ -119,6 +119,7 @@ class Api::WorkspacesController < ApiController
       :membership,
       :region_id,
       :country_id,
+      :website,
       :workspace_type,
       :image,
       :remove_image,

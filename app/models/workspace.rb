@@ -12,17 +12,24 @@
 #  polls_count       :integer          default(0), not null
 #  slug              :string           not null
 #  users_count       :integer          default(0), not null
+#  website           :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  country_id        :bigint
 #  organization_id   :bigint
+#  region_id         :bigint
 #
 # Indexes
 #
+#  index_workspaces_on_country_id       (country_id)
 #  index_workspaces_on_organization_id  (organization_id)
+#  index_workspaces_on_region_id        (region_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (country_id => countries.id)
 #  fk_rails_...  (organization_id => organizations.id)
+#  fk_rails_...  (region_id => regions.id)
 #
 
 require 'carrierwave/orm/activerecord'
@@ -32,6 +39,8 @@ class Workspace < ApplicationRecord
   friendly_id :name, use: :slugged
 
   belongs_to :organization, optional: true
+  belongs_to :region, optional: true
+  belongs_to :country, optional: true
 
   # People belonging to the workspace
   has_many :workspace_users, dependent: :destroy

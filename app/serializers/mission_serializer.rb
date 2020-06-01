@@ -20,7 +20,7 @@
 #  physical            :boolean          default(FALSE), not null
 #  slug                :string           not null
 #  started_at          :datetime
-#  status              :integer          default("pending"), not null
+#  status              :integer          default("open"), not null
 #  visibility          :integer          default("draft"), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null

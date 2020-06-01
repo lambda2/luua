@@ -14,6 +14,7 @@ import Router from 'next/router';
 import { cdnUrl } from 'utils/http';
 import routes from 'routes/routes'
 import TextArea from 'elements/TextArea/TextArea';
+import { FormCountrySelect } from 'components/CountrySelect/CountrySelect';
 
 interface Props {
   workspace?: Workspace
@@ -38,6 +39,8 @@ const WorkspaceForm = ({ workspace, redirectOnSave }: Props) => {
     description: workspace?.description || '',
     membership: workspace?.membership || 'closed',
     remove_image: false,
+    website: workspace?.website || null,
+    country_id: workspace?.country_id ? `${workspace?.country_id}` : null,
     globalErrors: undefined,
   }
 
@@ -45,34 +48,12 @@ const WorkspaceForm = ({ workspace, redirectOnSave }: Props) => {
     name: Yup.string().min(2, 'Too short').required(),
     image: Yup.string(),
     description: Yup.string(),
+    country_id: Yup.string().nullable(),
+    website: Yup.string().nullable(),
   });
-
-  // const formItemLayout = {
-  //   labelCol: {
-  //     xs: { span: 24 },
-  //     sm: { span: 4 },
-  //   },
-  //   wrapperCol: {
-  //     xs: { span: 24 },
-  //     sm: { span: 16 },
-  //   },
-  // };
-  // const tailFormItemLayout = {
-  //   wrapperCol: {
-  //     xs: {
-  //       span: 24,
-  //       offset: 0,
-  //     },
-  //     sm: {
-  //       span: 16,
-  //       offset: 8,
-  //     },
-  //   },
-  // };
 
   const onUpload = (elt: any) => {
     console.log("onUpload", { elt });
-    
   }
 
   return (
@@ -125,6 +106,14 @@ const WorkspaceForm = ({ workspace, redirectOnSave }: Props) => {
 
               <Form.Item label={t('form.workspace.description.label')} name='description'>
                 <TextArea name="description" />
+              </Form.Item>
+
+              <Form.Item label={t('form.workspace.website.label')} name='website'>
+                <Input name="website" placeholder={t('form.workspace.website.placeholder')} />
+              </Form.Item>
+
+              <Form.Item label={t('form.workspace.country.label')} name='country_id'>
+                <FormCountrySelect name="country_id" placeholder={t('form.workspace.country.placeholder')} />
               </Form.Item>
 
               <Form.Item className="big-radio-group" label={t('form.workspace.membership.label')} name='membership'>

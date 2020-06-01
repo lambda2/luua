@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_31_151848) do
+ActiveRecord::Schema.define(version: 2020_06_01_164540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -526,7 +526,12 @@ ActiveRecord::Schema.define(version: 2020_05_31_151848) do
     t.integer "membership", default: 0, null: false
     t.integer "discussions_count", default: 0, null: false
     t.integer "polls_count", default: 0, null: false
+    t.string "website"
+    t.bigint "region_id"
+    t.bigint "country_id"
+    t.index ["country_id"], name: "index_workspaces_on_country_id"
     t.index ["organization_id"], name: "index_workspaces_on_organization_id"
+    t.index ["region_id"], name: "index_workspaces_on_region_id"
   end
 
   add_foreign_key "countries", "regions"
@@ -580,5 +585,7 @@ ActiveRecord::Schema.define(version: 2020_05_31_151848) do
   add_foreign_key "workspace_requests", "workspaces"
   add_foreign_key "workspace_users", "users"
   add_foreign_key "workspace_users", "workspaces"
+  add_foreign_key "workspaces", "countries"
   add_foreign_key "workspaces", "organizations"
+  add_foreign_key "workspaces", "regions"
 end
