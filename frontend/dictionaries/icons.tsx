@@ -140,6 +140,15 @@ export default {
     "completed": <FontAwesomeIcon icon={faInbox} />,
     "reviewed": <FontAwesomeIcon icon={faCheckCircle} />
   },
+  "mission": {
+    "status": {
+      "open": <FontAwesomeIcon icon={faEnvelope} />,
+      "canceled": <FontAwesomeIcon icon={faTimesCircle} />,
+      "started": <FontAwesomeIcon icon={faSpinner} spin />,
+      "pending": <FontAwesomeIcon icon={faInbox} />,
+      "completed": <FontAwesomeIcon icon={faCheckCircle} />
+    }
+  },
   "poll": {
     "draft": <FontAwesomeIcon icon={faPencilAlt} />,
     "closed": <FontAwesomeIcon icon={faCheckCircle} />,

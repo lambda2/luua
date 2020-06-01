@@ -65,7 +65,6 @@ const MissionApplication = ({
         return <MissionApplyBox onApply={applyForMission} application={application} mission={mission} />
       case 'accepted':
         return application && <MissionPerformBox onComplete={completeMission} application={application} mission={mission} />
-
       default:
         return <MissionApplyBox onApply={applyForMission} application={application} mission={mission} />
     }

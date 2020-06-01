@@ -62,6 +62,7 @@ class MissionUser < ApplicationRecord
   end
 
   after_save :recompute_status_from_changes!
+  before_save :set_status_from_mission
 
   aasm column: :status, enum: true, logger: Rails.logger do
     state :applied, initial: true
@@ -103,6 +104,14 @@ class MissionUser < ApplicationRecord
   # check if we have something to do on the mission
   def recompute_status_from_changes!
     mission.recompute_status_from_changes!
+  end
+
+  # Depending on the missions hiring validation, the
+  # mission user could be automatically accepted
+  def set_status_from_mission
+    if mission.accept_all_hiring_validation? && applied_status?
+      self.accept!
+    end
   end
 
   def compute_match_score

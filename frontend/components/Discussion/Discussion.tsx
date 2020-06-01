@@ -203,11 +203,11 @@ const Discussion = ({
           {discussion?.name}
         </Title>
         <aside>
-          <Dropdown key="dropdown" overlay={menu}>
+          {currentUser && <Dropdown key="dropdown" overlay={menu}>
             <Button type="link">
               <span className="text-light">{' '}{icons.down}</span>
             </Button>
-          </Dropdown>
+          </Dropdown>}
         </aside>
       </header>
 

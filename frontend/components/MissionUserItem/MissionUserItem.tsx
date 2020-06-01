@@ -36,6 +36,8 @@ const MissionUserItem = ({
       >
         <Link key={id} {...manage.workspace.candidates.show(`${query.workspace_id || mission.workspace_id}`, `${id}`)}>
           <a>
+            <UserAvatarTooltip text {...user} />
+            {' - '}
             <MissionUserStatusBadge mission={mission} status={status} />{' '}{(!activeMission || activeMission !== mission.id) && mission && mission.name}
             <div className="sub-title text-light">
               <UserAvatarTooltip {...user} /> {t(`mission_user.${status}.state`, { name: mission && mission.name })}

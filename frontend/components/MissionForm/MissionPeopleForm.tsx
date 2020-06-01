@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Slider, Radio } from 'formik-antd'
+import { Form, Slider, Radio, Switch } from 'formik-antd'
 import { useLocale } from 'hooks/useLocale';
 
 interface Props {
@@ -36,6 +36,15 @@ const MissionPeopleForm = ({ mission }: Props) => {
         />
 
       </Form.Item>
+
+      <Form.Item name='physical' label={t('form.mission.physical.label')}>
+        <span className="hint">{t('form.mission.physical.hint')}{' '}</span>
+        <Switch
+          name="physical"
+          checkedChildren={t('form.mission.physical.yes')}
+          unCheckedChildren={t('form.mission.physical.no')}
+        />
+      </Form.Item>
       
       {/* @TODO later */}
       {/* <Form.Item label={t('form.mission.hiring_validation.label')} name='hiring_validation'>
@@ -60,7 +69,7 @@ const MissionPeopleForm = ({ mission }: Props) => {
         </Radio.Group>
 
       </Form.Item> */}
-
+{/* 
       <Form.Item label={t('form.mission.visibility.label')} name='visibility'>
         <span className="hint">{t('form.mission.visibility.hint')}{' '}</span>
         <Radio.Group name={'visibility'}>
@@ -82,7 +91,7 @@ const MissionPeopleForm = ({ mission }: Props) => {
           </Radio>
         </Radio.Group>
 
-      </Form.Item>
+      </Form.Item> */}
     </div>)
 }
 

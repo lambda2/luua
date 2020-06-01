@@ -57,7 +57,7 @@ const MissionForm = ({ mission, discussion, workspace_id }: Props) => {
       discussion_id: mission?.discussion_id || discussion?.id || '',
       image: mission?.image || '',
       banner_image: mission?.banner_image || '',
-      visibility: mission?.visibility || 'protected',
+      visibility: mission?.visibility || 'public',
       hiring_validation: mission?.hiring_validation || 'accept_all',
       participant_count: mission?.participant_count || 1,
       globalErrors: undefined,

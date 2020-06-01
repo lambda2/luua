@@ -23,14 +23,6 @@ const MissionInfoForm = ({ mission }: Props) => {
       <TextArea name="description" />
     </Form.Item>
 
-    <Form.Item name='physical' label={t('form.mission.physical.label')}>
-      <span className="hint">{t('form.mission.physical.hint')}{' '}</span>
-      <Switch
-        name="physical"
-        checkedChildren={t('form.mission.physical.yes')}
-        unCheckedChildren={t('form.mission.physical.no')}
-      />
-    </Form.Item>
   </div>)
 }
 

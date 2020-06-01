@@ -6,6 +6,7 @@ import icons from 'dictionaries/icons';
 import { statusForPoll } from 'utils/poll';
 import Tag from 'elements/Tag/Tag';
 import Badge from 'elements/Badge/Badge';
+import MissionStatusBadge from 'components/MissionStatusBadge/MissionStatusBadge';
 
 const { manage } = routes
 
@@ -40,12 +41,14 @@ const LinkedItem = (props: LinkedObject) => {
             <a>
               <Tag><b>{t('menu.mission')}</b></Tag>
               {' '}
+              <MissionStatusBadge status={linked.status} />
+              {' '}
+
               <span>{linked.name}</span>
             </a>
           </Link>
       </div>
     )
-
   }
 
   const renderPoll = (linked: LightPoll) => {

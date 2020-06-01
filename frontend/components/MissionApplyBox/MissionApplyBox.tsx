@@ -25,7 +25,7 @@ const MissionApplyBox = ({
     <>
       {!application && <MessageBox title={t('mission.candidate.apply.title')}>
         <div>
-          <Button onClick={onApply}>{t('mission.candidate.apply.apply')}</Button>
+          <Button onClick={onApply}>{t(`mission.candidate.apply.hiring_validation.${mission.hiring_validation}`)}</Button>
         </div>
       </MessageBox>}
       {application && <MessageBox title={t(`mission.candidate.${application.status}.title`)}>

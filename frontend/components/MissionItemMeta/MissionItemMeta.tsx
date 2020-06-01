@@ -6,6 +6,7 @@ import Link from 'next/link';
 import icons from 'dictionaries/icons';
 import momentWithLocale from 'i18n/moment';
 import UserAvatar from 'elements/UserAvatar/UserAvatar';
+import MissionStatusBadge from 'components/MissionStatusBadge/MissionStatusBadge';
 
 const { manage } = routes
 
@@ -85,6 +86,9 @@ const MissionItemMeta = ({
         </Link>
       </li>}
       
+      <li>
+        <MissionStatusBadge status={mission.status} />
+      </li>
       {currentUser && renderVisibility()}
       <li className="physical">{icons.location.physical} {physical ? t('location.physical') : t('location.online')}</li>
       {begin_at && end_at && <li className="begin-at">{icons.date} {t('mission.from-to', { start: moment(begin_at).calendar().toLowerCase(), end: moment(end_at).calendar().toLowerCase() })}</li>}

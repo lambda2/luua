@@ -5,6 +5,7 @@ import { useLocale } from 'hooks/useLocale';
 
 import MessageBox from 'elements/MessageBox/MessageBox';
 import momentWithLocale from 'i18n/moment';
+import PageSection from 'elements/PageSection/PageSection';
 
 interface Props {
   onComplete: () => Promise<void>
@@ -87,9 +88,9 @@ const MissionPerformBox = ({
 
   return (
     <div className="MissionPerformBox">
-      <MessageBox title={t(`mission.candidate.${application.status}.title`)}>
+      <PageSection title={t(`mission.candidate.${application.status}.title`)}>
         {mission.begin_at && renderDelayed() || renderNormal()}
-      </MessageBox>
+      </PageSection>
     </div> || <></>
   )
 }

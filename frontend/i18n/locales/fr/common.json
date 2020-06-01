@@ -244,10 +244,33 @@
     "from-to": "De {{start}} à {{end}}",
     "contributors": "Contributeurs",
     "created-by": "Créee par",
+    "your-application": "Votre candidature",
     "required-skills": "Compétences requises",
     "recommended-skills": "Compétences recommandées",
     "summary": "Résumé",
     "chat": "Discussion",
+    "status": {
+      "open": {
+        "title": "Disponible",
+        "description": ""
+      },
+      "pending": {
+        "title": "En attente",
+        "description": ""
+      },
+      "canceled": {
+        "title": "Annulée",
+        "description": ""
+      },
+      "started": {
+        "title": "En cours",
+        "description": ""
+      },
+      "completed": {
+        "title": "Terminée",
+        "description": ""
+      }
+    },
     "candidate": {
       "notlogged": {
         "title": "Envie de donner un coup de main ?",
@@ -257,7 +280,11 @@
       },
       "apply": {
         "title": "Envie de donner un coup de main ?",
-        "apply": "Postuler maintenant"
+        "apply": "Postuler maintenant",
+        "hiring_validation": {
+          "accept_all": "S'enregistrer pour la mission",
+          "review": "Postuler pour la mission"
+        }
       },
       "apply-self": {
         "title": "Envie de faire votre propre mission ?",

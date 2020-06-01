@@ -9,7 +9,7 @@ import classNames from 'classnames';
 import UserContext from 'contexts/UserContext';
 import find from 'lodash/find';
 import can from 'utils/can';
-import { Menu, Dropdown, Button } from 'antd';
+import { Menu, Dropdown, Button, Tag } from 'antd';
 import icons from 'dictionaries/icons';
 import { Tabs, Tab, TabSpacer } from 'elements/TabMenu/TabMenu';
 
@@ -95,7 +95,10 @@ const MissionHeader = ({
               <span className="separator">/</span>
               <Link key="missions" {...ROUTES.manage.workspace.missions.index(workspace.slug)}><a>{t('menu.missions')}</a></Link>
             </div>
-            { mission.name }
+            <span>
+              {/* <Tag>{mission.status}</Tag> */}
+              {mission.name}
+            </span>
           </>}
           extra={[
             <aside key="options">

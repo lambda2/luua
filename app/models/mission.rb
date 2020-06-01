@@ -142,7 +142,9 @@ class Mission < ApplicationRecord
   after_save :schedule_events
 
   def set_proper_status
-    self.status = :started unless begin_at&.future?
+    return if begin_at&.future?
+
+    self.status = :started unless participant_count&.positive?
   end
 
   # Schedule async events for the mission
