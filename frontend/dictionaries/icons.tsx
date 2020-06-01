@@ -32,6 +32,7 @@ import {
   faLightbulb,
   faPlusSquare,
   faEnvelopeOpen,
+  faThumbsUp,
 } from '@fortawesome/free-regular-svg-icons'
 
 import {
@@ -53,6 +54,7 @@ import {
   faBug,
   faLockOpen,
   faLink,
+  faThumbsUp as faThumbsUpFill,
   faLocationArrow,
   faUsers,
 } from '@fortawesome/free-solid-svg-icons'
@@ -103,6 +105,8 @@ export default {
   "up": <FontAwesomeIcon className="menu-icon" icon={faChevronUp} />,
   "down": <FontAwesomeIcon className="menu-icon" icon={faChevronDown} />,
   "plus": <FontAwesomeIcon className="menu-icon" icon={faPlus} />,
+  "plusthumb": <FontAwesomeIcon className="menu-icon" icon={faThumbsUp} />,
+  "plusthumbfill": <FontAwesomeIcon className="menu-icon" icon={faThumbsUpFill} />,
   "plussquare": <FontAwesomeIcon className="menu-icon" icon={faPlusSquare} />,
   "send": <FontAwesomeIcon className="menu-icon" icon={faPaperPlane} />,
   "bug": <FontAwesomeIcon className="menu-icon" icon={faBug} />,

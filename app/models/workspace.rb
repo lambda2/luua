@@ -49,6 +49,8 @@ class Workspace < ApplicationRecord
   has_many :discussions, as: :resource, dependent: :destroy
   has_many :discussion_readings, through: :discussions
 
+  has_many :message_votes
+
   # People invited to join the workspace
   has_many :workspace_invitations, dependent: :destroy
 

@@ -6,10 +6,14 @@ import { useLocale } from 'hooks/useLocale';
 interface Props {
   data: LightDiscussion[]
   readings?: DiscussionReading[]
+  onVote?: (message: Message, vote: MessageVoteOption) => {}
+  userVotes?: MessageVote[]
 }
 
 const DiscussionList = ({
   data,
+  userVotes = [],
+  onVote,
   readings
 }: Props) => {
 
@@ -23,6 +27,8 @@ const DiscussionList = ({
     emptyText={t('discussion.empty')}
     renderItem={(item: LightDiscussion) => <DiscussionItem 
       discussion={item}
+      onVote={onVote}
+      userVote={userVotes.find(uv => uv.message_id === item.root_message?.id)}
       reading={readings ? readings.find(r => r.discussion_id === item.id) : false}
     />}
   />)

@@ -34,6 +34,9 @@ const MessageListItem = ({
 
   const moment = momentWithLocale(language as AvailableLocale)
 
+  const onVotePositive = () => currentUser && onVote && onVote(message, 'positive')
+  const onVoteNegative = () => currentUser && onVote && onVote(message, 'negative')
+  
   const onFormEdit = async (content: string) => {
     setEditing(false)
     const response = await onEdit({ ...message, content })
@@ -62,11 +65,11 @@ const MessageListItem = ({
         <div className="MessageVote">
           <div className={classNames('vote', 'vote-up', { "vote-zero": message.positive_vote_count === 0, active: userVote?.vote === 'positive'})} key="vote-up">
             <span>{message.positive_vote_count}</span>
-            <button onClick={() => currentUser && onVote && onVote(message, 'positive')}>{icons.up}</button>
+            <button onClick={onVotePositive}>{icons.up}</button>
           </div>
           <div className={classNames('vote', 'vote-down', { "vote-zero": message.negative_vote_count === 0, active: userVote?.vote === 'negative'})} key="vote-down">
             <span>{message.negative_vote_count}</span>
-            <button onClick={() => currentUser && onVote && onVote(message, 'negative')}>{icons.down}</button>
+            <button onClick={onVoteNegative}>{icons.down}</button>
           </div>
         </div>
         <aside>{message.user && <UserMessageAvatar size="large" name={message.user?.username} src={message.user?.thumb_url} />}</aside>

@@ -18,6 +18,7 @@ import { Menu, Dropdown, Button } from 'antd';
 import icons from 'dictionaries/icons';
 import DiscussionsLeftMenu from 'layouts/DiscussionsLeftMenu/DiscussionsLeftMenu';
 import { Head } from 'components/Head/Head';
+import { vote } from 'api/message';
 const { manage } = routes
 
 /**
@@ -41,6 +42,16 @@ const Discussions = (
     `/api/workspaces/${query.workspace_id}/discussion_readings/mines`, token, {}, {}
   )
 
+  // @TODO this hits the browser cache each time the user is voting
+  const votesResponse = useCollection<MessageVote[]>(
+    `/api/workspaces/${query.workspace_id}/message_votes/mines?only_roots=true`, (token || currentUser?.jwt)
+  )
+
+  const voteMessage = async (message: Message, selectedVote: MessageVoteOption) => {
+    await vote(message.id, selectedVote, currentUser?.jwt || '')
+    return await votesResponse?.refetch({ force: true })
+  }
+  
   const menu = (
     <Menu>
       {can(currentUser, 'discussion.create', currentWorkspace) && <Menu.Item key="create-discussion">
@@ -74,6 +85,8 @@ const Discussions = (
         <DiscussionList
           readings={discussionsReadingsResponse.data}
           data={response.data as LightDiscussion[]}
+          userVotes={votesResponse?.data}
+          onVote={voteMessage}
         />
       </ContentLayout>
     </NetworkBoundary>

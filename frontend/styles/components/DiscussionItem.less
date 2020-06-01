@@ -23,6 +23,7 @@
     top: 2px;
     width: 20px;
     color: @text-color-light;
+    
   }
 
   h5 {
@@ -102,5 +103,45 @@
     display: flex;
     align-items: center;
   }
+
+
+    .vote {
+      // opacity: .7;
+      display: flex;
+      // min-width: 50px;
+      align-items: center;
+      justify-content: flex-end;
+      
+      button {
+        background: none;
+        border: none;
+        box-shadow: none;
+        -webkit-appearance: none;
+        cursor: pointer;
+
+        &:focus {
+          border: none;
+          box-shadow: none;
+        }
+
+      }
+
+      &.vote-up button:hover {
+        color: @primary-color;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &.active {
+        font-weight: bold;
+        opacity: 1;
+
+        &.vote-up {
+          color: @primary-color;
+        }
+      }
+    }
 
 }

@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import PageSection from 'elements/PageSection/PageSection';
 import LinkedItem from 'components/LinkedItem/LinkedItem';
 import Tag from 'elements/Tag/Tag';
-import { Tooltip } from 'antd';
+import { Tooltip, Button } from 'antd';
 import MarkdownContent from 'elements/MarkdownContent/MarkdownContent';
 import MarkdownExcerpt from 'elements/MarkdownContent/MarkdownExcerpt';
 
@@ -21,12 +21,16 @@ const { manage } = routes
 interface Props {
   discussion: LightDiscussion
   reading?: DiscussionReading | false
+  userVote?: MessageVote
+  onVote?: (message: Message, vote: MessageVoteOption) => {}
   showWorkspace?: boolean
 }
 
 const DiscussionItem = ({
   discussion,
   reading,
+  onVote,
+  userVote,
   showWorkspace = false
 }: Props) => {
 
@@ -40,6 +44,7 @@ const DiscussionItem = ({
     user,
     slug,
     polls,
+    root_message,
     workspace_id,
     workspace,
     participants,
@@ -54,6 +59,8 @@ const DiscussionItem = ({
     reading === undefined ||
     moment(modified_at || created_at).isAfter(moment(reading.updated_at))
   )
+  const onVotePositive = () => currentUser && root_message && onVote && onVote(root_message, 'positive')
+  const active = userVote?.vote === 'positive'
 
   return (
     <div className={classNames("DiscussionItem", { 'locked': locked_at, 'unread-messages': unread, 'read-messages': reading !== false && !unread })}>
@@ -86,6 +93,7 @@ const DiscussionItem = ({
         </li>}
       </h5>
 
+      {/* The first message's first line of content */}
       {discussion.root_message && <div>
         <MarkdownExcerpt content={discussion.root_message.content} />
       </div>}
@@ -112,9 +120,16 @@ const DiscussionItem = ({
             </Link>
           </li>}
 
+          <li key="upvote-count" className="upvote-count">
+            {root_message && onVote && <div className={classNames('vote', 'vote-up', { "vote-zero": root_message.positive_vote_count === 0, active })} key="vote-up">
+              <span>{root_message.positive_vote_count}</span>
+              <button onClick={onVotePositive}>{active ? icons.plusthumbfill : icons.plusthumb}</button>
+            </div>}
+          </li>
+          <li key="messages-count" className="messages-count">{icons.comments} {discussion.messages_count}</li>
+
           <li key="created-at" className="created-at">{t('generics.published')} {moment(created_at).calendar()}</li>
           {modified_at && <li key="modified-at" className="modified-at">{icons.date} {moment(modified_at).calendar()}</li>}
-          <li key="messages-count" className="messages-count">{icons.comments} {discussion.messages_count}</li>
           {/* <li key="messages-count" className="messages-count">{icons.comments} {t('discussion.messages_count', {count: discussion.messages_count})}</li> */}
           <li key="participants" className="participants">
             {participants.slice(0, 5).map(u => <UserAvatarTooltip key={u.id} text={false} image {...u} />)}

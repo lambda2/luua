@@ -67,6 +67,7 @@ class Api::MessagesController < ApiController
       render json: MessageVoteSerializer.new.serialize(existing), status: :ok
     else
       existing = MessageVote.create(vote: actual_vote[:vote], user_id: current_user.id, message_id: @message.id)
+      puts existing.errors.messages
       render json: MessageVoteSerializer.new.serialize(existing), status: :created
     end
   end

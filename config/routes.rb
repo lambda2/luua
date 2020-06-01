@@ -32,6 +32,10 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
       post 'join', on: :member, action: :join
       get 'categories', on: :member, action: :categories
 
+      resources :message_votes do
+        get 'mines', on: :collection, action: :mines
+      end
+      
       resources :missions
       resources :discussions, shallow: true
       resources :polls, shallow: true
