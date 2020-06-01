@@ -858,6 +858,7 @@
   "notifications": {
     "read-all": "Tout marquer comme lu",
     "read": "Marquer comme lu",
+    "see-all": "Voir toutes les notifications",
     "empty": "Aucune notification 🎉",
     "discussion": {
       "message": {

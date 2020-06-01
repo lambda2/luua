@@ -149,10 +149,7 @@ const WorkspaceHeader = memo((props: Props) => {
     actions = []
   } = props
 
-  const { currentUser } = useContext(UserContext)
-
-  console.log("WorkspaceHeader re-rendered", { props });
-  
+  const { currentUser } = useContext(UserContext)  
 
   const buttons: ResourceButtons = {
     new: <PrimaryLink key="new" {...manage.manage.workspace.new()}>{t('menu.new')}</PrimaryLink>,

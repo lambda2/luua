@@ -5,6 +5,11 @@ import { useLocale } from "../../hooks/useLocale";
 import UserAvatar from '../UserAvatar/UserAvatar';
 import PrimaryLink from '../PrimaryLink/PrimaryLink';
 import classNames from 'classnames';
+import Menu, { ClickParam } from 'antd/lib/menu';
+import NotificationItem from 'components/NotificationItem/NotificationItem';
+import UserContext from 'contexts/UserContext';
+import { useContext, useState } from 'react';
+import { Dropdown } from 'antd';
 
 const { users } = routes
 
@@ -17,6 +22,7 @@ interface Props {
 const UserMenuDropdown = ({ user, notifications }: Props) => {
 
   const { t } = useLocale()
+  const [visible, setVisible] = useState(false)
 
   if (!user) {
 
@@ -25,7 +31,41 @@ const UserMenuDropdown = ({ user, notifications }: Props) => {
     );
   }
 
+  const handleMenuClick = (e: ClickParam) => {
+    if (e.key === '3') {
+      setVisible(false)
+    }
+  };
+
+  const handleVisibleChange = (flag: boolean) => {
+    setVisible(flag)
+  };
+
   const { username, thumb_url } = user
+  const { currentUser, readAllNotifications, readNotification } = useContext(UserContext)
+  const onClick = (nid) => {
+    readNotification(nid)
+    setVisible(false)
+  }
+
+  const menu = (
+    <Menu onClick={handleMenuClick}>
+      {notifications?.map(n => {
+        return (<Menu.Item key={n.id}>
+          <NotificationItem onClick={onClick} notification={n} onRead={readNotification as any} />
+        </Menu.Item>)
+      })}
+      {notifications?.length === 0 && <Menu.Item disabled={true} key={'empty'}>
+        {t('notifications.empty')}
+      </Menu.Item>}
+      <Menu.Divider />
+      {<Menu.Item key={'link-to'}>
+        <Link {...users.notifications()}>
+          <a className="text-light text-centered">{t('notifications.see-all')}</a>
+        </Link>
+      </Menu.Item>}
+    </Menu>
+  );
 
   return (
     <>
@@ -35,11 +75,16 @@ const UserMenuDropdown = ({ user, notifications }: Props) => {
           <span>{username}</span>
         </a>
       </Link>
-      <Link key={'notifications'} {...users.notifications()}>
-        <a className={classNames("UserNotification", { 'has-notifications': (notifications?.length || 0) > 0 })}>
+      <Dropdown
+        overlay={menu}
+        onVisibleChange={handleVisibleChange}
+        visible={visible}
+      >
+        <a className={classNames("ant-dropdown-link", "UserNotification", { 'has-notifications': (notifications?.length || 0) > 0 })} onClick={e => e.preventDefault()}>
           {notifications?.length || 0}
         </a>
-      </Link>
+      </Dropdown>
+
     </>
   );
 }

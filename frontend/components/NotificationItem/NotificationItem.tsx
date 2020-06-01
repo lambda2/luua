@@ -10,9 +10,10 @@ import classNames from 'classnames';
 interface Props {
   notification: UserNotification,
   onRead: (id: string | number) => Promise<void>
+  onClick?: (id: string | number) => void
 }
 
-const NotificationItem = ({notification, onRead}: Props) => {
+const NotificationItem = ({ notification, onRead, onClick}: Props) => {
 
   const {
     id,
@@ -29,16 +30,15 @@ const NotificationItem = ({notification, onRead}: Props) => {
   const { t, language } = useLocale()
   const moment = momentWithLocale(language as AvailableLocale)
   const notificationHref = linkForNotification({ resource, link, code }) || {href: '#'}
+  const onClickLink = () => onClick && onClick(id)
 
-  console.log("Rendering:", { notification });
-  
   const description = code === 'custom' ? content : t(`notifications.${code}.content`, resource)
   
   return (
     <div className={classNames("NotificationItem", {'unread': !viewed_at})}>
       <h4>
         <Link key={id} {...notificationHref}>
-          <a>{code === 'custom' ? title : t(`notifications.${code}.title`, resource)}</a>
+          <a onClick={onClickLink}>{code === 'custom' ? title : t(`notifications.${code}.title`, resource)}</a>
         </Link>
         {!viewed_at && <Button onClick={() => onRead(id)}>{t('notifications.read')}</Button>}
       </h4>
