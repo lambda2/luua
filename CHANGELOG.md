@@ -1,4 +1,14 @@
 
+0.3.0 / 2020-06-02
+==================
+
+  * Discussions can now be voted
+  * Discussions now show the first message excerpt in the discussion list
+  * Pages are now rooted to / scope, so urls are cleaner
+  * Adding an inline notification dropdown menu
+  * Adding discussion categories
+  * Adding discussion lock
+
 0.2.0 / 2020-05-30
 ==================
 
