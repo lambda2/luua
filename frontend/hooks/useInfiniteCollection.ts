@@ -3,7 +3,7 @@ import plh from 'parse-link-header';
 import { useLocale } from './useLocale';
 import api, { getHeaders } from '../utils/http';
 import { AxiosResponse } from 'axios';
-import { usePaginatedQuery } from 'react-query';
+import { usePaginatedQuery, useInfiniteQuery } from 'react-query';
 
 
 export interface Props<T> {
@@ -15,10 +15,14 @@ export interface Props<T> {
   initialData?: T[]
 }
 
-export interface PaginatedResult<T> {
-  resolvedData: T[] | undefined
-  latestData: T[] | undefined
-  refetch: () => Promise<T[]>,
+export interface InfiniteResult<T> {
+  status: "error" | "loading" | "success",
+  data: T[][],
+  error: Error | null,
+  isFetching: boolean,
+  isFetchingMore: boolean,
+  fetchMore: (moreVariable?: unknown) => Promise<T[][]> | undefined,
+  canFetchMore: boolean | undefined,
   page: number,
   nextPage: number | undefined,
   prevPage: number | undefined,
@@ -31,14 +35,14 @@ export interface PaginatedResult<T> {
  * A hook allowing us to paginate a remote collection properly
  * @TODO this is a very basic and unsatisfying implementation :/
  */
-export function usePaginatedCollection<T>({
+export function useInfiniteCollection<T>({
   initialPage = 1,
   endpoint,
   token,
   queryKey,
   queryParams,
   initialData
-}: Props): PaginatedResult<T> {
+}: Props): InfiniteResult<T> {
   const [page, setPage] = useState<number>(initialPage);
   const [nextPage, setNextPage] = useState<number | undefined>(undefined)
   const [prevPage, setPrevPage] = useState<number | undefined>(undefined)
@@ -76,19 +80,43 @@ export function usePaginatedCollection<T>({
   }
 
   const {
-    resolvedData,
-    latestData,
-    refetch
-  } = usePaginatedQuery<T[], [any, any]>(
-    [_queryKey, _queryParams],
-    fetchData,
-    options
-  );
+    status,
+    data,
+    error,
+    isFetching,
+    isFetchingMore,
+    fetchMore,
+    canFetchMore,
+  } = useInfiniteQuery(
+    _queryKey,
+    async (key, page = initialPage) => {
+      const res = await api<T[]>(`${endpoint}?page=${page?.page || page}`, { headers })
+      stateFromHeaders(res)
+      return res.data
+    },
+    {
+      getFetchMore: lastGroup => nextPage,
+    }
+  )
+
+  // const {
+  //   resolvedData,
+  //   latestData,
+  //   refetch
+  // } = usePaginatedQuery<T[], [any, any]>(
+  //   [_queryKey, _queryParams],
+  //   fetchData,
+  //   options
+  // );
 
   return {
-    resolvedData,
-    latestData,
-    refetch,
+    status,
+    data,
+    error,
+    isFetching,
+    isFetchingMore,
+    fetchMore,
+    canFetchMore,
     page,
     nextPage,
     prevPage,
@@ -98,4 +126,4 @@ export function usePaginatedCollection<T>({
 }
 
 
-export default usePaginatedCollection
+export default useInfiniteCollection

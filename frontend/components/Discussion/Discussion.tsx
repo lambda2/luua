@@ -1,18 +1,17 @@
-import React, { useContext, useState, useCallback, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import UserContext from 'contexts/UserContext';
-import plh from 'parse-link-header';
 
 import DiscussionInput from 'elements/DiscussionInput/DiscussionInput';
 import { create, update, destroy } from 'api/message';
-import { useMutation, usePaginatedQuery, queryCache } from 'react-query';
+import { useMutation, queryCache } from 'react-query';
 import MessageList from '../MessageList/MessageList';
 import Paginated from '../Paginated/Paginated';
 import can from 'utils/can';
 import MessageBox from 'elements/MessageBox/MessageBox';
 import { useLocale } from 'hooks/useLocale';
 import { vote } from 'api/message';
-import api, { useCollection, getHeaders } from 'utils/http';
+import { useCollection } from 'utils/http';
 import Title from 'elements/Title/Title';
 import DiscussionCategoryBadge from 'elements/DiscussionCategoryBadge/DiscussionCategoryBadge';
 import ROUTES from 'routes/routes';
@@ -23,11 +22,11 @@ import Router from 'next/router';
 import PollFromDiscussionModal from 'components/PollFromDiscussionModal/PollFromDiscussionModal';
 import PageSection from 'elements/PageSection/PageSection';
 import LinkedItem from 'components/LinkedItem/LinkedItem';
-import { AxiosResponse } from 'axios';
 import omit from 'lodash/omit';
 import { createItemMutation, updateItemMutation, destroyItemMutation } from 'utils/collectionMutations';
 import { read, lock } from 'api/discussion';
 import MissionFromDiscussionModal from 'components/MissionFromDiscussionModal/MissionFromDiscussionModal';
+import usePaginatedCollection from 'hooks/usePaginatedCollection';
 
 interface Props {
   discussion?: Discussion
@@ -44,42 +43,26 @@ const Discussion = ({
 }: Props) => {
 
   const { currentUser } = useContext(UserContext)
-  const { t, language } = useLocale()
-
-  const authHeaders = getHeaders(token || '');
-  const headers = {
-    'Accept-Language': language,
-    'cache-control': 'no-cache',
-    'pragma': 'no-cache',
-    ...authHeaders
-  }
-
-  const [page, setPage] = useState<number>(initialPage);
-  const [nextPage, setNextPage] = useState<number | undefined>(undefined)
-  const [prevPage, setPrevPage] = useState<number | undefined>(undefined)
-  const [lastPage, setLastPage] = useState<number | undefined>(undefined)
-
-  const stateFromHeaders = (lastPage: AxiosResponse<Message[]>) => {
-    const parsed = plh(lastPage.headers.link)
-    setNextPage(parsed?.next?.page)
-    setPrevPage(parsed?.prev?.page)
-    setLastPage(parsed?.last?.page)
-  }
-
-  const fetchMessages = useCallback(async (key, page = 1) => {
-    const res = await api<Message[]>(`/api/discussions/${discussion?.id}/messages?page=${page?.page || page}`, { headers })
-    stateFromHeaders(res)
-    return res.data;
-  }, []);
+  const { t } = useLocale()
 
   const queryKey = `messages`
-
+    
   const {
     resolvedData,
     latestData,
-    refetch
-  } = usePaginatedQuery<Message[], [any, any]>([queryKey, { discussion_id: discussion?.id, page }], fetchMessages, {});
-
+    refetch,
+    page,
+    nextPage,
+    prevPage,
+    lastPage,
+    setPage,
+  } = usePaginatedCollection<Message>({
+    initialPage,
+    token,
+    endpoint: `/api/discussions/${discussion?.id}/messages`,
+    queryKey,
+    queryParams: { discussion_id: discussion?.id }
+  })
 
   // @TODO this hits the browser cache each time the user is voting
   const votesResponse = useCollection<MessageVote[]>(
@@ -226,6 +209,8 @@ const Discussion = ({
         lastPage={lastPage}
         prev={() => setPage(old => Math.max(old - 1, 0))}
         next={() => setPage(old => (!latestData || !nextPage ? old : old + 1))}
+        last={() => setPage(old => (!latestData || !nextPage ? old : lastPage || old))}
+        first={() => setPage(1)}
         page={page && parseInt(page.toString()) || undefined}
         renderList={(messages) => <MessageList
           userVotes={votesResponse?.data}

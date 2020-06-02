@@ -1,15 +1,57 @@
 import React from 'react'
 import { Button } from 'antd'
 
-interface Props<T> {
-  renderList: (data: T) => React.ReactNode
-  data?: T
+interface PaginationButtonsProps<T> {
   next: () => void
   prev: () => void
+  last?: () => void
+  first?: () => void
   page: number | undefined
   nextPage: number | undefined
   prevPage: number | undefined
   lastPage: number | undefined
+}
+interface Props<T> extends PaginationButtonsProps<T> {
+  renderList: (data: T) => React.ReactNode
+  data?: T
+}
+
+
+const PaginationButtons = <T extends unknown>(
+  props: PaginationButtonsProps<T>
+) => {
+
+  const {
+    next,
+    prev,
+    last,
+    first,
+    page,
+    nextPage,
+    prevPage,
+    lastPage
+  } = props
+
+  const style: React.CSSProperties = {
+    display: 'block',
+    margin: 'auto',
+    textAlign: 'center',
+    padding: '8px'
+  }
+
+  if (prevPage || nextPage) {
+    return (<div style={style}>
+      <Button.Group>
+        {prevPage && first && <Button disabled={page == 1 || !prevPage} onClick={first}>First</Button>}
+        {prev && <Button disabled={!prevPage} onClick={prev}>Previous</Button>}
+        <Button disabled type="link">Page {page} / {lastPage || page}</Button>
+        {next && <Button disabled={page == lastPage || !nextPage} onClick={next}>Next</Button>}
+        {lastPage && last && <Button disabled={page == lastPage || !nextPage} onClick={last}>Last</Button>}
+      </Button.Group>
+    </div>)
+  } else {
+    return <></>
+  }
 }
 
 /**
@@ -23,25 +65,14 @@ const Paginated = <T extends unknown>(
 
   const {
     renderList,
-    next,
-    prev,
     data,
-    page,
-    nextPage,
-    prevPage,
-    lastPage
+    ...paginationProps
   } = props
   
   return <>
-    {prevPage && <Button onClick={prev}>Page {prevPage}</Button>}
-
+    <PaginationButtons {...paginationProps} />
     {data && renderList(data)}
-
-    <Button.Group>
-      {prevPage && <Button onClick={prev}>Page {prevPage}</Button>}
-      {/* <Button onClick={() => refetch()}>Refresh</Button> */}
-      {nextPage && <Button onClick={next}>Page {nextPage}</Button>}
-    </Button.Group>
+    <PaginationButtons {...paginationProps} />
   </>
 
 }

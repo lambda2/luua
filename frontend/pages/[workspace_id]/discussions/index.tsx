@@ -19,6 +19,8 @@ import icons from 'dictionaries/icons';
 import DiscussionsLeftMenu from 'layouts/DiscussionsLeftMenu/DiscussionsLeftMenu';
 import { Head } from 'components/Head/Head';
 import { vote } from 'api/message';
+import usePaginatedCollection from 'hooks/usePaginatedCollection';
+import Paginated from 'components/Paginated/Paginated';
 const { manage } = routes
 
 /**
@@ -34,9 +36,30 @@ const Discussions = (
   const { currentWorkspace } = useContext(WorkspaceContext)
   const { currentUser } = useContext(UserContext)
 
-  const response = useCollection<LightDiscussion[]>(
-    `/api/workspaces/${query.workspace_id}/discussions`, token, {}, { initialData }
-  )
+  // const response = useCollection<LightDiscussion[]>(
+  //   `/api/workspaces/${query.workspace_id}/discussions`, token, {}, { initialData }
+  // )
+
+  const initialPage = query.page ? parseInt(`${query.page}`) : 1
+  const queryKey = `discussions`
+
+  const {
+    resolvedData,
+    latestData,
+    refetch,
+    page,
+    nextPage,
+    prevPage,
+    lastPage,
+    setPage,
+  } = usePaginatedCollection<LightDiscussion>({
+    initialPage,
+    token,
+    endpoint: `/api/workspaces/${query.workspace_id}/discussions`,
+    queryKey,
+    queryParams: { workspace_id: query.workspace_id },
+    initialData
+  })
 
   const discussionsReadingsResponse = useCollection<DiscussionReading[]>(
     `/api/workspaces/${query.workspace_id}/discussion_readings/mines`, token, {}, {}
@@ -68,28 +91,40 @@ const Discussions = (
     <Head
       title={t('meta.head.pages.discussions.index.title', { workspace: { name: wname } })}
     />
-    <NetworkBoundary<LightDiscussion[]> {...response}>
+    {/* <NetworkBoundary<LightDiscussion[]> {...resolvedData}> */}
       {currentWorkspace && <WorkspaceHeader
         workspace={currentWorkspace}
         active='discussions'
       />}
       <ContentLayout sideMenu={currentWorkspace && <DiscussionsLeftMenu workspace={currentWorkspace} />}>
-        {/* <PageTitle level='2' title={t('menu.discussions')}>
-          <Dropdown key="dropdown" overlay={menu}>
-            <Button type="link">
-              <span className="text-light">{' '}{icons.plussquare}</span>
-            </Button>
-          </Dropdown>
-        </PageTitle> */}
-        
+{/*         
         <DiscussionList
           readings={discussionsReadingsResponse.data}
           data={response.data as LightDiscussion[]}
           userVotes={votesResponse?.data}
           onVote={voteMessage}
+        /> */}
+
+
+        <Paginated<LightDiscussion[]>
+          data={resolvedData}
+          nextPage={nextPage}
+          prevPage={prevPage}
+          lastPage={lastPage}
+          prev={() => setPage(old => Math.max(old - 1, 0))}
+          next={() => setPage(old => (!latestData || !nextPage ? old : old + 1))}
+          last={() => setPage(old => (!latestData || !nextPage ? old : lastPage || old))}
+          first={() => setPage(1)}
+          page={page && parseInt(page.toString()) || undefined}
+          renderList={(discussions) => <DiscussionList
+            readings={discussionsReadingsResponse.data}
+            data={discussions}
+            userVotes={votesResponse?.data}
+            onVote={voteMessage}
+          />}
         />
       </ContentLayout>
-    </NetworkBoundary>
+    {/* </NetworkBoundary> */}
   </>)
 }
 Discussions.getInitialProps = async (ctx: any) => {
