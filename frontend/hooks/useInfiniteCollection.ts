@@ -3,7 +3,7 @@ import plh from 'parse-link-header';
 import { useLocale } from './useLocale';
 import api, { getHeaders } from '../utils/http';
 import { AxiosResponse } from 'axios';
-import { usePaginatedQuery, useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 
 
 export interface Props<T> {
@@ -17,11 +17,12 @@ export interface Props<T> {
 
 export interface InfiniteResult<T> {
   status: "error" | "loading" | "success",
-  data: T[][],
+  data: (T[] | undefined)[],
   error: Error | null,
   isFetching: boolean,
   isFetchingMore: boolean,
-  fetchMore: (moreVariable?: unknown) => Promise<T[][]> | undefined,
+  fetchMore: (moreVariable?: number | string) => Promise<(T[] | undefined)[]> | undefined,
+  fetchNext: () => Promise<(T[] | undefined)[]> | undefined,
   canFetchMore: boolean | undefined,
   page: number,
   nextPage: number | undefined,
@@ -42,9 +43,9 @@ export function useInfiniteCollection<T>({
   queryKey,
   queryParams,
   initialData
-}: Props): InfiniteResult<T> {
+}: Props<T>): InfiniteResult<T> {
   const [page, setPage] = useState<number>(initialPage);
-  const [nextPage, setNextPage] = useState<number | undefined>(undefined)
+  const [nextPage, setNextPage] = useState<number | undefined>(initialPage + 1)
   const [prevPage, setPrevPage] = useState<number | undefined>(undefined)
   const [lastPage, setLastPage] = useState<number | undefined>(undefined)
 
@@ -67,17 +68,7 @@ export function useInfiniteCollection<T>({
     setLastPage(parsed?.last?.page)
   }
 
-  const fetchData = useCallback(async (key, page = 1) => {
-    const res = await api<T[]>(`${endpoint}?page=${page?.page || page}`, { headers })
-    stateFromHeaders(res)
-    return res.data;
-  }, []);
-
-  const _queryParams = Object.assign(queryParams || {}, { page })
   const _queryKey = queryKey || endpoint
-  const options = {
-    initialData
-  }
 
   const {
     status,
@@ -89,25 +80,20 @@ export function useInfiniteCollection<T>({
     canFetchMore,
   } = useInfiniteQuery(
     _queryKey,
-    async (key, page = initialPage) => {
+    async (key, page: any = initialPage) => {
       const res = await api<T[]>(`${endpoint}?page=${page?.page || page}`, { headers })
       stateFromHeaders(res)
       return res.data
     },
     {
       getFetchMore: lastGroup => nextPage,
+      initialData: [initialData]
     }
   )
 
-  // const {
-  //   resolvedData,
-  //   latestData,
-  //   refetch
-  // } = usePaginatedQuery<T[], [any, any]>(
-  //   [_queryKey, _queryParams],
-  //   fetchData,
-  //   options
-  // );
+  const fetchNext = () => {
+    return fetchMore(nextPage || page + 1)
+  }
 
   return {
     status,
@@ -116,6 +102,7 @@ export function useInfiniteCollection<T>({
     isFetching,
     isFetchingMore,
     fetchMore,
+    fetchNext,
     canFetchMore,
     page,
     nextPage,

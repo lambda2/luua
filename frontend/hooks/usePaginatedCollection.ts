@@ -38,7 +38,7 @@ export function usePaginatedCollection<T>({
   queryKey,
   queryParams,
   initialData
-}: Props): PaginatedResult<T> {
+}: Props<T>): PaginatedResult<T> {
   const [page, setPage] = useState<number>(initialPage);
   const [nextPage, setNextPage] = useState<number | undefined>(undefined)
   const [prevPage, setPrevPage] = useState<number | undefined>(undefined)

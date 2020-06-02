@@ -33,7 +33,7 @@ namespace :populate do # rubocop:todo Metrics/BlockLength
       name: 'Hacker News'
     )
 
-    news_ids = HTTParty.get('https://hacker-news.firebaseio.com/v0/showstories.json').parsed_response
+    news_ids = HTTParty.get('https://hacker-news.firebaseio.com/v0/beststories.json').parsed_response
 
     news_ids.each do |n|
       discussion_data = HTTParty.get("https://hacker-news.firebaseio.com/v0/item/#{n}.json").parsed_response

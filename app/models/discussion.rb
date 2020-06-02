@@ -98,6 +98,7 @@ class Discussion < ApplicationRecord
       message_type: description.blank? ? :root : :user,
       discussion_id: id
     )
+    save
   end
 
   def self.unread_for(user_id)

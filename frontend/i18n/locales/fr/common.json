@@ -13,7 +13,10 @@
     "admin": "Admin",
     "member": "Membre",
     "collection": {
-      "empty": "Aucun élément"
+      "empty": "Aucun élément",
+      "loading": "Chargement",
+      "load-more": "Charger plus de résultats",
+      "no-more": "Vous avez tout vu 👏"
     }
   },
   "menu": {
