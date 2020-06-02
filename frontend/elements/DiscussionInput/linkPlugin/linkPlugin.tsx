@@ -51,7 +51,7 @@ export function getCurrentLinkEntityKey(editorState: EditorState) {
   const startKey = editorState.getSelection().getStartKey();
   const startOffset = editorState.getSelection().getStartOffset();
   const block = contentState.getBlockForKey(startKey);
-  const linkKey = block.getEntityAt(Math.min(block.text.length - 1, startOffset));
+  const linkKey = block.getEntityAt(Math.min(block.getText().length - 1, startOffset));
 
   if (linkKey) {
     const linkInstance = contentState.getEntity(linkKey);

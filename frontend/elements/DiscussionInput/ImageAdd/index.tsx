@@ -1,5 +1,5 @@
 import { EditorState } from "react-draft-wysiwyg"
-import { useState } from "react"
+import { useState, ChangeEvent } from "react"
 import { Popover, Button } from "antd"
 
 

@@ -6,8 +6,8 @@ export interface MessageUpdateValues {
   id?: number
   discussion_id: number | string
   parent_id?: number | string | undefined
-  content: string
-  serialized_content: string
+  content: string | null
+  serialized_content: string | null
 }
 
 /**
