@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_184139) do
+ActiveRecord::Schema.define(version: 2020_06_02_101121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_184139) do
     t.integer "category", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "discussions_count", default: 0, null: false
     t.index ["workspace_id"], name: "index_discussion_categories_on_workspace_id"
   end
 

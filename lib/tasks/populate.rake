@@ -24,6 +24,51 @@ namespace :populate do # rubocop:todo Metrics/BlockLength
     Examples::Strangelove.populate
   end
 
+  desc 'Create a lot of discussions from hackernews'
+  task hackernews: :environment do
+    raise unless Rails.env.development?
+    FactoryBot.find_definitions
+
+    w = Workspace.where(slug: 'hacker-news').first_or_create(
+      name: 'Hacker News'
+    )
+
+    news_ids = HTTParty.get('https://hacker-news.firebaseio.com/v0/showstories.json').parsed_response
+
+    news_ids.each do |n|
+      discussion_data = HTTParty.get("https://hacker-news.firebaseio.com/v0/item/#{n}.json").parsed_response
+      title = discussion_data["title"].gsub("Show HN: ", '')
+      puts "Adding '#{title}'"
+      user = User.where(username: discussion_data["by"]).first_or_create(
+        email: "hn+#{discussion_data["by"]}@luua.io",
+        password: 'hackernews', password_confirmation: 'hackernews'
+      )
+      next if Discussion.where(name: title).any?
+
+      d = Discussion.where(name: title).first_or_create(
+        user: user,
+        resource: w,
+        description: "Link: #{discussion_data["url"]}"
+      )
+
+      puts "DData: #{discussion_data.inspect}"
+      discussion_data["kids"] && discussion_data["kids"].each do |k|
+        comment_data = HTTParty.get("https://hacker-news.firebaseio.com/v0/item/#{k}.json").parsed_response
+
+        commenter = User.where(username: comment_data["by"]).first_or_create(
+          email: "hn+#{comment_data["by"]}@luua.io",
+          password: 'hackernews', password_confirmation: 'hackernews'
+        )
+
+        m = Message.where(content: comment_data["text"]).first_or_create(
+          discussion: d,
+          user: commenter
+        )
+      end
+    end
+
+  end
+
   desc 'Create a mission discussion from kaamelott'
   task kaamelott_conversation: :environment do # rubocop:todo Metrics/BlockLength
     raise unless Rails.env.development?

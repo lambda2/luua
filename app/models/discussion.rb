@@ -43,7 +43,7 @@ class Discussion < ApplicationRecord
   belongs_to :resource, polymorphic: true, optional: true, touch: true
 
   belongs_to :message, optional: true
-  belongs_to :root_message, class_name: 'Message', foreign_key: 'root_message_id'
+  belongs_to :root_message, optional: true, class_name: 'Message', foreign_key: 'root_message_id', inverse_of: :discussion
 
   has_many :messages, dependent: :destroy
   has_many :discussion_readings, dependent: :destroy
@@ -55,18 +55,22 @@ class Discussion < ApplicationRecord
   has_many :polls, dependent: :nullify
   has_many :missions, dependent: :nullify
 
-  after_create :create_root_message!
+  after_create :create_root_message
 
   scope :available_for, ->(user_id) { visible_for(user_id).distinct }
   scope :unread, ->(user_id) { unread_for(user_id).distinct }
   scope :regular, -> { where(resource_type: 'Workspace') }
   scope :missions, -> { where(resource_type: 'Mission') }
 
+  counter_culture :discussion_category
+
   # @TODO discussion visibilities
   #
   # - protected: Discussion is only visible for workspace members
   # - public: Discussion is visible to everyone
   enum visibility: %i[public protected], _suffix: true
+
+  accepts_nested_attributes_for :root_message
 
   def self.visible_for(user_id)
     return where(visibility: :public) unless user_id
@@ -84,13 +88,14 @@ class Discussion < ApplicationRecord
   end
 
   # @TODO risky, as this can fail in many ways...
-  def create_root_message!
-    return if description.blank?
+  def create_root_message
+    # return if description.blank?
 
-    Message.create!(
-      content: description,
+    self.root_message ||= Message.create(
+      content: description || 'None',
       root: true,
       user: user,
+      message_type: description.blank? ? :root : :user,
       discussion_id: id
     )
   end

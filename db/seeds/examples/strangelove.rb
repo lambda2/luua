@@ -497,6 +497,9 @@ module Examples
 
       discussion.messages.destroy_all
 
+      puts "Discussion: #{discussion.inspect}"
+      puts "Discussion: #{discussion.errors.messages}"
+
       DIALOGS.each do |name, message|
         user = user_for(ws, name)
         Message.create(discussion: discussion, user: user, content: message)

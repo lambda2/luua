@@ -27,7 +27,7 @@
 class Message < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :parent, optional: true, class_name: 'Message'
-  belongs_to :discussion, counter_cache: :messages_count, touch: true
+  belongs_to :discussion, touch: true
   has_many :message_votes, dependent: :destroy
   validates :content, presence: true
   has_many :notifications, as: :resource, dependent: :destroy
@@ -36,7 +36,9 @@ class Message < ApplicationRecord
 
   # - user: Message is posted by user
   # - system: Message is a contextual information
-  enum message_type: %i[user system], _suffix: true
+  enum message_type: %i[user system root], _suffix: true
+
+  counter_culture :discussion, column_name: proc {|model| model.user_message_type? ? 'messages_count' : nil }
 
   def update_discussion_timestamps
     discussion.update_columns(updated_at: Time.zone.now, modified_at: Time.zone.now)

@@ -2,15 +2,16 @@
 #
 # Table name: discussion_categories
 #
-#  id           :bigint           not null, primary key
-#  category     :integer          default("other"), not null
-#  color        :string
-#  icon         :string
-#  name         :string           not null
-#  slug         :string           not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  workspace_id :bigint           not null
+#  id                :bigint           not null, primary key
+#  category          :integer          default("other"), not null
+#  color             :string
+#  discussions_count :integer          default(0), not null
+#  icon              :string
+#  name              :string           not null
+#  slug              :string           not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  workspace_id      :bigint           not null
 #
 # Indexes
 #
