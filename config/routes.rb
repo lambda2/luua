@@ -27,6 +27,7 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
     get 'me/notifications', action: :me, controller: 'notifications'
     get 'me/workspaces', action: :me, controller: 'workspaces'
 
+
     resources :workspaces do
       post 'invite', on: :member, action: :invite
       post 'join', on: :member, action: :join
@@ -84,10 +85,12 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
     end
 
     resources :users, only: %i[update show] do
+      get :search, on: :collection
       resources :notifications
       resources :mission_users, only: [:index]
       resources :workspace_users, only: [:index]
     end
+
     resources :notifications do
       patch :read, on: :member
       patch :read_all, on: :collection

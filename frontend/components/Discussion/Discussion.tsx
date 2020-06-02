@@ -36,6 +36,11 @@ interface Props {
   token?: string
 }
 
+export interface MessagePayload {
+  serialized_content: string,
+  content: string
+}
+
 const Discussion = ({
   discussion,
   initialPage = 1,
@@ -83,13 +88,13 @@ const Discussion = ({
     }
   }, [discussion?.id, currentUser?.id])
 
-  const createMessage = async (content: string) => {
+  const createMessage = async ({ content, serialized_content }: MessagePayload) => {
     if (!discussion) {
       console.error("No discussion to attatch this message !")
       return
     }
 
-    return await create({ content, discussion_id: discussion.id }, currentUser?.jwt || '')
+    return await create({ content, serialized_content, discussion_id: discussion.id }, currentUser?.jwt || '')
   }
 
   const lockDiscussion = async () => {
@@ -114,9 +119,10 @@ const Discussion = ({
     return await votesResponse?.refetch({ force: true })
   }
 
-  const formatMessage = (content: string) => {
+  const formatMessage = ({ serialized_content, content }: MessagePayload) => {
     return {
       content,
+      serialized_content,
       user_id: currentUser?.id,
       user: omit(currentUser, ['image']),
       negative_vote_count: 0,
@@ -126,7 +132,7 @@ const Discussion = ({
     }
   }
 
-  const [onCreate] = useMutation(createMessage, createItemMutation<any, string>(
+  const [onCreate] = useMutation(createMessage, createItemMutation<any, MessagePayload>(
     queryKey,
     [queryKey, { discussion_id: discussion?.id, page }],
     formatMessage

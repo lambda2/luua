@@ -125,6 +125,7 @@ class Ability
     can :read, Region
     can :read, SkillCategory
     can :read, User
+    can :search, User
     can :read, Discussion
     can :read, DiscussionCategory
     can :read, Message

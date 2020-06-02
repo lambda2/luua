@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import Link from 'next/link';
 import { Popover, Tag } from 'antd';
 import { useLocale } from 'hooks/useLocale';
@@ -18,7 +18,8 @@ interface Props {
   created_at?: string
   first_name?: string
   last_name?: string
-  username: string
+  username: string,
+  children?: string | ReactNode
 }
 /**
  * Show a tooltip with additional user infos
@@ -35,7 +36,8 @@ const UserAvatarTooltip = (user: Props) => {
     created_at,
     first_name,
     last_name,
-    username
+    username,
+    children
   } = user
 
   const { t, language } = useLocale()
@@ -73,6 +75,7 @@ const UserAvatarTooltip = (user: Props) => {
         {image && <UserMessageAvatar inline size="small" name={username} src={thumb_url} />}
         <b>{text && nameForUser(user)}</b>
         {withUsername && nameForUser(user) !== username && <span className="text-light">{' '}{`@${username}`}</span>}
+        {/* {children} */}
       </span>
     </Popover>
 

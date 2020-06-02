@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_02_101121) do
+ActiveRecord::Schema.define(version: 2020_06_02_181547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(version: 2020_06_02_101121) do
     t.integer "positive_vote_count", default: 0, null: false
     t.integer "negative_vote_count", default: 0, null: false
     t.integer "message_type", default: 0, null: false
+    t.text "serialized_content"
     t.index ["discussion_id"], name: "index_messages_on_discussion_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end

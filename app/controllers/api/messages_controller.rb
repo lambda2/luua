@@ -82,6 +82,7 @@ class Api::MessagesController < ApiController
     params.require(:message).permit(
       :id,
       :content,
+      :serialized_content,
       :parent_id,
       :discussion_id
     )

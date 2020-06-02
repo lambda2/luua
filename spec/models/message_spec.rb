@@ -8,6 +8,7 @@
 #  negative_vote_count :integer          default(0), not null
 #  positive_vote_count :integer          default(0), not null
 #  root                :boolean          default(FALSE), not null
+#  serialized_content  :text
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  discussion_id       :bigint           not null

@@ -1,18 +1,79 @@
 import React, { useState, useContext, useRef, useEffect } from 'react'
 import { useLocale } from 'hooks/useLocale';
 import { Button } from 'antd';
-import MarkdownContent from "../MarkdownContent/MarkdownContent";
-import "react-mde/lib/styles/css/react-mde-all.css";
+import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
+import Editor, { composeDecorators } from 'draft-js-plugins-editor';
+import ImageAdd from './ImageAdd';
+// import createHashtagPlugin from 'draft-js-hashtag-plugin';
+// import createLinkifyPlugin from 'draft-js-linkify-plugin';
+import createEmojiPlugin from 'draft-js-emoji-plugin';
+// import createInlineToolbarPlugin from 'draft-js-inline-toolbar-plugin';
+import createLinkPlugin from './linkPlugin/linkPlugin'
+import createImagePlugin from 'draft-js-image-plugin';
+// import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
+// import createDragNDropUploadPlugin from '@mikeljames/draft-js-drag-n-drop-upload-plugin';
 
-import ReactMde from "react-mde";
+import 'draft-js-emoji-plugin/lib/plugin.css'
+import createMentionPlugin from 'draft-js-mention-plugin';
+import 'draft-js-mention-plugin/lib/plugin.css';
+import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
+import 'draft-js-hashtag-plugin/lib/plugin.css';
+import 'draft-js-image-plugin/lib/plugin.css';
+import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js';
+
+
 import UserContext from 'contexts/UserContext';
 import UserMessageAvatar from '../UserMessageAvatar/UserMessageAvatar';
 import icons from 'dictionaries/icons';
 import debounce from 'lodash/debounce';
+import { isServer } from 'utils/http';
+import MentionSuggestions from './MentionSuggestions';
+
+
+const linkPlugin = createLinkPlugin()
+
+const mentionPlugin = createMentionPlugin({
+  entityMutability: 'IMMUTABLE',
+  mentionPrefix: '@',
+  supportWhitespace: true
+});
+
+// const blockDndPlugin = createBlockDndPlugin();
+
+// const decorator = composeDecorators(
+//   blockDndPlugin.decorator
+// );
+const imagePlugin = createImagePlugin();
+// const dragNDropFileUploadPlugin = createDragNDropUploadPlugin({
+//   handleUpload: (a: any, b: any, c: any, d: any, e: any) => {
+//     console.log({ a, b, c, d, e})
+//   },
+//   addImage: imagePlugin.addImage,
+// });
+
+// const inlineToolbarPlugin = createInlineToolbarPlugin();
+// const { InlineToolbar } = inlineToolbarPlugin;
+
+const emojiPlugin = createEmojiPlugin({
+  useNativeArt: true
+});
+
+const { EmojiSuggestions, EmojiSelect } = emojiPlugin;
+
+const plugins = [
+  // hashtagPlugin,
+  // dragNDropFileUploadPlugin,
+  // blockDndPlugin,
+  linkPlugin,
+  emojiPlugin,
+  mentionPlugin,
+  imagePlugin,
+  // inlineToolbarPlugin
+];
 
 
 interface Props {
-  onSubmit: (message: string) => {}
+  onSubmit: ({ serialized_content, content } : {serialized_content: string, content: string}) => {}
   onCancel?: () => void
   isSubmitting?: boolean
   message?: Message
@@ -28,43 +89,55 @@ const DiscussionInput: React.FC<Props> = ({
   message
 }) => {
 
+  if (isServer()) {
+    return <></>
+  }
+
+
   const textAeraRef = useRef<HTMLElement>(null)
-  const { t } = useLocale()
+  const { t, language } = useLocale()
   const { currentUser } = useContext(UserContext)
-  const [content, setContent] = useState<string>(message?.content || '')
-  const [selectedTab, setSelectedTab] = useState<"write" | "preview">("write");
+  const [serializedContent, setSerializedContent] = useState<string>(message?.serialized_content || markdownToDraft(message?.content || ''))
+  const [mdContent, setMdContent] = useState<string>(message?.content || '')
 
+  const startState = message?.serialized_content ?
+                    EditorState.createWithContent(convertFromRaw(JSON.parse(message?.serialized_content))) :
+                    (message?.content ? EditorState.createWithContent(convertFromRaw(markdownToDraft(message?.content))) : EditorState.createEmpty())
 
-  // Allow submit form with CMD + ENTER
-  useEffect(() => {
+  const [editorState, setEditorState] = useState(startState);
+  const [readOnly, setReadOnly] = useState(false);
 
-    const onKeydown = async (e: KeyboardEvent) => {
-      if (e.keyCode == 13 && (e.metaKey || e.ctrlKey)) {
-        if (!isSubmitting) {
-          await onSubmit(content)
-          setContent('')
-        } else {
-          console.log("Not submiting");
-        }
+  const editor = useRef(null)
+
+  const onChange = (state: EditorState) => {
+    setEditorState(state)
+    const contentState = state.getCurrentContent();
+    const rawContent = convertToRaw(contentState)
+    setMdContent(draftToMarkdown(rawContent))
+    setSerializedContent(JSON.stringify(rawContent))
+  }
+
+  const onMessageSubmit = async () => {    
+    try {
+      setReadOnly(true)
+      const d = await onSubmit({
+        serialized_content: serializedContent,
+        content: mdContent
+      })
+      setReadOnly(false)
+      if (d) {
+        setEditorState(EditorState.createEmpty())
       }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setReadOnly(false)
     }
+  }
 
-    const deb = debounce(onKeydown, 100)
-    
-    textAeraRef.current?.addEventListener('keydown', deb);
-    return () => {
-      textAeraRef.current?.removeEventListener('keydown', deb);
-    }
-  }, [content])
-
-
-  const classes = {
-    reactMde: 'DiscussionFormEditor',
-    toolbar: 'DiscussionFormToolbar',
-    preview: 'DiscussionFormPreview',
-    textArea: 'DiscussionFormText',
-    grip: 'DiscussionFormGrip',
-    suggestionsDropdown: 'DiscussionFormDropdown'
+  const onImageAdd = (estate: EditorState) => {
+    console.log("Change !", { estate });
+    setEditorState(estate)
   }
 
   return (
@@ -72,20 +145,33 @@ const DiscussionInput: React.FC<Props> = ({
       <div className="MessageVote"></div>
       <aside>{currentUser && <UserMessageAvatar size="large" name={currentUser?.username} src={currentUser?.thumb_url} />}</aside>
       <main className="container" ref={textAeraRef} >
-        <ReactMde
-          minEditorHeight={50}
-          l18n={{ write: <span>{t('generics.write')}</span>, preview: <span>{t('generics.preview')}</span> }}
-          value={content}
-          onChange={setContent}
-          classes={classes}
-          selectedTab={selectedTab}
-          onTabChange={setSelectedTab}
-          generateMarkdownPreview={markdown =>
-            Promise.resolve(<MarkdownContent content={markdown} />)
-          }
-        />
+        <div className="DiscussionInput">
+          <Editor
+            editorState={editorState}
+            onChange={onChange}
+            plugins={plugins}
+            ref={editor}
+            placeholder={'Tapez quelque chose...'}
+            readOnly={readOnly}
+          />
+          <EmojiSuggestions />
+          {/* <EmojiSelect /> */}
+          {/* <ImageAdd
+            editorState={editorState}
+            onChange={onImageAdd}
+            modifier={imagePlugin.addImage}
+          /> */}
+          {/* <InlineToolbar /> */}
+          <MentionSuggestions mentionPlugin={mentionPlugin} token={currentUser?.jwt || ''}/>
+        </div>
+
         <Button.Group>
-          <Button type="link" disabled={content.length === 0 || content == message?.content} loading={isSubmitting} onClick={() => onSubmit(content)}>{icons.send}</Button>
+          <Button
+            type="link"
+            disabled={serializedContent.length === 0 || serializedContent == message?.serialized_content}
+            loading={isSubmitting}
+            onClick={onMessageSubmit}
+          >{icons.send}</Button>
           {message && onCancel && <Button type="link" onClick={() => onCancel()}>{t('message.cancel')}</Button>}
         </Button.Group>
       </main>

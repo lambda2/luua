@@ -26,6 +26,7 @@ const DiscussionList = ({
     // border={false}
     emptyText={t('discussion.empty')}
     renderItem={(item: LightDiscussion) => <DiscussionItem 
+      key={item.id}
       discussion={item}
       onVote={onVote}
       userVote={userVotes.find(uv => uv.message_id === item.root_message?.id)}

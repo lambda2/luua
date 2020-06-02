@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, ReactElement } from 'react'
 import { Avatar } from 'antd';
 import { cdnUrl } from 'utils/http';
 
@@ -7,6 +7,7 @@ interface Props {
   inline?: boolean
   src?: string
   name: string
+  children?: string | ReactElement
   size?: number | AvatarSize
 }
 
@@ -17,7 +18,8 @@ const UserMessageAvatar = ({
   src,
   inline,
   name,
-  size = 'default'
+  size = 'default',
+  children
 }: Props) => {
 
   
@@ -47,7 +49,7 @@ const UserMessageAvatar = ({
   }
 
   return (
-    <span style={imgStyles}></span>
+    <span style={imgStyles}>{children}</span>
   )
 };
 

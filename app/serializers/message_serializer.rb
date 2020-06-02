@@ -8,6 +8,7 @@
 #  negative_vote_count :integer          default(0), not null
 #  positive_vote_count :integer          default(0), not null
 #  root                :boolean          default(FALSE), not null
+#  serialized_content  :text
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  discussion_id       :bigint           not null
@@ -27,7 +28,8 @@
 class MessageSerializer < Panko::Serializer
   attributes :id, :content, :parent_id, :user_id, :discussion_id,
              :created_at, :updated_at, :workspace_id,
-             :positive_vote_count, :negative_vote_count
+             :positive_vote_count, :negative_vote_count,
+             :serialized_content
 
   has_one :user, serializer: UserLightSerializer
   has_one :parent, serializer: MessageSerializer

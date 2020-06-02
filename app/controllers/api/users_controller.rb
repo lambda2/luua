@@ -13,6 +13,23 @@ class Api::UsersController < ApiController
     render json: UserSerializer.new.serialize(@user)
   end
 
+  def search
+    @users ||= User.all
+    # @users = User.joins(:workspace_users)
+    #              .where(workspace_users: {workspace_id: current_user.workspace_ids})
+    #              .distinct
+    @users = @users.search(params[:q]) if params[:q]
+    @users = paginate(@users)
+
+    respond_to do |format|
+      format.json do
+        respond_with_cache(@users) do
+          Panko::ArraySerializer.new(@users, each_serializer: UserSerializer).to_json
+        end
+      end
+    end
+  end
+
   # PATCH/PUT /api/users/id
   def update
     if @user.update(user_params)

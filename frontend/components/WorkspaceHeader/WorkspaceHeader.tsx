@@ -179,7 +179,7 @@ const WorkspaceHeader = memo((props: Props) => {
       </Menu>
     );
 
-    return (<Dropdown key="dropdown" overlay={menu}>
+    return (<Dropdown key="workspace-dropdown" overlay={menu}>
       <Button type="primary">
         {/* <span className="text-light">{' '}{icons.plussquare}</span> */}
         {/* {' '} */}
@@ -191,14 +191,15 @@ const WorkspaceHeader = memo((props: Props) => {
 
   const leftActions = [
     !isMember && <WorkspaceJoinButton key="workspace-join" workspace={workspace} user={currentUser}/>,
-    (isAdmin) && <Button type="ghost"><Link {...ROUTES.manage.workspace.edit(workspace.slug)}>
+    (isAdmin) && <Button type="ghost" key="workspace-edit"><Link {...ROUTES.manage.workspace.edit(workspace.slug)}>
       <a>{t('menu.edit')}</a>
     </Link></Button>,
-    (isMember) && addActions(),
+    actions.length > 0 && (isMember) && addActions(),
     ...actions
       .filter((act) => can(currentUser, `workspace.${act}`, workspace))
       .map(a => buttons[a])
-  ]
+  ].filter(e => e)
+
   return (
     <div className="WorkspaceHeader">
       <header className="WorkspaceHeaderContent">
@@ -218,13 +219,13 @@ const WorkspaceHeader = memo((props: Props) => {
         </PageTitle>
 
         <ul className="header-line">
-          {workspace.website && <li>
+          {workspace.website && <li key='website'>
             {icons.link}{' '}<a href={workspace.website} target="_blank" rel="noopener">{workspace.website.replace(/https?:\/\//, '')}</a>
           </li>}
-          {workspace.country && <li>
+          {workspace.country && <li key='country'>
             {icons.country}{' '}{workspace.country.name}
           </li>}
-          {workspace.users_count && <li>
+          {workspace.users_count && <li key='users_count'>
             {icons.users}{' '}{workspace.users_count} {t('workspace.members')}
           </li>}
         </ul>

@@ -1,0 +1,26 @@
+
+.DiscussionInput {
+
+  box-sizing: border-box;
+  border: 1px solid darken(@border-color-base, 10);
+  cursor: text;
+  padding: @space-m;
+  flex: 1;
+  border-radius: 3px;
+  margin-bottom: @space-m;
+  // box-shadow: inset 0px 1px 8px -3px #ABABAB;
+  background: @layout-body-background;
+
+  & :global(.public-DraftEditor-content) {
+    min-height: 40px;
+  }
+
+  .public-DraftEditorPlaceholder-root {
+    position: absolute;
+    color: @text-color-light;
+  }
+
+  .options {
+    margin-bottom: 20px;
+  }
+}

@@ -10,6 +10,8 @@ import Button from 'antd/lib/button';
 import DiscussionForm from 'elements/DiscussionInput/DiscussionInput';
 import icons from 'dictionaries/icons';
 import classNames from 'classnames';
+import { MessagePayload } from 'components/Discussion/Discussion';
+import MessageContent from 'elements/MessageContent/MessageContent';
 
 
 interface Props {
@@ -37,9 +39,9 @@ const MessageListItem = ({
   const onVotePositive = () => currentUser && onVote && onVote(message, 'positive')
   const onVoteNegative = () => currentUser && onVote && onVote(message, 'negative')
   
-  const onFormEdit = async (content: string) => {
+  const onFormEdit = async (values: MessagePayload) => {
     setEditing(false)
-    const response = await onEdit({ ...message, content })
+    const response = await onEdit({ ...message, ...values })
     console.log({ response });
      
     setEditing(false)
@@ -76,7 +78,7 @@ const MessageListItem = ({
         <main>
           { renderMessageHeader() }
           <div className="content">
-            <MarkdownContent content={message.content} />
+            <MessageContent serialized_content={message.serialized_content} content={message.content} />
           </div>
         </main>
       </div>

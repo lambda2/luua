@@ -277,7 +277,8 @@ declare interface MessageVote {
 }
 
 declare interface Message extends DbEntryWithTimestamps {
-    content: string
+    content: string | null
+    serialized_content: string | null
     user: BaseUser
     user_id: number
     parent?: Message
@@ -380,3 +381,11 @@ declare interface Poll extends LightPoll {
 
 
 declare module 'parse-link-header';
+declare module 'draft-js-linkify-plugin';
+declare module 'draft-js-hashtag-plugin';
+declare module 'draft-js-mention-plugin';
+declare module 'markdown-draft-js';
+declare module 'redraft';
+declare module 'union-class-names';
+declare module 'decorate-component-with-props';
+declare module '@mikeljames/draft-js-drag-n-drop-upload-plugin';

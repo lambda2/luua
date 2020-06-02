@@ -105,6 +105,8 @@ class User < ApplicationRecord
   validates :token, uniqueness: true, case_sensitive: false
   validates :uid, uniqueness: true, case_sensitive: false
 
+  scope :search, ->(q) { where('LOWER(unaccent(first_name)) ILIKE LOWER(unaccent(?)) OR LOWER(unaccent(username)) ILIKE LOWER(unaccent(?)) OR LOWER(unaccent(last_name)) ILIKE LOWER(unaccent(?))', "%#{q}%", "%#{q}%", "%#{q}%") }
+
   def assign_token
     self.token = SecureRandom.urlsafe_base64(38)
   end
