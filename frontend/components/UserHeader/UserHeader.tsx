@@ -22,7 +22,7 @@ const UserHeader = ({
   const { t } = useLocale()
   const { currentUser } = useContext(UserContext)
 
-  const isMyself = currentUser?.id === user.id
+  const isMyself = currentUser && user && currentUser?.id === user.id
 
   const renderGuestTabs = () => {
     return <Tabs>

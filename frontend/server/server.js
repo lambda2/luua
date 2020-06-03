@@ -1,3 +1,6 @@
+const Sentry = require('@sentry/node');
+Sentry.init({ dsn: process.env.SENTRY_SERVER_DSN });
+
 const express = require('express')
 const next = require('next')
 
