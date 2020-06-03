@@ -29,5 +29,6 @@
 /frontend/node_modules
 /yarn-error.log
 yarn-debug.log*
+.env.local
 .yarn-integrity
 public/uploads/
