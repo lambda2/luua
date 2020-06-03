@@ -20,7 +20,7 @@ const Orgs = (
       <Title>Organizations</Title>
       <Link href={`/orgs/new`} as={`/orgs/new`}><a>Create an organization</a></Link>
 
-      {data && data.map(o => <div key={o.id}>
+      {data && data.map((o: Organization) => <div key={o.id}>
         <Link href={`/orgs/[id]`} as={`/orgs/${o.slug}`}>
           <a>
             <h2>{o.name}</h2>

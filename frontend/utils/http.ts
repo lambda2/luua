@@ -27,14 +27,6 @@ export interface ErrorResponse {
   traces?: any
 }
 
-export type ApiResponse<T> = QueryResult<T> | QueryResult<ErrorResponse>
-
-
-export function isErrorResponse<T>(response: ApiResponse<T>): response is QueryResult<ErrorResponse> {
-  return (response as QueryResult<ErrorResponse>).status === 'error';
-}
-
-
 
   /**
   * Are we in server-side ?
