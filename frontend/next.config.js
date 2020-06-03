@@ -5,7 +5,7 @@ const withLess = require('@zeit/next-less')
 const lessToJS = require('less-vars-to-js')
 const fs = require('fs')
 const path = require('path')
-const withSourceMaps = require('@zeit/next-source-maps')
+const withSourceMaps = require('@zeit/next-source-maps')()
 const SentryWebpackPlugin = require('@sentry/webpack-plugin')
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
@@ -116,6 +116,8 @@ module.exports = withSourceMaps(withBundleAnalyzer(withCSS(withLess({
       })
     }
 
+    console.log(`SENTRY_DSN=${SENTRY_DSN} SENTRY_ORG=${SENTRY_ORG} SENTRY_PROJECT=${SENTRY_PROJECT} SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}`);
+    
     if (
       SENTRY_DSN &&
       SENTRY_ORG &&

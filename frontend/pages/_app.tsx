@@ -9,6 +9,14 @@ const { publicRuntimeConfig } = getConfig();
 // Stylesheets
 import '@fortawesome/fontawesome-svg-core/styles.css' // Import the CSS
 import 'antd/dist/antd.less'
+import 'draft-js-emoji-plugin/lib/plugin.css'
+import 'draft-js-mention-plugin/lib/plugin.css';
+import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
+import 'draft-js-hashtag-plugin/lib/plugin.css';
+import 'draft-js-image-plugin/lib/plugin.css';
+import "react-mde/lib/styles/css/react-mde-all.css";
+
+
 import '../styles/app.less'
 import { propsFromContext } from 'utils/auth';
 
