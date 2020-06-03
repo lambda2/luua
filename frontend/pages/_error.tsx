@@ -2,9 +2,9 @@ import NextErrorComponent from 'next/error'
 import * as Sentry from '@sentry/node'
 import { NextPageContext } from 'next'
 
-const LuuaError = ({ statusCode, hasGetInitialPropsRun, err }: any) => {
+const LuuaError = ({ statusCode, hasGetInitialPropsRun, err, ...props }: any) => {
 
-  console.log("Ready to catch error !", { statusCode, hasGetInitialPropsRun, err });
+  console.log("Ready to catch error !", { statusCode, hasGetInitialPropsRun, err, props });
   
   if (!hasGetInitialPropsRun && err) {
     // getInitialProps is not called in case of

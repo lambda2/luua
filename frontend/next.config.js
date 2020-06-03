@@ -73,7 +73,7 @@ module.exports = withSourceMaps(withBundleAnalyzer(withCSS(withLess({
     modifyVars: themeVariables, // make your antd custom effective
     localIdentName: '[local]___[hash:base64:5]',
   },
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, ...options }) => {
     if (!isServer) {
       config.resolve.alias['@sentry/node'] = '@sentry/browser'
     }
@@ -122,7 +122,8 @@ module.exports = withSourceMaps(withBundleAnalyzer(withCSS(withLess({
       SENTRY_DSN &&
       SENTRY_ORG &&
       SENTRY_PROJECT &&
-      SENTRY_AUTH_TOKEN
+      SENTRY_AUTH_TOKEN &&
+      NODE_ENV === 'production'
     ) {
       config.plugins.push(
         new SentryWebpackPlugin({

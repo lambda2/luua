@@ -22,12 +22,15 @@ import { propsFromContext } from 'utils/auth';
 
 config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
-
-Sentry.init({
-  enabled: true,
+const sentryConfig = {
+  enabled: process.env.NODE_ENV === 'production',
   dsn: publicRuntimeConfig.sentryDsn,
   release: publicRuntimeConfig.sentryRelease
-});
+}
+
+Sentry.init(sentryConfig);
+
+console.log("[SENTRY] Initializating with: ", sentryConfig);
 
 
 const LuuaApp = ({ Component, pageProps, err }: any) => {
