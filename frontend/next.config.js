@@ -6,6 +6,7 @@ const lessToJS = require('less-vars-to-js')
 const fs = require('fs')
 const path = require('path')
 const withSourceMaps = require('@zeit/next-source-maps')
+const SentryWebpackPlugin = require('@sentry/webpack-plugin')
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
