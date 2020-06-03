@@ -7,7 +7,7 @@ export function createItemMutation<T, K>(
   queryKey: string | AnyQueryKey,
   fullQueryKey: string | AnyQueryKey,
   formatter?: (input: K) => T
-): MutationOptions<AxiosResponse<T> | undefined, K> {
+): MutationOptions<AxiosResponse<T> | undefined, K, Error> {
 
   return {
     onMutate: item => {
@@ -38,7 +38,7 @@ export function createItemMutation<T, K>(
 export function updateItemMutation<T extends DbEntry>(
   queryKey: string | AnyQueryKey,
   fullQueryKey: string | AnyQueryKey,
-): MutationOptions<AxiosResponse<T> | undefined, T> {
+): MutationOptions<AxiosResponse<T> | undefined, T, Error> {
 
   return {
     onMutate: item => {
@@ -76,7 +76,7 @@ export function updateItemMutation<T extends DbEntry>(
 
 export function destroyItemMutation<T extends DbEntry>(
 { queryKey, fullQueryKey }: { queryKey: string | AnyQueryKey; fullQueryKey: string | AnyQueryKey; },
-): MutationOptions<AxiosResponse<T> | undefined, T> {
+): MutationOptions<AxiosResponse<T> | undefined, T, Error> {
 
   return {
     onMutate: toDelete => {

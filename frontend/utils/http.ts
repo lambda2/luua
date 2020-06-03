@@ -94,8 +94,8 @@ export function cdnUrl(endpoint: string): string {
  * @returns {QueryResult<T>}
  */
 export function useCollection<T>(
-  endpointKey: string | any[] | undefined | boolean | number, token?: string, requestOpts?: AxiosRequestConfig, hookOpts?: QueryOptions<T>
-): QueryResult<T> {
+  endpointKey: string | any[] | undefined | boolean | number, token?: string, requestOpts?: AxiosRequestConfig, hookOpts?: QueryOptions<T, Error>
+): QueryResult<T, Error> {
 
   const { language } = useLocale()
   const authHeaders = getHeaders(token || '');
