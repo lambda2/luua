@@ -51,6 +51,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
     # @TODO CDN cache is really hard, this seems to be a quick fix to override it
-    "#{Time.now.to_i}-#{original_filename}" if original_filename
+    [Time.now.to_date.to_s, original_filename].join('').hash if original_filename
   end
 end
