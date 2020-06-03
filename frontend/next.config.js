@@ -5,8 +5,8 @@ const withLess = require('@zeit/next-less')
 const lessToJS = require('less-vars-to-js')
 const fs = require('fs')
 const path = require('path')
-// const withSourceMaps = require('@zeit/next-source-maps')
-// const SentryWebpackPlugin = require('@sentry/webpack-plugin')
+const withSourceMaps = require('@zeit/next-source-maps')
+const SentryWebpackPlugin = require('@sentry/webpack-plugin')
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -116,21 +116,21 @@ module.exports = withBundleAnalyzer(withCSS(withLess({
       })
     }
 
-    // if (
-    //   SENTRY_DSN &&
-    //   SENTRY_ORG &&
-    //   SENTRY_PROJECT &&
-    //   SENTRY_AUTH_TOKEN
-    // ) {
-    //   config.plugins.push(
-    //     new SentryWebpackPlugin({
-    //       include: '.next',
-    //       ignore: ['node_modules'],
-    //       urlPrefix: '~/_next',
-    //       release: SENTRY_RELEASE || options.buildId,
-    //     })
-    //   )
-    // }
+    if (
+      SENTRY_DSN &&
+      SENTRY_ORG &&
+      SENTRY_PROJECT &&
+      SENTRY_AUTH_TOKEN
+    ) {
+      config.plugins.push(
+        new SentryWebpackPlugin({
+          include: '.next',
+          ignore: ['node_modules'],
+          urlPrefix: '~/_next',
+          release: SENTRY_RELEASE || options.buildId,
+        })
+      )
+    }
 
     return config
   },
