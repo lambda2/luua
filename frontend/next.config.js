@@ -40,7 +40,7 @@ const {
 
 
 
-module.exports = withBundleAnalyzer(withCSS(withLess({
+module.exports = withSourceMaps(withBundleAnalyzer(withCSS(withLess({
   serverRuntimeConfig: {
     // Will only be available on the server side
   },
@@ -135,4 +135,4 @@ module.exports = withBundleAnalyzer(withCSS(withLess({
     return config
   },
   poweredByHeader: false,
-})))
+}))))
