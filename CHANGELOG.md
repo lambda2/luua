@@ -1,4 +1,15 @@
 
+0.4.0 / 2020-06-03
+==================
+
+  * Cleaning up imports and logs
+  * Adding basic emoji support
+  * Adding basic mention support
+  * Adding pagination on discussions
+  * Adding discussion categories counters and HN seed test
+  * Adding a short sentence
+  * Fix: Upgrading react-query to 1.5.5
+
 0.3.0 / 2020-06-02
 ==================
 
