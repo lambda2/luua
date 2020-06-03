@@ -116,21 +116,21 @@ module.exports = withSourceMaps(withBundleAnalyzer(withCSS(withLess({
       })
     }
 
-    if (
-      SENTRY_DSN &&
-      SENTRY_ORG &&
-      SENTRY_PROJECT &&
-      SENTRY_AUTH_TOKEN
-    ) {
-      config.plugins.push(
-        new SentryWebpackPlugin({
-          include: '.next',
-          ignore: ['node_modules'],
-          urlPrefix: '~/_next',
-          release: SENTRY_RELEASE || options.buildId,
-        })
-      )
-    }
+    // if (
+    //   SENTRY_DSN &&
+    //   SENTRY_ORG &&
+    //   SENTRY_PROJECT &&
+    //   SENTRY_AUTH_TOKEN
+    // ) {
+    //   config.plugins.push(
+    //     new SentryWebpackPlugin({
+    //       include: '.next',
+    //       ignore: ['node_modules'],
+    //       urlPrefix: '~/_next',
+    //       release: SENTRY_RELEASE || options.buildId,
+    //     })
+    //   )
+    // }
 
     return config
   },
