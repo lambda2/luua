@@ -13,12 +13,7 @@ import createImagePlugin from 'draft-js-image-plugin';
 // import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
 // import createDragNDropUploadPlugin from '@mikeljames/draft-js-drag-n-drop-upload-plugin';
 
-import 'draft-js-emoji-plugin/lib/plugin.css'
 import createMentionPlugin from 'draft-js-mention-plugin';
-import 'draft-js-mention-plugin/lib/plugin.css';
-import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
-import 'draft-js-hashtag-plugin/lib/plugin.css';
-import 'draft-js-image-plugin/lib/plugin.css';
 import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js';
 
 

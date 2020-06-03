@@ -6,10 +6,15 @@ import PageTitle from 'elements/PageTitle/PageTitle'
 import { useLocale } from 'hooks/useLocale'
 import UserHeader from 'components/UserHeader/UserHeader'
 import UserContext from 'contexts/UserContext'
+import Loader from 'elements/Loader/Loader'
 
-const Skills = (props: any) => {
+const EditUser = (props: any) => {
   const { t } = useLocale()
   const { currentUser } = useContext(UserContext)
+
+  if (!currentUser) {
+    return <Loader />
+  }
 
   return (
     <ContentLayout>
@@ -21,4 +26,4 @@ const Skills = (props: any) => {
   )
 }
 
-export default withAuthSync(Skills)
+export default withAuthSync(EditUser)

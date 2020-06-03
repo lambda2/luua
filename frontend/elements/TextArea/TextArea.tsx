@@ -3,8 +3,7 @@ import { useField } from "formik";
 import icons from "../../dictionaries/icons";
 import { useLocale } from "../../hooks/useLocale";
 import MarkdownContent from "../../elements/MarkdownContent/MarkdownContent";
-// import * as Showdown from "showdown";
-import "react-mde/lib/styles/css/react-mde-all.css";
+
 
 import ReactMde from "react-mde";
 import { useState } from "react";
