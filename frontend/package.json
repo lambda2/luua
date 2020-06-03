@@ -68,6 +68,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
+    "@sentry/webpack-plugin": "^1.11.1",
     "@types/classnames": "^2.2.10",
     "@types/draft-js": "^0.10.40",
     "@types/enzyme": "^3.10.5",
@@ -86,6 +87,7 @@
     "@types/yup": "^0.26.33",
     "@typescript-eslint/eslint-plugin": "^2.29.0",
     "@typescript-eslint/parser": "^2.29.0",
+    "@zeit/next-source-maps": "^0.0.3",
     "babel-jest": "^25.4.0",
     "cypress": "^4.5.0",
     "enzyme": "^3.11.0",

@@ -1,6 +1,6 @@
 import App, { AppProps } from 'next/app'
 import Layout from 'layouts/Layout/Layout'
-import * as Sentry from '@sentry/browser';
+import * as Sentry from '@sentry/node';
 import getConfig from 'next/config';
 
 import { config } from '@fortawesome/fontawesome-svg-core'
@@ -16,14 +16,16 @@ config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatica
 
 
 Sentry.init({
+  enabled: true,
   dsn: publicRuntimeConfig.sentryDsn,
   release: publicRuntimeConfig.sentryRelease
 });
 
 
-const LuuaApp = ({ Component, pageProps }: AppProps) => {
+const LuuaApp = ({ Component, pageProps, err }: any) => {
   return (<Layout locale={pageProps.locale} token={pageProps.token}>
-    <Component {...pageProps} />
+    {/* Workaround for https://github.com/vercel/next.js/issues/8592 */}
+    <Component {...pageProps} err={err} />
   </Layout>)
 }
 
