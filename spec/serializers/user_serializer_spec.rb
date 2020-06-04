@@ -11,6 +11,8 @@
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :inet
 #  email                  :string           default(""), not null
+#  email_newsletters      :boolean          default(TRUE), not null
+#  email_notifications    :boolean          default(TRUE), not null
 #  encrypted_password     :string           default(""), not null
 #  failed_attempts        :integer          default(0), not null
 #  first_name             :string
@@ -27,6 +29,7 @@
 #  reset_password_token   :string
 #  sign_in_count          :integer          default(0), not null
 #  slug                   :string
+#  tac                    :boolean          default(TRUE), not null
 #  timezone               :string
 #  token                  :text
 #  uid                    :string           default(""), not null

@@ -96,6 +96,7 @@ export const ROUTES = {
     login: () => route(['profile', 'login']),
     profile: () => route(['profile']),
     notifications: () => route(['profile', 'notifications']),
+    mails: () => route(['profile', 'mails']),
     signup: () => route(['profile', 'signup']),
     skills: () => route(['profile', 'skills']),
   },

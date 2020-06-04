@@ -1,0 +1,43 @@
+.SideMenu {
+
+  list-style-type: none;
+  align-self: self-start;
+  // display: flex;
+  margin: 0;
+  padding: 0;
+
+  margin-top: @space-l;
+
+  width: 200px;
+  // border: 1px solid @nord4;
+  border-radius: 2px;
+
+  li {
+    // flex: 0 0  auto;
+    display: block;
+    // border-bottom: 1px solid transparent;
+
+    a {
+      display: block;
+      color: @nord3;
+      padding: @space-inset-l;
+    }
+    
+    & + li {
+      // border-top: 1px solid @nord4;
+    }
+    // background-color: #ccc;
+
+    &.active {
+      background-color: #fff;
+      // border: 1px solid @nord4;
+      // font-weight: bold;
+      // border-bottom: 1px solid transparent;
+
+      a {
+        color: @nord1;
+        font-weight: bold;
+      }
+    }
+  }
+}

@@ -34,29 +34,6 @@ const UserEditForm = () => {
     // timezone: Yup.string().nullable(),
   });
 
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 8 },
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 16 },
-    },
-  };
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0,
-      },
-      sm: {
-        span: 16,
-        offset: 8,
-      },
-    },
-  };
-
   const onUpload = (elt: any) => {
     console.log("onUpload", { elt });
   }
@@ -77,20 +54,22 @@ const UserEditForm = () => {
       validationSchema={EditSchema}
     >
         {({ errors, isValid, isSubmitting, dirty, submitCount }) => (
-          <Form {...formItemLayout} scrollToFirstError>
+          <Form scrollToFirstError>
             <ErrorMessage name="globalErrors" />
 
             <Form.Item label={t('form.user.username.label')} name='username'>
               <Input disabled name="username" placeholder={t('form.user.username.placeholder')} />
             </Form.Item>
 
-            <Form.Item label={t('form.user.first_name.label')} name='first_name'>
-              <Input name="first_name" placeholder={t('form.user.first_name.placeholder')} />
-            </Form.Item>
+            <div className="form-group">
+              <Form.Item className="form-group-expanded" label={t('form.user.first_name.label')} name='first_name'>
+                <Input name="first_name" placeholder={t('form.user.first_name.placeholder')} />
+              </Form.Item>
 
-            <Form.Item label={t('form.user.last_name.label')} name='last_name'>
-              <Input name="last_name" placeholder={t('form.user.last_name.placeholder')} />
-            </Form.Item>
+              <Form.Item className="form-group-expanded" label={t('form.user.last_name.label')} name='last_name'>
+                <Input name="last_name" placeholder={t('form.user.last_name.placeholder')} />
+              </Form.Item>
+            </div>
 
             <Form.Item label={t('form.user.image.label')} name='image'>
               <UploadAvatar label={
@@ -111,7 +90,7 @@ const UserEditForm = () => {
               <Input name="timezone" placeholder={t('form.user.timezone.placeholder')} />
             </Form.Item> */}
 
-            <Form.Item name="end" {...tailFormItemLayout}>
+            <Form.Item name="end">
               <SubmitButton
                 isSubmitting={isSubmitting}
                 dirty={dirty}

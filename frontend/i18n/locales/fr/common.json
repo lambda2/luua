@@ -17,7 +17,9 @@
       "loading": "Chargement",
       "load-more": "Charger plus de résultats",
       "no-more": "Vous avez tout vu 👏"
-    }
+    },
+    "yes": "Oui",
+    "no": "Non"
   },
   "menu": {
     "candidates": "Candidats",
@@ -416,6 +418,11 @@
     "cancel": "Annuler",
     "back": "Retour",
     "user": {
+      "menu": {
+        "edit": "Mes informations",
+        "mails": "Emails",
+        "skills": "Compétences"
+      },
       "confirm": {
         "title": "Votre adresse email a bien été confirmée !"
       },
@@ -430,12 +437,24 @@
       "edit": {
         "submit": "Mettre à jour",
         "skip": "Passer cette étape",
-        "title": "Modifier mon profil"
+        "title": "Modifier mes informations"
+      },
+      "mails": {
+        "submit": "Mettre à jour",
+        "title": "Préférences d'e-mail"
       },
       "username": {
         "label": "Login",
         "hint": "Votre nom d'utilisateur",
         "placeholder": "Ex: bobby_lapointe"
+      },
+      "email_newsletters": {
+        "label": "Informations",
+        "hint": "Des emails qu'on evoie rarement, pour vous tenir au courant des nouveautés et de ce qui se passe"
+      },
+      "email_notifications": {
+        "label": "Notifications",
+        "hint": "Quand vous avez des notifications non lues depuis plus de 24h, on vous envoie un mail récapitualtif"
       },
       "first_name": {
         "label": "Prénom",

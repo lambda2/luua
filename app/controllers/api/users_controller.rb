@@ -48,6 +48,8 @@ class Api::UsersController < ApiController
       :last_name,
       :country_id,
       :timezone,
+      :email_newsletters,
+      :email_notifications,
       user_skills_attributes: %i[id skill_id level _destroy]
     )
   end

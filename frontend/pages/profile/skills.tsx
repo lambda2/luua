@@ -6,6 +6,7 @@ import ContentLayout from 'layouts/ContentLayout/ContentLayout'
 import { useLocale } from "../../hooks/useLocale";
 import UserHeader from 'components/UserHeader/UserHeader'
 import UserContext from 'contexts/UserContext'
+import UserSettingsMenu from 'layouts/UserSettingsMenu/UserSettingsMenu'
 
 /**
  * The user's skills page
@@ -16,7 +17,7 @@ const Skills = (props: any) => {
   
   return (<>
     {currentUser && <UserHeader user={currentUser as AuthedUser} active='skills' />}
-    <ContentLayout>
+    <ContentLayout style={{maxWidth: '700px'}} sideMenu={<UserSettingsMenu active='skills' />}>
       <PageTitle title={t('form.user.skills.submit')}/>
       <SkillsForm />
     </ContentLayout>

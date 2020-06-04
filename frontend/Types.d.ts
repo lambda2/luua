@@ -62,6 +62,8 @@ declare interface AuthedUser extends User {
     provider: string | null
     token: string
     uid: string
+    email_newsletters: boolean
+    email_notifications: boolean
     default_workspace: LightWorkspace | null
     workspaces: LightWorkspace[]
     user_skills: UserSkill[]

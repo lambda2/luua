@@ -19,6 +19,8 @@ declare interface UserUpdateValues {
   last_name?: string;
   country?: string;
   timezone?: string;
+  email_newsletters?: boolean;
+  email_notifications?: boolean;
   user_skills_attributes?: UserSkill[]
 }
 
