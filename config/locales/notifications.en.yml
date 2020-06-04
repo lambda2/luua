@@ -1,0 +1,71 @@
+---
+fr:
+  notifications:
+    discussion:
+      message:
+        created:
+          title: "Discussion: %{discussion_name}"
+          content: "@%{username} sent a message"
+    workspace:
+      member:
+        joined:
+          title: "@%{username} joined space %{workspace_name}"
+          content: ""
+      discussion:
+        created:
+          title: "@%{username} opened discussion '%{discussion_name}'"
+          content: ""
+      request:
+        created:
+          title: "@%{username} asked to join %{workspace_name}"
+          content: ""
+        accepted:
+          title: "Your request to join space %{workspace_name} has been accepted"
+          content: ""
+        rejected:
+          title: "Your request to join space %{workspace_name} has been rejected"
+          content: ""
+        _accepted:
+          title: "@%{username} has been accepted in space %{workspace_name}"
+          content: ""
+        _rejected:
+          title: "@%{username} has been refused in space %{workspace_name}"
+          content: ""
+      invitation:
+        created:
+          title: "You have been invited to join %{workspace_name}"
+          content: "Invited by @%{inviter}"
+        accepted:
+          title: "@%{username} accepted to join %{workspace_name}"
+          content: "Invited by @%{inviter}"
+        rejected:
+          title: "@%{username} refused to join %{workspace_name}"
+          content: "Invited by @%{inviter}"
+        _accepted:
+          title: "You accepted to join %{workspace_name}"
+          content: "Invited by @%{inviter}"
+        _rejected:
+          title: "You refused to join %{workspace_name}"
+          content: "Invited by @%{inviter}"
+    mission:
+      candidate:
+        applied:
+          title: New application
+          content: "%{username} applied for mission %{mission_name}"
+        rejected:
+          title: Rejected application
+          content: >-
+            You application for mission %{mission_name} has been rejected
+        canceled:
+          title: Canceled application
+          content: "%{username} canceled his participation to mission %{mission_name}"
+        accepted:
+          title: Accepted application
+          content: "You have been accepted for mission %{mission_name}"
+        completed:
+          title: Mission complete
+          content: "%{username} completed mission %{mission_name}"
+        reviewed:
+          title: Mission reviewed
+          content: >-
+            Your contribution to mission %{mission_name} has been reviewed and validated

@@ -5,6 +5,6 @@ fr:
   notification_mailer:
     notification_summary:
       subject: "Vous avez des notifications non lues"
-      title: "Qu'est-ce que vous avez manqué?"
+      title: "Qu'est-ce que vous avez manqué ?"
       why: ""
 

@@ -1,0 +1,10 @@
+---
+en:
+  unsubscribe_html: '<p>Unsubscribe <a href="[unsubscribe]">here</a></p>'
+  mail_sent_by_html: '<p>Sent by <a href="%{url}">Luua</a> 💃</p>'
+  notification_mailer:
+    notification_summary:
+      subject: "You have unread notifications"
+      title: "What did you miss?"
+      why: ""
+

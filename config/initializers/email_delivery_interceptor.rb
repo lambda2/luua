@@ -4,7 +4,7 @@ class EmailDeliveryInterceptor
   end
 end
 
-unless Rails.env.production?
+if Rails.env.development?
 
   # If we send mails but no sink
   if ENV['LOCAL_MAILER'] && !ENV['DEVELOPMENT_MAIL_SINK']
