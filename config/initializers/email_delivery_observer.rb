@@ -1,8 +1,10 @@
 class EmailDeliveryObserver
   def self.delivered_email(message)
-    # puts 'DELIVERED EMAIL ======'
-    # puts message.inspect
-    # puts '=================='
+    if Rails.env.development?
+      puts 'DELIVERED EMAIL ======'
+      puts message.inspect
+      puts '=================='
+    end
   end
 end
 

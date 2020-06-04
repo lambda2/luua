@@ -6,6 +6,7 @@
 #  code          :integer
 #  content       :string
 #  link          :string
+#  mailed_at     :datetime
 #  resource_type :string
 #  title         :string
 #  viewed_at     :datetime

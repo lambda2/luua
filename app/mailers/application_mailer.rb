@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: "Luua <#{ENV['MAIL_SENDER'] || 'hello@luua.io'}>"
   layout 'mailer'
 end

@@ -1,0 +1,73 @@
+---
+fr:
+  notifications:
+    discussion:
+      message:
+        created:
+          title: "Discussion: %{discussion_name}"
+          content: "@%{username} a envoyé un message"
+    workspace:
+      member:
+        joined:
+          title: "@%{username} a rejoint l'espace %{workspace_name}"
+          content: ""
+      discussion:
+        created:
+          title: "@%{username} a crée une discussion '%{discussion_name}'"
+          content: ""
+      request:
+        created:
+          title: "@%{username} a demandé à rejoindre l'espace %{workspace_name}"
+          content: ""
+        accepted:
+          title: "Votre demande pour rejoindre l'espace %{workspace_name} a été acceptée"
+          content: ""
+        rejected:
+          title: "Votre demande pour rejoindre l'espace %{workspace_name} a été rejetée"
+          content: ""
+        _accepted:
+          title: "@%{username} a été accepté dans l'espace %{workspace_name}"
+          content: ""
+        _rejected:
+          title: "@%{username} a été refusé dans l'espace %{workspace_name}"
+          content: ""
+      invitation:
+        created:
+          title: "Vous avez été invité à rejoindre l'espace %{workspace_name}"
+          content: "Invité par @%{inviter}"
+        accepted:
+          title: "@%{username} a accepté de rejoindre l'espace %{workspace_name}"
+          content: "Invité par @%{inviter}"
+        rejected:
+          title: "@%{username} a refusé de rejoindre l'espace %{workspace_name}"
+          content: "Invité par @%{inviter}"
+        _accepted:
+          title: "Vous avez accepté de rejoindre l'espace %{workspace_name}"
+          content: "Invité par @%{inviter}"
+        _rejected:
+          title: "Vous avez refusé de rejoindre l'espace %{workspace_name}"
+          content: "Invité par @%{inviter}"
+    mission:
+      candidate:
+        applied:
+          title: Nouvelle candidature
+          content: "%{username} a candidaté pour la mission %{mission_name}"
+        rejected:
+          title: Candidature refusée
+          content: >-
+            Votre candidature pour la mission %{mission_name} n'a pas été
+            acceptée
+        canceled:
+          title: Candidature annulée
+          content: "%{username} a annulé sa participation à la mission %{mission_name}"
+        accepted:
+          title: Candidature acceptée
+          content: "Votre candidature a été acceptée pour la mission %{mission_name}"
+        completed:
+          title: Mission terminée
+          content: "%{username} a terminé la mission %{mission_name}"
+        reviewed:
+          title: Mission validée
+          content: >-
+            Votre contribution a la mission %{mission_name} a été revue et
+            validée

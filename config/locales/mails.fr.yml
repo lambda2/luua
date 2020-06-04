@@ -1,0 +1,10 @@
+---
+fr:
+  unsubscribe_html: '<p>Marre de ces emails ? <a href="[unsubscribe]">Se désinscrire</a></p>'
+  mail_sent_by_html: '<p>Envoyé par <a href="%{url}">Luua</a> 💃</p>'
+  notification_mailer:
+    notification_summary:
+      subject: "Vous avez des notifications non lues"
+      title: "Qu'est-ce que vous avez manqué?"
+      why: ""
+

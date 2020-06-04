@@ -1,0 +1,15 @@
+<h2><%= t('notification_mailer.notification_summary.title') %></h2>
+
+<ul>
+  <% @notifications.each do |notification| %>
+
+
+  <li>
+    <%= link_to notification_url(notification.id) do %>
+      <h4><%= translated_notification(notification, :title) %></h4>
+      <p><%= translated_notification(notification, :content) %></p>
+    <% end %>
+  </li>
+
+  <% end %>
+</ul>
