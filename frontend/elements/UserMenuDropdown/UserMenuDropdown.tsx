@@ -10,6 +10,7 @@ import NotificationItem from 'components/NotificationItem/NotificationItem';
 import UserContext from 'contexts/UserContext';
 import { useContext, useState } from 'react';
 import { Dropdown } from 'antd';
+import icons from 'dictionaries/icons';
 
 const { users } = routes
 
@@ -48,6 +49,8 @@ const UserMenuDropdown = ({ user, notifications }: Props) => {
     setVisible(false)
   }
 
+  const hasNotifications = (notifications?.length || 0) > 0 
+
   const menu = (
     <Menu onClick={handleMenuClick}>
       {notifications?.map(n => {
@@ -80,8 +83,10 @@ const UserMenuDropdown = ({ user, notifications }: Props) => {
         onVisibleChange={handleVisibleChange}
         visible={visible}
       >
-        <a className={classNames("ant-dropdown-link", "UserNotification", { 'has-notifications': (notifications?.length || 0) > 0 })} onClick={e => e.preventDefault()}>
-          {notifications?.length || 0}
+        <a className={classNames("ant-dropdown-link", "UserNotification", { hasNotifications })} onClick={e => e.preventDefault()}>
+          {hasNotifications ? icons.haveNotification : icons.noNotification}
+          {' '}
+          {hasNotifications && notifications?.length}
         </a>
       </Dropdown>
 

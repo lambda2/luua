@@ -33,6 +33,7 @@ import {
   faPlusSquare,
   faEnvelopeOpen,
   faThumbsUp,
+  faBell,
 } from '@fortawesome/free-regular-svg-icons'
 
 import {
@@ -58,6 +59,7 @@ import {
   faLocationArrow,
   faUsers,
   faAsterisk,
+  faBell as faBellFill,
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -102,6 +104,8 @@ export default {
   "date": <FontAwesomeIcon className="menu-icon" icon={faClock} />,
   "user": <FontAwesomeIcon className="menu-icon" icon={faUser} />,
   "users": <FontAwesomeIcon className="menu-icon" icon={faUsers} />,
+  "haveNotification": <FontAwesomeIcon className="menu-icon" icon={faBellFill} />,
+  "noNotification": <FontAwesomeIcon className="menu-icon" icon={faBell} />,
   "dot": <FontAwesomeIcon className="menu-icon" icon={faDotCircle} />,
   "up": <FontAwesomeIcon className="menu-icon" icon={faChevronUp} />,
   "down": <FontAwesomeIcon className="menu-icon" icon={faChevronDown} />,
