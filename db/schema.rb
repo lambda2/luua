@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_04_145304) do
+ActiveRecord::Schema.define(version: 2020_06_05_110607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,17 @@ ActiveRecord::Schema.define(version: 2020_06_04_145304) do
     t.index ["resource_type", "resource_id"], name: "index_discussions_on_resource_type_and_resource_id"
     t.index ["root_message_id"], name: "index_discussions_on_root_message_id"
     t.index ["user_id"], name: "index_discussions_on_user_id"
+  end
+
+  create_table "message_mentions", force: :cascade do |t|
+    t.bigint "discussion_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "message_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["discussion_id"], name: "index_message_mentions_on_discussion_id"
+    t.index ["message_id"], name: "index_message_mentions_on_message_id"
+    t.index ["user_id"], name: "index_message_mentions_on_user_id"
   end
 
   create_table "message_votes", force: :cascade do |t|
@@ -552,6 +563,9 @@ ActiveRecord::Schema.define(version: 2020_06_04_145304) do
   add_foreign_key "discussions", "discussion_categories"
   add_foreign_key "discussions", "messages", column: "root_message_id"
   add_foreign_key "discussions", "users"
+  add_foreign_key "message_mentions", "discussions"
+  add_foreign_key "message_mentions", "messages"
+  add_foreign_key "message_mentions", "users"
   add_foreign_key "message_votes", "messages"
   add_foreign_key "message_votes", "users"
   add_foreign_key "message_votes", "workspaces"

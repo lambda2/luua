@@ -41,6 +41,8 @@ class NotificationSerializer < Panko::Serializer
       DiscussionLightSerializer.new.serialize(object.resource)
     when 'Message'
       MessageSerializer.new.serialize(object.resource)
+    when 'MessageMention'
+      MessageSerializer.new.serialize(object.resource.message)
     end
   end
 end

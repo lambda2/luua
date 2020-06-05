@@ -26,6 +26,10 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Message < ApplicationRecord
+
+  MENTION_TYPE = 'mention'.freeze
+  LINK_TYPE = 'LINK'.freeze
+
   belongs_to :user, optional: true
   belongs_to :parent, optional: true, class_name: 'Message'
   belongs_to :discussion, touch: true

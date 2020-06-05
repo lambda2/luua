@@ -16,14 +16,12 @@ import createImagePlugin from 'draft-js-image-plugin';
 import createMentionPlugin from 'draft-js-mention-plugin';
 import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js';
 
-
 import UserContext from 'contexts/UserContext';
 import UserMessageAvatar from '../UserMessageAvatar/UserMessageAvatar';
 import icons from 'dictionaries/icons';
 import debounce from 'lodash/debounce';
 import { isServer } from 'utils/http';
 import MentionSuggestions from './MentionSuggestions';
-
 
 const linkPlugin = createLinkPlugin()
 
@@ -33,21 +31,9 @@ const mentionPlugin = createMentionPlugin({
   supportWhitespace: true
 });
 
-// const blockDndPlugin = createBlockDndPlugin();
 
-// const decorator = composeDecorators(
-//   blockDndPlugin.decorator
-// );
 const imagePlugin = createImagePlugin();
-// const dragNDropFileUploadPlugin = createDragNDropUploadPlugin({
-//   handleUpload: (a: any, b: any, c: any, d: any, e: any) => {
-//     console.log({ a, b, c, d, e})
-//   },
-//   addImage: imagePlugin.addImage,
-// });
 
-// const inlineToolbarPlugin = createInlineToolbarPlugin();
-// const { InlineToolbar } = inlineToolbarPlugin;
 
 const emojiPlugin = createEmojiPlugin({
   useNativeArt: true

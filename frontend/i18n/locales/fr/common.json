@@ -900,6 +900,14 @@
         }
       }
     },
+    "message": {
+      "mention": {
+        "created": {
+          "title": "@{{user.username}} vous a mentionné dans un message",
+          "content": ""
+        }
+      }
+    },
     "workspace": {
       "member": {
         "joined": {

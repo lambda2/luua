@@ -29,6 +29,8 @@ export const linkForNotification = ({
       return ROUTES.manage.workspace.discussions.show(resource.workspace_id, resource.id)
     case 'discussion.message.created':
       return ROUTES.manage.workspace.discussions.show(resource.workspace_id, resource.discussion_id)
+    case 'message.mention.created':
+      return ROUTES.manage.workspace.discussions.show(resource.workspace_id, resource.discussion_id)
     default:
       console.warn(`Unknown notification code: ${code}`)
       return { href: link || '#' }

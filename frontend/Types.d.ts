@@ -20,6 +20,7 @@ type NotificationCode =
     'workspace.member.joined'       | // A new member joined the workspace
     'workspace.discussion.created'  | // A new discussion is created
     'discussion.message.created'    | // A user posted a message
+    'message.mention.created'       | // A user has bene mentioned in a message
     'custom'                          // A custom content
 
 type WorkspaceInvitationStatus = 'pending' | 'accepted' | 'rejected'

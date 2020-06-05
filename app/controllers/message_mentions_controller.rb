@@ -1,0 +1,2 @@
+class MessageMentionsController < ApplicationController
+end
