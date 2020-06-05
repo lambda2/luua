@@ -29,6 +29,7 @@ class Notification < ApplicationRecord
   belongs_to :resource, polymorphic: true, optional: true
 
   before_create :set_default_values
+  after_create :schedule_notification_summary_email
 
   validates :resource, presence: true, allow_blank: true
   validates :user, presence: true
@@ -66,5 +67,13 @@ class Notification < ApplicationRecord
 
   def read!
     update(viewed_at: Time.zone.now)
+  end
+
+  def schedule_notification_summary_email
+    # We dont send anything if the user turned off notification mails
+    return unless user.email_notifications?
+
+    # We shedule the start and the end of the mission
+    Notifications::SendMailForUserWorker.schedule_for_user(user_id)
   end
 end

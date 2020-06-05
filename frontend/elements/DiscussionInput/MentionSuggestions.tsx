@@ -29,8 +29,9 @@ const Entry = (props: any) => {
   return (
     <div {...parentProps}>
       <div className={theme.mentionSuggestionsEntryContainer}>
-        <UserMessageAvatar name={mention.username} />
+        <UserMessageAvatar src={mention.avatar} inline name={mention.username} />
         <span>{mention.name}</span>
+        <span className="text-light">@{mention.username}</span>
       </div>
     </div>
   );

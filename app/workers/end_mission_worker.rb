@@ -1,4 +1,4 @@
-class EndMissionWorker
+class EndMissionWorker < ApplicationWorker
   include Sidekiq::Worker
   sidekiq_options queue: :missions, retry: true, backtrace: true
 
@@ -16,12 +16,5 @@ class EndMissionWorker
       Rails.logger.info "Closing mission #{mission.id} #{mission.slug}"
       mission.close!
     end
-  end
-
-  def self.delete_all(mission_id)
-    jobs = Sidekiq::ScheduledSet.new.select do |retri|
-      retri.klass == 'EndMissionWorker' && retri.args == [mission_id]
-    end
-    jobs.each(&:delete)
   end
 end

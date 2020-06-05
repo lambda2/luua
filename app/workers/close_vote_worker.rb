@@ -1,4 +1,4 @@
-class CloseVoteWorker
+class CloseVoteWorker < ApplicationWorker
   include Sidekiq::Worker
   sidekiq_options queue: :polls, retry: true, backtrace: true
 
@@ -16,12 +16,5 @@ class CloseVoteWorker
       Rails.logger.info "Closing poll #{poll.id} #{poll.slug}"
       poll.close!
     end
-  end
-
-  def self.delete_all(poll_id)
-    jobs = Sidekiq::ScheduledSet.new.select do |retri|
-      retri.klass == 'CloseVoteWorker' && retri.args == [poll_id]
-    end
-    jobs.each(&:delete)
   end
 end

@@ -2,44 +2,45 @@
 #
 # Table name: users
 #
-#  id                     :bigint           not null, primary key
-#  admin                  :boolean          default(FALSE), not null
-#  bio                    :text
-#  confirmation_sent_at   :datetime
-#  confirmation_token     :string
-#  confirmed_at           :datetime
-#  current_sign_in_at     :datetime
-#  current_sign_in_ip     :inet
-#  email                  :string           default(""), not null
-#  email_newsletters      :boolean          default(TRUE), not null
-#  email_notifications    :boolean          default(TRUE), not null
-#  encrypted_password     :string           default(""), not null
-#  failed_attempts        :integer          default(0), not null
-#  first_name             :string
-#  image                  :string
-#  jti                    :string
-#  last_name              :string
-#  last_sign_in_at        :datetime
-#  last_sign_in_ip        :inet
-#  locale                 :string           default("fr"), not null
-#  locked_at              :datetime
-#  provider               :string           default("email"), not null
-#  remember_created_at    :datetime
-#  reset_password_sent_at :datetime
-#  reset_password_token   :string
-#  sign_in_count          :integer          default(0), not null
-#  slug                   :string
-#  tac                    :boolean          default(TRUE), not null
-#  timezone               :string
-#  token                  :text
-#  uid                    :string           default(""), not null
-#  unconfirmed_email      :string
-#  unlock_token           :string
-#  username               :string
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  country_id             :integer
-#  primary_workspace_id   :bigint
+#  id                        :bigint           not null, primary key
+#  admin                     :boolean          default(FALSE), not null
+#  bio                       :text
+#  confirmation_sent_at      :datetime
+#  confirmation_token        :string
+#  confirmed_at              :datetime
+#  current_sign_in_at        :datetime
+#  current_sign_in_ip        :inet
+#  email                     :string           default(""), not null
+#  email_newsletters         :boolean          default(TRUE), not null
+#  email_notifications       :boolean          default(TRUE), not null
+#  encrypted_password        :string           default(""), not null
+#  failed_attempts           :integer          default(0), not null
+#  first_name                :string
+#  image                     :string
+#  jti                       :string
+#  last_name                 :string
+#  last_sign_in_at           :datetime
+#  last_sign_in_ip           :inet
+#  locale                    :string           default("fr"), not null
+#  locked_at                 :datetime
+#  notification_mail_sent_at :datetime
+#  provider                  :string           default("email"), not null
+#  remember_created_at       :datetime
+#  reset_password_sent_at    :datetime
+#  reset_password_token      :string
+#  sign_in_count             :integer          default(0), not null
+#  slug                      :string
+#  tac                       :boolean          default(TRUE), not null
+#  timezone                  :string
+#  token                     :text
+#  uid                       :string           default(""), not null
+#  unconfirmed_email         :string
+#  unlock_token              :string
+#  username                  :string
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  country_id                :integer
+#  primary_workspace_id      :bigint
 #
 # Indexes
 #

@@ -13,7 +13,7 @@ class Messages::ExtractAndNotifyMentions
 
     # We link them to the discussion in database
     context.message_mentions = context.mentions.map do |mention|
-      user = User.find(mention)
+      user = User.friendly.find(mention)
       MessageMention.where(user: user, message: context.message, discussion: context.message.discussion).first_or_create
     end
 

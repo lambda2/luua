@@ -1,4 +1,4 @@
-class StartMissionWorker
+class StartMissionWorker < ApplicationWorker
   include Sidekiq::Worker
   sidekiq_options queue: :missions, retry: true, backtrace: true
 
@@ -16,12 +16,5 @@ class StartMissionWorker
       Rails.logger.info "Starting mission #{mission.id} #{mission.slug}"
       mission.start!
     end
-  end
-
-  def self.delete_all(mission_id)
-    jobs = Sidekiq::ScheduledSet.new.select do |retri|
-      retri.klass == 'StartMissionWorker' && retri.args == [mission_id]
-    end
-    jobs.each(&:delete)
   end
 end
