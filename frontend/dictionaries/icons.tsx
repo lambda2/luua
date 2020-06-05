@@ -34,6 +34,7 @@ import {
   faEnvelopeOpen,
   faThumbsUp,
   faBell,
+  faImage,
 } from '@fortawesome/free-regular-svg-icons'
 
 import {
@@ -120,6 +121,7 @@ export default {
   "locked": <FontAwesomeIcon className="menu-icon" icon={faLock} />,
   "glass": <FontAwesomeIcon className="menu-icon" icon={faGlassCheers} />,
   "link": <FontAwesomeIcon className="menu-icon" icon={faLink} />,
+  "image": <FontAwesomeIcon className="menu-icon" icon={faImage} />,
   "country": <FontAwesomeIcon className="menu-icon" icon={faMapMarkerAlt} />,
   "loading": < FontAwesomeIcon icon ={faSpinner} spin />,
   "comments": <FontAwesomeIcon className="menu-icon" icon={faComments} />,

@@ -46,10 +46,19 @@
 
       svg {
         fill: lighten(@text-color-light, 20);
+        height: 24px;
+        max-width: 24px;
+        min-width: 18px;
       }
       
       -webkit-appearance: none;
       line-height: 0;
+
+      &.DiscussionInputButton--active {
+        svg {
+          fill: @text-color;
+        }
+      }
 
 
       &:hover {

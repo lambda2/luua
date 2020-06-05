@@ -1,6 +1,7 @@
 import { EditorState } from "react-draft-wysiwyg"
 import { useState, ChangeEvent } from "react"
 import { Popover, Button } from "antd"
+import icons from "dictionaries/icons"
 
 
 interface Props {
@@ -36,7 +37,7 @@ const ImageAdd = ({
     setUrl(evt.target.value)
   }
 
-  const content = <div>
+  const content = <div className="DiscussionInputAddImage">
     <input
       type="text"
       placeholder="Paste the image url …"
@@ -55,15 +56,17 @@ const ImageAdd = ({
 
 
   return (
-    <div>
+    <div className="DiscussionInputButtonWrapper">
       <Popover
         content={content}
-        title="Title"
+        title=""
         trigger="click"
         visible={open}
         onVisibleChange={handleVisibleChange}
       >
-        <Button type="primary">Image</Button>
+        <button className="DiscussionInputButton">
+          {icons.image}
+        </button>
       </Popover>
     </div>
   );
