@@ -73,7 +73,7 @@ describe Api::MessagesController do # rubocop:todo Metrics/BlockLength
     let(:user) { create(:user, :confirmed) }
     let(:discussion) { create(:discussion, user_id: user.id) }
     let(:other_discussion) { create(:discussion) }
-    let(:message) { build(:message, discussion: discussion) }
+    let(:message) { build(:message, :with_serialized, discussion: discussion) }
     let(:message_other_discussion) { build(:message, discussion: other_discussion) }
 
     it 'Create a message' do

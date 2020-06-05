@@ -150,4 +150,16 @@ class User < ApplicationRecord
     ]
   end
 
+  # Return the minimum acceptable date to send a notification email
+  def next_mail_schedule
+    last_connexion = [
+      notification_mail_sent_at,
+      current_sign_in_at
+    ].compact.max
+
+    return unless last_connexion
+
+    last_connexion + SEND_MAIL_FOR_NOTIFICATION_AFTER
+  end
+
 end

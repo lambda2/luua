@@ -7,11 +7,9 @@ class Notifications::SendMailForUserWorker < ApplicationWorker
     puts '[SendMailForUserWorker] Scheduling...'
 
     user = User.find(user_id)
-    last_connexion = [user.notification_mail_sent_at, user.current_sign_in_at].compact.max
+    when_to_send_then = user.next_mail_schedule
 
-    return unless last_connexion
-
-    when_to_send_then = last_connexion + User::SEND_MAIL_FOR_NOTIFICATION_AFTER
+    return unless when_to_send_then
 
     if when_to_send_then.past?
       puts '[SendMailForUserWorker] Perform now !...'
@@ -22,26 +20,20 @@ class Notifications::SendMailForUserWorker < ApplicationWorker
     end
   end
 
-  def perform(user_id) # rubocop:todo Metrics/PerceivedComplexity
+  def perform(user_id)
     user = User.find(user_id)
+    min_time_to_send = user.next_mail_schedule
 
-    min_time = User::SEND_MAIL_FOR_NOTIFICATION_AFTER.ago
-    last_connexion = [user.notification_mail_sent_at, user.current_sign_in_at].compact.max
-
-    return unless last_connexion
+    return unless min_time_to_send
 
     notifications = user.notifications.unread
-    puts "[SendMailForUserWorker] min_time=#{min_time} last_connexion=#{last_connexion} notifications=#{notifications}"
-
-    puts '[SendMailForUserWorker] No new notifications, skipping...' unless notifications.any?
     return unless notifications.any?
 
-    puts '[SendMailForUserWorker] Mail notifications disabled...' unless user.email_notifications?
     # We dont send anything if the user turned off notification mails
     return unless user.email_notifications?
 
     # If the user didn't login since `User::SEND_MAIL_FOR_NOTIFICATION_AFTER`
-    if last_connexion.before?(min_time) && notifications.any?
+    if min_time_to_send.past?
       NotificationMailer.with(user: user, notifications: notifications).notification_summary.deliver
       user.update(notification_mail_sent_at: Time.zone.now)
     else
