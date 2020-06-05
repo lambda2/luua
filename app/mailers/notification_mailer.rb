@@ -8,12 +8,11 @@ class NotificationMailer < ApplicationMailer
     @user = params[:user]
     @notifications = params[:notifications]
 
-
     I18n.with_locale(@user.locale) do
 
       headers 'X-SMTPAPI' => {
-        category: ['Luua', 'Notifications'],
-        asm_group_id: 17943,
+        category: %w[Luua Notifications],
+        asm_group_id: 17_943,
         unique_args: {
           locale: I18n.locale,
           environment: Rails.env

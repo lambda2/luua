@@ -1,6 +1,6 @@
 class EmailDeliveryObserver
   def self.delivered_email(message)
-    if Rails.env.development?
+    if Rails.env.development? # rubocop:todo Style/GuardClause
       puts 'DELIVERED EMAIL ======'
       puts message.inspect
       puts '=================='

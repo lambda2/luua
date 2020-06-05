@@ -4,7 +4,7 @@ class ApplicationWorker
 
   def self.delete_all(*args)
     jobs = Sidekiq::ScheduledSet.new.select do |retri|
-      retri.klass == self.to_s && retri.args == args
+      retri.klass == to_s && retri.args == args
     end
     jobs.each(&:delete)
   end

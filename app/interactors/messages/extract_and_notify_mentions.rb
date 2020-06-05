@@ -3,10 +3,7 @@ class Messages::ExtractAndNotifyMentions
   include Interactor
 
   def call
-
-    if !context.message || context.message.serialized_content&.blank?
-      context.fail!(messages: ['No content'])
-    end
+    context.fail!(messages: ['No content']) if !context.message || context.message.serialized_content&.blank?
 
     # We get all the mentioned users
     context.mentions = Parser::ExtractMessageMentions.from_string_serialized_content(context.message&.serialized_content)
@@ -26,6 +23,5 @@ class Messages::ExtractAndNotifyMentions
         resource: mm
       )
     end
-
   end
 end

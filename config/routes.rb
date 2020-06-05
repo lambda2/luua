@@ -27,7 +27,6 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
     get 'me/notifications', action: :me, controller: 'notifications'
     get 'me/workspaces', action: :me, controller: 'workspaces'
 
-
     resources :workspaces do
       post 'invite', on: :member, action: :invite
       post 'join', on: :member, action: :join
@@ -36,7 +35,7 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
       resources :message_votes do
         get 'mines', on: :collection, action: :mines
       end
-      
+
       resources :missions
       resources :discussions, shallow: true
       resources :polls, shallow: true

@@ -86,7 +86,6 @@ class User < ApplicationRecord
 
   has_many :notifications, dependent: :destroy
 
-
   has_many :messages, dependent: :nullify
   has_many :message_mentions, dependent: :nullify
   has_many :message_votes, dependent: :nullify
@@ -94,7 +93,7 @@ class User < ApplicationRecord
 
   has_many :discussion_readings, dependent: :destroy
   has_many :discussions, dependent: :nullify
-  
+
   has_many :mission_users, dependent: :destroy
   has_many :missions, through: :mission_users
 

@@ -7,7 +7,7 @@ class DiscussionLightSerializer < Panko::Serializer
   has_one :workspace, serializer: WorkspaceLightSerializer
   has_one :discussion_category, serializer: DiscussionCategorySerializer
   has_one :root_message, serializer: MessageSerializer
-  
+
   has_many :participants, serializer: UserLightSerializer
   has_many :polls, serializer: PollLightSerializer
   has_many :missions, serializer: MissionLightSerializer

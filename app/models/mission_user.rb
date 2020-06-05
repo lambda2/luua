@@ -109,9 +109,7 @@ class MissionUser < ApplicationRecord
   # Depending on the missions hiring validation, the
   # mission user could be automatically accepted
   def set_status_from_mission
-    if mission.accept_all_hiring_validation? && applied_status?
-      self.accept!
-    end
+    accept! if mission.accept_all_hiring_validation? && applied_status? # rubocop:todo Style/GuardClause
   end
 
   def compute_match_score

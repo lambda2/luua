@@ -25,8 +25,9 @@ namespace :populate do # rubocop:todo Metrics/BlockLength
   end
 
   desc 'Create a lot of discussions from hackernews'
-  task hackernews: :environment do
+  task hackernews: :environment do # rubocop:todo Metrics/BlockLength
     raise unless Rails.env.development?
+
     FactoryBot.find_definitions
 
     w = Workspace.where(slug: 'hacker-news').first_or_create(
@@ -37,10 +38,10 @@ namespace :populate do # rubocop:todo Metrics/BlockLength
 
     news_ids.each do |n|
       discussion_data = HTTParty.get("https://hacker-news.firebaseio.com/v0/item/#{n}.json").parsed_response
-      title = discussion_data["title"].gsub("Show HN: ", '')
+      title = discussion_data['title'].gsub('Show HN: ', '')
       puts "Adding '#{title}'"
-      user = User.where(username: discussion_data["by"]).first_or_create(
-        email: "hn+#{discussion_data["by"]}@luua.io",
+      user = User.where(username: discussion_data['by']).first_or_create(
+        email: "hn+#{discussion_data['by']}@luua.io",
         password: 'hackernews', password_confirmation: 'hackernews'
       )
       next if Discussion.where(name: title).any?
@@ -48,19 +49,19 @@ namespace :populate do # rubocop:todo Metrics/BlockLength
       d = Discussion.where(name: title).first_or_create(
         user: user,
         resource: w,
-        description: "Link: #{discussion_data["url"]}"
+        description: "Link: #{discussion_data['url']}"
       )
 
       puts "DData: #{discussion_data.inspect}"
-      discussion_data["kids"] && discussion_data["kids"].each do |k|
+      discussion_data['kids']&.each do |k|
         comment_data = HTTParty.get("https://hacker-news.firebaseio.com/v0/item/#{k}.json").parsed_response
 
-        commenter = User.where(username: comment_data["by"]).first_or_create(
-          email: "hn+#{comment_data["by"]}@luua.io",
+        commenter = User.where(username: comment_data['by']).first_or_create(
+          email: "hn+#{comment_data['by']}@luua.io",
           password: 'hackernews', password_confirmation: 'hackernews'
         )
 
-        m = Message.where(content: comment_data["text"]).first_or_create(
+        m = Message.where(content: comment_data['text']).first_or_create(
           discussion: d,
           user: commenter
         )

@@ -5,4 +5,3 @@ class AddWorkspaceAdditionalInformations < ActiveRecord::Migration[6.0]
     add_reference :workspaces, :country, foreign_key: true, null: true
   end
 end
-

@@ -1,5 +1,4 @@
 module NotificationHelper
-
   def translated_notification(notification, key = :title)
     scope, subscope, action = notification.code.split('.')
     resource = notification&.resource
@@ -15,5 +14,4 @@ module NotificationHelper
 
     t("notifications.#{notification.code}.#{key}", base_params)
   end
-
 end

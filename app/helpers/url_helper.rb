@@ -1,5 +1,4 @@
 module UrlHelper
-
   def app_url
     ENV['APP_HOST']
   end

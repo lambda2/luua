@@ -7,9 +7,7 @@ end
 if Rails.env.development?
 
   # If we send mails but no sink
-  if ENV['LOCAL_MAILER'] && !ENV['DEVELOPMENT_MAIL_SINK']
-    raise 'Please define the DEVELOPMENT_MAIL_SINK env var in your .env.local'
-  end
+  raise 'Please define the DEVELOPMENT_MAIL_SINK env var in your .env.local' if ENV['LOCAL_MAILER'] && !ENV['DEVELOPMENT_MAIL_SINK']
 
   ActionMailer::Base.register_interceptor(EmailDeliveryInterceptor)
 end
