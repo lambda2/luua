@@ -179,6 +179,10 @@
     "no-discussion": "Aucune discussion",
     "created_at": "Commencée",
     "created_by": "Par",
+    "deleted_user": {
+      "first_name": "Utilisateur supprimé",
+      "username": "fantome"
+    },
     "locked": "Cette discussion est fermée",
     "lock": "Fermer la discussion",
     "locked-short": "Fermée",

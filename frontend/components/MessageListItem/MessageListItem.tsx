@@ -49,7 +49,7 @@ const MessageListItem = ({
 
   const renderMessageHeader = () => {
     return (<header>
-      <span className="username"><UserAvatarTooltip withUsername text {...message.user} /></span>
+      <span className="username"><UserAvatarTooltip withUsername text {...(message.user || t('discussion.deleted_user'))} /></span>
       {' '}
       <span className="datetime text-light">{moment(message.created_at).calendar()}</span>
       <div className="message-actions">
@@ -74,7 +74,7 @@ const MessageListItem = ({
             <button onClick={onVoteNegative}>{icons.down}</button>
           </div>
         </div>
-        <aside>{message.user && <UserMessageAvatar size="large" name={message.user?.username} src={message.user?.thumb_url} />}</aside>
+        <aside><UserMessageAvatar size="large" name={message?.user?.username || 'deleted-user'} src={message?.user?.thumb_url} /></aside>
         <main>
           { renderMessageHeader() }
           <div className="content">
