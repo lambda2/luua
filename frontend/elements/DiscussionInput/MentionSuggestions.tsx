@@ -13,9 +13,9 @@ interface Props {
 interface UserMentionItem {
   name: string
   username: string
+  slug: string
   avatar: string
 }
-
 
 const Entry = (props: any) => {
   const {
@@ -51,6 +51,7 @@ const MentionSuggestions = ({
     setSuggestions(data.map((e: BaseUser) => ({
       name: nameForUser(e),
       username: e.username,
+      slug: e.slug,
       avatar: e.thumb_url
     })))
   };

@@ -42,6 +42,7 @@ declare interface DbEntryWithTimestamps extends DbEntry {
 declare interface BaseUser extends DbEntryWithTimestamps {
     country: string
     email: string
+    slug: string
     first_name: string
     image_url: string
     thumb_url: string

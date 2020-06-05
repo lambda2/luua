@@ -16,7 +16,7 @@ class Parser::ExtractMessageMentions
 
       mentions = filtered.map do |_pos, data|
         Rails.logger.debug("mention: #{data}")
-        data.dig('data', 'mention', 'username')
+        data.dig('data', 'mention', 'slug') || data.dig('data', 'mention', 'username')
       end
       Rails.logger.debug("final mentions: #{mentions.inspect}")
 
