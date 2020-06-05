@@ -14,6 +14,7 @@ import 'draft-js-mention-plugin/lib/plugin.css';
 import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
 import 'draft-js-hashtag-plugin/lib/plugin.css';
 import 'draft-js-image-plugin/lib/plugin.css';
+import 'draft-js-static-toolbar-plugin/lib/plugin.css';
 import "react-mde/lib/styles/css/react-mde-all.css";
 
 

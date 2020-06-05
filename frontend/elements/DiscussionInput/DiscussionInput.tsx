@@ -4,14 +4,23 @@ import { Button } from 'antd';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import ImageAdd from './ImageAdd';
-// import createHashtagPlugin from 'draft-js-hashtag-plugin';
-// import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import createEmojiPlugin from 'draft-js-emoji-plugin';
-// import createInlineToolbarPlugin from 'draft-js-inline-toolbar-plugin';
 import createLinkPlugin from './linkPlugin/linkPlugin'
 import createImagePlugin from 'draft-js-image-plugin';
-// import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
-// import createDragNDropUploadPlugin from '@mikeljames/draft-js-drag-n-drop-upload-plugin';
+import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
+import {
+  ItalicButton,
+  BoldButton,
+  UnderlineButton,
+  CodeButton,
+  HeadlineOneButton,
+  HeadlineTwoButton,
+  HeadlineThreeButton,
+  UnorderedListButton,
+  OrderedListButton,
+  BlockquoteButton,
+  CodeBlockButton,
+} from 'draft-js-buttons';
 
 import createMentionPlugin from 'draft-js-mention-plugin';
 import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js';
@@ -41,6 +50,16 @@ const emojiPlugin = createEmojiPlugin({
 
 const { EmojiSuggestions, EmojiSelect } = emojiPlugin;
 
+const theme = {
+  toolbarStyles: { toolbar: 'DiscussionInputToolbar' },
+  buttonStyles: { buttonWrapper: 'DiscussionInputButtonWrapper', button: 'DiscussionInputButton', active: 'DiscussionInputButton--active' }
+}
+
+const toolbarPlugin = createToolbarPlugin({theme});
+
+const { Toolbar } = toolbarPlugin;
+
+
 const plugins = [
   // hashtagPlugin,
   // dragNDropFileUploadPlugin,
@@ -49,6 +68,7 @@ const plugins = [
   emojiPlugin,
   mentionPlugin,
   imagePlugin,
+  toolbarPlugin,
   // inlineToolbarPlugin
 ];
 
@@ -143,6 +163,30 @@ const DiscussionInput: React.FC<Props> = ({
             modifier={imagePlugin.addImage}
           /> */}
           {/* <InlineToolbar /> */}
+          <Toolbar>
+            {
+              // may be use React.Fragment instead of div to improve perfomance after React 16
+              (externalProps: any) => (
+                <>
+                  <BoldButton {...externalProps} />
+                  <ItalicButton {...externalProps} />
+                  <UnderlineButton {...externalProps} />
+                  <CodeButton {...externalProps} />
+                  <Separator {...externalProps} />
+                  <UnorderedListButton {...externalProps} />
+                  <OrderedListButton {...externalProps} />
+                  <BlockquoteButton {...externalProps} />
+                  <CodeBlockButton {...externalProps} />
+                  <ImageAdd
+                    editorState={editorState}
+                    onChange={onImageAdd}
+                    modifier={imagePlugin.addImage}
+                  />
+                </>
+              )
+            }
+          </Toolbar>
+
           <MentionSuggestions mentionPlugin={mentionPlugin} token={currentUser?.jwt || ''}/>
         </div>
 

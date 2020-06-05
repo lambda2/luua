@@ -388,6 +388,7 @@ declare module 'parse-link-header';
 declare module 'draft-js-linkify-plugin';
 declare module 'draft-js-hashtag-plugin';
 declare module 'draft-js-mention-plugin';
+declare module 'draft-js-static-toolbar-plugin';
 declare module 'markdown-draft-js';
 declare module 'redraft';
 declare module 'union-class-names';
