@@ -18,7 +18,8 @@ class Api::UsersController < ApiController
     # @users = User.joins(:workspace_users)
     #              .where(workspace_users: {workspace_id: current_user.workspace_ids})
     #              .distinct
-    @users = @users.search(params[:q]) if params[:q]
+    @users = @users.search(params[:q]).distinct.order(current_sign_in_at: :asc) if params[:q]
+    @users = @users.where.not(id: current_user.id) if current_user
     @users = paginate(@users)
 
     respond_to do |format|

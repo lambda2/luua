@@ -27,11 +27,13 @@ const Entry = (props: any) => {
   } = props;
   
   return (
-    <div {...parentProps}>
-      <div className={theme.mentionSuggestionsEntryContainer}>
+    <div className="MentionSuggestionsEntry" {...parentProps}>
+      <div className="MentionSuggestionsEntryContainer">
         <UserMessageAvatar src={mention.avatar} inline name={mention.username} />
-        <span>{mention.name}</span>
-        <span className="text-light">@{mention.username}</span>
+        <div className="MentionSuggestionsEntryContent">
+          <span>{mention.name}</span>
+          <span className="text-light">@{mention.username}</span>
+        </div>
       </div>
     </div>
   );
