@@ -9,6 +9,8 @@ class Notifications::SendMailForUserWorker < ApplicationWorker
     user = User.find(user_id)
     last_connexion = [user.notification_mail_sent_at, user.current_sign_in_at].compact.max
 
+    return unless last_connexion
+
     when_to_send_then = last_connexion + User::SEND_MAIL_FOR_NOTIFICATION_AFTER
 
     if when_to_send_then.past?
@@ -25,6 +27,9 @@ class Notifications::SendMailForUserWorker < ApplicationWorker
 
     min_time = User::SEND_MAIL_FOR_NOTIFICATION_AFTER.ago
     last_connexion = [user.notification_mail_sent_at, user.current_sign_in_at].compact.max
+
+    return unless last_connexion
+    
     notifications = user.notifications.unread
     puts "[SendMailForUserWorker] min_time=#{min_time} last_connexion=#{last_connexion} notifications=#{notifications}"
 

@@ -7,6 +7,8 @@ class Parser::ExtractMessageMentions
 
     # from a string, draft-js message content
     def from_string_serialized_content(scontent)
+      return [] if scontent.blank?
+
       json_structure = JSON.parse(scontent)
       Rails.logger.debug("Parsing message #{json_structure}")
 
