@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_05_131027) do
+ActiveRecord::Schema.define(version: 2020_06_05_132741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_131027) do
     t.string "name", null: false
     t.string "slug", null: false
     t.integer "visibility", default: 0, null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.string "resource_type", null: false
     t.bigint "resource_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_131027) do
 
   create_table "message_mentions", force: :cascade do |t|
     t.bigint "discussion_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.bigint "message_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_131027) do
 
   create_table "message_votes", force: :cascade do |t|
     t.integer "vote", default: 0, null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.bigint "message_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_131027) do
   create_table "messages", force: :cascade do |t|
     t.text "content"
     t.integer "parent_id"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.bigint "discussion_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

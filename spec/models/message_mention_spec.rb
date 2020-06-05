@@ -7,7 +7,7 @@
 #  updated_at    :datetime         not null
 #  discussion_id :bigint           not null
 #  message_id    :bigint           not null
-#  user_id       :bigint           not null
+#  user_id       :bigint
 #
 # Indexes
 #

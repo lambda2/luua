@@ -82,11 +82,19 @@ class User < ApplicationRecord
   has_one :primary_workspace, class_name: 'Workspace', foreign_key: :id
 
   has_many :workspace_histories, as: :resource, dependent: :nullify
+  has_many :workspace_actions, foreign_key: :user_id, class_name: 'WorkspaceHistory', dependent: :nullify
 
   has_many :notifications, dependent: :destroy
 
-  has_many :messages, dependent: :nullify
 
+  has_many :messages, dependent: :nullify
+  has_many :message_mentions, dependent: :nullify
+  has_many :message_votes, dependent: :nullify
+  has_many :user_votes, dependent: :destroy
+
+  has_many :discussion_readings, dependent: :destroy
+  has_many :discussions, dependent: :nullify
+  
   has_many :mission_users, dependent: :destroy
   has_many :missions, through: :mission_users
 

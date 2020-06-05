@@ -7,7 +7,7 @@
 #  updated_at    :datetime         not null
 #  discussion_id :bigint           not null
 #  message_id    :bigint           not null
-#  user_id       :bigint           not null
+#  user_id       :bigint
 #
 # Indexes
 #
@@ -25,4 +25,5 @@ class MessageMention < ApplicationRecord
   belongs_to :discussion
   belongs_to :user
   belongs_to :message
+  has_many :notifications, as: :resource, dependent: :destroy
 end

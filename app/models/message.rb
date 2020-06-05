@@ -13,7 +13,7 @@
 #  updated_at          :datetime         not null
 #  discussion_id       :bigint           not null
 #  parent_id           :integer
-#  user_id             :bigint           not null
+#  user_id             :bigint
 #
 # Indexes
 #
@@ -34,6 +34,7 @@ class Message < ApplicationRecord
   belongs_to :parent, optional: true, class_name: 'Message'
   belongs_to :discussion, touch: true
   has_many :message_votes, dependent: :destroy
+  has_many :message_mentions, dependent: :destroy
   validates :content, presence: true
   has_many :notifications, as: :resource, dependent: :destroy
 

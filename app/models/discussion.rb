@@ -16,7 +16,7 @@
 #  discussion_category_id :bigint
 #  resource_id            :bigint           not null
 #  root_message_id        :bigint
-#  user_id                :bigint           not null
+#  user_id                :bigint
 #
 # Indexes
 #
@@ -51,6 +51,7 @@ class Discussion < ApplicationRecord
   has_many :message_votes, through: :messages
 
   has_many :notifications, as: :resource, dependent: :destroy
+  has_many :message_mentions, dependent: :destroy
 
   has_many :polls, dependent: :nullify
   has_many :missions, dependent: :nullify

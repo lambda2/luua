@@ -12,7 +12,7 @@ class PublishDiscussion
       WorkspaceHistory.track!(discussion.workspace, discussion, discussion.user)
 
       # And we notify the workspace members
-      to_notify = discussion.workspace.user_ids - [discussion.user_id]
+      to_notify = discussion.workspace.admin_ids - [discussion.user_id]
       puts "Notifying #{to_notify.inspect}"
       [*to_notify].compact.map do |uid|
         Notification.create!(

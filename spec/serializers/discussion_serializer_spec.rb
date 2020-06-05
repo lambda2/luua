@@ -16,7 +16,7 @@
 #  discussion_category_id :bigint
 #  resource_id            :bigint           not null
 #  root_message_id        :bigint
-#  user_id                :bigint           not null
+#  user_id                :bigint
 #
 # Indexes
 #
