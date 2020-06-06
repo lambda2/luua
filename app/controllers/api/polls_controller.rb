@@ -43,6 +43,7 @@ class Api::PollsController < ApiController
   end
 
   # POST /api/polls
+  # @TODO interactor
   def create
     @poll = Poll.new(poll_params)
     @poll.user_id = current_user&.id
@@ -50,6 +51,14 @@ class Api::PollsController < ApiController
 
     if @poll.save
       WorkspaceHistory.track!(@workspace, @poll, current_user)
+      if @poll.discussion
+        Message.create_bot_message(
+          discussion: @poll.discussion,
+          event_type: :poll_created,
+          resource: @poll,
+          content: I18n.t('messages.system.poll.created', username: current_user.username)
+        )
+      end
       render json: PollSerializer.new.serialize(@poll), status: :created
     else
       render_error(@poll.errors.messages, :unprocessable_entity)

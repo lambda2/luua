@@ -2,7 +2,7 @@ import React, { useState, useContext, useRef, useEffect } from 'react'
 import { useLocale } from 'hooks/useLocale';
 import { Button } from 'antd';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
-import Editor, { composeDecorators } from 'draft-js-plugins-editor';
+import Editor from 'draft-js-plugins-editor';
 import ImageAdd from './ImageAdd';
 import createEmojiPlugin from 'draft-js-emoji-plugin';
 import createLinkPlugin from './linkPlugin/linkPlugin'
@@ -13,9 +13,6 @@ import {
   BoldButton,
   UnderlineButton,
   CodeButton,
-  HeadlineOneButton,
-  HeadlineTwoButton,
-  HeadlineThreeButton,
   UnorderedListButton,
   OrderedListButton,
   BlockquoteButton,
@@ -61,15 +58,11 @@ const { Toolbar } = toolbarPlugin;
 
 
 const plugins = [
-  // hashtagPlugin,
-  // dragNDropFileUploadPlugin,
-  // blockDndPlugin,
   linkPlugin,
   emojiPlugin,
   mentionPlugin,
   imagePlugin,
-  toolbarPlugin,
-  // inlineToolbarPlugin
+  toolbarPlugin
 ];
 
 
@@ -157,12 +150,6 @@ const DiscussionInput: React.FC<Props> = ({
           />
           <EmojiSuggestions />
           {/* <EmojiSelect /> */}
-          {/* <ImageAdd
-            editorState={editorState}
-            onChange={onImageAdd}
-            modifier={imagePlugin.addImage}
-          /> */}
-          {/* <InlineToolbar /> */}
           <Toolbar>
             {
               // may be use React.Fragment instead of div to improve perfomance after React 16

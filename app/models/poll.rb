@@ -52,6 +52,8 @@ class Poll < ApplicationRecord
 
   has_many :notifications, as: :resource, dependent: :destroy
 
+  has_many :messages, as: :resource, dependent: :destroy
+
   # - draft: Poll is not published yet, and only visible for the editor
   # - hidden: Poll is only visible for editor and workspace admin
   # - protected: Poll is only visible for workspace members
@@ -83,6 +85,7 @@ class Poll < ApplicationRecord
   validate :validates_amount_of_polls
 
   after_save :schedule_closing
+  before_validation :set_begin_at
 
   def validates_amount_of_polls
     errors.add(:poll_options_attributes, 'must have at least 2 choices') if poll_options.size < 2
@@ -93,6 +96,10 @@ class Poll < ApplicationRecord
     return user_votes if always_reveal?
     return user_votes if on_close_reveal? && closed?
     return user_votes if on_vote_reveal? && user_votes.where(user_id: user&.id).any?
+  end
+
+  def set_begin_at
+    self.begin_at ||= Time.zone.now
   end
 
   def close!

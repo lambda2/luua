@@ -4,6 +4,15 @@
   display: flex;
   align-items: flex-start;
 
+  &.SystemMessageListItem {
+    margin-left: 114px;
+
+    & > main {
+      flex: 1;
+      border: 1px solid @border-color-base;
+    }
+  }
+
   &:hover .MessageVote .vote.vote-zero {
     display: flex;
   }
@@ -81,7 +90,7 @@
     padding-top: 3px; // @TODO yuk 😰
   }
 
-  main {
+  & > main {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

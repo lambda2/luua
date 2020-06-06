@@ -3,6 +3,7 @@ import MessageListItem from '../MessageListItem/MessageListItem';
 import List from 'elements/List/List';
 import { useLocale } from 'hooks/useLocale';
 import find from 'lodash/find';
+import SystemMessageListItem from 'components/MessageListItem/SystemMessageListItem';
 
 
 interface Props {
@@ -28,13 +29,29 @@ const MessageList = ({
       className="MessageList"
       dataSource={messages}
       emptyText={t('message.empty')}
-      renderItem={(m => <MessageListItem
-        onVote={onVote}
-        onEdit={onEdit}
-        onDestroy={onDestroy}
-        message={m}
-        userVote={find(userVotes, {message_id: m.id})}
-      />)}
+      renderItem={(m => {
+        if (m.message_type === 'system') {
+          return (
+            <SystemMessageListItem
+              onVote={onVote}
+              onEdit={onEdit}
+              onDestroy={onDestroy}
+              message={m}
+              userVote={find(userVotes, { message_id: m.id })}
+            />
+          )
+        } else {
+          return (
+            <MessageListItem
+              onVote={onVote}
+              onEdit={onEdit}
+              onDestroy={onDestroy}
+              message={m}
+              userVote={find(userVotes, { message_id: m.id })}
+            />
+          )
+        }
+      })}
     />
   )
 

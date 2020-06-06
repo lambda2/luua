@@ -290,6 +290,10 @@ declare interface Message extends DbEntryWithTimestamps {
     discussion_id: number
     positive_vote_count: number
     negative_vote_count: number
+    event_type: string
+    resource_id: number | null
+    resource_type: 'Poll' | null
+    resource: LightPoll | null
 }
 
 declare interface LightDiscussion extends DbEntryWithTimestamps {
@@ -371,6 +375,11 @@ declare interface LightUserVote extends DbEntryWithTimestamps {
 }
 
 declare interface VoteResults {
+    poll_options: PollOption[]
+    user_votes: LightUserVote[]
+}
+
+declare interface EmbedPoll extends LightPoll {
     poll_options: PollOption[]
     user_votes: LightUserVote[]
 }
