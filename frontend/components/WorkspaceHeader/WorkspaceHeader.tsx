@@ -194,7 +194,7 @@ const WorkspaceHeader = memo((props: Props) => {
     (isAdmin) && <Button type="ghost" key="workspace-edit"><Link {...ROUTES.manage.workspace.edit(workspace.slug)}>
       <a>{t('menu.edit')}</a>
     </Link></Button>,
-    actions.length > 0 && (isMember) && addActions(),
+    isMember && addActions(),
     ...actions
       .filter((act) => can(currentUser, `workspace.${act}`, workspace))
       .map(a => buttons[a])

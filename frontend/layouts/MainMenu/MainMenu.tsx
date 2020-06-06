@@ -39,6 +39,9 @@ const MainMenu: React.FC<Props> = () => {
   return (<header className="MainMenu">
     <div className="logo" />
     <ul className="main-header-menu">
+      <li key="/">
+        <Link {...routes.index()}><a>{t('menu.home')}</a></Link>
+      </li>
       <li key="/explore">
         <Link {...explore.index()}><a>{t('menu.explore')}</a></Link>
       </li>

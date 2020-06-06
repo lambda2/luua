@@ -1,0 +1,42 @@
+
+.Hero {
+  
+  display: flex;
+  padding-top: @space-l;
+  padding-bottom: @space-l;
+
+  h1 {
+    font-weight: 700;
+    text-align: left;
+    font-size: @font-size-h1;
+  }
+
+  .suptitle {
+    margin: 0;
+    color: @text-color-light;
+    text-transform: uppercase;
+  }
+
+  .subtitle {
+    margin: 0;
+    font-size: @font-size-h5;
+    color: @text-color-light;
+    // text-transform: uppercase;
+  }
+
+  main {
+    flex: auto;
+
+    & + aside {
+      padding-left: @space-l;
+    }
+  }
+
+  aside {
+    flex: 1 0 400px;
+
+    & + main {
+      padding-left: @space-l;
+    }
+  }
+}
