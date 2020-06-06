@@ -2,6 +2,8 @@ import Hero from "elements/Hero/Hero";
 import SignupForm from "components/SignupForm/SignupForm";
 import { useState } from "react";
 import classNames from "classnames";
+import Link from "next/link";
+import ROUTES from "routes/routes";
 
 type PersonaChoice = 'association' | 'project' | 'individual'
 
@@ -18,6 +20,14 @@ const HomeContent = () => {
           <p className="subtitle">
             Luua est une plateforme pour construire et faire avancer les projets de demain, avec la communauté.
           </p>
+          {/* <footer>
+            <Link {...ROUTES.users.signup()}>
+              <a className="hero-link">Créer mon compte</a>
+            </Link>
+            <p className="little-text">
+              Gratuit et{' '}
+              <a rel="noopener" target="_blank" href="https://github.com/lambda2/luua">libre</a></p>
+          </footer> */}
         </main>
         <aside>
           <SignupForm />
@@ -82,7 +92,7 @@ const HomeContent = () => {
           <ul className="bullet-list">
             <li>
               <h3>Prenez part à des projets qui vous correspondent</h3>
-              <p>Parcourez les espaces existants, ou créez le votre !</p>
+              <p>Parcourez les espaces existants, ou créez le votre.</p>
             </li>
             <li>
               <h3>Mettez vos talents au service de la communauté</h3>
