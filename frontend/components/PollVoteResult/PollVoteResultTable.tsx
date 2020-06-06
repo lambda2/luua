@@ -38,25 +38,26 @@ const PollVoteResultTable = ({
   const renderVoteResult = (voteOption: PollOption, votes: LightUserVote[]) => {
     const isMajority = maxVote === voteOption.vote_count
     const percent = Math.round(((voteOption.vote_count || 0) * 100) / (totalVote || 1))
-    console.log("Is majority ? ", { maxVote, current: voteOption.vote_count, votes });
     
     return (
       <tr key={voteOption.id}>
-        <td className={classNames("PollVoteResultTableElement Name", { majority: isMajority })}>
+        <td key="name" className={classNames("PollVoteResultTableElement Name", { majority: isMajority })}>
             {voteOption.name}
         </td>
-        <td className={classNames("PollVoteResultTableElement Percent", { majority: isMajority })} key={voteOption.id}>
+        <td key="progress" className={classNames("PollVoteResultTableElement Progress", { majority: isMajority })}>
           <progress max={100} value={percent}></progress>
         </td>
-        <td className={classNames("PollVoteResultTableElement Percent", { majority: isMajority })} key={voteOption.id}>
+        <td key='percent'>
           <span>{percent}%</span>
         </td>
-        <td className={classNames("PollVoteResultTableElement Percent", { majority: isMajority })} key={voteOption.id}>
+        <td key="users" className={classNames("PollVoteResultTableElement Percent", { majority: isMajority })}>
             {votes.map(uv => <WorkspaceUserAvatar key={uv.id} size="small" {...wuFromUv(uv) as WorkspaceUser} />)}
         </td>
       </tr>
     )
   }
+
+
 
   const results = poll_options.map(e => {
     return {
@@ -66,10 +67,12 @@ const PollVoteResultTable = ({
   })
 
   return <table className="PollVoteResultTable">
+    <tbody>
       {results.map(({ voteOption, votes }) => {
         return renderVoteResult(voteOption, votes)
       })}
-    </table>
+    </tbody>
+  </table>
 
 }
 

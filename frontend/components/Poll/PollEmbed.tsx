@@ -15,6 +15,7 @@ import PollVoteResultInline from 'components/PollVoteResult/PollVoteResultInline
 import icons from 'dictionaries/icons';
 import momentWithLocale from 'i18n/moment';
 import PollVoteResultTable from 'components/PollVoteResult/PollVoteResultTable';
+import { queryCache } from 'react-query';
 
 interface Props {
   poll: EmbedPoll
@@ -43,15 +44,7 @@ const PollEmbed = ({
   const resultResponse = useCollection<VoteResults>(
     can(currentUser, 'poll.results', poll) && `/api/polls/${poll?.id}/results`, (token || currentUser?.jwt)
   )
-
-  const onDestroy = async (poll: LightPoll) => {
-    await destroy(poll, token || currentUser?.jwt || '')
-    Router.push(
-      ROUTES.manage.workspace.polls.index(poll.workspace_id).href,
-      ROUTES.manage.workspace.polls.index(poll.workspace_id).as
-    )
-  }
-
+  
   const onVote = async (poll_option_id: number) => {
     if (!poll?.id) {
       return false
@@ -67,6 +60,7 @@ const PollEmbed = ({
     }
     await close(poll?.id, token || currentUser?.jwt || '')
     await votesResponse.refetch()
+    queryCache.refetchQueries(['messages', { discussion_id: poll.discussion_id }])
     return await resultResponse?.refetch({ force: true })
   }
   
@@ -78,13 +72,13 @@ const PollEmbed = ({
                             (poll.reveal == 'on_close' && isClosed)
 
   return (
-    <div className="Poll">
+    <div className="Poll PollEmbed">
 
       <div className="PollTitle">
         <b>{poll?.name}</b>
       </div>
 
-      {poll.description && <MarkdownContent content={poll.description} /> || <p className="text-light">{t('generics.no-description')}</p>}
+      {poll.description && <MarkdownContent content={poll.description} />}
 
       {/* Show the vote options */}
       {!userDidVote && !isDraft && !isClosed && <div className="LightVoteOptionList">
@@ -108,11 +102,12 @@ const PollEmbed = ({
         <Button className="text-danger" onClick={onClose}>{t('poll.actions.close')}</Button>
       </PageSection>}
 
-      <p>
-        {poll.begin_at && <li className="begin-at">{icons.date} {t('poll.starts')} <b>{moment(poll.begin_at).calendar().toLowerCase()}</b></li>}
-        {!isClosed && poll.end_at && <li className="end-at">{icons.date} {t('poll.ends')} <b>{moment(poll.end_at).calendar().toLowerCase()}</b></li>}
-        {poll.closed_at && <li className="end-at">{icons.date} {t('poll.ended')} <b>{moment(poll.closed_at).calendar().toLowerCase()}</b></li>}
-      </p>
+      <footer className="text-light">
+        {/* {poll.user_votes && <li className="count">{icons.poll.closed} {t('poll.votes_count', { count: poll.user_votes.length})}</li>} */}
+        {poll.begin_at && moment().isBefore(poll.begin_at) && <li className="begin-at">{icons.date} {t('poll.starts')} {moment(poll.begin_at).calendar().toLowerCase()}</li>}
+        {!isClosed && poll.end_at && <li className="end-at">{icons.date} {t('poll.ends')} {moment(poll.end_at).calendar().toLowerCase()}</li>}
+        {poll.closed_at && <li className="end-at">{icons.date} {t('poll.ended')} {moment(poll.closed_at).calendar().toLowerCase()}</li>}
+      </footer>
       
     </div>
   )

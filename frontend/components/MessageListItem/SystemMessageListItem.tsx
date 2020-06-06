@@ -36,20 +36,38 @@ const SystemMessageListItem = ({
 
   const moment = momentWithLocale(language as AvailableLocale)
 
-  const renderEmbed = () => {
-
+  const contentforSystemMessage = () => {
+    return t(`discussion.messages.events.${message.event_type}`, { message })
   }
 
-  return (
+  const renderMessageHeader = () => {
+    return (<header>
+      <span className="username"><UserAvatarTooltip withUsername text {...(message.user || t('discussion.deleted_user'))} /></span>
+      {' '}
+      <span className="datetime text-light">{moment(message.created_at).calendar()}</span>
+      <div className="message-actions">
+        {can(currentUser, 'message.edit', message) && <Button key="edit" type="link" onClick={() => setEditing(true)}>{t('message.edit')}</Button>}
+        {can(currentUser, 'message.destroy', message) && <Button key="destroy" type="link" onClick={() => onDestroy(message)}>{t('message.destroy')}</Button>}
+      </div>
+    </header>)
+  }
+
+  
+  return (<>
+    <div className="MessageListEventMessage">{contentforSystemMessage()}</div>
     <div className="MessageListItem SystemMessageListItem" id={`${message.id}`}>
+      <aside><UserMessageAvatar size="large" name={message?.user?.username || 'deleted-user'} src={message?.user?.thumb_url} /></aside>
+
       <main>
-        <div className="content">
+        {renderMessageHeader()}
+
+        {/* <div className="content">
           <MessageContent serialized_content={message.serialized_content} content={message.content} />
-        </div>
+        </div> */}
         {message.resource_type && message.resource && <EmbedMessageItem resource={message.resource} resource_type={message.resource_type} />}
       </main>
     </div>
-  )
+  </>)
 
 }
 

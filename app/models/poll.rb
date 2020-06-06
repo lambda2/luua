@@ -85,6 +85,9 @@ class Poll < ApplicationRecord
   validate :validates_amount_of_polls
 
   after_save :schedule_closing
+  
+  after_save :touch_messages
+  
   before_validation :set_begin_at
 
   def validates_amount_of_polls
@@ -108,6 +111,11 @@ class Poll < ApplicationRecord
 
   def closed?
     !closed_at.nil?
+  end
+
+  # Touch messages
+  def touch_messages
+    messages.update_all(updated_at: Time.zone.now)
   end
 
   # Will schedule the closing of the poll at the "end_at" date

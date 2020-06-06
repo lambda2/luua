@@ -2,6 +2,7 @@ import App, { AppProps } from 'next/app'
 import Layout from 'layouts/Layout/Layout'
 import * as Sentry from '@sentry/node';
 import getConfig from 'next/config';
+import { ReactQueryDevtools } from 'react-query-devtools'
 
 import { config } from '@fortawesome/fontawesome-svg-core'
 const { publicRuntimeConfig } = getConfig();
@@ -38,6 +39,7 @@ const LuuaApp = ({ Component, pageProps, err }: any) => {
   return (<Layout locale={pageProps.locale} token={pageProps.token}>
     {/* Workaround for https://github.com/vercel/next.js/issues/8592 */}
     <Component {...pageProps} err={err} />
+    <ReactQueryDevtools initialIsOpen={false} />
   </Layout>)
 }
 

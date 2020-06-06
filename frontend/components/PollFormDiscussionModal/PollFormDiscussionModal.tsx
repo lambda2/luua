@@ -3,14 +3,14 @@ import UserContext from 'contexts/UserContext';
 import { useLocale } from 'hooks/useLocale';
 import { useRouter } from 'next/router';
 import { Modal } from 'antd';
-import PollForm from 'components/PollForm/PollForm';
+import LightPollForm from 'components/PollForm/LightPollForm';
 
 interface Props {
   discussion: LightDiscussion
   buttonElt: (onClick: () => void) => ReactElement
 }
 
-const PollFromDiscussionModal = ({
+const PollFormDiscussionModal = ({
   discussion,
   buttonElt
 }: Props) => {
@@ -39,20 +39,20 @@ const PollFromDiscussionModal = ({
   };
 
   return (
-    <div className="PollFromDiscussionModal">
+    <span className="PollFormDiscussionModal">
       {buttonElt(() => showModal()) }
       <Modal
         title={t('form.poll.from-discussion')}
         visible={visible}
         onOk={handleOk}
-        width={"80%"}
+        style={{maxWidth: "600px"}}
         footer={null}
         onCancel={handleCancel}
       >
-        <PollForm workspace_id={discussion.workspace_id} discussion={discussion}/>
+        <LightPollForm onSave={handleOk} workspace_id={discussion.workspace_id} discussion={discussion}/>
       </Modal>
-    </div>
+    </span>
   )
 }
 
-export default PollFromDiscussionModal
+export default PollFormDiscussionModal

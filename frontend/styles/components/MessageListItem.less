@@ -1,3 +1,15 @@
+.MessageListEventMessage,
+.MessageListItemActionBar {
+  padding-left: (50px + 64px);
+  // text-align: center;
+  margin: @space-stack-default;
+  color: @text-color-light;
+}
+
+.MessageListEventMessage {
+  text-align: center;
+}
+
 .MessageListItem {
 
   margin: @space-stack-default;
@@ -5,7 +17,7 @@
   align-items: flex-start;
 
   &.SystemMessageListItem {
-    margin-left: 114px;
+    margin-left: 50px;
 
     & > main {
       flex: 1;

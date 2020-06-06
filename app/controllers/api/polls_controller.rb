@@ -56,6 +56,7 @@ class Api::PollsController < ApiController
           discussion: @poll.discussion,
           event_type: :poll_created,
           resource: @poll,
+          user_id: @poll.user_id,
           content: I18n.t('messages.system.poll.created', username: current_user.username)
         )
       end
@@ -81,9 +82,19 @@ class Api::PollsController < ApiController
   end
 
   # PATCH /api/polls/:id/vote
+  # @TODO interactor
   def close
     if @poll.close!
       WorkspaceHistory.track!(@workspace, @poll, current_user)
+      # if @poll.discussion
+      #   Message.create_bot_message(
+      #     discussion: @poll.discussion,
+      #     event_type: :poll_closed,
+      #     resource: @poll,
+      #     content: I18n.t('messages.system.poll.closed', username: current_user.username)
+      #   )
+      # end
+
       render json: PollSerializer.new.serialize(@poll)
     else
       render_error(@poll.errors.messages, :unprocessable_entity)

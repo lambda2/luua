@@ -293,7 +293,7 @@ declare interface Message extends DbEntryWithTimestamps {
     event_type: string
     resource_id: number | null
     resource_type: 'Poll' | null
-    resource: LightPoll | null
+    resource: EmbedPoll | null
 }
 
 declare interface LightDiscussion extends DbEntryWithTimestamps {

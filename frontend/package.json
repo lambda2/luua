@@ -61,6 +61,7 @@
     "react-dom": "^16.13.1",
     "react-mde": "^9.1.1",
     "react-query": "^1.5.3",
+    "react-query-devtools": "^1.1.17",
     "react-select": ">= 3.1.0",
     "react-showdown": "^2.0.3",
     "redraft": "^0.10.2",

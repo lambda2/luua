@@ -52,6 +52,7 @@ class Message < ApplicationRecord
   
   enum event_type: %i[
     poll_created
+    poll_closed
   ], _suffix: true
 
   counter_culture :discussion, column_name: proc {|model| model.user_message_type? ? 'messages_count' : nil }

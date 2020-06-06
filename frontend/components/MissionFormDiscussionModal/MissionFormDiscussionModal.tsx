@@ -39,7 +39,7 @@ const MissionFromDiscussionModal = ({
   };
 
   return (
-    <div className="MissionFromDiscussionModal">
+    <span className="MissionFromDiscussionModal">
       {buttonElt(() => showModal()) }
       <Modal
         title={t('form.mission.from-discussion')}
@@ -51,7 +51,7 @@ const MissionFromDiscussionModal = ({
       >
         <MissionForm workspace_id={discussion.workspace_id} discussion={discussion}/>
       </Modal>
-    </div>
+    </span>
   )
 }
 

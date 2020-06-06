@@ -19,13 +19,13 @@ import Link from 'next/link';
 import { Dropdown, Menu, Button } from 'antd';
 import icons from 'dictionaries/icons';
 import Router from 'next/router';
-import PollFromDiscussionModal from 'components/PollFromDiscussionModal/PollFromDiscussionModal';
+import PollFormDiscussionModal from 'components/PollFormDiscussionModal/PollFormDiscussionModal';
 import PageSection from 'elements/PageSection/PageSection';
 import LinkedItem from 'components/LinkedItem/LinkedItem';
 import omit from 'lodash/omit';
 import { createItemMutation, updateItemMutation, destroyItemMutation } from 'utils/collectionMutations';
 import { read, lock } from 'api/discussion';
-import MissionFromDiscussionModal from 'components/MissionFromDiscussionModal/MissionFromDiscussionModal';
+import MissionFormDiscussionModal from 'components/MissionFormDiscussionModal/MissionFormDiscussionModal';
 import usePaginatedCollection from 'hooks/usePaginatedCollection';
 
 interface Props {
@@ -159,14 +159,14 @@ const Discussion = ({
       </Menu.Item>}
 
       {can(currentUser, 'discussion.create-poll', discussion) && <Menu.Item key="poll-from-discussion">
-        <PollFromDiscussionModal
+        <PollFormDiscussionModal
           discussion={discussion}
           buttonElt={(onClick) => <a href="#" onClick={onClick}>{t('form.discussion.create-poll')}</a>}
         />
       </Menu.Item>}
 
       {can(currentUser, 'discussion.create-mission', discussion) && <Menu.Item key="poll-from-mission">
-        <MissionFromDiscussionModal
+        <MissionFormDiscussionModal
           discussion={discussion}
           buttonElt={(onClick) => <a href="#" onClick={onClick}>{t('form.discussion.create-mission')}</a>}
         />
@@ -227,10 +227,25 @@ const Discussion = ({
       />
 
       {discussion.locked_at && <MessageBox>{t('discussion.locked')}</MessageBox>}
+
       {!discussion.locked_at && (can(currentUser, 'discussion.post', discussion) &&
         <DiscussionInput onSubmit={onCreate}/> ||
         <MessageBox>{t('discussion.cant-post-auth')}</MessageBox>  
       )}
+      {!discussion.locked_at && <div className="MessageListItemActionBar">
+        <span>{t('generics.or')}</span>
+        {' '}
+        <PollFormDiscussionModal
+          discussion={discussion}
+          buttonElt={(onClick) => <a href="#" className="shadowed-button"onClick={onClick}>{t('form.discussion.create-poll')}</a>}
+        />
+        {' '}
+        <MissionFormDiscussionModal
+          discussion={discussion}
+          buttonElt={(onClick) => <a href="#" className="shadowed-button"onClick={onClick}>{t('form.discussion.create-mission')}</a>}
+        />
+      </div>}
+
     </div>
   )
 
