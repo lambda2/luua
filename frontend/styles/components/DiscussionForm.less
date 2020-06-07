@@ -77,3 +77,31 @@
   }
 
 }
+
+.InlineDiscussionForm {
+  display: none;
+  padding: @space-m;
+  border: 1px solid @border-color-base;
+  border-radius: 3px;
+
+
+  &.active {
+    display: block;
+  }
+}
+
+.InlineDiscussionTrigger {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+  p {
+    cursor: pointer;
+    padding: @space-inset-m;
+    border: 1px solid @border-color-base;
+    border-radius: 3px;
+    color: lighten(@text-color-light, 20);
+  }
+}
+

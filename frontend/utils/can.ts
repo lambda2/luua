@@ -50,7 +50,7 @@ const can = (
     case 'discussion.create-poll':
       return user && resource && (
         (resource.user_id === user.id) ||
-        (find(user?.workspace_users, {workspace_id: resource.workspace_id, admin: true}))
+        (find(user?.workspace_users, {workspace_id: resource.workspace_id}))
       )
     case 'discussion.create-mission':
       return user && resource && (

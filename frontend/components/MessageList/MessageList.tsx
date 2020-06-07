@@ -33,11 +33,8 @@ const MessageList = ({
         if (m.message_type === 'system') {
           return (
             <SystemMessageListItem
-              onVote={onVote}
-              onEdit={onEdit}
               onDestroy={onDestroy}
               message={m}
-              userVote={find(userVotes, { message_id: m.id })}
             />
           )
         } else {

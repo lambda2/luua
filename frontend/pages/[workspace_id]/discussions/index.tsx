@@ -14,6 +14,9 @@ import { Head } from 'components/Head/Head';
 import { vote } from 'api/message';
 import useInfiniteCollection from 'hooks/useInfiniteCollection';
 import LoadMoreButton from 'elements/LoadMoreButton/LoadMoreButton';
+import EmbedDiscussionForm from 'components/DiscussionForm/EmbedDiscussionForm';
+import InlineDiscussionForm from 'components/DiscussionForm/InlineDiscussionForm';
+import can from 'utils/can';
 
 /**
  * The discussions list of a workspace
@@ -50,23 +53,14 @@ const Discussions = (
 
   // @TODO this hits the browser cache each time the user is voting
   const votesResponse = useCollection<MessageVote[]>(
-    `/api/workspaces/${query.workspace_id}/message_votes/mines?only_roots=true`, (token || currentUser?.jwt)
+    `/api/workspaces/${query.workspace_id}/message_votes/mines?only_roots=true`,
+    (token || currentUser?.jwt)
   )
 
   const voteMessage = async (message: Message, selectedVote: MessageVoteOption) => {
     await vote(message.id, selectedVote, currentUser?.jwt || '')
     return await votesResponse?.refetch({ force: true })
   }
-  
-  // const menu = (
-  //   <Menu>
-  //     {can(currentUser, 'discussion.create', currentWorkspace) && <Menu.Item key="create-discussion">
-  //       <Link {...manage.workspace.discussions.new(`${query.workspace_id}`)}>
-  //         <a>{t('discussion.create.title')}</a>
-  //       </Link>
-  //     </Menu.Item>}
-  //   </Menu>
-  // );
 
   const wname = initialData && initialData[0]?.workspace?.name
 
@@ -79,7 +73,7 @@ const Discussions = (
       active='discussions'
     />}
     <ContentLayout sideMenu={currentWorkspace && <DiscussionsLeftMenu workspace={currentWorkspace} />}>
-        
+      {currentWorkspace && can(currentUser, 'discussion.create', currentWorkspace) && <InlineDiscussionForm workspace={currentWorkspace} />}
       {data && data.map((d: LightDiscussion[] | undefined) => d && <DiscussionList
         readings={discussionsReadingsResponse.data}
         data={d}
@@ -98,3 +92,4 @@ Discussions.getInitialProps = async (ctx: any) => {
 }
 
 export default withUserToken(Discussions)
+

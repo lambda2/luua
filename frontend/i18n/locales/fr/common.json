@@ -24,6 +24,7 @@
   "menu": {
     "home": "Luua",
     "candidates": "Candidats",
+    "about": "À propos",
     "discover": "Découvrir",
     "contributors": "Contributeurs",
     "delete": "Supprimer",
@@ -589,6 +590,7 @@
     "discussion": {
       "update": "Mettre à jour la discussion",
       "submit": "Créer une discussion",
+      "inline-add": "Commencer une nouvelle discussion...",
       "edit": "Éditer",
       "delete": "Supprimer",
       "create-poll": "Créer un sondage",

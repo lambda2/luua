@@ -89,9 +89,6 @@ const WorkspaceTabs = memo(({
 
   const renderGuestTabs = () => {
     return <Tabs>
-      <Tab active={active} name="summary">
-        <Link {...ROUTES.manage.workspace.show(slug)}><a>{t('menu.summary')}</a></Link>
-      </Tab>
       <Tab active={active} name="discussions">
         <Link {...ROUTES.manage.workspace.discussions.index(slug)}><a>{t('menu.discussions')}{' '}<Badge count={discussions_count} /></a></Link>
       </Tab>
@@ -100,15 +97,15 @@ const WorkspaceTabs = memo(({
       </Tab>
       <Tab active={active} name="missions">
         <Link {...ROUTES.manage.workspace.missions.index(slug)}><a>{t('menu.missions')}{' '}<Badge count={missions_count} /></a></Link>
+      </Tab>
+      <Tab active={active} name="summary">
+        <Link {...ROUTES.manage.workspace.about(slug)}><a>{t('menu.about')}</a></Link>
       </Tab>
     </Tabs>
   }
 
   const renderMemberTabs = () => {
     return <Tabs>
-      <Tab active={active} name="summary">
-        <Link {...ROUTES.manage.workspace.show(slug)}><a>{t('menu.summary')}</a></Link>
-      </Tab>
       <Tab active={active} name="discussions">
         <Link {...ROUTES.manage.workspace.discussions.index(slug)}><a>{t('menu.discussions')}{' '}<Badge count={discussions_count} /></a></Link>
       </Tab>
@@ -117,6 +114,9 @@ const WorkspaceTabs = memo(({
       </Tab>
       <Tab active={active} name="missions">
         <Link {...ROUTES.manage.workspace.missions.index(slug)}><a>{t('menu.missions')}{' '}<Badge count={missions_count} /></a></Link>
+      </Tab>
+      <Tab active={active} name="summary">
+        <Link {...ROUTES.manage.workspace.about(slug)}><a>{t('menu.about')}</a></Link>
       </Tab>
       {/* <Tab active={active} name="candidates">
         <Link {...ROUTES.manage.workspace.candidates.index(workspace.slug)}>

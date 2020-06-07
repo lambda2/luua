@@ -17,17 +17,11 @@ import EmbedMessageItem from 'components/EmbedMessageItem/EmbedMessageItem';
 
 interface Props {
   message: Message
-  userVote?: MessageVote
-  onVote?: (message: Message, vote: MessageVoteOption) => {}
-  onEdit: (message: Message) => {}
   onDestroy: (message: Message) => {}
 }
 
 const SystemMessageListItem = ({
   message,
-  userVote,
-  onVote,
-  onEdit,
   onDestroy
 }: Props) => {
 
@@ -46,13 +40,12 @@ const SystemMessageListItem = ({
       {' '}
       <span className="datetime text-light">{moment(message.created_at).calendar()}</span>
       <div className="message-actions">
-        {can(currentUser, 'message.edit', message) && <Button key="edit" type="link" onClick={() => setEditing(true)}>{t('message.edit')}</Button>}
         {can(currentUser, 'message.destroy', message) && <Button key="destroy" type="link" onClick={() => onDestroy(message)}>{t('message.destroy')}</Button>}
       </div>
     </header>)
   }
 
-  
+
   return (<>
     <div className="MessageListEventMessage">{contentforSystemMessage()}</div>
     <div className="MessageListItem SystemMessageListItem" id={`${message.id}`}>
