@@ -140,8 +140,8 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
       end
     end
 
-    mount PgHero::Engine, at: 'pghero'
-
-    mount Sidekiq::Web => '/sidekiq'
+    # mount PgHero::Engine, at: 'pghero'
+    #
+    # mount Sidekiq::Web => '/sidekiq'
   end
 end

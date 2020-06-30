@@ -25,15 +25,16 @@ gem 'api-pagination', '~> 4.8.2'
 gem 'has_scope', '~> 0.7.2'
 gem 'kaminari', '~> 1.2.1'
 gem 'panko_serializer', '~> 0.7.3'
-gem 'rack-attack', '~> 6.2.2'
-gem 'redis', '~> 4.1.4'
 gem 'responders', '~> 3.0.0'
-gem 'sidekiq', '~> 6.0.7'
 
 gem 'httparty', '~> 0.18.0'
+
+gem 'rack-attack', '~> 6.2.2'
 gem 'redis-namespace', '~> 1.7.0'
 gem 'rufus-scheduler', '~> 3.4.2'
 gem 'sidekiq-cron', '~> 0.6.3'
+gem 'sidekiq', '~> 6.0.7'
+gem 'redis', '~> 4.1.4'
 
 gem 'interactor-rails', '~> 2.2.1'
 
