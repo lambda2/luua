@@ -62,7 +62,7 @@ gem 'sentry-raven', '~> 3.0.0'
 
 # Pg analytics
 gem 'pg_query', '~> 1.2.0'
-gem 'pghero', '~> 2.4.2'
+gem 'pghero', '~> 2.7.0'
 
 # Memcached
 gem 'dalli', '~> 2.7.10'
