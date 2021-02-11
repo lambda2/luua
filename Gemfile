@@ -73,7 +73,7 @@ gem 'groupdate', '~> 5.0.0'
 gem 'zlib', '~> 1.1.0'
 
 # Upload
-gem 'carrierwave', '~> 2.1.0'
+gem 'carrierwave', '~> 2.1.1'
 gem 'carrierwave-base64', '~> 2.8.1'
 gem 'fog-aws', '~> 3.6.5' # For DigitalOcean
 gem 'mini_magick', '~> 4.10.1'
