@@ -53,7 +53,7 @@
     "linkify-it": "^3.0.2",
     "lodash": "^4.17.21",
     "markdown-draft-js": "^2.2.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "next": "^11.1.1",
     "next-cookies": "^2.0.3",
     "parse-link-header": "^2.0.0",
