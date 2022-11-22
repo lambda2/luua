@@ -65,7 +65,7 @@ gem 'pg_query', '~> 1.2.0'
 gem 'pghero', '~> 2.7.0'
 
 # Memcached
-gem 'dalli', '~> 2.7.10'
+gem 'dalli', '~> 3.2.3'
 
 gem 'groupdate', '~> 5.0.0'
 
