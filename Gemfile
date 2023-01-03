@@ -30,7 +30,7 @@ gem 'redis', '~> 4.1.4'
 gem 'responders', '~> 3.0.0'
 gem 'sidekiq', '~> 6.0.7'
 
-gem 'httparty', '~> 0.18.0'
+gem 'httparty', '~> 0.21.0'
 gem 'redis-namespace', '~> 1.7.0'
 gem 'rufus-scheduler', '~> 3.4.2'
 gem 'sidekiq-cron', '~> 0.6.3'
